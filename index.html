@@ -111,5 +111,29 @@
       location.replace('/');
     }
   </script>
+    <script>
+    (function () {
+      const host = location.hostname.toLowerCase();
+      const isChrome = /chrome|crios/i.test(navigator.userAgent);
+  
+      // 1) Always use HTTPS
+      if (location.protocol !== 'https:') {
+        location.replace('https://' + host + location.pathname + location.search);
+        return;
+      }
+  
+      // 2) Never serve this page on /lander
+      if (location.pathname.toLowerCase().includes('lander')) {
+        location.replace('/');
+        return;
+      }
+  
+      // 3) If Chrome has a bad cache for the apex, prefer www (you already have a CNAME for it)
+      if (isChrome && host === 'knoxramseythrillers.com') {
+        location.replace('https://www.knoxramseythrillers.com' + location.pathname + location.search);
+        return;
+      }
+    })();
+  </script>
 </body>
 </html>

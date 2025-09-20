@@ -12,7 +12,11 @@
   <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png">
   <meta name="twitter:card" content="summary_large_image">
   <style>
-    :root{--bg:#071014;--panel:#0c151a;--line:#17313d;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e}
+    :root{--bg:#071014;--panel:#0c151a;--line:#17313d;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e;
+          /* tweak these two if you want to nudge the terminal overlay without editing lots of CSS */
+          --term-bottom:24%;  /* how high the overlay sits from the bottom of the book (percentage of book height) */
+          --term-height:26%;  /* how tall the overlay is (percentage of book height) */
+    }
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
 
@@ -31,42 +35,57 @@
     .livecover{display:grid;grid-template-columns:minmax(320px,520px) 1fr;gap:28px;align-items:stretch}
     @media (max-width:970px){.livecover{grid-template-columns:1fr}}
 
-    /* COVER uses your PNG; no live title overlay */
+    /* COVER PANEL — show the ENTIRE PNG (no cropping) and layer effects on top */
     .cover{
-      position:relative; border:1px solid var(--line); border-radius:16px; overflow:hidden;
-      aspect-ratio:3/4;               /* book-like proportions; prevents squish */
-      min-height:640px;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.38) 55%, rgba(0,0,0,.55)),
-        url("/assets/CoverArt.png") center top / cover no-repeat;
-      box-shadow:0 30px 60px rgba(0,0,0,.45);
+      position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+      background:#060d10;box-shadow:0 30px 60px rgba(0,0,0,.45);
+      height:min(86vh,980px); /* tall enough to show your name at bottom; scales with screen */
     }
+    @media (max-width:700px){ .cover{height:72vh} }
+
+    .cover-img{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:contain; /* <<< ensures we see the whole cover, including your name */
+      object-position:center top;
+      filter:none;
+    }
+
     .gridlines{
-      position:absolute; inset:0; pointer-events:none;
+      position:absolute;inset:0;pointer-events:none;
       background:
         linear-gradient(90deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px,
         linear-gradient(0deg,  rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px;
-      mix-blend-mode:soft-light; opacity:.28;
+      mix-blend-mode:soft-light;opacity:.25;
       mask-image:radial-gradient(140% 100% at 50% 30%, #000 55%, transparent 80%);
     }
+
     .led{
-      position:absolute; left:18px; top:18px; width:14px; height:14px; border-radius:50%;
-      background:#320000; animation:pulse 1.4s infinite;
+      position:absolute;left:18px;top:18px;width:14px;height:14px;border-radius:50%;
+      background:#320000;animation:pulse 1.4s infinite;
       box-shadow:0 0 0 2px #1a262b inset, 0 0 0 1px #000, 0 0 0 8px rgba(255,0,0,.06);
     }
     @keyframes pulse{0%,60%{background:#3a0000}65%{background:#ff3b30}85%{background:#ff6a62}100%{background:#3a0000}}
 
-    /* Terminal overlay—sized/offset to sit over your art’s terminal area */
+    /* Terminal overlay: sized & vertically raised to cover the green book terminal */
     .term{
-      position:absolute; left:26px; right:26px; bottom:30px; height:205px;
+      position:absolute;
+      left:8%; right:8%;
+      bottom:var(--term-bottom);
+      height:var(--term-height);
       font-family:ui-monospace, Menlo, Consolas, monospace;
-      color:#b8ffd7; background:rgba(5,12,15,.60); border:1px solid var(--line);
-      border-radius:12px; padding:12px 14px; overflow:hidden; backdrop-filter:blur(3px);
+      color:#b8ffd7;background:rgba(5,12,15,.60);border:1px solid var(--line);
+      border-radius:12px;padding:12px 14px;overflow:hidden;backdrop-filter:blur(3px);
       box-shadow:inset 0 0 18px rgba(0,0,0,.35);
     }
-    @media (max-width:600px){ .term{left:18px; right:18px; bottom:22px; height:180px} }
-    .term .line{white-space:nowrap; overflow:hidden; border-right:2px solid rgba(184,255,215,.7); margin:2px 0}
-    @keyframes typeline{from{width:0} to{width:100%}}
+    @media (max-width:900px){
+      :root{ --term-bottom:27%; --term-height:28%; } /* a little higher/taller on smaller screens */
+    }
+    @media (max-width:560px){
+      :root{ --term-bottom:30%; --term-height:32%; }
+      .term{left:6%; right:6%}
+    }
+    .term .line{white-space:nowrap;overflow:hidden;border-right:2px solid rgba(184,255,215,.7);margin:2px 0}
+    @keyframes typeline{from{width:0}to{width:100%}}
     .term .fade{opacity:.7}
 
     /* RIGHT column */
@@ -80,7 +99,7 @@
     .btn-ghost{border:1px solid var(--accent);color:var(--accent);background:transparent}
     .btn-ghost:hover{background:rgba(82,255,168,.1);transform:translateY(-2px)}
 
-    /* Sections */
+    /* Sections below (unchanged) */
     section{padding:40px 18px}
     h2{margin:0 0 20px;font-size:2rem;position:relative;display:inline-block}
     h2::after{content:'';position:absolute;bottom:-5px;left:0;width:50px;height:3px;background:var(--accent);border-radius:2px}
@@ -105,7 +124,6 @@
     footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);background:linear-gradient(180deg,transparent,rgba(12,21,26,.5))}
     footer a{color:#9fb2c7;text-decoration:none;transition:color .2s}
     footer a:hover{color:var(--accent)}
-
     .badge{display:inline-block;padding:3px 8px;background:rgba(82,255,168,.2);border:1px solid var(--accent);border-radius:4px;font-size:.75rem;color:var(--accent);font-weight:700;letter-spacing:.5px;margin-left:8px}
   </style>
 </head>
@@ -125,13 +143,15 @@
 
   <header class="wrap hero">
     <div class="livecover">
+      <!-- LEFT: real cover art (no cropping) + overlays -->
       <div class="cover" role="img" aria-label="Dark Recipe cover with pulsing alarm and terminal overlay">
+        <img class="cover-img" src="/assets/CoverArt.png" alt="" />
         <div class="gridlines"></div>
         <div class="led" aria-hidden="true"></div>
-        <!-- NOTE: removed the live 'DARK/RECIPE' title block to avoid duplication with the PNG -->
         <div class="term" id="term" aria-live="polite" aria-label="system console"></div>
       </div>
 
+      <!-- RIGHT: copy & CTAs -->
       <div class="rt">
         <p class="kicker">"When the weapon is the supply chain itself..."</p>
         <h1>DARK RECIPE <span class="badge">COMING 2025</span></h1>

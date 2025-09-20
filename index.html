@@ -14,9 +14,8 @@
   <style>
     :root{
       --bg:#071014;--panel:#0c151a;--line:#17313d;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e;
-      /* === TUNE THESE TO NUDGE THE OVERLAY === */
-      --term-bottom:35%;   /* distance from bottom of the book → raise value = move overlay UP */
-      --term-height:24%;   /* overlay height as % of book height  */
+      --term-bottom:35%;
+      --term-height:24%;
     }
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
@@ -31,12 +30,16 @@
     .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color .2s}
     .links a:hover,.links a.active{color:var(--accent)}
 
+    /* DEBUT BANNER */
+    .debut-banner{background:linear-gradient(135deg,rgba(82,255,168,0.08),transparent);border-bottom:1px solid var(--line);padding:12px 0;text-align:center}
+    .debut-text{color:var(--accent);font-weight:700;font-size:0.95rem;letter-spacing:1px;text-transform:uppercase}
+
     /* HERO */
     .hero{padding:28px 18px}
     .livecover{display:grid;grid-template-columns:minmax(320px,520px) 1fr;gap:28px;align-items:stretch}
     @media (max-width:970px){.livecover{grid-template-columns:1fr}}
 
-    /* COVER PANEL — show ENTIRE PNG (no cropping) */
+    /* COVER PANEL */
     .cover{
       position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;
       background:#060d10;box-shadow:0 30px 60px rgba(0,0,0,.45);
@@ -46,7 +49,7 @@
 
     .cover-img{
       position:absolute;inset:0;width:100%;height:100%;
-      object-fit:contain;        /* keep full book incl. author name */
+      object-fit:contain;
       object-position:center top;
     }
 
@@ -66,7 +69,7 @@
     }
     @keyframes pulse{0%,60%{background:#3a0000}65%{background:#ff3b30}85%{background:#ff6a62}100%{background:#3a0000}}
 
-    /* TERMINAL overlay — lifted higher, a touch more opaque to hide green text */
+    /* TERMINAL overlay */
     .term{
       position:absolute;
       left:8%; right:8%;
@@ -83,7 +86,7 @@
       box-shadow:inset 0 0 18px rgba(0,0,0,.35);
     }
     @media (max-width:900px){
-      :root{ --term-bottom:44%; --term-height:26%; } /* a bit higher on smaller screens */
+      :root{ --term-bottom:44%; --term-height:26%; }
     }
     @media (max-width:560px){
       :root{ --term-bottom:46%; --term-height:30%; }
@@ -95,6 +98,13 @@
     .term .fade{opacity:.7}
 
     /* RIGHT column */
+    .rt{position:relative}
+    
+    /* EPIGRAPH QUOTE */
+    .epigraph-box{background:rgba(255,75,62,0.03);border-left:3px solid var(--danger);padding:20px;margin-bottom:25px;border-radius:0 8px 8px 0}
+    .epigraph-quote{font-size:1.15rem;line-height:1.6;color:var(--ink);font-style:italic;margin:0 0 10px}
+    .epigraph-source{font-size:0.9rem;color:var(--muted);text-align:right}
+    
     .rt h1{font-size:2.4rem;margin:.2em 0 .3em}
     .kicker{color:#9bd8c4;margin:0 0 .5rem;font-weight:700;font-size:1.1rem}
     .sub{color:var(--muted);margin:0 0 1.1rem;font-size:1.05rem}
@@ -130,7 +140,9 @@
     footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);background:linear-gradient(180deg,transparent,rgba(12,21,26,.5))}
     footer a{color:#9fb2c7;text-decoration:none;transition:color .2s}
     footer a:hover{color:var(--accent)}
+    
     .badge{display:inline-block;padding:3px 8px;background:rgba(82,255,168,.2);border:1px solid var(--accent);border-radius:4px;font-size:.75rem;color:var(--accent);font-weight:700;letter-spacing:.5px;margin-left:8px}
+    .debut-badge{display:inline-block;padding:4px 10px;background:rgba(255,75,62,.1);border:1px solid var(--danger);border-radius:4px;font-size:.8rem;color:var(--danger);font-weight:700;letter-spacing:.5px;margin-left:8px}
   </style>
 </head>
 <body>
@@ -147,30 +159,42 @@
     </div>
   </nav>
 
+  <div class="debut-banner">
+    <span class="debut-text">⚡ Debut Thriller from Engineer-Turned-Author Robert Cummer ⚡</span>
+  </div>
+
   <header class="wrap hero">
     <div class="livecover">
-      <!-- LEFT: real cover art (no cropping) + overlays -->
+      <!-- LEFT: Cover with overlays -->
       <div class="cover" role="img" aria-label="Dark Recipe cover with pulsing alarm and terminal overlay">
-        <img class="cover-img" src="/assets/CoverArt.png" alt="" />
+        <img class="cover-img" src="/assets/CoverArt.png" alt="Dark Recipe book cover" />
         <div class="gridlines"></div>
         <div class="led" aria-hidden="true"></div>
         <div class="term" id="term" aria-live="polite" aria-label="system console"></div>
       </div>
 
-      <!-- RIGHT: copy & CTAs -->
+      <!-- RIGHT: Epigraph, title, CTAs -->
       <div class="rt">
+        <div class="epigraph-box">
+          <p class="epigraph-quote">"Control oil and you control nations; control food and you control the people."</p>
+          <p class="epigraph-source">— Henry Kissinger (attributed)</p>
+        </div>
+        
         <p class="kicker">"When the weapon is the supply chain itself..."</p>
-        <h1>DARK RECIPE <span class="badge">COMING 2025</span></h1>
+        <h1>DARK RECIPE <span class="debut-badge">DEBUT NOVEL</span></h1>
         <p class="sub">
           Festival-goers collapse across Detroit's Movement festival. The hospitals see food poisoning.
           Engineer <strong>Knox Ramsey</strong> sees something far more sinister—a coordinated attack hidden in America's agricultural infrastructure.
         </p>
+        <p class="sub" style="color:var(--accent);font-weight:600">
+          What if the systems that feed us could be turned against us?
+        </p>
         <div class="cta" style="margin-bottom:10px">
-          <a class="btn btn-primary" href="/recipe.html">See the Ops "Recipe" View</a>
-          <a class="btn btn-ghost" href="#overview">Learn More</a>
+          <a class="btn btn-primary" href="/recipe.html">See the Live Attack Interface</a>
+          <a class="btn btn-ghost" href="/teaser.html">Read Opening Chapters</a>
         </div>
         <div class="cta">
-          <a class="btn btn-ghost" href="/teaser.html">Read Prologue + Chapter One</a>
+          <a class="btn btn-ghost" href="#overview">Why This Book Matters</a>
         </div>
       </div>
     </div>
@@ -181,17 +205,17 @@
     <div class="cards">
       <article class="card">
         <h3>Technical Authenticity</h3>
-        <p>Real industrial control systems. Real vulnerabilities. Knox Ramsey navigates the actual SCADA networks, PLCs, and HMI interfaces that control America's food production—from nitrogen injection ratios in vertical farms to pH sensors in hydroponic bays.</p>
+        <p>Written by an engineer with 30+ years in industrial automation. Real SCADA networks, real PLCs, real vulnerabilities. Knox Ramsey navigates the actual systems that control America's food production—from nitrogen injection ratios to pH sensors.</p>
         <p class="mini">No Hollywood hacking. Just the terrifying reality of how exposed our critical infrastructure really is.</p>
       </article>
       <article class="card">
         <h3>The Supply Chain as Weapon</h3>
-        <p>The attack vector isn't a bomb or a virus—it's the "recipe" itself. Subtle manipulations in agricultural setpoints, cold chain logistics, and processing parameters turn the entire food system into a delivery mechanism.</p>
+        <p>The attack vector isn't a bomb or virus—it's the "recipe" itself. Subtle manipulations in agricultural setpoints, cold chain logistics, and processing parameters turn the entire food system into a delivery mechanism.</p>
         <p class="mini">When every control point becomes a potential weapon, how do you defend a continent-wide network?</p>
       </article>
       <article class="card">
         <h3>An Engineer's Mindset</h3>
-        <p>Knox Ramsey isn't a super-spy or ex-military. He's a controls engineer who thinks in feedback loops, failure modes, and root-cause analysis. Plant-floor troubleshooting vs. a conspiracy that stretches from Detroit's riverfront to ag biotech boardrooms.</p>
+        <p>Knox Ramsey isn't a super-spy or ex-military. He's a controls engineer who thinks in feedback loops, failure modes, and root-cause analysis. Watch him apply plant-floor troubleshooting to unravel a conspiracy reaching from Detroit to Shanghai.</p>
         <p class="mini">Sometimes the most dangerous person in the room is the one who actually understands how things work.</p>
       </article>
     </div>
@@ -200,7 +224,7 @@
   <section class="wrap">
     <div class="threat-section">
       <h2 style="margin-bottom:10px">The Threat Vector</h2>
-      <p style="color:var(--muted);margin-bottom:20px">In DARK RECIPE, the attack unfolds across multiple critical systems:</p>
+      <p style="color:var(--muted);margin-bottom:20px">In DARK RECIPE, the attack unfolds across systems you trust every day:</p>
       <div class="threat-grid">
         <div class="threat-item"><div class="threat-icon">!</div><div class="threat-content"><h4>Agricultural Controls</h4><p>Nutrient manifolds compromised at the source</p></div></div>
         <div class="threat-item"><div class="threat-icon">!</div><div class="threat-content"><h4>Cold Chain Logistics</h4><p>Temperature packets missing, timing manipulated</p></div></div>
@@ -211,12 +235,15 @@
   </section>
 
   <section class="wrap">
-    <h2>The Stakes</h2>
+    <h2>The Stakes Are Real</h2>
     <p style="font-size:1.1rem;line-height:1.8;max-width:800px">
       When thousands fall ill at America's premier electronic music festival, the CDC sees an outbreak. The FBI sees terrorism. Knox Ramsey sees the digital fingerprints in the data—anomalies that point to something far more sophisticated than contamination.
     </p>
     <p style="font-size:1.1rem;line-height:1.8;max-width:800px;margin-top:20px">
-      Racing a ticking clock and federal inertia, Knox traces the attack through layers of automation—from field sensors to enterprise systems. Whoever controls the recipe controls the food supply. And they're just getting started.
+      Racing against federal bureaucracy and a ticking clock, Knox must trace the attack through layers of automation, from field sensors to enterprise systems. Because whoever controls the recipe controls the food supply.
+    </p>
+    <p style="font-size:1.2rem;line-height:1.8;max-width:800px;margin-top:20px;color:var(--accent);font-weight:600">
+      And they're just getting started.
     </p>
   </section>
 

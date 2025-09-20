@@ -6,19 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://knoxramseythrillers.com/" />
   <meta name="description" content="Official site for Knox Ramsey Thrillers by Robert Cummer. DARK RECIPE: a high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
+
+  <!-- Social preview -->
   <meta property="og:title" content="Knox Ramsey Thrillers — DARK RECIPE" />
   <meta property="og:description" content="A high-stakes techno-thriller of food security and one engineer’s fight to stop a silent weapon." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://knoxramseythrillers.com/" />
   <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png" />
   <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     :root{
       --bg:#0b0d10;--panel:#11151a;--ink:#e8eef5;--muted:#9fb2c7;
-      --accent:#52ffa8;--accent2:#4cc9f0;--line:#19232b
+      --accent:#52ffa8;--line:#19232b
     }
-    *{box-sizing:border-box} html,body{margin:0}
+    *{box-sizing:border-box}
+    html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+
     /* NAV */
     .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
     .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
@@ -27,32 +32,38 @@
     .links{display:flex;gap:14px;flex-wrap:wrap}
     .links a{color:var(--muted);text-decoration:none;font-weight:700}
     .links a:hover,.links a.active{color:var(--accent)}
+
     /* HERO SPLIT */
     .hero{padding:26px 18px}
     .grid{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:center}
     @media (max-width:860px){.grid{grid-template-columns:1fr}}
     .cover img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.45)}
-    .title{font-size:2.3rem;margin:.2em 0 .2em}
+    .kicker{color:#9bd8c4;margin:0 0 .4rem;font-weight:700;letter-spacing:.2px}
+    .title{font-size:2.3rem;margin:.1em 0 .3em}
     .sub{color:var(--muted);margin:0 0 1rem}
     .cta{display:flex;gap:10px;flex-wrap:wrap}
     .btn{display:inline-block;padding:.75rem 1.1rem;border-radius:10px;text-decoration:none;font-weight:800}
     .btn-primary{background:var(--accent);color:#08120e}
     .btn-ghost{border:1px solid var(--accent);color:var(--accent)}
+
     /* SECTIONS */
     section{padding:6px 18px 24px}
     h2{margin:0 0 10px}
+
     footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted)}
+    footer a{color:#9fb2c7;text-decoration:none}
   </style>
 </head>
 <body>
   <!-- NAV -->
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary">
     <div class="wrap bar">
       <div class="brand">Knox Ramsey Thrillers</div>
       <div class="links">
-        <a href="/" class="active">Home</a>
+        <a href="/" class="active" aria-current="page">Home</a>
         <a href="/recipe.html">The Recipe</a>
         <a href="/about.html">About the Author</a>
+        <a href="mailto:knoxramseythrillers@gmail.com">Contact</a>
       </div>
     </div>
   </nav>
@@ -64,8 +75,13 @@
         <img src="/assets/CoverArt.png" alt="Dark Recipe — A Knox Ramsey Thriller by Robert Cummer" width="900" height="1400" loading="eager" decoding="async">
       </figure>
       <div>
+        <p class="kicker">“A silent weapon tears through Detroit’s annual Movement electronic music festival…”</p>
         <h1 class="title">DARK RECIPE</h1>
-        <p class="sub">A silent weapon tears through Detroit’s festival night. As hospitals overflow and systems fail, engineer <strong>Knox Ramsey</strong> traces the attack to a supply-chain breach buried inside America’s food network. What begins as a technical anomaly becomes a national crisis—and a personal war.</p>
+        <p class="sub">
+          When festival-goers collapse across Detroit’s riverfront, engineer <strong>Knox Ramsey</strong> spots a pattern the hospitals miss.
+          The anomaly isn’t heat or fentanyl—it’s buried in America’s food network. As cold-chain data goes sideways and federal response lags,
+          Knox races a clock measured in hours to trace a vector that weaponizes the supply chain itself.
+        </p>
         <div class="cta">
           <a class="btn btn-primary" href="/recipe.html">See the Ops “Recipe” View</a>
           <a class="btn btn-ghost" href="#overview">Overview</a>
@@ -77,12 +93,23 @@
   <!-- OVERVIEW -->
   <section id="overview" class="wrap">
     <h2>Overview</h2>
-    <p><em>Dark Recipe</em> blends industrial control systems (PLCs, SCADA), controlled-environment agriculture, and a federal response racing behind real time. Technical authenticity, human stakes.</p>
+    <p>
+      <em>Dark Recipe</em> blends industrial control systems (PLCs, SCADA), controlled-environment agriculture, and a multi-agency race to catch up to real-time.
+      Technical authenticity. Human stakes.
+    </p>
   </section>
 
   <footer>
-    © <span id="y"></span> Robert Cummer. All rights reserved.
+    © <span id="y"></span> Robert Cummer · <a href="mailto:knoxramseythrillers@gmail.com">knoxramseythrillers@gmail.com</a>
   </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    /* Guard against any stale /lander weirdness loading this file at the wrong path */
+    if (location.pathname.toLowerCase().includes('lander')) {
+      location.replace('/');
+    }
+  </script>
 </body>
 </html>

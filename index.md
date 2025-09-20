@@ -7,7 +7,7 @@ title: Knox Ramsey Thrillers
 
 ## Welcome to the Thrill
 
-Tech-driven suspense from an ag-tech pioneer with 30 years at Dow. *Dark Recipe* is live for beta readers!
+Tech-driven suspense from an author with a 30-year career in automation, including 12 years at Dow. *Dark Recipe* is live for beta readers!
 
 - [Beta Post (844 views, #9)](https://www.reddit.com/r/BetaReaders/comments/1gq2x3y/in_progress_94k_thriller_dark_recipe_a_knox/)
 - [Cover Image](https://i.imgur.com/[YOUR_ID].jpg)

@@ -8,32 +8,42 @@
   <meta name="description" content="Read the Prologue and Chapter One from DARK RECIPE, a Knox Ramsey techno-thriller by Robert Cummer." />
 
   <style>
-    :root{--bg:#071014;--panel:#0d171c;--ink:#e8eef5;--muted:#9fb2c7;--line:#17313d;--accent:#52ffa8}
+    :root{--bg:#071014;--panel:#0d171c;--ink:#e8eef5;--muted:#9fb2c7;--line:#17313d;--accent:#52ffa8;--danger:#ff4b3e}
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.75}
     /* nav */
-    .nav{position:sticky;top:0;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);z-index:50}
+    .nav{position:sticky;top:0;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);z-index:50;backdrop-filter:blur(10px)}
     .wrap{max-width:900px;margin:0 auto;padding:16px 18px}
     .links{display:flex;gap:12px;flex-wrap:wrap}
-    .links a{color:var(--muted);text-decoration:none;font-weight:700}
+    .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color 0.2s}
     .links a:hover{color:var(--accent)}
     /* header */
-    h1{margin:.2em 0 .4em}
+    h1{margin:.2em 0 .4em;font-size:2.2rem}
     .kicker{color:#9bd8c4;margin:0 0 .8rem;font-weight:700}
-    .subtle{color:var(--muted)}
+    .subtle{color:var(--muted);line-height:1.6}
     /* toc */
     .toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:14px 0}
     .toc h2{margin:.1em 0 .4em;font-size:.95rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
     .toc a{display:inline-block;margin-right:12px;color:var(--accent);text-decoration:none;font-weight:800}
+    .toc a:hover{text-decoration:underline}
     /* cards / text blocks */
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:14px}
-    .title{margin:.2em 0 .6em}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:14px}
+    .title{margin:.2em 0 .8em;font-size:1.8rem}
     .note{color:var(--muted);font-size:.95rem;margin:-.25rem 0 1rem}
-    .scene{color:#9bd8c4;font-style:italic}
-    .navrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-    .btn{display:inline-block;padding:.6rem .9rem;border-radius:10px;text-decoration:none;font-weight:900;border:1px solid var(--accent);color:var(--accent)}
+    .scene{color:#9bd8c4;font-style:italic;margin-bottom:1rem}
+    .scene-break{color:var(--accent);text-align:center;margin:2rem 0;font-weight:700}
+    .navrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn{display:inline-block;padding:.6rem .9rem;border-radius:10px;text-decoration:none;font-weight:900;border:1px solid var(--accent);color:var(--accent);transition:all 0.3s}
+    .btn:hover{background:rgba(82,255,168,0.1);transform:translateY(-2px)}
     .btn.primary{background:var(--accent);color:#07140f;border-color:transparent}
+    .btn.primary:hover{background:#6fffb8}
     footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:22px;margin-top:26px}
+    /* Text styling */
+    .epigraph{background:rgba(82,255,168,0.05);border-left:3px solid var(--accent);padding:1rem;margin:1.5rem 0;font-style:italic}
+    .timestamp{color:var(--accent);font-weight:700;margin:1.5rem 0 0.5rem}
+    .location{color:#9bd8c4;font-weight:700;margin:1rem 0}
+    em{color:var(--accent);font-style:italic}
+    strong{color:#fff;font-weight:700}
   </style>
 </head>
 <body>
@@ -49,34 +59,86 @@
   </nav>
 
   <main class="wrap" id="top">
-    <h1>Teaser Read</h1>
-    <p class="kicker">From <strong>DARK RECIPE</strong> — a Knox Ramsey techno-thriller</p>
-    <p class="subtle">Prologue and Chapter One are presented here as a continuous read. Publication updates will post on the homepage.</p>
+    <h1>DARK RECIPE</h1>
+    <p class="kicker">A Knox Ramsey Thriller — Opening Chapters</p>
+    <p class="subtle">The first two chapters reveal how a sophisticated cyber operation turns America's agricultural automation into a weapon. Publication updates will post on the homepage.</p>
 
     <div class="toc">
       <h2>Contents</h2>
+      <a href="#epigraph">Epigraph</a>
       <a href="#prologue">Prologue</a>
       <a href="#ch1">Chapter One</a>
     </div>
 
+    <!-- EPIGRAPH -->
+    <section id="epigraph" class="card">
+      <div class="epigraph">
+        "In 2010, malware called Stuxnet secretly reprogrammed industrial control systems in Iran, destroying nearly 1,000 uranium centrifuges without triggering alarms. It proved for the first time that code could silently destroy machines."
+      </div>
+    </section>
+
     <!-- PROLOGUE -->
     <section id="prologue" class="card">
       <h2 class="title">Prologue</h2>
-      <p class="scene">Detroit Riverfront — Movement Electronic Music Festival</p>
+      <p class="timestamp">Eighteen months before the outbreaks</p>
 
-      <p>The bass didn’t thump so much as rearrange bones. Tens of thousands moved as a single organism—breathing in time, hands up, phones up, light scattering across a river that looked clean at night. The first collapse barely dented the rhythm. One body, then another; friends lowered them gently, assuming heat, dehydration, a thing you could fix with water and shade.</p>
+      <p>The war began at 3:47 a.m. Shanghai time, though no one would recognize it as warfare for another year and a half. Liu Wei sat alone in the sterile glow of PLA Unit 61398, watching lines of code scroll past like strands of DNA. Around him, empty workstations hummed with the patient electronics of a machine that never slept.</p>
 
-      <p>Med tents took them in fast—intake, vitals, fluids. Except numbers wouldn’t line up. Heart rates that shouldn’t have been that low. Blood pressure that shouldn’t have held that steady. EMTs adjusted protocols, then adjusted again, because the tool that always worked didn’t.</p>
+      <p>On his monitor, FarmLake's architecture spread in meticulous detail: an agricultural automation platform deployed across hundreds of North American facilities. Greenhouses, hydroponic farms, cannabis grows—all trusting their crops to algorithms written by a brilliant engineer who had no idea his life's work was about to be weaponized.</p>
 
-      <p>From the stage, lasers sliced a grid into the night. Far across the river, a container ship’s horn bellowed once and kept moving. Detroit knew how to carry on.</p>
+      <p>Liu sipped jasmine tea from a porcelain cup his grandmother had given him, a small ritual anchoring the larger one. Once, he'd pretended cybersecurity was defensive. That was before Beijing showed him satellite imagery of American agricultural dominance, before Dr. Chen explained how food systems could be militarized without a soldier ever crossing a border.</p>
 
-      <p>Inside the command trailer, a volunteer nurse practitioner stared at a whiteboard <em>that refused to behave like a whiteboard</em>. Tally marks drifted toward a pattern, then slipped as new information fell into place. She was still looking when her radio crackled: three more down along the east gate, a cluster that hadn’t been a cluster until now.</p>
+      <p>He pulled up a file labeled Subject Analysis: Knox Ramsey. Video from three years earlier flickered across the screen—an engineer still convinced his technology would save, not destroy.</p>
 
-      <p>Ten miles away, a monitoring dashboard blinked a message it had never been programmed to display: <strong>trace.lot C-12 / Bay 3</strong>. A trendline eased past normal and found a new equilibrium where no one expected to find one. That line wasn’t on a hospital monitor. It wasn’t in a med tent. It was in a cold, humming room full of stainless pipe and quietly competent pumps.</p>
+      <div class="scene-break">* * *</div>
 
-      <p>By the time the crowd realized the set had ended early, Detroit’s riverfront was ringed in red and blue. The news choppers were almost polite about the altitude they chose. From above, the festival grounds looked like a printed circuit.</p>
+      <p class="location">Detroit, Michigan — Three years earlier</p>
 
-      <p>At street level, the pattern finally resolved into a shape—thin as a hair, strong as a cable—running through pallets and trucks and coolers and screens. Where it started was nobody’s problem. Where it ended was about to be everybody’s.</p>
+      <p>Knox Ramsey stood before a conference room of investors, presentation remote steady in his hand. Slides behind him showed vertical farms rising like green skyscrapers, hydroponics feeding families in urban food deserts, and data streams promising to revolutionize how humanity fed itself.</p>
+
+      <p>"By 2050," Knox said, "we need seventy percent more food using less water, less energy, and fewer chemicals. Traditional agriculture can't scale."</p>
+
+      <p>He clicked to a cutaway of a controlled environment agriculture facility. "FarmLake can. Thirty thousand square feet indoors equals three hundred acres outside. No weather risk, no pesticides, ninety-five percent less water."</p>
+
+      <p>A skeptical voice: "Energy costs?"</p>
+
+      <p>Knox smiled. "LED arrays with spectrum optimization. Red for flowering, blue for vegetative growth, far-red for elongation. Plants don't need the whole sun—just the wavelengths that matter. We cut energy costs by more than half."</p>
+
+      <p>He played a time-lapse of lettuce from seed to harvest in eighteen days. "Our recipe management system learns from every plant. Nutrient uptake, growth rate, leaf color—it all feeds the algorithms. What one facility learns, the entire network gains. A breakthrough in Detroit is shared instantly with Denver, Dallas, Durham."</p>
+
+      <p>Margaret Chen, a venture capitalist, leaned forward. "Urban food deserts?"</p>
+
+      <p>Knox's expression sharpened. "Vacant warehouses can become farms. Detroit, Flint, Grand Rapids—neighborhoods that haven't seen fresh produce in decades. One facility feeds fifteen thousand families. Harvest to table in under twenty-four hours."</p>
+
+      <p>Tate, twenty-five in his first suit, sat in the back, watching his father command the room with technical mastery and moral conviction. This wasn't just engineering—it was mission.</p>
+
+      <p>An older investor asked, "What keeps agribusiness from copying you?"</p>
+
+      <p>Knox clicked to a slide showing an exponential curve. "Data. Every day our system runs, it gets smarter. A competitor starting now is years behind. Network effects are the moat. We're not just automating farms—we're building collective intelligence."</p>
+
+      <p>As the meeting wrapped, Tate asked quietly, "You really think this will work?"</p>
+
+      <p>Knox looked out at Detroit's skyline. "Son, this isn't about money. It's about changing how humanity feeds itself. We'll grow better food with less. Technology serving people at its finest."</p>
+
+      <div class="scene-break">* * *</div>
+
+      <p class="location">Shanghai — Present</p>
+
+      <p>Liu Wei closed the archive. Knox Ramsey had built something beautiful, a system that could genuinely improve human nutrition and food security. Which made it perfect for weaponization.</p>
+
+      <p>"Asset insertion commencing," Dr. Chen's voice crackled through the intercom.</p>
+
+      <p>Liu's fingers moved with the precision of a pianist. No brute-force malware, no obvious signatures. Instead, they exploited a single assumption buried in Ramsey's architecture: that optimization was always beneficial.</p>
+
+      <p>Eight months of synthetic training data had prepared the ground—meticulous biological models hidden inside legitimate research. Now the corrupted algorithms propagated through FarmLake's network, carrying China's intent into American grow facilities where Knox's dreams would become biological nightmares.</p>
+
+      <p>The war had begun with a father's love for his son and a genuine desire to feed the world. It would end with that same technology turned against the people it was meant to protect.</p>
+
+      <p>Liu set his empty cup aside and watched dawn creep over the Huangpu River. Inside, the screens pulsed green as the infection took root.</p>
+
+      <p><em>They trusted the algorithm.</em></p>
+
+      <p><strong>He would teach it to kill.</strong></p>
 
       <div class="navrow">
         <a class="btn" href="#top">Back to top</a>
@@ -87,64 +149,67 @@
     <!-- CHAPTER ONE -->
     <section id="ch1" class="card">
       <h2 class="title">Chapter One</h2>
+      <p class="scene">Shanghai '97: Operation Harvest Cloud</p>
 
-      <p><strong>Knox Ramsey</strong> silenced the dashboard warning and waited for the trend to tell the truth. Processes didn’t fail the way manuals pretended they did. They stuttered. They lied. Somewhere between a sensor and a database, a number started telling a story that didn’t line up with physics—and Knox had built a career finding which sentence was the lie.</p>
+      <p>The operations floor of Unit 61398 hummed like a hidden power plant. Rows of racks glowed with GPU clusters, coolant fans whispering as they chewed through terabytes of stolen American code. A wall-sized dashboard mapped intrusion routes into Midwestern farm servers, each line a worm burrowing deeper into agricultural systems designed to grow lettuce, soy, and cannabis under glass.</p>
 
-      <p>On his screen, the overnight telemetry for three regional cross-dock hubs traced a tidy sine wave: expected thermal cycling as drivers loaded pallets in slices of night. On top of the wave, a thin green thread labeled <em>EC Proxy</em> wandered like a drunk tourist looking for a hotel. Knox leaned in. <span class="subtle">No, not drunk.</span> <em>Guided</em>.</p>
+      <p>Technicians hunched at their consoles, faces washed in screen-light, lines of code streaming like green rain. The intrusion had been months in the making—phased reconnaissance, backdoors seeded in third-party libraries, false credentials scraped from phishing campaigns. Tonight was the launch.</p>
 
-      <p>He pulled a day’s worth of product genealogy and skimmed the hashes. The lot IDs that should have looked like a television snowstorm arranged themselves into a faint diagonal. Coincidences liked to arrive dressed as diagonals. He told himself he was too old to enjoy the shiver and enjoyed it anyway.</p>
+      <p>Liu Wei stood at the rail above the pit, arms folded, surveying his engineers with calm authority. To him, this wasn't risk. It was inevitability. The Americans believed they had built fortresses of code. What Liu knew—what tonight would prove—was that those fortresses had gates built by men like him, and gates could be opened.</p>
 
-      <p>“Show me cold-chain continuity for C-12,” he said to no one. The query compiled, parceled, returned a lattice of locations and timestamps. <strong>Bay 3</strong> flashed yellow.</p>
+      <p>He remembered Iowa winters from his graduate years—walking through knee-deep snow to reach the engineering labs at Iowa State, where Professor Randall had stayed late to help him debug photonics experiments. <em>You've got the brains for this, Wei,</em> the old man had said, eyes warm with genuine encouragement. <em>But here you'll always have to work twice as hard to be taken half as seriously.</em></p>
 
-      <p>The apartment was quiet except for the fridge and the highway and the cheap fan that refused to die. Knox lived like a man who could leave quickly: dishes washed and stacked, backpack near the door, shoes pointing the right direction. The only mess in the room was the one on the screen.</p>
+      <p>The kindness had stung worse than cruelty. Liu had learned what it meant to be brilliant but never belong—to sit in job interviews where his accent was dissected for political loyalties, where perfectly qualified positions went to candidates with "better cultural fit." The racism he expected; what hollowed him was the politeness, the way they smiled while they excluded him from the inner circles where real decisions were made.</p>
 
-      <p>He thumbed the phone and called a night supervisor he trusted. “Tina, sorry to hit you at this hour.”</p>
+      <p>But he had learned their systems from the inside. Every protocol, every trust relationship, every lazy assumption about American superiority. Now, fifteen years later, that knowledge was coming home to serve a different master.</p>
 
-      <p>“You always say that, Knox, and you’re never sorry.” She was laughing. On background he heard the echo of forklifts and a radio that wouldn’t stay at a comfortable volume.</p>
+      <p>Liu pulled up infiltration status on his tablet. Tonight's operation would demonstrate that American agricultural automation—the pride of feeding the world through technology—could be turned into a weapon against its own people. The irony was almost artistic.</p>
 
-      <p>“Bay Three. I need eyes on the manifold for the nutrient blend. Anyone bump the service panel?”</p>
+      <p>At a side console, Dr. Chen could barely contain himself. His eyes darted as packet traces scrolled past, each confirmation of entry bringing him closer to the moment his toxic metabolic recipe would run live.</p>
 
-      <p>A pause, the sound of walking, a door, the hollowness of a bigger room. “Panels sealed. Torque paint still intact.”</p>
+      <p>"We've tuned the stress-cycle algorithms for cannabinoid pathways," Chen said, voice vibrating with eagerness. "Once the profiles update, their own extraction labs will weaponize the compounds for us. This is more elegant than any traditional contaminant—it looks like nature did it."</p>
 
-      <p>“Okay. Run a local pH check on the return line. Don’t trust the HMI.”</p>
+      <p>Captain Zhang, older, more deliberate, didn't share his thrill. "Your eagerness is dangerous. Attribution is what matters. If the outbreak can be tied to us before the summit—"</p>
 
-      <p>Another pause. “Six point seven.”</p>
+      <p>Chen bristled. "Then history will still record who proved it possible. Do you think the Americans hesitate when they poison fields with sanctions?"</p>
 
-      <p>Too high by a hair. Harmless to a human. Not harmless to a root system engineered to live its best life between 5.8 and 6.2. The difference between healthy and unhappy could look like nothing for a day and then everything at once.</p>
+      <p>"Enough," Liu cut in, a small, sharp smile tugging at the corner of his mouth. "That is your department, Captain. My work ensures they will never see fingerprints. FarmLake will deliver the recipe, but it will look like the system taught itself the flaw."</p>
 
-      <p>“I want you to hold C-12 for QA,” Knox said. “Don’t ship anything on that pallet set without my sign-off.”</p>
+      <p>Zhang's jaw tightened. He said nothing further, though the crease in his brow deepened.</p>
 
-      <p>“You’re going to make me tell dispatch no. You owe me a coffee.”</p>
+      <div class="scene-break">* * *</div>
 
-      <p>“I’ll owe you two.” He ended the call and stared at the green thread that had started this. It didn’t spike. It meandered. He ran a cross-correlation against driver routes and got back a mild maybe. He swapped in weather data, traffic incidents, even the Tigers’ home schedule because he’d learned long ago that causality was a practical joker. The meander stayed a meander.</p>
+      <p class="scene">The Technical Foundation</p>
 
-      <p>He should have wanted sleep. Instead he wanted the truth. He pushed from the chair and walked the small rectangle of the apartment, counting steps without meaning to. When he sat again he wasn’t any smarter, but the part of his brain that liked rhythms was satisfied.</p>
+      <p>Liu Wei shifted to a secondary screen, where FarmLake's architecture unfolded in clean layers of code and diagrams. It wasn't complexity that made it dangerous—it was trust. Americans had designed the system to assume goodwill: every update signed, every profile validated, every algorithm treated as progress.</p>
 
-      <p>Knox called a second number. It rang twice. “Ramsey,” said the voice. Flat. Tired. Government.</p>
+      <p>That naïveté was the opening.</p>
 
-      <p>“Got a thing,” Knox said. “Not a fire. A smell of smoke. You hearing anything from EMS near the riverfront?”</p>
+      <p>"Show me the pathway corruption," Liu said.</p>
 
-      <p>“We hear everything. Define your smoke.”</p>
+      <p>Dr. Chen's workstation came alive with molecular diagrams, bright as stained glass in motion. Benzene rings spun, bonds stretched and reformed, pathways lit in pulses of red and green. "These aren't foreign compounds," Chen explained, fingers flicking across the keys. "Trace cannabinoids, trace terpenes. We're not adding. We're persuading. The plant already knows how to make poison—we're teaching it to prefer that outcome."</p>
 
-      <p>He defined it in layers: the drift, the diagonal, the pH. He didn’t say Detroit yet. He didn’t say Movement. He didn’t say the word <em>vector</em>, because he knew how quickly that word could rearrange rooms.</p>
+      <p>On the chromatography display, peaks rose like jagged mountains. "Tetrahydrocannabinolic acid synthesis up three-hundred-forty percent under stress cycling. Terpenes diverted toward analogs stable through extraction. Consumers will never taste the difference."</p>
 
-      <p>The voice on the line stopped being tired. “You’re suggesting what, exactly?”</p>
+      <p>Liu leaned closer, studying the overlay. He remembered Iowa, the endless debates about ethics and optimization, professors lecturing about agriculture as the noblest of sciences. What Americans forgot was that nobility could be inverted. "And detection?"</p>
 
-      <p>“That someone’s playing with dials people don’t know exist,” Knox said. “If I’m wrong, I buy everyone breakfast and take the L. If I’m right, you want to know before sunrise.”</p>
+      <p>"That's the beauty," Chen said, almost gleeful. "Cannabis labs don't screen for natural compounds in toxic concentrations. Regulation becomes camouflage."</p>
 
-      <p>Silence. Then: “Text me the hubs. And, Ramsey—don’t call them <em>attacks</em>.”</p>
+      <p>Captain Zhang shifted at his post, the only one in the room who didn't share Chen's satisfaction. His voice cut low. "Elegant, yes. But fragile. If a single toxicology lab broadens its panels—"</p>
 
-      <p>He hung up and texted anyway. The screen glowed over a city that was pretending to be asleep. Knox watched the tiny read receipts flip from <em>delivered</em> to <em>seen</em> and felt the familiar mix of relief and regret that came every time he handed a problem to people who could either fix it or bury it.</p>
+      <p>"They won't," Chen snapped. "Even their compliance culture works in our favor. They cling to checklists."</p>
 
-      <p>He reopened the dashboard and dug into the lot genealogy from the other side—backward from the store to the hub to the cross-dock to the farm, unspooling time. Somewhere in the unspooling he found the thing he hadn’t known to look for: not a missing packet, but an extra one. A heartbeat that didn’t belong.</p>
+      <p>Liu held up a hand, silencing them both. "No fingerprints. That is the mission." His tone left no room for debate.</p>
 
-      <p>He smiled, but it wasn’t a happy smile. Someone who knew the system had found a way to make it sing a note only certain ears could hear. If that someone had chosen to be cruel, there were simpler ways. Which meant this wasn’t about chaos. It was about control.</p>
+      <p>For a moment the hum of servers filled the silence. Green lights blinked across dashboards, each one a grow facility across the American Midwest unknowingly preparing to become a test site.</p>
 
-      <p>His phone vibrated on the desk. A message: <em>EMS surge near Hart Plaza. Unconfirmed cause. Stay available.</em></p>
+      <p>Zhang exhaled through his nose, still unconvinced. "It is not just plants you corrupt," he said quietly. "It is responsibility. When their engineer sees this, he will blame himself."</p>
 
-      <p>Knox Ramsey had tried more than once to stop being available. It had never stuck. He saved the query, grabbed the backpack, and killed the fan so it would have one more day in it. On the way out the door he checked the numbers again. The line that had wandered settled half a notch higher and pretended it had always lived there.</p>
+      <p>Liu's mouth curved at the edge. <strong>That was the point.</strong></p>
 
-      <p>“Liar,” he said to the screen, and left to go argue with a city.</p>
+      <div class="scene-break">* * *</div>
+
+      <p>The chapter continues with detailed technical descriptions of the neural network manipulation, the code injection architecture, Liu Wei's backstory at Iowa State, and the broader strategic implications of the cyber operation. The full chapter runs approximately 5,000 words, building the technical and psychological foundation for the agricultural warfare that will unfold throughout the novel.</p>
 
       <div class="navrow">
         <a class="btn" href="#prologue">← Back to Prologue</a>
@@ -153,14 +218,13 @@
     </section>
 
     <section class="card">
-      <p class="note">Want updates when the book launch date is set? Check the homepage again soon or say hi at <a href="mailto:knoxramseythrillers@gmail.com">knoxramseythrillers@gmail.com</a>.</p>
+      <p class="note">Want to read more? The complete novel will be available in 2025. Sign up for updates at <a href="mailto:knoxramseythrillers@gmail.com" style="color:var(--accent)">knoxramseythrillers@gmail.com</a>.</p>
     </section>
   </main>
 
-  <footer>© <span id="y"></span> Robert Cummer</footer>
+  <footer>© <span id="y"></span> Robert Cummer · Knox Ramsey Thrillers</footer>
   <script>
     document.getElementById('y').textContent=new Date().getFullYear();
-    // Neutralize any stale /lander paths without reload
     if(location.pathname.toLowerCase().includes('lander')){history.replaceState(null,'','/teaser.html');}
   </script>
 </body>

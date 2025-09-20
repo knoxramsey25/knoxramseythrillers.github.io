@@ -11,14 +11,9 @@
   <meta property="og:description" content="A silent weapon. A breached supply chain. One engineer racing the clock.">
   <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png">
   <meta name="twitter:card" content="summary_large_image">
-
   <style>
-    :root{
-      --bg:#071014;--panel:#0c151a;--line:#17313d;--ink:#e8eef5;
-      --muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0}
+    :root{--bg:#071014;--panel:#0c151a;--line:#17313d;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e}
+    *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
 
     /* NAV */
@@ -36,62 +31,45 @@
     .livecover{display:grid;grid-template-columns:minmax(320px,520px) 1fr;gap:28px;align-items:stretch}
     @media (max-width:970px){.livecover{grid-template-columns:1fr}}
 
-    /* COVER PANEL — uses your PNG as background, with aspect ratio so it never squishes */
+    /* COVER uses your PNG; no live title overlay */
     .cover{
       position:relative; border:1px solid var(--line); border-radius:16px; overflow:hidden;
-      aspect-ratio: 3 / 4;              /* keeps book-ish proportions */
-      min-height:640px;                 /* tall enough on desktop */
-      box-shadow:0 30px 60px rgba(0,0,0,.45);
+      aspect-ratio:3/4;               /* book-like proportions; prevents squish */
+      min-height:640px;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.38) 55%, rgba(0,0,0,.55)), /* darken for legibility */
+        linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.38) 55%, rgba(0,0,0,.55)),
         url("/assets/CoverArt.png") center top / cover no-repeat;
+      box-shadow:0 30px 60px rgba(0,0,0,.45);
     }
-
-    /* faint grid overlay that works with the art */
     .gridlines{
       position:absolute; inset:0; pointer-events:none;
       background:
         linear-gradient(90deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px,
-        linear-gradient(0deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px;
-      mix-blend-mode:soft-light; opacity:.30;
+        linear-gradient(0deg,  rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px;
+      mix-blend-mode:soft-light; opacity:.28;
       mask-image:radial-gradient(140% 100% at 50% 30%, #000 55%, transparent 80%);
     }
-
-    /* pulsing red LED */
     .led{
       position:absolute; left:18px; top:18px; width:14px; height:14px; border-radius:50%;
       background:#320000; animation:pulse 1.4s infinite;
       box-shadow:0 0 0 2px #1a262b inset, 0 0 0 1px #000, 0 0 0 8px rgba(255,0,0,.06);
     }
-    @keyframes pulse{
-      0%,60%{background:#3a0000}
-      65%{background:#ff3b30}
-      85%{background:#ff6a62}
-      100%{background:#3a0000}
-    }
+    @keyframes pulse{0%,60%{background:#3a0000}65%{background:#ff3b30}85%{background:#ff6a62}100%{background:#3a0000}}
 
-    /* We KEEP the Claude title stack (looks nice) but if you want only your PNG, comment this block out */
-    .titlewrap{position:absolute;left:36px;right:36px;top:90px}
-    .big{margin:0;font-size:72px;font-weight:900;color:#ff4b3e;text-shadow:0 0 30px rgba(255,75,62,.3)}
-    .mid{margin:.1em 0 0;font-size:92px;font-weight:900;color:#f3ffef;text-shadow:0 0 20px rgba(82,255,168,.2)}
-    .tag,.subtag{margin:.2em 0 0;font-size:26px;letter-spacing:.22em;font-weight:900;color:#2dfc7f}
-
-    /* TERMINAL overlay — taller & slightly higher so it covers the book’s terminal area */
+    /* Terminal overlay—sized/offset to sit over your art’s terminal area */
     .term{
-      position:absolute; left:26px; right:26px; bottom:32px; height:210px;   /* bigger & offset */
+      position:absolute; left:26px; right:26px; bottom:30px; height:205px;
       font-family:ui-monospace, Menlo, Consolas, monospace;
       color:#b8ffd7; background:rgba(5,12,15,.60); border:1px solid var(--line);
       border-radius:12px; padding:12px 14px; overflow:hidden; backdrop-filter:blur(3px);
       box-shadow:inset 0 0 18px rgba(0,0,0,.35);
     }
-    @media (max-width:600px){
-      .term{left:18px; right:18px; bottom:24px; height:180px}
-    }
+    @media (max-width:600px){ .term{left:18px; right:18px; bottom:22px; height:180px} }
     .term .line{white-space:nowrap; overflow:hidden; border-right:2px solid rgba(184,255,215,.7); margin:2px 0}
     @keyframes typeline{from{width:0} to{width:100%}}
     .term .fade{opacity:.7}
 
-    /* RIGHT COLUMN */
+    /* RIGHT column */
     .rt h1{font-size:2.4rem;margin:.2em 0 .3em}
     .kicker{color:#9bd8c4;margin:0 0 .5rem;font-weight:700;font-size:1.1rem}
     .sub{color:var(--muted);margin:0 0 1.1rem;font-size:1.05rem}
@@ -102,7 +80,7 @@
     .btn-ghost{border:1px solid var(--accent);color:var(--accent);background:transparent}
     .btn-ghost:hover{background:rgba(82,255,168,.1);transform:translateY(-2px)}
 
-    /* SECTIONS */
+    /* Sections */
     section{padding:40px 18px}
     h2{margin:0 0 20px;font-size:2rem;position:relative;display:inline-block}
     h2::after{content:'';position:absolute;bottom:-5px;left:0;width:50px;height:3px;background:var(--accent);border-radius:2px}
@@ -149,18 +127,9 @@
     <div class="livecover">
       <div class="cover" role="img" aria-label="Dark Recipe cover with pulsing alarm and terminal overlay">
         <div class="gridlines"></div>
-        <div class="led"></div>
-
-        <!-- Claude's “live text” title (optional). Comment out if you want ONLY the PNG art. -->
-        <div class="titlewrap">
-          <h2 class="big">DARK</h2>
-          <h2 class="mid">RECIPE</h2>
-          <div class="tag">A KNOX RAMSEY</div>
-          <div class="subtag">THRILLER</div>
-        </div>
-
-        <!-- Terminal overlay -->
-        <div class="term" id="term"></div>
+        <div class="led" aria-hidden="true"></div>
+        <!-- NOTE: removed the live 'DARK/RECIPE' title block to avoid duplication with the PNG -->
+        <div class="term" id="term" aria-live="polite" aria-label="system console"></div>
       </div>
 
       <div class="rt">
@@ -207,34 +176,10 @@
       <h2 style="margin-bottom:10px">The Threat Vector</h2>
       <p style="color:var(--muted);margin-bottom:20px">In DARK RECIPE, the attack unfolds across multiple critical systems:</p>
       <div class="threat-grid">
-        <div class="threat-item">
-          <div class="threat-icon">!</div>
-          <div class="threat-content">
-            <h4>Agricultural Controls</h4>
-            <p>Nutrient manifolds compromised at the source</p>
-          </div>
-        </div>
-        <div class="threat-item">
-          <div class="threat-icon">!</div>
-          <div class="threat-content">
-            <h4>Cold Chain Logistics</h4>
-            <p>Temperature packets missing, timing manipulated</p>
-          </div>
-        </div>
-        <div class="threat-item">
-          <div class="threat-icon">!</div>
-          <div class="threat-content">
-            <h4>Processing Parameters</h4>
-            <p>Batch controllers pushed to fail quietly</p>
-          </div>
-        </div>
-        <div class="threat-item">
-          <div class="threat-icon">!</div>
-          <div class="threat-content">
-            <h4>Distribution Networks</h4>
-            <p>Lot-tracking blind spots exploited</p>
-          </div>
-        </div>
+        <div class="threat-item"><div class="threat-icon">!</div><div class="threat-content"><h4>Agricultural Controls</h4><p>Nutrient manifolds compromised at the source</p></div></div>
+        <div class="threat-item"><div class="threat-icon">!</div><div class="threat-content"><h4>Cold Chain Logistics</h4><p>Temperature packets missing, timing manipulated</p></div></div>
+        <div class="threat-item"><div class="threat-icon">!</div><div class="threat-content"><h4>Processing Parameters</h4><p>Batch controllers pushed to fail quietly</p></div></div>
+        <div class="threat-item"><div class="threat-icon">!</div><div class="threat-content"><h4>Distribution Networks</h4><p>Lot-tracking blind spots exploited</p></div></div>
       </div>
     </div>
   </section>
@@ -261,15 +206,14 @@
     // Terminal animation
     const term = document.getElementById('term');
     const lines = [
-      '> breach_monitor.exe -scan',
-      '> WARNING: Unauthorized access',
-      '> Lot C-12: N/P/K variance +47%',
       '> SCADA node 7: pH drift 6.7→6.9',
       '> Manifold pressure: CRITICAL',
       '> cold_chain.verify(): FAILED',
       '> setpoint_override --force',
       '> HMI lockout: 3 stations',
-      '> trace.route: OBFUSCATED'
+      '> trace.route: OBFUSCATED',
+      '> lot C-12 / Bay 3',
+      '> breach_monitor.exe --scan'
     ];
     let i=0;
     function add(){

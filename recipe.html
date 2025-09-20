@@ -2,251 +2,186 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Dark Recipe — Ops Program</title>
+  <title>Ops Recipe — HMI View</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A fictional operations program card from the world of Dark Recipe. Non-operational, redacted values." />
   <link rel="canonical" href="https://knoxramseythrillers.com/recipe.html" />
-
+  <meta name="description" content="Operations recipe HMI view: reservoir, nutrient feeds, plant lot, and present values." />
   <style>
     :root{
-      --bg:#0b0d10;--panel:#11151a;--ink:#e8eef5;--muted:#9fb2c7;
-      --accent:#52ffa8;--accent2:#4cc9f0;--danger:#ff4a4a;--warn:#ffd166;
-      --line:#1b2631
+      --bg:#0b0d10;--panel:#10161c;--ink:#e8eef5;--muted:#9fb2c7;
+      --accent:#52ffa8;--accent2:#4cc9f0;--warn:#ffd166;--danger:#ff4a4a;--line:#1b2631
     }
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
     header,footer{background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
-    header{padding:14px 16px;position:sticky;top:0;z-index:40}
-    .wrap{max-width:980px;margin:0 auto;padding:20px}
+    header{position:sticky;top:0;z-index:40}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
     a{color:var(--accent);text-decoration:none}
-    .sub{color:var(--muted)}
-    .back{font-weight:700}
-    .title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .mode{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#0e1419;color:var(--muted)}
-    .btn{display:inline-block;padding:.65rem 1rem;border-radius:10px;border:1px solid var(--accent);color:var(--accent);font-weight:700;text-decoration:none}
-    .btn-primary{background:var(--accent);border-color:transparent;color:#07120c}
-    .grid{display:grid;grid-template-columns:2fr 1.2fr;gap:16px}
-    @media (max-width:860px){.grid{grid-template-columns:1fr}}
-    .card{background:#10161c;border:1px solid var(--line);border-radius:12px;padding:14px}
-    .card h3{margin:.2rem 0 .4rem}
-    .muted{color:var(--muted)}
-    .seq{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
-    .stage{padding:10px;border:1px solid var(--line);border-radius:10px;background:#0f141a;text-align:center}
-    .stage b{display:block}
-    .lamp{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22333f;box-shadow:0 0 0 transparent;vertical-align:middle;margin-right:6px}
-    .stage.active .lamp{background:var(--accent);box-shadow:0 0 14px rgba(82,255,168,.6)}
+    .title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted)}
+    .chip{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#0f141a}
+    .layout{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+    @media (max-width:920px){.layout{grid-template-columns:1fr}}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+    h2,h3{margin:.2rem 0 .4rem}
+    .pv{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:520px){.pv{grid-template-columns:1fr}}
+    .pv .row{display:flex;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0f141a}
+    .pv .val{font-weight:800}
+    .ok{color:var(--accent)} .warn{color:var(--warn)} .bad{color:var(--danger)}
+    .schem{background:#0f141a;border:1px solid var(--line);border-radius:12px;padding:10px}
+    .schem svg{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 22px rgba(76,201,240,.1))}
+    .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:#0e1419}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dN{background:#4cc9f0}.dP{background:#52ffa8}.dK{background:#ffd166}.dW{background:#9fb2c7}
+    .note{font-size:.9rem;color:var(--muted)}
     .table{width:100%;border-collapse:separate;border-spacing:0 8px;margin-top:8px;font-variant-numeric:tabular-nums}
-    .table th,.table td{padding:10px 10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .table th,.table td{padding:10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .table th:first-child,.table td:first-child{border-left:1px solid var(--line);border-top-left-radius:8px;border-bottom-left-radius:8px}
     .table th:last-child,.table td:last-child{border-right:1px solid var(--line);border-top-right-radius:8px;border-bottom-right-radius:8px}
-    .pill{display:inline-block;padding:2px 8px;border:1px solid var(--line);border-radius:999px}
-    .warn{color:var(--warn)}
-    .bad{color:var(--danger)}
-    .ok{color:var(--accent)}
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .schem{background:#0f141a;border:1px solid var(--line);border-radius:12px;padding:12px}
-    .schem svg{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 20px rgba(76,201,240,.1))}
-    .footnote{font-size:.85rem;color:var(--muted);margin-top:8px}
-    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-    footer{padding:22px;text-align:center;color:var(--muted);border-top:1px solid var(--line);margin-top:30px}
+    footer{padding:22px;text-align:center;color:var(--muted);border-top:1px solid var(--line);margin-top:26px}
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap">
-      <a class="back" href="/">← Knox Ramsey Thrillers</a>
+    <div class="wrap title">
+      <a href="/">← Home</a>
+      <h1 style="margin:0">Ops Recipe — HMI View</h1>
+      <div class="chips">
+        <span class="chip">Lot: <strong id="lot">DR-A17-042</strong></span>
+        <span class="chip">Cell: <strong>Bay 3 / C-12</strong></span>
+        <span class="chip">Program: <strong>Cycle 7</strong></span>
+      </div>
     </div>
   </header>
 
   <main class="wrap">
-    <div class="title">
-      <div>
-        <h1>Operations Program — “Dark Recipe”</h1>
-        <p class="sub">A fictional, redacted ops card from the world of <em>Dark Recipe</em>. Values are <strong>normalized</strong> (0–10) and <strong>non-operational</strong>.</p>
-      </div>
-      <div class="mode">
-        <button id="btnBase" class="btn btn-primary">Baseline</button>
-        <button id="btnIncident" class="btn">Incident Signature</button>
-        <span class="chip">units: normalized</span>
-        <span class="chip">export: <a id="dl" href="#" download="ops-program.json">JSON</a></span>
-      </div>
-    </div>
-
-    <div class="grid" style="margin-top:10px">
-      <!-- LEFT: Sequence + table -->
+    <div class="layout">
+      <!-- LEFT: SCHEMATIC -->
       <section class="card">
-        <h3>Sequence</h3>
-        <div class="seq" id="seq">
-          <div class="stage"><span class="lamp"></span><b>Stage 1</b><span class="muted">Priming</span></div>
-          <div class="stage"><span class="lamp"></span><b>Stage 2</b><span class="muted">Propagation</span></div>
-          <div class="stage"><span class="lamp"></span><b>Stage 3</b><span class="muted">Growth</span></div>
-          <div class="stage"><span class="lamp"></span><b>Stage 4</b><span class="muted">Condition</span></div>
-          <div class="stage"><span class="lamp"></span><b>Stage 5</b><span class="muted">Harvest</span></div>
+        <h2>Flow Schematic</h2>
+        <div class="legend" aria-hidden="true" style="margin-bottom:8px">
+          <span class="pill"><span class="dot dW"></span> Water</span>
+          <span class="pill"><span class="dot dN"></span> N-Feed</span>
+          <span class="pill"><span class="dot dP"></span> P-Feed</span>
+          <span class="pill"><span class="dot dK"></span> K-Feed</span>
         </div>
+        <div class="schem">
+          <!-- Inline SVG HMI -->
+          <svg viewBox="0 0 860 400" aria-label="Water reservoir, nutrient feeds, and plant cell">
+            <!-- Reservoir -->
+            <rect x="24" y="34" width="160" height="120" rx="12" fill="#0c1318" stroke="#2b5668"/>
+            <text x="44" y="62" fill="#9fb2c7" font-size="14">Water Reservoir</text>
+            <text x="44" y="84" fill="#9fb2c7" font-size="12">Level: <tspan id="pvLevel">82%</tspan></text>
+            <text x="44" y="102" fill="#9fb2c7" font-size="12">Temp: <tspan id="pvWTemp">19.8°C</tspan></text>
 
-        <h3 style="margin-top:16px">Program Parameters</h3>
-        <table class="table" id="table" aria-describedby="program-desc">
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th>Duration</th>
-              <th>Light</th>
-              <th>Flow</th>
-              <th>Nutrient</th>
-              <th>Temp</th>
-              <th>Humidity</th>
-              <th>Risk</th>
-            </tr>
-          </thead>
-          <tbody><!-- rows injected by JS --></tbody>
-        </table>
-        <p id="program-desc" class="footnote">
-          <span class="pill ok">green</span> = nominal signature ·
-          <span class="pill warn">amber</span> = watch ·
-          <span class="pill bad">red</span> = anomaly
-        </p>
-      </section>
+            <!-- Nutrient Tanks -->
+            <rect x="24" y="198" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668"/>
+            <rect x="24" y="284" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668"/>
+            <rect x="24" y="370" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668" transform="translate(0,-60)"/>
+            <text x="44" y="222" fill="#9fb2c7" font-size="12">N-Feed</text>
+            <text x="44" y="308" fill="#9fb2c7" font-size="12">P-Feed</text>
+            <text x="44" y="350" fill="#9fb2c7" font-size="12">K-Feed</text>
 
-      <!-- RIGHT: Schematic + notes -->
-      <aside class="card">
-        <h3>Flow Schematic</h3>
-        <div class="schem" aria-hidden="true">
-          <svg viewBox="0 0 420 240">
-            <!-- tanks -->
-            <rect x="16" y="20" width="100" height="60" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <rect x="16" y="100" width="100" height="60" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <rect x="304" y="60" width="100" height="100" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <!-- lines -->
-            <path d="M116 50 H300" stroke="#4cc9f0" stroke-width="3"/>
-            <path d="M116 130 H300" stroke="#52ffa8" stroke-width="3"/>
-            <circle cx="300" cy="90" r="6" fill="#ff4a4a"/>
-            <circle cx="300" cy="110" r="6" fill="#ffd166"/>
-            <!-- labels -->
-            <text x="26" y="50" fill="#9fb2c7" font-size="12">Reservoir A</text>
-            <text x="26" y="130" fill="#9fb2c7" font-size="12">Reservoir B</text>
-            <text x="314" y="120" fill="#9fb2c7" font-size="12">Grow Bay</text>
-            <text x="208" y="42" fill="#9fb2c7" font-size="11">line α</text>
-            <text x="208" y="122" fill="#9fb2c7" font-size="11">line β</text>
+            <!-- Lines to Manifold -->
+            <path d="M184 90 H360" stroke="#9fb2c7" stroke-width="4"/> <!-- Water -->
+            <path d="M144 233 H360" stroke="#4cc9f0" stroke-width="3"/> <!-- N -->
+            <path d="M144 319 H360" stroke="#52ffa8" stroke-width="3"/> <!-- P -->
+            <path d="M144 361 H360" stroke="#ffd166" stroke-width="3"/> <!-- K -->
+
+            <!-- Flow indicators -->
+            <circle cx="270" cy="90" r="6" fill="#9fb2c7"/>
+            <circle cx="270" cy="233" r="6" fill="#4cc9f0"/>
+            <circle cx="270" cy="319" r="6" fill="#52ffa8"/>
+            <circle cx="270" cy="361" r="6" fill="#ffd166"/>
+
+            <!-- Manifold -->
+            <rect x="360" y="60" width="70" height="330" rx="10" fill="#0c1318" stroke="#2b5668"/>
+            <text x="372" y="54" fill="#9fb2c7" font-size="12">Manifold</text>
+
+            <!-- Outgoing to Cell -->
+            <path d="M430 140 H780" stroke="#4cc9f0" stroke-width="3"/>
+            <path d="M430 200 H780" stroke="#52ffa8" stroke-width="3"/>
+            <path d="M430 260 H780" stroke="#ffd166" stroke-width="3"/>
+            <path d="M430 320 H780" stroke="#9fb2c7" stroke-width="4"/>
+
+            <!-- Plant Cell (Grow Bay) -->
+            <rect x="780" y="120" width="56" height="220" rx="10" fill="#0c1318" stroke="#2b5668"/>
+            <text x="708" y="114" fill="#9fb2c7" font-size="12">Plant Cell</text>
+            <text x="792" y="144" fill="#9fb2c7" font-size="12">C-12</text>
+
+            <!-- Lot Badge -->
+            <rect x="620" y="24" width="216" height="60" rx="10" fill="#0c1318" stroke="#2b5668"/>
+            <text x="636" y="48" fill="#9fb2c7" font-size="14">Lot: <tspan id="lotText">DR-A17-042</tspan></text>
+            <text x="636" y="68" fill="#9fb2c7" font-size="12">Route: Manifold → C-12</text>
           </svg>
         </div>
-        <h3>Notes</h3>
-        <p class="muted">This “ops program” is a **story artifact**. Values are intentionally redacted and normalized to suggest pattern rather than provide instructions.</p>
-        <ul class="muted">
-          <li><span class="kbd">Light</span> = spectral mix &amp; duty (0–10)</li>
-          <li><span class="kbd">Flow</span> = circulation intensity (0–10)</li>
-          <li><span class="kbd">Nutrient</span> = relative concentration (0–10)</li>
-          <li><span class="kbd">Temp/Humidity</span> = scaled comfort index (0–10)</li>
-        </ul>
-        <p class="muted">Switch to <strong>Incident Signature</strong> to watch risk flags spike in specific stages.</p>
+        <p class="note" style="margin-top:8px">Schematic indicates topology and current PVs; values update on refresh.</p>
+      </section>
+
+      <!-- RIGHT: PRESENT VALUES -->
+      <aside class="card">
+        <h2>Present Values</h2>
+        <div class="pv" id="pvPanel">
+          <div class="row"><span>Reservoir Level</span><span class="val ok" id="pv_level">82%</span></div>
+          <div class="row"><span>Reservoir Temp</span><span class="val ok" id="pv_wtemp">19.8°C</span></div>
+          <div class="row"><span>Flow — Water</span><span class="val ok" id="pv_fw">38.4 L/min</span></div>
+          <div class="row"><span>Flow — N-Feed</span><span class="val ok" id="pv_fn">6.2 L/min</span></div>
+          <div class="row"><span>Flow — P-Feed</span><span class="val ok" id="pv_fp">4.7 L/min</span></div>
+          <div class="row"><span>Flow — K-Feed</span><span class="val ok" id="pv_fk">5.1 L/min</span></div>
+          <div class="row"><span>pH (Cell C-12)</span><span class="val warn" id="pv_ph">6.7</span></div>
+          <div class="row"><span>EC (Cell C-12)</span><span class="val ok" id="pv_ec">1.8 mS/cm</span></div>
+          <div class="row"><span>Air Temp (Bay 3)</span><span class="val ok" id="pv_air">22.4°C</span></div>
+          <div class="row"><span>RH (Bay 3)</span><span class="val ok" id="pv_rh">54%</span></div>
+        </div>
+
+        <h3 style="margin-top:14px">Setpoints</h3>
+        <table class="table">
+          <thead><tr><th>Param</th><th>SP</th><th>Band</th></tr></thead>
+          <tbody>
+            <tr><td>pH (C-12)</td><td>6.3</td><td>±0.5</td></tr>
+            <tr><td>EC (C-12)</td><td>1.8 mS/cm</td><td>±0.4</td></tr>
+            <tr><td>Air Temp</td><td>22.0°C</td><td>±2.0°C</td></tr>
+            <tr><td>RH</td><td>55%</td><td>±10%</td></tr>
+          </tbody>
+        </table>
       </aside>
     </div>
-
-    <section class="card" style="margin-top:16px">
-      <h3>Case File Payload (fictional)</h3>
-      <div class="row">
-        <button id="copy" class="btn">Copy JSON</button>
-        <span id="copied" class="sub" role="status" aria-live="polite"></span>
-      </div>
-      <pre id="json" class="kbd" style="white-space:pre-wrap;background:#0f141a;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:10px;max-height:280px;overflow:auto"></pre>
-    </section>
   </main>
 
   <footer>
-    © <span id="y"></span> Robert Cummer · This page contains fictional, non-operational data.
+    © <span id="y"></span> Robert Cummer.
   </footer>
 
   <script>
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Fictional programs (normalized 0–10; non-operational)
-    const baseline = [
-      {stage:'Stage 1', name:'Priming',     dur:'6h',  light:3.5, flow:3.0, nut:3.0, temp:5.0, hum:5.0},
-      {stage:'Stage 2', name:'Propagation', dur:'18h', light:5.0, flow:4.0, nut:4.0, temp:5.5, hum:5.5},
-      {stage:'Stage 3', name:'Growth',      dur:'36h', light:6.0, flow:5.0, nut:5.0, temp:6.0, hum:6.0},
-      {stage:'Stage 4', name:'Condition',   dur:'24h', light:5.0, flow:4.5, nut:4.0, temp:5.5, hum:5.0},
-      {stage:'Stage 5', name:'Harvest',     dur:'4h',  light:2.0, flow:3.0, nut:2.0, temp:5.0, hum:4.5}
-    ];
-    const incident = [
-      {stage:'Stage 1', name:'Priming',     dur:'6h',  light:3.5, flow:3.0, nut:3.0, temp:5.0, hum:5.0, risk:'watch'},
-      {stage:'Stage 2', name:'Propagation', dur:'18h', light:7.8, flow:6.8, nut:7.2, temp:7.0, hum:7.2, risk:'anomaly'},
-      {stage:'Stage 3', name:'Growth',      dur:'36h', light:8.4, flow:6.2, nut:8.0, temp:7.4, hum:7.0, risk:'anomaly'},
-      {stage:'Stage 4', name:'Condition',   dur:'24h', light:6.5, flow:6.1, nut:6.8, temp:6.8, hum:6.6, risk:'watch'},
-      {stage:'Stage 5', name:'Harvest',     dur:'4h',  light:2.0, flow:3.0, nut:2.0, temp:5.0, hum:4.5}
-    ];
+    // Simulate light PV jitter on load to feel "live" (no external services)
+    function jitter(base, pct){ const d = base * pct; return (base + (Math.random()*2-1)*d); }
+    const pv = {
+      level: 82, wtemp: 19.8, fw: 38.4, fn: 6.2, fp: 4.7, fk: 5.1, ph: 6.7, ec: 1.8, air: 22.4, rh: 54
+    };
+    function fmt(n, unit=''){ return (Math.round(n*10)/10) + (unit?(' '+unit):''); }
+    function render(){
+      document.getElementById('pv_level').textContent = Math.round(jitter(pv.level, .01)) + '%';
+      document.getElementById('pv_wtemp').textContent = fmt(jitter(pv.wtemp,.01),'°C');
+      document.getElementById('pv_fw').textContent    = fmt(jitter(pv.fw,.02),'L/min');
+      document.getElementById('pv_fn').textContent    = fmt(jitter(pv.fn,.03),'L/min');
+      document.getElementById('pv_fp').textContent    = fmt(jitter(pv.fp,.03),'L/min');
+      document.getElementById('pv_fk').textContent    = fmt(jitter(pv.fk,.03),'L/min');
+      const ph = jitter(pv.ph,.03); document.getElementById('pv_ph').textContent = ph.toFixed(1);
+      const ec = jitter(pv.ec,.03); document.getElementById('pv_ec').textContent = ec.toFixed(1)+' mS/cm';
+      document.getElementById('pv_air').textContent   = fmt(jitter(pv.air,.02),'°C');
+      document.getElementById('pv_rh').textContent    = Math.round(jitter(pv.rh,.02)) + '%';
 
-    const seq = document.getElementById('seq').children;
-    let activeProgram = baseline;
-
-    function riskBadge(r){
-      if(r==='anomaly') return '<span class="pill bad">red</span>';
-      if(r==='watch')   return '<span class="pill warn">amber</span>';
-      return '<span class="pill ok">green</span>';
+      // Mirror key PVs into SVG labels
+      document.getElementById('pvLevel').textContent  = document.getElementById('pv_level').textContent;
+      document.getElementById('pvWTemp').textContent  = document.getElementById('pv_wtemp').textContent;
+      document.getElementById('lotText').textContent  = document.getElementById('lot').textContent;
     }
-
-    function render(program){
-      // activate stage 1 visual, then sweep
-      Array.from(seq).forEach(s=>s.classList.remove('active'));
-      let i=0; const sweep=setInterval(()=>{ if(i>=seq.length){clearInterval(sweep);return;} seq[i++].classList.add('active'); }, 150);
-
-      // table
-      const tbody=document.querySelector('#table tbody'); tbody.innerHTML='';
-      program.forEach((p,idx)=>{
-        const tr=document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${p.stage}</strong><div class="muted">${p.name}</div></td>
-          <td>${p.dur}</td>
-          <td>${p.light.toFixed(1)}</td>
-          <td>${p.flow.toFixed(1)}</td>
-          <td>${p.nut.toFixed(1)}</td>
-          <td>${p.temp.toFixed(1)}</td>
-          <td>${p.hum.toFixed(1)}</td>
-          <td>${riskBadge(p.risk)}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      // case-file JSON
-      const payload = {
-        program: (program===baseline?'baseline':'incident_signature'),
-        units: 'normalized_0_10',
-        non_operational: true,
-        stages: program
-      };
-      const json = JSON.stringify(payload, null, 2);
-      document.getElementById('json').textContent = json;
-
-      // set download link
-      const blob = new Blob([json], {type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const dl = document.getElementById('dl');
-      dl.href = url;
-    }
-
-    // buttons
-    const btnBase = document.getElementById('btnBase');
-    const btnInc  = document.getElementById('btnIncident');
-    function setButtons(){
-      btnBase.classList.toggle('btn-primary', activeProgram===baseline);
-      btnBase.classList.toggle('btn', activeProgram!==baseline);
-      btnInc.classList.toggle('btn-primary', activeProgram===incident);
-      btnInc.classList.toggle('btn', activeProgram!==incident);
-    }
-    btnBase.addEventListener('click', ()=>{ activeProgram=baseline; setButtons(); render(activeProgram); });
-    btnInc.addEventListener('click',  ()=>{ activeProgram=incident; setButtons(); render(activeProgram); });
-
-    // copy
-    document.getElementById('copy').addEventListener('click', async ()=>{
-      try{
-        await navigator.clipboard.writeText(document.getElementById('json').textContent);
-        document.getElementById('copied').textContent = 'Copied to clipboard.';
-        setTimeout(()=>document.getElementById('copied').textContent='', 1600);
-      }catch(e){ document.getElementById('copied').textContent='Unable to copy.'; }
-    });
-
-    // init
-    setButtons(); render(activeProgram);
+    render();
   </script>
 </body>
 </html>

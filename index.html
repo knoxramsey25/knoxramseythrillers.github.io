@@ -4,53 +4,107 @@
   <meta charset="utf-8" />
   <title>Knox Ramsey Thrillers — DARK RECIPE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-  <!-- Canonical for SEO only (does NOT redirect) -->
-  <link rel="canonical" href="https://knoxramseythrillers.com/" />
-
-  <!-- Meta -->
-  <meta name="description" content="Official site for Knox Ramsey Thrillers by Robert Cummer. DARK RECIPE: a high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
-  <meta property="og:title" content="Knox Ramsey Thrillers — DARK RECIPE" />
-  <meta property="og:description" content="A high-stakes techno-thriller of food security and one engineer’s fight to stop a silent weapon." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://knoxramseythrillers.com/" />
+  <!-- Social -->
+  <link rel="canonical" href="https://knoxramseythrillers.com/">
+  <meta name="description" content="DARK RECIPE — a techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
+  <meta property="og:title" content="DARK RECIPE — A Knox Ramsey Thriller" />
+  <meta property="og:description" content="A silent weapon. A breached supply chain. One engineer racing the clock." />
   <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     :root{
-      --bg:#0b0d10;--panel:#11151a;--ink:#e8eef5;--muted:#9fb2c7;
-      --accent:#52ffa8;--line:#19232b
+      --bg:#071014; --panel:#0c151a; --line:#17313d;
+      --ink:#e8eef5; --muted:#9fb2c7;
+      --neon:#2dfc7f; --neon2:#38e3c4; --warn:#ff3b30;
+      --accent:#52ffa8;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0}
-    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
 
     /* NAV */
-    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
-    .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
-    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between}
-    .brand{font-weight:800;letter-spacing:.3px}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-weight:900;letter-spacing:.3px}
     .links{display:flex;gap:14px;flex-wrap:wrap}
     .links a{color:var(--muted);text-decoration:none;font-weight:700}
     .links a:hover,.links a.active{color:var(--accent)}
 
-    /* HERO SPLIT */
-    .hero{padding:26px 18px}
-    .grid{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:center}
-    @media (max-width:860px){.grid{grid-template-columns:1fr}}
-    .cover img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.45)}
-    .kicker{color:#9bd8c4;margin:0 0 .4rem;font-weight:700;letter-spacing:.2px}
-    .title{font-size:2.3rem;margin:.1em 0 .3em}
-    .sub{color:var(--muted);margin:0 0 1rem}
-    .cta{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:.75rem 1.1rem;border-radius:10px;text-decoration:none;font-weight:800}
-    .btn-primary{background:var(--accent);color:#08120e}
-    .btn-ghost{border:1px solid var(--accent);color:var(--accent)}
+    /* HERO: live “cover” */
+    .hero{padding:28px 18px}
+    .livecover{
+      display:grid; grid-template-columns:520px 1fr; gap:28px; align-items:stretch;
+    }
+    @media (max-width:970px){ .livecover{grid-template-columns:1fr} }
 
-    /* SECTIONS */
-    section{padding:6px 18px 24px}
+    .cover{
+      position:relative; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at -150px -150px, rgba(11,175,120,.12), transparent 60%),
+        radial-gradient(900px 500px at 120% 30%, rgba(40,170,255,.10), transparent 55%),
+        repeating-linear-gradient(0deg, rgba(30,60,70,.45) 0 1px, rgba(0,0,0,0) 1px 30px),
+        #071014;
+      box-shadow:0 30px 60px rgba(0,0,0,.45);
+      min-height:640px;
+    }
+    .gridlines{
+      position:absolute; inset:0; pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px,
+        linear-gradient(0deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px;
+      mask-image:radial-gradient(140% 100% at 50% 30%, #000 55%, transparent 80%);
+    }
+    /* Red alarm LED */
+    .led{
+      position:absolute; left:18px; top:18px; width:14px; height:14px; border-radius:50%;
+      background:#320000; box-shadow:0 0 0 2px #1a262b inset, 0 0 0 1px #000, 0 0 0 8px rgba(255,0,0,.06);
+      animation:pulse 1.4s infinite;
+    }
+    @keyframes pulse{
+      0%,60%{ background:#3a0000; box-shadow:0 0 0 2px #1a262b inset, 0 0 20px 2px rgba(255,0,0,.0), 0 0 0 8px rgba(255,0,0,.06)}
+      65%{ background:#ff3b30; box-shadow:0 0 0 2px #762222 inset, 0 0 30px 8px rgba(255,59,48,.85), 0 0 0 10px rgba(255,59,48,.20)}
+      85%{ background:#ff6a62; box-shadow:0 0 0 2px #8a2a2a inset, 0 0 18px 4px rgba(255,59,48,.55), 0 0 0 10px rgba(255,59,48,.18)}
+      100%{ background:#3a0000; box-shadow:0 0 0 2px #1a262b inset, 0 0 0 2px rgba(255,0,0,.0), 0 0 0 8px rgba(255,0,0,.06)}
+    }
+
+    /* Title stack */
+    .titlewrap{position:absolute; left:36px; right:36px; top:90px}
+    .big{margin:0;font-size:72px;letter-spacing:.02em;font-weight:900;color:#ff4b3e;text-shadow:0 8px 22px rgba(255,75,62,.25)}
+    .mid{margin:.1em 0 0;font-size:92px;letter-spacing:.03em;font-weight:900;color:#f3ffef;text-shadow:0 8px 26px rgba(255,255,255,.08)}
+    .tag{margin:.35em 0 0;font-size:26px;letter-spacing:.24em;font-weight:900;color:var(--neon);text-shadow:0 0 18px rgba(45,252,127,.35)}
+    .subtag{margin:.12em 0 0;font-size:26px;letter-spacing:.22em;font-weight:900;color:var(--neon);opacity:.95}
+
+    /* Terminal */
+    .term{
+      position:absolute; left:36px; right:36px; bottom:34px; height:160px;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      color:#b8ffd7; background:rgba(5,12,15,.55); border:1px solid var(--line); border-radius:12px;
+      padding:12px 14px; overflow:hidden;
+      box-shadow:inset 0 0 18px rgba(0,0,0,.35);
+    }
+    .term .line{white-space:nowrap; overflow:hidden; border-right:2px solid rgba(184,255,215,.7)}
+    @keyframes typeline { from { width:0 } to { width:100% } }
+    .term .fade{opacity:.7}
+
+    /* Right column */
+    .rt h1{font-size:2.4rem;margin:.2em 0 .3em}
+    .kicker{color:#9bd8c4;margin:0 0 .5rem;font-weight:700}
+    .sub{color:var(--muted);margin:0 0 1.1rem}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:.8rem 1.1rem;border-radius:10px;text-decoration:none;font-weight:900}
+    .btn-primary{background:var(--accent);color:#06140f}
+    .btn-ghost{border:1px solid var(--accent);color:var(--accent);background:transparent}
+
+    /* Overview */
+    section{padding:10px 18px 26px}
     h2{margin:0 0 10px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:970px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+    .mini{color:var(--muted);font-size:.95rem}
 
     footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted)}
     footer a{color:#9fb2c7;text-decoration:none}
@@ -71,35 +125,64 @@
   </nav>
 
   <!-- HERO -->
-  <main class="wrap hero">
-    <div class="grid">
-      <figure class="cover">
-        <!-- Relative path avoids mixed-content and cert hostname issues -->
-        <img src="/assets/CoverArt.png" alt="Dark Recipe — A Knox Ramsey Thriller by Robert Cummer" width="900" height="1400" loading="eager" decoding="async">
-      </figure>
-      <div>
+  <header class="wrap hero">
+    <div class="livecover">
+      <!-- Left: HTML “cover” with animation -->
+      <div class="cover" role="img" aria-label="Dark Recipe cover with pulsing alarm and terminal">
+        <div class="gridlines"></div>
+        <div class="led" aria-hidden="true"></div>
+
+        <div class="titlewrap">
+          <h2 class="big">DARK</h2>
+          <h2 class="mid">RECIPE</h2>
+          <div class="tag">A KNOX RAMSEY</div>
+          <div class="subtag">THRILLER</div>
+        </div>
+
+        <!-- Terminal -->
+        <div class="term" id="term" aria-live="polite" aria-label="system console">
+          <!-- Lines will be injected -->
+        </div>
+      </div>
+
+      <!-- Right: synopsis + CTAs -->
+      <div class="rt">
         <p class="kicker">“A silent weapon tears through Detroit’s annual Movement electronic music festival…”</p>
-        <h1 class="title">DARK RECIPE</h1>
+        <h1>DARK RECIPE</h1>
         <p class="sub">
           When festival-goers collapse across Detroit’s riverfront, engineer <strong>Knox Ramsey</strong> spots a pattern the hospitals miss.
-          The anomaly isn’t heat or fentanyl—it’s buried in America’s food network. As cold-chain data goes sideways and federal response lags,
+          The anomaly isn’t heat or fentanyl—it’s buried in the food network. As cold-chain data goes sideways and agencies scramble,
           Knox races a clock measured in hours to trace a vector that weaponizes the supply chain itself.
         </p>
-        <div class="cta">
+        <div class="cta" style="margin-bottom:10px">
           <a class="btn btn-primary" href="/recipe.html">See the Ops “Recipe” View</a>
           <a class="btn btn-ghost" href="#overview">Overview</a>
         </div>
+        <div class="cta">
+          <a class="btn btn-ghost" href="/prologue.html">Read the Prologue</a>
+          <a class="btn btn-ghost" href="/chapter1.html">Read Chapter One</a>
+        </div>
       </div>
     </div>
-  </main>
+  </header>
 
   <!-- OVERVIEW -->
   <section id="overview" class="wrap">
     <h2>Overview</h2>
-    <p>
-      <em>Dark Recipe</em> blends industrial control systems (PLCs, SCADA), controlled-environment agriculture, and a multi-agency race to catch up to real-time.
-      Technical authenticity. Human stakes.
-    </p>
+    <div class="cards">
+      <article class="card">
+        <h3>Technical Authenticity</h3>
+        <p class="mini">Industrial control systems, PLCs, SCADA, and traceability—explained without hand-waving. The story uses real constraints: sensor drift, latency, audit trails, and the brittle edges where systems meet human decisions.</p>
+      </article>
+      <article class="card">
+        <h3>Systems as Weapon</h3>
+        <p class="mini">The “recipe” isn’t in a lab; it’s in logistics and process parameters. Manipulated setpoints, spoofed telemetry, and small errors amplified at scale. The antagonist exploits what everyone else assumes is safe.</p>
+      </article>
+      <article class="card">
+        <h3>Human Stakes</h3>
+        <p class="mini">Knox Ramsey is an engineer, not a spy. He’s forced to apply plant-floor discipline to an evolving national incident—balancing family, ethics, and the reality that a fix in the wrong place can make it worse.</p>
+      </article>
+    </div>
   </section>
 
   <footer>
@@ -110,11 +193,41 @@
     // Year stamp
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Minimal, loop-safe guard: only neutralize stale /lander paths.
-    // No protocol/host redirects here to avoid flicker.
+    // Kill stale /lander path without reload (no flicker)
     if (location.pathname.toLowerCase().includes('lander')) {
-      history.replaceState(null, '', '/'); // swap URL without reload
+      history.replaceState(null,'','/');
     }
+
+    // Terminal animation (looping lines, type-on effect)
+    const term = document.getElementById('term');
+    const lines = [
+      '> syscem.breach_detected',
+      '> agricultural_protocols',
+      '> access: UNAUTHORIZED',
+      '> food_security: CRITICAL',
+      '> trace.lot C-12 / Bay 3',
+      '> manifold: N/P/K variance',
+      '> HMI: pH drift → 6.7',
+      '> cold_chain: packets missing',
+      '> ops_notify: escalated'
+    ];
+    let idx = 0;
+    function addLine() {
+      const l = document.createElement('div');
+      l.className = 'line';
+      l.style.width = '0';
+      l.style.animation = 'typeline 900ms steps(40,end) forwards';
+      l.textContent = lines[idx % lines.length];
+      term.appendChild(l);
+      // fade older lines
+      [...term.children].forEach((n,i,arr)=>{ if(arr.length-i>4) n.classList.add('fade'); });
+      // autoscroll
+      term.scrollTop = term.scrollHeight;
+      idx++;
+      if (term.children.length > 9) term.removeChild(term.firstChild);
+    }
+    addLine();
+    setInterval(addLine, 1200);
   </script>
 </body>
 </html>

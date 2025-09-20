@@ -2,186 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ops Recipe — HMI View</title>
+  <title>Knox Ramsey Thrillers — DARK RECIPE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="canonical" href="https://knoxramseythrillers.com/recipe.html" />
-  <meta name="description" content="Operations recipe HMI view: reservoir, nutrient feeds, plant lot, and present values." />
+  <link rel="canonical" href="https://knoxramseythrillers.com/" />
+  <meta name="description" content="Official site for Knox Ramsey Thrillers by Robert Cummer. DARK RECIPE: a high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
+  <meta property="og:title" content="Knox Ramsey Thrillers — DARK RECIPE" />
+  <meta property="og:description" content="A high-stakes techno-thriller of food security and one engineer’s fight to stop a silent weapon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://knoxramseythrillers.com/" />
+  <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root{
-      --bg:#0b0d10;--panel:#10161c;--ink:#e8eef5;--muted:#9fb2c7;
-      --accent:#52ffa8;--accent2:#4cc9f0;--warn:#ffd166;--danger:#ff4a4a;--line:#1b2631
+      --bg:#0b0d10;--panel:#11151a;--ink:#e8eef5;--muted:#9fb2c7;
+      --accent:#52ffa8;--accent2:#4cc9f0;--line:#19232b
     }
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    header,footer{background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
-    header{position:sticky;top:0;z-index:40}
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
     .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
-    a{color:var(--accent);text-decoration:none}
-    .title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted)}
-    .chip{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#0f141a}
-    .layout{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
-    @media (max-width:920px){.layout{grid-template-columns:1fr}}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
-    h2,h3{margin:.2rem 0 .4rem}
-    .pv{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:520px){.pv{grid-template-columns:1fr}}
-    .pv .row{display:flex;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0f141a}
-    .pv .val{font-weight:800}
-    .ok{color:var(--accent)} .warn{color:var(--warn)} .bad{color:var(--danger)}
-    .schem{background:#0f141a;border:1px solid var(--line);border-radius:12px;padding:10px}
-    .schem svg{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 22px rgba(76,201,240,.1))}
-    .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
-    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:#0e1419}
-    .dot{width:10px;height:10px;border-radius:50%}
-    .dN{background:#4cc9f0}.dP{background:#52ffa8}.dK{background:#ffd166}.dW{background:#9fb2c7}
-    .note{font-size:.9rem;color:var(--muted)}
-    .table{width:100%;border-collapse:separate;border-spacing:0 8px;margin-top:8px;font-variant-numeric:tabular-nums}
-    .table th,.table td{padding:10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .table th:first-child,.table td:first-child{border-left:1px solid var(--line);border-top-left-radius:8px;border-bottom-left-radius:8px}
-    .table th:last-child,.table td:last-child{border-right:1px solid var(--line);border-top-right-radius:8px;border-bottom-right-radius:8px}
-    footer{padding:22px;text-align:center;color:var(--muted);border-top:1px solid var(--line);margin-top:26px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);text-decoration:none;font-weight:700}
+    .links a:hover,.links a.active{color:var(--accent)}
+    /* HERO SPLIT */
+    .hero{padding:26px 18px}
+    .grid{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:center}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+    .cover img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+    .title{font-size:2.3rem;margin:.2em 0 .2em}
+    .sub{color:var(--muted);margin:0 0 1rem}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:.75rem 1.1rem;border-radius:10px;text-decoration:none;font-weight:800}
+    .btn-primary{background:var(--accent);color:#08120e}
+    .btn-ghost{border:1px solid var(--accent);color:var(--accent)}
+    /* SECTIONS */
+    section{padding:6px 18px 24px}
+    h2{margin:0 0 10px}
+    footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted)}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap title">
-      <a href="/">← Home</a>
-      <h1 style="margin:0">Ops Recipe — HMI View</h1>
-      <div class="chips">
-        <span class="chip">Lot: <strong id="lot">DR-A17-042</strong></span>
-        <span class="chip">Cell: <strong>Bay 3 / C-12</strong></span>
-        <span class="chip">Program: <strong>Cycle 7</strong></span>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/" class="active">Home</a>
+        <a href="/recipe.html">The Recipe</a>
+        <a href="/about.html">About the Author</a>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="wrap">
-    <div class="layout">
-      <!-- LEFT: SCHEMATIC -->
-      <section class="card">
-        <h2>Flow Schematic</h2>
-        <div class="legend" aria-hidden="true" style="margin-bottom:8px">
-          <span class="pill"><span class="dot dW"></span> Water</span>
-          <span class="pill"><span class="dot dN"></span> N-Feed</span>
-          <span class="pill"><span class="dot dP"></span> P-Feed</span>
-          <span class="pill"><span class="dot dK"></span> K-Feed</span>
+  <!-- HERO -->
+  <main class="wrap hero">
+    <div class="grid">
+      <figure class="cover">
+        <img src="/assets/CoverArt.png" alt="Dark Recipe — A Knox Ramsey Thriller by Robert Cummer" width="900" height="1400" loading="eager" decoding="async">
+      </figure>
+      <div>
+        <h1 class="title">DARK RECIPE</h1>
+        <p class="sub">A silent weapon tears through Detroit’s festival night. As hospitals overflow and systems fail, engineer <strong>Knox Ramsey</strong> traces the attack to a supply-chain breach buried inside America’s food network. What begins as a technical anomaly becomes a national crisis—and a personal war.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="/recipe.html">See the Ops “Recipe” View</a>
+          <a class="btn btn-ghost" href="#overview">Overview</a>
         </div>
-        <div class="schem">
-          <!-- Inline SVG HMI -->
-          <svg viewBox="0 0 860 400" aria-label="Water reservoir, nutrient feeds, and plant cell">
-            <!-- Reservoir -->
-            <rect x="24" y="34" width="160" height="120" rx="12" fill="#0c1318" stroke="#2b5668"/>
-            <text x="44" y="62" fill="#9fb2c7" font-size="14">Water Reservoir</text>
-            <text x="44" y="84" fill="#9fb2c7" font-size="12">Level: <tspan id="pvLevel">82%</tspan></text>
-            <text x="44" y="102" fill="#9fb2c7" font-size="12">Temp: <tspan id="pvWTemp">19.8°C</tspan></text>
-
-            <!-- Nutrient Tanks -->
-            <rect x="24" y="198" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <rect x="24" y="284" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <rect x="24" y="370" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668" transform="translate(0,-60)"/>
-            <text x="44" y="222" fill="#9fb2c7" font-size="12">N-Feed</text>
-            <text x="44" y="308" fill="#9fb2c7" font-size="12">P-Feed</text>
-            <text x="44" y="350" fill="#9fb2c7" font-size="12">K-Feed</text>
-
-            <!-- Lines to Manifold -->
-            <path d="M184 90 H360" stroke="#9fb2c7" stroke-width="4"/> <!-- Water -->
-            <path d="M144 233 H360" stroke="#4cc9f0" stroke-width="3"/> <!-- N -->
-            <path d="M144 319 H360" stroke="#52ffa8" stroke-width="3"/> <!-- P -->
-            <path d="M144 361 H360" stroke="#ffd166" stroke-width="3"/> <!-- K -->
-
-            <!-- Flow indicators -->
-            <circle cx="270" cy="90" r="6" fill="#9fb2c7"/>
-            <circle cx="270" cy="233" r="6" fill="#4cc9f0"/>
-            <circle cx="270" cy="319" r="6" fill="#52ffa8"/>
-            <circle cx="270" cy="361" r="6" fill="#ffd166"/>
-
-            <!-- Manifold -->
-            <rect x="360" y="60" width="70" height="330" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <text x="372" y="54" fill="#9fb2c7" font-size="12">Manifold</text>
-
-            <!-- Outgoing to Cell -->
-            <path d="M430 140 H780" stroke="#4cc9f0" stroke-width="3"/>
-            <path d="M430 200 H780" stroke="#52ffa8" stroke-width="3"/>
-            <path d="M430 260 H780" stroke="#ffd166" stroke-width="3"/>
-            <path d="M430 320 H780" stroke="#9fb2c7" stroke-width="4"/>
-
-            <!-- Plant Cell (Grow Bay) -->
-            <rect x="780" y="120" width="56" height="220" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <text x="708" y="114" fill="#9fb2c7" font-size="12">Plant Cell</text>
-            <text x="792" y="144" fill="#9fb2c7" font-size="12">C-12</text>
-
-            <!-- Lot Badge -->
-            <rect x="620" y="24" width="216" height="60" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <text x="636" y="48" fill="#9fb2c7" font-size="14">Lot: <tspan id="lotText">DR-A17-042</tspan></text>
-            <text x="636" y="68" fill="#9fb2c7" font-size="12">Route: Manifold → C-12</text>
-          </svg>
-        </div>
-        <p class="note" style="margin-top:8px">Schematic indicates topology and current PVs; values update on refresh.</p>
-      </section>
-
-      <!-- RIGHT: PRESENT VALUES -->
-      <aside class="card">
-        <h2>Present Values</h2>
-        <div class="pv" id="pvPanel">
-          <div class="row"><span>Reservoir Level</span><span class="val ok" id="pv_level">82%</span></div>
-          <div class="row"><span>Reservoir Temp</span><span class="val ok" id="pv_wtemp">19.8°C</span></div>
-          <div class="row"><span>Flow — Water</span><span class="val ok" id="pv_fw">38.4 L/min</span></div>
-          <div class="row"><span>Flow — N-Feed</span><span class="val ok" id="pv_fn">6.2 L/min</span></div>
-          <div class="row"><span>Flow — P-Feed</span><span class="val ok" id="pv_fp">4.7 L/min</span></div>
-          <div class="row"><span>Flow — K-Feed</span><span class="val ok" id="pv_fk">5.1 L/min</span></div>
-          <div class="row"><span>pH (Cell C-12)</span><span class="val warn" id="pv_ph">6.7</span></div>
-          <div class="row"><span>EC (Cell C-12)</span><span class="val ok" id="pv_ec">1.8 mS/cm</span></div>
-          <div class="row"><span>Air Temp (Bay 3)</span><span class="val ok" id="pv_air">22.4°C</span></div>
-          <div class="row"><span>RH (Bay 3)</span><span class="val ok" id="pv_rh">54%</span></div>
-        </div>
-
-        <h3 style="margin-top:14px">Setpoints</h3>
-        <table class="table">
-          <thead><tr><th>Param</th><th>SP</th><th>Band</th></tr></thead>
-          <tbody>
-            <tr><td>pH (C-12)</td><td>6.3</td><td>±0.5</td></tr>
-            <tr><td>EC (C-12)</td><td>1.8 mS/cm</td><td>±0.4</td></tr>
-            <tr><td>Air Temp</td><td>22.0°C</td><td>±2.0°C</td></tr>
-            <tr><td>RH</td><td>55%</td><td>±10%</td></tr>
-          </tbody>
-        </table>
-      </aside>
+      </div>
     </div>
   </main>
 
+  <!-- OVERVIEW -->
+  <section id="overview" class="wrap">
+    <h2>Overview</h2>
+    <p><em>Dark Recipe</em> blends industrial control systems (PLCs, SCADA), controlled-environment agriculture, and a federal response racing behind real time. Technical authenticity, human stakes.</p>
+  </section>
+
   <footer>
-    © <span id="y"></span> Robert Cummer.
+    © <span id="y"></span> Robert Cummer. All rights reserved.
   </footer>
-
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Simulate light PV jitter on load to feel "live" (no external services)
-    function jitter(base, pct){ const d = base * pct; return (base + (Math.random()*2-1)*d); }
-    const pv = {
-      level: 82, wtemp: 19.8, fw: 38.4, fn: 6.2, fp: 4.7, fk: 5.1, ph: 6.7, ec: 1.8, air: 22.4, rh: 54
-    };
-    function fmt(n, unit=''){ return (Math.round(n*10)/10) + (unit?(' '+unit):''); }
-    function render(){
-      document.getElementById('pv_level').textContent = Math.round(jitter(pv.level, .01)) + '%';
-      document.getElementById('pv_wtemp').textContent = fmt(jitter(pv.wtemp,.01),'°C');
-      document.getElementById('pv_fw').textContent    = fmt(jitter(pv.fw,.02),'L/min');
-      document.getElementById('pv_fn').textContent    = fmt(jitter(pv.fn,.03),'L/min');
-      document.getElementById('pv_fp').textContent    = fmt(jitter(pv.fp,.03),'L/min');
-      document.getElementById('pv_fk').textContent    = fmt(jitter(pv.fk,.03),'L/min');
-      const ph = jitter(pv.ph,.03); document.getElementById('pv_ph').textContent = ph.toFixed(1);
-      const ec = jitter(pv.ec,.03); document.getElementById('pv_ec').textContent = ec.toFixed(1)+' mS/cm';
-      document.getElementById('pv_air').textContent   = fmt(jitter(pv.air,.02),'°C');
-      document.getElementById('pv_rh').textContent    = Math.round(jitter(pv.rh,.02)) + '%';
-
-      // Mirror key PVs into SVG labels
-      document.getElementById('pvLevel').textContent  = document.getElementById('pv_level').textContent;
-      document.getElementById('pvWTemp').textContent  = document.getElementById('pv_wtemp').textContent;
-      document.getElementById('lotText').textContent  = document.getElementById('lot').textContent;
-    }
-    render();
-  </script>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>

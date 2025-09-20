@@ -5,26 +5,16 @@
   <title>Knox Ramsey Thrillers — DARK RECIPE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-  <!-- Social -->
-  <link rel="canonical" href="https://knoxramseythrillers.com/">
-  <meta name="description" content="DARK RECIPE — a techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
-  <meta property="og:title" content="DARK RECIPE — A Knox Ramsey Thriller" />
-  <meta property="og:description" content="A silent weapon. A breached supply chain. One engineer racing the clock." />
-  <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
+  <link rel="canonical" href="https://knoxramseythrillers.com/" />
+  <meta name="description" content="DARK RECIPE — a techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon.">
+  <meta property="og:title" content="DARK RECIPE — A Knox Ramsey Thriller">
+  <meta property="og:description" content="A silent weapon. A breached supply chain. One engineer racing the clock.">
+  <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
-    :root{
-      --bg:#071014; --panel:#0c151a; --line:#17313d;
-      --ink:#e8eef5; --muted:#9fb2c7;
-      --neon:#2dfc7f; --neon2:#38e3c4; --warn:#ff3b30;
-      --accent:#52ffa8;
-    }
+    :root{--bg:#071014;--panel:#0c151a;--line:#17313d;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8}
     *{box-sizing:border-box} html,body{margin:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
-
-    /* NAV */
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
     .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
     .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
     .bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -32,64 +22,21 @@
     .links{display:flex;gap:14px;flex-wrap:wrap}
     .links a{color:var(--muted);text-decoration:none;font-weight:700}
     .links a:hover,.links a.active{color:var(--accent)}
-
-    /* HERO: live “cover” */
     .hero{padding:28px 18px}
-    .livecover{
-      display:grid; grid-template-columns:520px 1fr; gap:28px; align-items:stretch;
-    }
-    @media (max-width:970px){ .livecover{grid-template-columns:1fr} }
-
-    .cover{
-      position:relative; border:1px solid var(--line); border-radius:16px; overflow:hidden;
-      background:
-        radial-gradient(1200px 600px at -150px -150px, rgba(11,175,120,.12), transparent 60%),
-        radial-gradient(900px 500px at 120% 30%, rgba(40,170,255,.10), transparent 55%),
-        repeating-linear-gradient(0deg, rgba(30,60,70,.45) 0 1px, rgba(0,0,0,0) 1px 30px),
-        #071014;
-      box-shadow:0 30px 60px rgba(0,0,0,.45);
-      min-height:640px;
-    }
-    .gridlines{
-      position:absolute; inset:0; pointer-events:none;
-      background:
-        linear-gradient(90deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px,
-        linear-gradient(0deg, rgba(20,40,48,.35) 1px, transparent 1px) 0 0/40px 40px;
-      mask-image:radial-gradient(140% 100% at 50% 30%, #000 55%, transparent 80%);
-    }
-    /* Red alarm LED */
-    .led{
-      position:absolute; left:18px; top:18px; width:14px; height:14px; border-radius:50%;
-      background:#320000; box-shadow:0 0 0 2px #1a262b inset, 0 0 0 1px #000, 0 0 0 8px rgba(255,0,0,.06);
-      animation:pulse 1.4s infinite;
-    }
-    @keyframes pulse{
-      0%,60%{ background:#3a0000; box-shadow:0 0 0 2px #1a262b inset, 0 0 20px 2px rgba(255,0,0,.0), 0 0 0 8px rgba(255,0,0,.06)}
-      65%{ background:#ff3b30; box-shadow:0 0 0 2px #762222 inset, 0 0 30px 8px rgba(255,59,48,.85), 0 0 0 10px rgba(255,59,48,.20)}
-      85%{ background:#ff6a62; box-shadow:0 0 0 2px #8a2a2a inset, 0 0 18px 4px rgba(255,59,48,.55), 0 0 0 10px rgba(255,59,48,.18)}
-      100%{ background:#3a0000; box-shadow:0 0 0 2px #1a262b inset, 0 0 0 2px rgba(255,0,0,.0), 0 0 0 8px rgba(255,0,0,.06)}
-    }
-
-    /* Title stack */
-    .titlewrap{position:absolute; left:36px; right:36px; top:90px}
-    .big{margin:0;font-size:72px;letter-spacing:.02em;font-weight:900;color:#ff4b3e;text-shadow:0 8px 22px rgba(255,75,62,.25)}
-    .mid{margin:.1em 0 0;font-size:92px;letter-spacing:.03em;font-weight:900;color:#f3ffef;text-shadow:0 8px 26px rgba(255,255,255,.08)}
-    .tag{margin:.35em 0 0;font-size:26px;letter-spacing:.24em;font-weight:900;color:var(--neon);text-shadow:0 0 18px rgba(45,252,127,.35)}
-    .subtag{margin:.12em 0 0;font-size:26px;letter-spacing:.22em;font-weight:900;color:var(--neon);opacity:.95}
-
-    /* Terminal */
-    .term{
-      position:absolute; left:36px; right:36px; bottom:34px; height:160px;
-      font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      color:#b8ffd7; background:rgba(5,12,15,.55); border:1px solid var(--line); border-radius:12px;
-      padding:12px 14px; overflow:hidden;
-      box-shadow:inset 0 0 18px rgba(0,0,0,.35);
-    }
-    .term .line{white-space:nowrap; overflow:hidden; border-right:2px solid rgba(184,255,215,.7)}
-    @keyframes typeline { from { width:0 } to { width:100% } }
+    .livecover{display:grid;grid-template-columns:520px 1fr;gap:28px;align-items:stretch}
+    @media (max-width:970px){.livecover{grid-template-columns:1fr}}
+    .cover{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#071014;box-shadow:0 30px 60px rgba(0,0,0,.45);min-height:640px}
+    .gridlines{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,40,48,.35) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(0deg,rgba(20,40,48,.35) 1px,transparent 1px) 0 0/40px 40px;mask-image:radial-gradient(140% 100% at 50% 30%, #000 55%, transparent 80%);pointer-events:none}
+    .led{position:absolute;left:18px;top:18px;width:14px;height:14px;border-radius:50%;background:#320000;animation:pulse 1.4s infinite}
+    @keyframes pulse{0%,60%{background:#3a0000}65%{background:#ff3b30}85%{background:#ff6a62}100%{background:#3a0000}}
+    .titlewrap{position:absolute;left:36px;right:36px;top:90px}
+    .big{margin:0;font-size:72px;font-weight:900;color:#ff4b3e}
+    .mid{margin:.1em 0 0;font-size:92px;font-weight:900;color:#f3ffef}
+    .tag,.subtag{margin:.2em 0 0;font-size:26px;letter-spacing:.22em;font-weight:900;color:#2dfc7f}
+    .term{position:absolute;left:36px;right:36px;bottom:34px;height:160px;font-family:ui-monospace,Menlo,Consolas,monospace;color:#b8ffd7;background:rgba(5,12,15,.55);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow:hidden}
+    .term .line{white-space:nowrap;overflow:hidden;border-right:2px solid rgba(184,255,215,.7)}
+    @keyframes typeline{from{width:0}to{width:100%}}
     .term .fade{opacity:.7}
-
-    /* Right column */
     .rt h1{font-size:2.4rem;margin:.2em 0 .3em}
     .kicker{color:#9bd8c4;margin:0 0 .5rem;font-weight:700}
     .sub{color:var(--muted);margin:0 0 1.1rem}
@@ -97,21 +44,17 @@
     .btn{display:inline-block;padding:.8rem 1.1rem;border-radius:10px;text-decoration:none;font-weight:900}
     .btn-primary{background:var(--accent);color:#06140f}
     .btn-ghost{border:1px solid var(--accent);color:var(--accent);background:transparent}
-
-    /* Overview */
     section{padding:10px 18px 26px}
     h2{margin:0 0 10px}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     @media (max-width:970px){.cards{grid-template-columns:1fr}}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+    .card{background:#0c151a;border:1px solid var(--line);border-radius:12px;padding:14px}
     .mini{color:var(--muted);font-size:.95rem}
-
     footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted)}
     footer a{color:#9fb2c7;text-decoration:none}
   </style>
 </head>
 <body>
-  <!-- NAV -->
   <nav class="nav" aria-label="Primary">
     <div class="wrap bar">
       <div class="brand">Knox Ramsey Thrillers</div>
@@ -124,110 +67,53 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="wrap hero">
     <div class="livecover">
-      <!-- Left: HTML “cover” with animation -->
       <div class="cover" role="img" aria-label="Dark Recipe cover with pulsing alarm and terminal">
         <div class="gridlines"></div>
-        <div class="led" aria-hidden="true"></div>
-
+        <div class="led"></div>
         <div class="titlewrap">
           <h2 class="big">DARK</h2>
           <h2 class="mid">RECIPE</h2>
           <div class="tag">A KNOX RAMSEY</div>
           <div class="subtag">THRILLER</div>
         </div>
-
-        <!-- Terminal -->
-        <div class="term" id="term" aria-live="polite" aria-label="system console">
-          <!-- Lines will be injected -->
-        </div>
+        <div class="term" id="term"></div>
       </div>
-
-      <!-- Right: synopsis + CTAs -->
       <div class="rt">
         <p class="kicker">“A silent weapon tears through Detroit’s annual Movement electronic music festival…”</p>
         <h1>DARK RECIPE</h1>
-        <p class="sub">
-          When festival-goers collapse across Detroit’s riverfront, engineer <strong>Knox Ramsey</strong> spots a pattern the hospitals miss.
-          The anomaly isn’t heat or fentanyl—it’s buried in the food network. As cold-chain data goes sideways and agencies scramble,
-          Knox races a clock measured in hours to trace a vector that weaponizes the supply chain itself.
-        </p>
+        <p class="sub">When festival-goers collapse across Detroit’s riverfront, engineer <strong>Knox Ramsey</strong> spots a pattern the hospitals miss…</p>
         <div class="cta" style="margin-bottom:10px">
           <a class="btn btn-primary" href="/recipe.html">See the Ops “Recipe” View</a>
           <a class="btn btn-ghost" href="#overview">Overview</a>
         </div>
         <div class="cta">
-          <a class="btn btn-ghost" href="/prologue.html">Read the Prologue</a>
-          <a class="btn btn-ghost" href="/chapter1.html">Read Chapter One</a>
+          <a class="btn btn-ghost" href="/teaser.html">Read Prologue + Chapter One</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- OVERVIEW -->
   <section id="overview" class="wrap">
     <h2>Overview</h2>
     <div class="cards">
-      <article class="card">
-        <h3>Technical Authenticity</h3>
-        <p class="mini">Industrial control systems, PLCs, SCADA, and traceability—explained without hand-waving. The story uses real constraints: sensor drift, latency, audit trails, and the brittle edges where systems meet human decisions.</p>
-      </article>
-      <article class="card">
-        <h3>Systems as Weapon</h3>
-        <p class="mini">The “recipe” isn’t in a lab; it’s in logistics and process parameters. Manipulated setpoints, spoofed telemetry, and small errors amplified at scale. The antagonist exploits what everyone else assumes is safe.</p>
-      </article>
-      <article class="card">
-        <h3>Human Stakes</h3>
-        <p class="mini">Knox Ramsey is an engineer, not a spy. He’s forced to apply plant-floor discipline to an evolving national incident—balancing family, ethics, and the reality that a fix in the wrong place can make it worse.</p>
-      </article>
+      <article class="card"><h3>Technical Authenticity</h3><p class="mini">Industrial control systems, PLCs, SCADA…</p></article>
+      <article class="card"><h3>Systems as Weapon</h3><p class="mini">The “recipe” lives in logistics and setpoints…</p></article>
+      <article class="card"><h3>Human Stakes</h3><p class="mini">Knox applies plant-floor discipline to a national incident…</p></article>
     </div>
   </section>
 
-  <footer>
-    © <span id="y"></span> Robert Cummer · <a href="mailto:knoxramseythrillers@gmail.com">knoxramseythrillers@gmail.com</a>
-  </footer>
+  <footer>© <span id="y"></span> Robert Cummer · <a href="mailto:knoxramseythrillers@gmail.com">knoxramseythrillers@gmail.com</a></footer>
 
   <script>
-    // Year stamp
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('y').textContent=new Date().getFullYear();
+    if(location.pathname.toLowerCase().includes('lander')){history.replaceState(null,'','/');}
 
-    // Kill stale /lander path without reload (no flicker)
-    if (location.pathname.toLowerCase().includes('lander')) {
-      history.replaceState(null,'','/');
-    }
-
-    // Terminal animation (looping lines, type-on effect)
-    const term = document.getElementById('term');
-    const lines = [
-      '> syscem.breach_detected',
-      '> agricultural_protocols',
-      '> access: UNAUTHORIZED',
-      '> food_security: CRITICAL',
-      '> trace.lot C-12 / Bay 3',
-      '> manifold: N/P/K variance',
-      '> HMI: pH drift → 6.7',
-      '> cold_chain: packets missing',
-      '> ops_notify: escalated'
-    ];
-    let idx = 0;
-    function addLine() {
-      const l = document.createElement('div');
-      l.className = 'line';
-      l.style.width = '0';
-      l.style.animation = 'typeline 900ms steps(40,end) forwards';
-      l.textContent = lines[idx % lines.length];
-      term.appendChild(l);
-      // fade older lines
-      [...term.children].forEach((n,i,arr)=>{ if(arr.length-i>4) n.classList.add('fade'); });
-      // autoscroll
-      term.scrollTop = term.scrollHeight;
-      idx++;
-      if (term.children.length > 9) term.removeChild(term.firstChild);
-    }
-    addLine();
-    setInterval(addLine, 1200);
+    // terminal animation
+    const term=document.getElementById('term');
+    const lines=['> syscem.breach_detected','> agricultural_protocols','> access: UNAUTHORIZED','> food_security: CRITICAL','> trace.lot C-12 / Bay 3','> manifold: N/P/K variance','> HMI: pH drift → 6.7','> cold_chain: packets missing','> ops_notify: escalated'];
+    let i=0; function add(){const d=document.createElement('div');d.className='line';d.style.width='0';d.style.animation='typeline 900ms steps(40,end) forwards';d.textContent=lines[i%lines.length];term.appendChild(d);[...term.children].forEach((n,ix,arr)=>{if(arr.length-ix>4)n.classList.add('fade')});term.scrollTop=term.scrollHeight;i++;if(term.children.length>9)term.removeChild(term.firstChild);} add(); setInterval(add,1200);
   </script>
 </body>
 </html>

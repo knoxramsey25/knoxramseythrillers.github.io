@@ -1,45 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knox Ramsey Thrillers</title>
-    <style>
-        body { background-color: #1a3c34; color: #ffffff; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .alert { color: #ff3333; }
-        h1 { text-align: center; }
-        p { max-width: 800px; margin: 20px auto; }
-    </style>
+  <meta charset="utf-8" />
+  <title>Knox Ramsey Thrillers — DARK RECIPE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Official site for Knox Ramsey Thrillers by Robert Cummer. DARK RECIPE: a high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Knox Ramsey Thrillers — DARK RECIPE" />
+  <meta property="og:description" content="A high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://knoxramseythrillers.com/" />
+  <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    body { margin:0; font-family: system-ui, sans-serif; background:#0b0d10; color:#e8eef5; line-height:1.6; }
+    header { padding:1rem; background:#11151a; text-align:center; font-weight:bold; font-size:1.2rem; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 1rem; }
+    .hero { text-align:center; padding:2rem 1rem; }
+    .hero h1 { font-size:2.4rem; margin-bottom:.5rem; }
+    .hero p { color:#9fb2c7; margin-bottom:1.5rem; }
+    .cover img { max-width:100%; height:auto; border-radius:14px; border:1px solid #19232b; box-shadow:0 20px 50px rgba(0,0,0,.45); }
+    .btn { display:inline-block; padding:.75rem 1.2rem; margin:.5rem; border-radius:8px; text-decoration:none; font-weight:600; }
+    .btn-primary { background:#52ffa8; color:#0b0d10; }
+    .btn-ghost { border:1px solid #52ffa8; color:#52ffa8; }
+    footer { padding:2rem; text-align:center; color:#9fb2c7; font-size:.9rem; }
+  </style>
 </head>
 <body>
-    <h1>Knox Ramsey Thrillers by Robert Cummer</h1>
+  <header>
+    Knox Ramsey Thrillers
+  </header>
 
-    <div class="circuitry">
-        <h2>Welcome to the Thrill</h2>
-        <p>Tech-driven suspense from an author with 30 years of experience in industrial automation, process control, and the agri-tech space. *Dark Recipe* is live for beta readers!</p>
-    </div>
+  <main class="wrap">
+    <section class="hero">
+      <h1>DARK RECIPE</h1>
+      <p>A Knox Ramsey Thriller by Robert Cummer</p>
+      <figure class="cover">
+        <img src="/assets/CoverArt.png" alt="Dark Recipe — A Knox Ramsey Thriller by Robert Cummer" width="900" height="1400" loading="eager" decoding="async">
+      </figure>
+      <div>
+        <a class="btn btn-primary" href="#book">Enter the Story</a>
+        <a class="btn btn-ghost" href="https://example.com/preorder" target="_blank">Preorder</a>
+      </div>
+    </section>
 
-    <div class="circuitry">
-        <h2>About the Series</h2>
-        <p>Follow Knox Ramsey, a Midwestern engineer turned cyber-hero, as he battles AI-driven threats to food security. *Dark Recipe* kicks off the series—more titles to come!</p>
-    </div>
+    <section id="book">
+      <h2>The Book</h2>
+      <p><em>Dark Recipe</em> blends industrial control systems, federal response, and the fragility of modern supply chains into a relentless, character-driven thriller.</p>
+    </section>
+  </main>
 
-    <div class="circuitry">
-        <h2>Get Involved</h2>
-        <p>Beta readers wanted! Request the 20-page, 5,000-word excerpt (view only) of *Dark Recipe* via the <a href="contact.html">Contact page</a> or sign up for updates. Your feedback shapes the 94k draft.</p>
-    </div>
+  <footer>
+    © <span id="y"></span> Robert Cummer. All rights reserved.
+  </footer>
 
-    <div class="circuitry">
-        <h2>Coming Soon</h2>
-        <ul>
-            <li><a href="books.html">Books</a> - Dive into *Dark Recipe* and future Knox Ramsey adventures.</li>
-            <li><a href="about.html">About</a> - Learn about Robert Cummer’s inspiration.</li>
-            <li><a href="contact.html">Contact</a> - Join the newsletter and connect.</li>
-        </ul>
-    </div>
-
-    <footer>
-        <p><span class="alert">Knox Ramsey Thrillers © 2025 Robert Cummer. All rights reserved.</span></p>
-    </footer>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

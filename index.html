@@ -23,12 +23,21 @@
     /* NAV */
     .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
     .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{font-weight:900;letter-spacing:.3px;display:flex;align-items:center;gap:8px}
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px;display:flex;align-items:center;gap:8px;font-size:1rem}
     .brand::before{content:'';width:3px;height:20px;background:var(--accent);border-radius:2px}
     .links{display:flex;gap:14px;flex-wrap:wrap}
-    .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color .2s}
+    .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color .2s;font-size:0.9rem}
     .links a:hover,.links a.active{color:var(--accent)}
+    
+    /* Mobile nav adjustments */
+    @media (max-width:560px){
+      .bar{flex-direction:column;align-items:center;gap:10px}
+      .brand{font-size:0.9rem}
+      .brand::before{height:16px}
+      .links{gap:10px;justify-content:center}
+      .links a{font-size:0.85rem;padding:4px}
+    }
 
     /* DEBUT BANNER */
     .debut-banner{background:linear-gradient(135deg,rgba(82,255,168,0.08),transparent);border-bottom:1px solid var(--line);padding:12px 0;text-align:center}
@@ -86,11 +95,11 @@
       box-shadow:inset 0 0 18px rgba(0,0,0,.35);
     }
     @media (max-width:900px){
-      :root{ --term-bottom:44%; --term-height:26%; }
+      :root{ --term-bottom:38%; --term-height:22%; }
     }
     @media (max-width:560px){
-      :root{ --term-bottom:46%; --term-height:30%; }
-      .term{left:6%; right:6%}
+      :root{ --term-bottom:32%; --term-height:20%; }
+      .term{left:5%; right:5%; font-size:0.7rem; padding:8px 10px}
     }
 
     .term .line{white-space:nowrap;overflow:hidden;border-right:2px solid rgba(184,255,215,.7);margin:2px 0}

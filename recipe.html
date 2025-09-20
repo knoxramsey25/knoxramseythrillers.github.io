@@ -147,42 +147,61 @@
               <!-- Nutrient Tanks -->
               <rect x="20" y="160" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
               <text x="35" y="185" fill="#4cc9f0" font-size="11" font-weight="600">N-FEED</text>
-              <text x="35" y="200" fill="#4cc9f0" font-size="10">6.2 L/m</text>
+              <text x="35" y="200" fill="#4cc9f0" font-size="10" id="svgNFlow">6.2 L/m</text>
               
               <rect x="20" y="220" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
               <text x="35" y="245" fill="#52ffa8" font-size="11" font-weight="600">P-FEED</text>
-              <text x="35" y="260" fill="#52ffa8" font-size="10">4.7 L/m</text>
+              <text x="35" y="260" fill="#52ffa8" font-size="10" id="svgPFlow">4.7 L/m</text>
               
               <rect x="20" y="280" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
               <text x="35" y="305" fill="#ffd166" font-size="11" font-weight="600">K-FEED</text>
-              <text x="35" y="320" fill="#ffd166" font-size="10">5.1 L/m</text>
+              <text x="35" y="320" fill="#ffd166" font-size="10" id="svgKFlow">5.1 L/m</text>
               
               <!-- Manifold -->
               <rect x="320" y="60" width="60" height="250" rx="8" fill="#0a0f14" stroke="#ff4b3e" stroke-width="2" opacity="0.8"/>
               <text x="330" y="50" fill="#ff4b3e" font-size="11" font-weight="600">MANIFOLD</text>
-              <circle cx="350" cy="180" r="25" fill="none" stroke="#ff4b3e" stroke-width="2" opacity="0.5"/>
+              <circle cx="350" cy="180" r="25" fill="none" stroke="#ff4b3e" stroke-width="2" opacity="0.5">
+                <animate attributeName="r" values="23;28;23" dur="1.5s" repeatCount="indefinite"/>
+              </circle>
               <text x="335" y="185" fill="#ff4b3e" font-size="10">MIX</text>
               
-              <!-- Flow Lines -->
+              <!-- Flow Lines with animation -->
               <path d="M160 80 H320" stroke="#9fb2c7" stroke-width="3" opacity="0.7"/>
               <path d="M120 185 H320" stroke="#4cc9f0" stroke-width="2" opacity="0.7"/>
               <path d="M120 245 H320" stroke="#52ffa8" stroke-width="2" opacity="0.7"/>
               <path d="M120 305 H320" stroke="#ffd166" stroke-width="2" opacity="0.7"/>
               
+              <!-- Flow indicators with pulse -->
+              <circle cx="270" cy="80" r="6" fill="#9fb2c7">
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="270" cy="185" r="6" fill="#4cc9f0">
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="270" cy="245" r="6" fill="#52ffa8">
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="1.6s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="270" cy="305" r="6" fill="#ffd166">
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="1.7s" repeatCount="indefinite"/>
+              </circle>
+              
               <!-- Output to Cell -->
-              <path d="M380 180 H620" stroke="#ff4b3e" stroke-width="3" stroke-dasharray="5,5" opacity="0.8"/>
+              <path d="M380 180 H620" stroke="#ff4b3e" stroke-width="3" stroke-dasharray="5,5" opacity="0.8">
+                <animate attributeName="stroke-dashoffset" values="0;-10" dur="0.5s" repeatCount="indefinite"/>
+              </path>
               
               <!-- Plant Cell -->
               <rect x="620" y="120" width="150" height="120" rx="8" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
               <text x="635" y="145" fill="#9fb2c7" font-size="13" font-weight="600">PLANT CELL C-12</text>
               <text x="635" y="165" fill="#ff4b3e" font-size="11">pH: <tspan id="svgPH">6.7</tspan> ⚠</text>
-              <text x="635" y="182" fill="#52ffa8" font-size="11">EC: 1.8 mS/cm</text>
-              <text x="635" y="199" fill="#52ffa8" font-size="11">Temp: 22.4°C</text>
-              <text x="635" y="216" fill="#52ffa8" font-size="11">RH: 54%</text>
+              <text x="635" y="182" fill="#52ffa8" font-size="11">EC: <tspan id="svgEC">1.8</tspan> mS/cm</text>
+              <text x="635" y="199" fill="#52ffa8" font-size="11">Temp: <tspan id="svgAir">22.4</tspan>°C</text>
+              <text x="635" y="216" fill="#52ffa8" font-size="11">RH: <tspan id="svgRH">54</tspan>%</text>
               
               <!-- Warning Indicator -->
               <circle cx="745" cy="160" r="8" fill="#ff4b3e" opacity="0.8">
-                <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/>
               </circle>
             </svg>
           </div>
@@ -288,19 +307,19 @@
               <tr>
                 <td>EC</td>
                 <td>1.6 - 2.0</td>
-                <td>1.8</td>
+                <td id="spEC">1.8</td>
                 <td style="color:var(--accent)">OK</td>
               </tr>
               <tr>
                 <td>Air Temp</td>
                 <td>20.0 - 24.0°C</td>
-                <td>22.4°C</td>
+                <td id="spAir">22.4°C</td>
                 <td style="color:var(--accent)">OK</td>
               </tr>
               <tr>
                 <td>RH</td>
                 <td>45 - 65%</td>
-                <td>54%</td>
+                <td id="spRH">54%</td>
                 <td style="color:var(--accent)">OK</td>
               </tr>
             </tbody>
@@ -354,40 +373,73 @@
 
     // Update display values
     function updateDisplay() {
-      // Update PV display
-      document.getElementById('pvLevel').textContent = Math.round(jitter(systemValues.level, 0.01)) + '%';
-      document.getElementById('pvTemp').textContent = fmt(jitter(systemValues.temp, 0.01)) + '°C';
-      document.getElementById('pvWater').textContent = fmt(jitter(systemValues.waterFlow, 0.02)) + ' L/min';
-      document.getElementById('pvN').textContent = fmt(jitter(systemValues.nFlow, 0.03)) + ' L/min';
-      document.getElementById('pvP').textContent = fmt(jitter(systemValues.pFlow, 0.03)) + ' L/min';
-      document.getElementById('pvK').textContent = fmt(jitter(systemValues.kFlow, 0.03)) + ' L/min';
+      // Update PV display with more variation
+      const levelVal = Math.round(jitter(systemValues.level, 0.01));
+      const tempVal = fmt(jitter(systemValues.temp, 0.01));
+      const waterVal = fmt(jitter(systemValues.waterFlow, 0.03));
+      const nVal = fmt(jitter(systemValues.nFlow, 0.04));
+      const pVal = fmt(jitter(systemValues.pFlow, 0.04));
+      const kVal = fmt(jitter(systemValues.kFlow, 0.04));
+      const currentPH = jitter(systemValues.ph, 0.02);
+      const ecVal = fmt(jitter(systemValues.ec, 0.03));
+      const airVal = fmt(jitter(systemValues.airTemp, 0.02));
+      const rhVal = Math.round(jitter(systemValues.rh, 0.03));
       
-      const currentPH = jitter(systemValues.ph, 0.01);
+      // Update main display
+      document.getElementById('pvLevel').textContent = levelVal + '%';
+      document.getElementById('pvTemp').textContent = tempVal + '°C';
+      document.getElementById('pvWater').textContent = waterVal + ' L/min';
+      document.getElementById('pvN').textContent = nVal + ' L/min';
+      document.getElementById('pvP').textContent = pVal + ' L/min';
+      document.getElementById('pvK').textContent = kVal + ' L/min';
       document.getElementById('pvPH').textContent = fmt(currentPH);
-      document.getElementById('pvEC').textContent = fmt(jitter(systemValues.ec, 0.02)) + ' mS/cm';
-      document.getElementById('pvAir').textContent = fmt(jitter(systemValues.airTemp, 0.02)) + '°C';
-      document.getElementById('pvRH').textContent = Math.round(jitter(systemValues.rh, 0.02)) + '%';
+      document.getElementById('pvEC').textContent = ecVal + ' mS/cm';
+      document.getElementById('pvAir').textContent = airVal + '°C';
+      document.getElementById('pvRH').textContent = rhVal + '%';
       
       // Update SVG values
-      document.getElementById('svgLevel').textContent = document.getElementById('pvLevel').textContent;
-      document.getElementById('svgTemp').textContent = document.getElementById('pvTemp').textContent;
+      document.getElementById('svgLevel').textContent = levelVal + '%';
+      document.getElementById('svgTemp').textContent = tempVal + '°C';
+      document.getElementById('svgNFlow').textContent = nVal + ' L/m';
+      document.getElementById('svgPFlow').textContent = pVal + ' L/m';
+      document.getElementById('svgKFlow').textContent = kVal + ' L/m';
       document.getElementById('svgPH').textContent = fmt(currentPH);
+      document.getElementById('svgEC').textContent = ecVal;
+      document.getElementById('svgAir').textContent = airVal;
+      document.getElementById('svgRH').textContent = rhVal;
+      
+      // Update setpoint table
       document.getElementById('spPH').textContent = fmt(currentPH);
+      document.getElementById('spEC').textContent = ecVal;
+      document.getElementById('spAir').textContent = airVal + '°C';
+      document.getElementById('spRH').textContent = rhVal + '%';
       
       // Update anomaly counter
       document.getElementById('anomCount').textContent = systemValues.anomalies;
+      
+      // Change pH color based on value
+      if (currentPH > 7.0) {
+        document.getElementById('pvPH').style.color = '#ff2244';
+      }
     }
 
-    // Simulate pH drift (the attack vector)
+    // Simulate pH drift (the attack vector) - FASTER
     function simulateAttack() {
-      // Slowly increase pH showing system compromise
-      if (systemValues.ph < 7.2) {
-        systemValues.ph += 0.003;
+      // Rapidly increase pH showing system compromise
+      if (systemValues.ph < 7.5) {
+        systemValues.ph += 0.008;  // Increased from 0.003
       }
       
-      // Occasionally increment anomaly counter
-      if (Math.random() < 0.05) {
+      // More frequent anomaly counter increments
+      if (Math.random() < 0.15) {  // Increased from 0.05
         systemValues.anomalies++;
+      }
+      
+      // Occasional flow disruptions
+      if (Math.random() < 0.1) {
+        systemValues.nFlow = jitter(6.2, 0.15);
+        systemValues.pFlow = jitter(4.7, 0.15);
+        systemValues.kFlow = jitter(5.1, 0.15);
       }
     }
 
@@ -407,52 +459,56 @@
       
       log.insertBefore(entry, log.firstChild);
       
-      // Keep only last 10 entries
-      while (log.children.length > 10) {
+      // Keep only last 12 entries
+      while (log.children.length > 12) {
         log.removeChild(log.lastChild);
       }
     }
 
-    // Periodic event generation
+    // Periodic event generation - MORE EVENTS
     let eventCounter = 0;
     function generateEvent() {
       eventCounter++;
       
       const events = [
-        { severity: 'warn', msg: 'Nutrient ratio deviation detected' },
-        { severity: 'error', msg: 'Profile checksum mismatch' },
-        { severity: 'info', msg: 'Manifold flush cycle complete' },
-        { severity: 'warn', msg: 'Temperature compensation active' },
-        { severity: 'error', msg: 'Unauthorized setpoint modification' },
-        { severity: 'info', msg: 'Data logged to archive' }
+        { severity: 'warn', msg: 'Nutrient ratio deviation: N/P/K balance unstable' },
+        { severity: 'error', msg: 'Profile checksum mismatch - signature invalid' },
+        { severity: 'info', msg: 'Manifold flush cycle initiated' },
+        { severity: 'warn', msg: 'Temperature compensation active - drift detected' },
+        { severity: 'error', msg: '⚠ Unauthorized setpoint modification from external source' },
+        { severity: 'info', msg: 'Data logged to archive buffer' },
+        { severity: 'warn', msg: 'Flow sensor variance exceeds threshold' },
+        { severity: 'error', msg: 'Authentication failure on control channel' },
+        { severity: 'warn', msg: 'EC drift compensation applied' },
+        { severity: 'info', msg: 'Backup profile loaded - primary corrupted' }
       ];
       
-      // Add critical pH alarm every 10 events
-      if (eventCounter % 10 === 0 && systemValues.ph > 6.8) {
-        addLogEntry('error', `⚠ CRITICAL: pH ${fmt(systemValues.ph)} exceeds limits`);
-      } else if (Math.random() < 0.3) {
+      // Add critical pH alarm more frequently
+      if (eventCounter % 5 === 0 && systemValues.ph > 6.8) {
+        addLogEntry('error', `⚠ CRITICAL: pH ${fmt(systemValues.ph)} exceeds operational limits`);
+      } else if (Math.random() < 0.4) {  // Increased from 0.3
         const event = events[Math.floor(Math.random() * events.length)];
         addLogEntry(event.severity, event.msg);
       }
     }
 
-    // Initialize and run updates
+    // Initialize and run updates - FASTER REFRESH RATES
     updateDisplay();
     
-    // Update values every second
+    // Update values rapidly for dynamic feel
     setInterval(() => {
       updateDisplay();
-    }, 1000);
+    }, 200);  // Very fast updates
     
-    // Simulate attack progression every 3 seconds
+    // Simulate attack progression quickly
     setInterval(() => {
       simulateAttack();
-    }, 3000);
+    }, 800);  // Fast pH drift
     
-    // Generate events occasionally
+    // Generate events frequently for action
     setInterval(() => {
       generateEvent();
-    }, 8000);
+    }, 2000);  // Constant event stream
   </script>
 </body>
 </html>

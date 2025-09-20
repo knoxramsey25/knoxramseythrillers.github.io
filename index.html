@@ -4,10 +4,12 @@
   <meta charset="utf-8" />
   <title>Knox Ramsey Thrillers — DARK RECIPE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="canonical" href="https://knoxramseythrillers.com/" />
-  <meta name="description" content="Official site for Knox Ramsey Thrillers by Robert Cummer. DARK RECIPE: a high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
 
-  <!-- Social preview -->
+  <!-- Canonical for SEO only (does NOT redirect) -->
+  <link rel="canonical" href="https://knoxramseythrillers.com/" />
+
+  <!-- Meta -->
+  <meta name="description" content="Official site for Knox Ramsey Thrillers by Robert Cummer. DARK RECIPE: a high-stakes techno-thriller of food security, federal response, and one engineer’s fight to stop a silent weapon." />
   <meta property="og:title" content="Knox Ramsey Thrillers — DARK RECIPE" />
   <meta property="og:description" content="A high-stakes techno-thriller of food security and one engineer’s fight to stop a silent weapon." />
   <meta property="og:type" content="website" />
@@ -72,6 +74,7 @@
   <main class="wrap hero">
     <div class="grid">
       <figure class="cover">
+        <!-- Relative path avoids mixed-content and cert hostname issues -->
         <img src="/assets/CoverArt.png" alt="Dark Recipe — A Knox Ramsey Thriller by Robert Cummer" width="900" height="1400" loading="eager" decoding="async">
       </figure>
       <div>
@@ -104,36 +107,14 @@
   </footer>
 
   <script>
+    // Year stamp
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    /* Guard against any stale /lander weirdness loading this file at the wrong path */
+    // Minimal, loop-safe guard: only neutralize stale /lander paths.
+    // No protocol/host redirects here to avoid flicker.
     if (location.pathname.toLowerCase().includes('lander')) {
-      location.replace('/');
+      history.replaceState(null, '', '/'); // swap URL without reload
     }
-  </script>
-    <script>
-    (function () {
-      const host = location.hostname.toLowerCase();
-      const isChrome = /chrome|crios/i.test(navigator.userAgent);
-  
-      // 1) Always use HTTPS
-      if (location.protocol !== 'https:') {
-        location.replace('https://' + host + location.pathname + location.search);
-        return;
-      }
-  
-      // 2) Never serve this page on /lander
-      if (location.pathname.toLowerCase().includes('lander')) {
-        location.replace('/');
-        return;
-      }
-  
-      // 3) If Chrome has a bad cache for the apex, prefer www (you already have a CNAME for it)
-      if (isChrome && host === 'knoxramseythrillers.com') {
-        location.replace('https://www.knoxramseythrillers.com' + location.pathname + location.search);
-        return;
-      }
-    })();
   </script>
 </body>
 </html>

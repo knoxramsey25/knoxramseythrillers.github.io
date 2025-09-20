@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>About the Author — Knox Ramsey Thrillers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://knoxramseythrillers.com/about.html" />
+  <meta name="description" content="About Robert Cummer, author of the Knox Ramsey Thrillers." />
+  <style>
+    :root{--bg:#0b0d10;--panel:#11151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#19232b}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
+    .wrap{max-width:900px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);text-decoration:none;font-weight:700}
+    .links a:hover,.links a.active{color:var(--accent)}
+    h1{margin:.2em 0 .6em}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+    footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);margin-top:26px}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/recipe.html">The Recipe</a>
+        <a href="/about.html" class="active">About the Author</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>About the Author</h1>
+    <section class="card">
+      <p><strong>Robert Cummer</strong> is an engineer and operator turned storyteller. Years in industrial automation and food-safety operations inform the details that make Knox Ramsey feel real. <em>Dark Recipe</em> blends the systems thinking of industrial control with the human stakes of a family in the blast radius.</p>
+      <p>Influences include Tom Clancy’s technical authenticity, Michael Crichton’s science-driven plotting, and the modern operational tempo of Vince Flynn and Jack Carr.</p>
+      <p>For media or rights inquiries: <a href="mailto:hello@knoxramseythrillers.com">hello@knoxramseythrillers.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="y"></span> Robert Cummer. All rights reserved.
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>

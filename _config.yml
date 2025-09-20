@@ -1,0 +1,15 @@
+title: "Knox Ramsey Thrillers"
+author: "Robert"
+description: "Cyberthriller series featuring agricultural automation engineer Knox Ramsey"
+url: "https://knoxramseythrillers.com"
+baseurl: ""
+
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+github_username: knoxramsey25
+email: knoxramseythrillers@gmail.com

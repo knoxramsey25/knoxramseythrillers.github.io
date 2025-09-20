@@ -46,11 +46,15 @@
     }
     
     @media (max-width:480px){
+      .header-content{
+        padding:8px 0;
+        gap:6px;
+      }
       h1{
         font-size:0.95rem;
       }
       .wrap{
-        padding:12px 14px;
+        padding:10px 12px;
       }
     }
     
@@ -74,6 +78,16 @@
       }
       .story-notice p{
         font-size:0.85rem;
+      }
+    }
+    
+    @media (max-width:480px){
+      .story-notice{
+        margin:12px auto;
+        padding:10px;
+      }
+      .story-notice p{
+        font-size:0.8rem;
       }
     }
     
@@ -148,19 +162,34 @@
     footer a{color:var(--accent);text-decoration:none}
     footer a:hover{color:#6fffb8}
     
-    /* Critical State Indicator */
+    /* Critical State Indicator - Desktop */
     .critical-indicator{position:fixed;top:80px;right:20px;background:rgba(255,34,68,0.1);border:1px solid var(--critical);border-radius:8px;padding:12px 16px;animation:criticalBlink 3s infinite;z-index:100}
     @keyframes criticalBlink{0%,100%{opacity:0.8}50%{opacity:1}}
     .critical-indicator .label{color:var(--critical);font-weight:700;font-size:0.85rem}
     
+    /* Critical State Indicator - Mobile positioning */
     @media (max-width:768px){
       .critical-indicator{
-        top:120px;
+        position:fixed;
+        bottom:20px;
         right:10px;
+        top:auto;
         padding:8px 12px;
+        font-size:0.7rem;
       }
       .critical-indicator .label{
         font-size:0.75rem;
+      }
+    }
+    
+    @media (max-width:480px){
+      .critical-indicator{
+        bottom:10px;
+        right:5px;
+        padding:6px 10px;
+      }
+      .critical-indicator .label{
+        font-size:0.65rem;
       }
     }
   </style>

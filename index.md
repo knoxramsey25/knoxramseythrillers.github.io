@@ -1,22 +1,31 @@
 ---
-layout: home
-title: "Knox Ramsey Thrillers"
+layout: default
+title: Knox Ramsey Thrillers
 ---
 
-# Welcome to Knox Ramsey Thrillers
+# Knox Ramsey Thrillers by Robert Cummer
 
-**Agricultural automation meets cyber warfare** in this gripping thriller series featuring engineer Knox Ramsey.
+## Welcome to the Thrill
 
-## Dark Recipe - Available for Beta Reading
+Tech-driven suspense from an ag-tech pioneer with 30 years at Dow. *Dark Recipe* is live for beta readers!
 
-Knox Ramsey built FarmLake to feed the world through optimized growing systems. But when Chinese cyber warfare specialists corrupt his neural networks, his life's work becomes a biochemical weapon.
+- [Beta Post (844 views, #9)](https://www.reddit.com/r/BetaReaders/comments/1gq2x3y/in_progress_94k_thriller_dark_recipe_a_knox/)
+- [Cover Image](https://i.imgur.com/[YOUR_ID].jpg)
 
-### Technical Authenticity
-Drawing from real agricultural automation systems and cyber warfare methodologies, *Dark Recipe* presents a chillingly plausible near-future scenario.
+### About the Series
 
-### Beta Reader Feedback
-> "Really liked the idea! Found it very original mixing controlled agriculture, AI, and cyber sabotage, seems very current with that Tom Clancy/Michael Crichton thriller vibe" - International Beta Reader
+Follow Knox Ramsey, a Midwestern engineer turned cyber-hero, as he battles AI-driven threats to food security. *Dark Recipe* kicks off the series—more titles to come!
+
+### Get Involved
+
+Beta readers wanted! Request the 20-page, 5,000-word excerpt (view only) of *Dark Recipe* via the [Contact page](#) or sign up for updates. Your feedback shapes the 94k draft.
+
+### Coming Soon
+
+- [Books](#) - Dive into *Dark Recipe* and future Knox Ramsey adventures.
+- [About](#) - Learn about Robert Cummer’s inspiration.
+- [Contact](#) - Join the newsletter and connect.
 
 ---
 
-**Currently seeking beta readers** | **94,000 words complete** | [Contact](mailto:knoxramseythrillers@gmail.com)
+*Knox Ramsey Thrillers © 2025 Robert Cummer. All rights reserved.*

@@ -2,186 +2,457 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ops Recipe — HMI View</title>
+  <title>Ops Recipe — Live HMI View | DARK RECIPE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://knoxramseythrillers.com/recipe.html" />
-  <meta name="description" content="Operations recipe HMI view: reservoir, nutrient feeds, plant lot, and present values." />
+  <meta name="description" content="Live HMI view showing the agricultural control system compromise from DARK RECIPE. Watch the attack unfold in real-time." />
   <style>
     :root{
-      --bg:#0b0d10;--panel:#10161c;--ink:#e8eef5;--muted:#9fb2c7;
-      --accent:#52ffa8;--accent2:#4cc9f0;--warn:#ffd166;--danger:#ff4a4a;--line:#1b2631
+      --bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;
+      --accent:#52ffa8;--accent2:#4cc9f0;--warn:#ffd166;--danger:#ff4b3e;
+      --line:#17313d;--critical:#ff2244
     }
     *{box-sizing:border-box} html,body{margin:0}
-    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
-    header,footer{background:linear-gradient(180deg,#11151a,#0d1217);border-bottom:1px solid var(--line)}
-    header{position:sticky;top:0;z-index:40}
-    .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
-    a{color:var(--accent);text-decoration:none}
-    .title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted)}
-    .chip{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#0f141a}
-    .layout{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
-    @media (max-width:920px){.layout{grid-template-columns:1fr}}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
-    h2,h3{margin:.2rem 0 .4rem}
-    .pv{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:520px){.pv{grid-template-columns:1fr}}
-    .pv .row{display:flex;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#0f141a}
-    .pv .val{font-weight:800}
-    .ok{color:var(--accent)} .warn{color:var(--warn)} .bad{color:var(--danger)}
-    .schem{background:#0f141a;border:1px solid var(--line);border-radius:12px;padding:10px}
-    .schem svg{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 22px rgba(76,201,240,.1))}
-    .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
-    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:#0e1419}
+    body{background:var(--bg);color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace;line-height:1.6}
+    
+    /* Header */
+    header{background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:2px solid var(--line);position:sticky;top:0;z-index:40;backdrop-filter:blur(10px)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
+    .header-content{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .back-link{color:var(--accent);text-decoration:none;font-weight:700;transition:color 0.2s}
+    .back-link:hover{color:#6fffb8}
+    h1{margin:0;font-size:1.4rem;color:var(--accent)}
+    
+    /* Status chips */
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:rgba(12,21,26,0.8);font-size:0.85rem}
+    .chip.alert{background:rgba(255,75,62,0.1);border-color:var(--danger);animation:alertPulse 2s infinite}
+    @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.7}}
+    
+    /* Notice Banner */
+    .story-notice{background:linear-gradient(135deg,rgba(82,255,168,0.05),transparent);border:1px solid var(--accent);border-radius:8px;padding:16px;margin:20px auto;max-width:1200px;display:flex;align-items:center;gap:12px}
+    .story-notice .icon{color:var(--accent);font-size:1.5rem}
+    .story-notice p{margin:0;font-size:0.95rem;line-height:1.5}
+    .story-notice strong{color:var(--accent)}
+    
+    /* Main Layout */
+    .layout{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:20px}
+    @media (max-width:980px){.layout{grid-template-columns:1fr}}
+    
+    /* Cards */
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0.5}
+    .card.warning::before{background:linear-gradient(90deg,var(--danger),var(--warn));animation:warningGlow 3s infinite}
+    @keyframes warningGlow{0%,100%{opacity:0.3}50%{opacity:0.8}}
+    
+    h2,h3{margin:0.5rem 0;font-size:1.2rem;color:var(--accent);font-weight:700}
+    h3{font-size:1rem;color:var(--ink)}
+    
+    /* Schematic */
+    .schem{background:#0a0f14;border:1px solid var(--line);border-radius:8px;padding:12px;position:relative}
+    .schem svg{width:100%;height:auto;display:block}
+    
+    /* Legend */
+    .legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;font-size:0.85rem}
+    .legend-item{display:flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(12,21,26,0.6);border:1px solid var(--line);border-radius:20px}
     .dot{width:10px;height:10px;border-radius:50%}
-    .dN{background:#4cc9f0}.dP{background:#52ffa8}.dK{background:#ffd166}.dW{background:#9fb2c7}
-    .note{font-size:.9rem;color:var(--muted)}
-    .table{width:100%;border-collapse:separate;border-spacing:0 8px;margin-top:8px;font-variant-numeric:tabular-nums}
-    .table th,.table td{padding:10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .table th:first-child,.table td:first-child{border-left:1px solid var(--line);border-top-left-radius:8px;border-bottom-left-radius:8px}
-    .table th:last-child,.table td:last-child{border-right:1px solid var(--line);border-top-right-radius:8px;border-bottom-right-radius:8px}
-    footer{padding:22px;text-align:center;color:var(--muted);border-top:1px solid var(--line);margin-top:26px}
+    .dot.water{background:var(--muted)}
+    .dot.n{background:var(--accent2)}
+    .dot.p{background:var(--accent)}
+    .dot.k{background:var(--warn)}
+    
+    /* Present Values Grid */
+    .pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    @media (max-width:520px){.pv-grid{grid-template-columns:1fr}}
+    .pv-item{background:rgba(12,21,26,0.5);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s}
+    .pv-item:hover{background:rgba(12,21,26,0.8)}
+    .pv-item.alert{border-color:var(--danger);background:rgba(255,75,62,0.05)}
+    .pv-label{color:var(--muted);font-size:0.85rem}
+    .pv-value{font-weight:800;font-size:0.95rem}
+    .pv-value.ok{color:var(--accent)}
+    .pv-value.warn{color:var(--warn)}
+    .pv-value.bad{color:var(--danger);animation:valuePulse 2s infinite}
+    @keyframes valuePulse{0%,100%{opacity:1}50%{opacity:0.6}}
+    
+    /* Setpoints Table */
+    .table{width:100%;margin-top:12px;font-size:0.9rem}
+    .table th,.table td{padding:8px;text-align:left;border-bottom:1px solid var(--line)}
+    .table th{color:var(--muted);font-weight:600;font-size:0.85rem}
+    .table td{font-family:ui-monospace,monospace}
+    .deviation{color:var(--danger);font-weight:700}
+    
+    /* Event Log */
+    .event-log{background:rgba(5,10,15,0.8);border:1px solid var(--line);border-radius:8px;padding:12px;max-height:300px;overflow-y:auto;font-size:0.85rem}
+    .log-entry{padding:6px 8px;margin:4px 0;border-left:3px solid var(--line);background:rgba(12,21,26,0.5);display:flex;align-items:center;gap:10px}
+    .log-entry.info{border-left-color:var(--accent2)}
+    .log-entry.warn{border-left-color:var(--warn);background:rgba(255,209,102,0.05)}
+    .log-entry.error{border-left-color:var(--danger);background:rgba(255,75,62,0.05);animation:logPulse 2s}
+    @keyframes logPulse{0%{background:rgba(255,75,62,0.15)}100%{background:rgba(255,75,62,0.05)}}
+    .log-time{color:var(--muted);font-size:0.8rem;min-width:60px}
+    .log-msg{flex:1}
+    
+    /* Footer */
+    footer{border-top:1px solid var(--line);padding:24px;text-align:center;color:var(--muted);margin-top:40px;background:linear-gradient(180deg,transparent,rgba(12,21,26,0.5))}
+    footer a{color:var(--accent);text-decoration:none}
+    footer a:hover{color:#6fffb8}
+    
+    /* Critical State Indicator */
+    .critical-indicator{position:fixed;top:80px;right:20px;background:rgba(255,34,68,0.1);border:1px solid var(--critical);border-radius:8px;padding:12px 16px;animation:criticalBlink 3s infinite;z-index:100}
+    @keyframes criticalBlink{0%,100%{opacity:0.8}50%{opacity:1}}
+    .critical-indicator .label{color:var(--critical);font-weight:700;font-size:0.85rem}
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap title">
-      <a href="/">← Home</a>
-      <h1 style="margin:0">Ops Recipe — HMI View</h1>
-      <div class="chips">
-        <span class="chip">Lot: <strong id="lot">DR-A17-042</strong></span>
-        <span class="chip">Cell: <strong>Bay 3 / C-12</strong></span>
-        <span class="chip">Program: <strong>Cycle 7</strong></span>
+    <div class="wrap">
+      <div class="header-content">
+        <a href="/" class="back-link">← Back to Knox Ramsey Thrillers</a>
+        <h1>LIVE HMI — Agricultural Control System</h1>
+        <div class="chips">
+          <span class="chip">Lot: <strong>C-12</strong></span>
+          <span class="chip">Bay: <strong>3</strong></span>
+          <span class="chip alert">⚠ Anomalies: <strong id="anomCount">3</strong></span>
+        </div>
       </div>
     </div>
   </header>
 
+  <div class="story-notice">
+    <span class="icon">⚠</span>
+    <div>
+      <p><strong>DARK RECIPE INTERFACE:</strong> This HMI recreates the control system Knox Ramsey monitored when he detected the agricultural attack. Notice the pH drift above setpoint—the first sign of weaponized optimization algorithms corrupting the nutrient recipe.</p>
+    </div>
+  </div>
+
   <main class="wrap">
     <div class="layout">
-      <!-- LEFT: SCHEMATIC -->
-      <section class="card">
-        <h2>Flow Schematic</h2>
-        <div class="legend" aria-hidden="true" style="margin-bottom:8px">
-          <span class="pill"><span class="dot dW"></span> Water</span>
-          <span class="pill"><span class="dot dN"></span> N-Feed</span>
-          <span class="pill"><span class="dot dP"></span> P-Feed</span>
-          <span class="pill"><span class="dot dK"></span> K-Feed</span>
-        </div>
-        <div class="schem">
-          <!-- Inline SVG HMI -->
-          <svg viewBox="0 0 860 400" aria-label="Water reservoir, nutrient feeds, and plant cell">
-            <!-- Reservoir -->
-            <rect x="24" y="34" width="160" height="120" rx="12" fill="#0c1318" stroke="#2b5668"/>
-            <text x="44" y="62" fill="#9fb2c7" font-size="14">Water Reservoir</text>
-            <text x="44" y="84" fill="#9fb2c7" font-size="12">Level: <tspan id="pvLevel">82%</tspan></text>
-            <text x="44" y="102" fill="#9fb2c7" font-size="12">Temp: <tspan id="pvWTemp">19.8°C</tspan></text>
+      <!-- LEFT COLUMN: Schematic & Event Log -->
+      <div>
+        <section class="card">
+          <h2>Process Flow Schematic</h2>
+          <div class="legend">
+            <span class="legend-item"><span class="dot water"></span> Water</span>
+            <span class="legend-item"><span class="dot n"></span> N-Feed</span>
+            <span class="legend-item"><span class="dot p"></span> P-Feed</span>
+            <span class="legend-item"><span class="dot k"></span> K-Feed</span>
+          </div>
+          <div class="schem">
+            <svg viewBox="0 0 800 360" aria-label="Nutrient delivery system schematic">
+              <!-- Water Reservoir -->
+              <rect x="20" y="30" width="140" height="100" rx="8" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+              <text x="35" y="55" fill="#9fb2c7" font-size="13" font-weight="600">RESERVOIR</text>
+              <text x="35" y="75" fill="#52ffa8" font-size="11">Level: <tspan id="svgLevel">82%</tspan></text>
+              <text x="35" y="92" fill="#52ffa8" font-size="11">Temp: <tspan id="svgTemp">19.8°C</tspan></text>
+              
+              <!-- Nutrient Tanks -->
+              <rect x="20" y="160" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+              <text x="35" y="185" fill="#4cc9f0" font-size="11" font-weight="600">N-FEED</text>
+              <text x="35" y="200" fill="#4cc9f0" font-size="10">6.2 L/m</text>
+              
+              <rect x="20" y="220" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+              <text x="35" y="245" fill="#52ffa8" font-size="11" font-weight="600">P-FEED</text>
+              <text x="35" y="260" fill="#52ffa8" font-size="10">4.7 L/m</text>
+              
+              <rect x="20" y="280" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+              <text x="35" y="305" fill="#ffd166" font-size="11" font-weight="600">K-FEED</text>
+              <text x="35" y="320" fill="#ffd166" font-size="10">5.1 L/m</text>
+              
+              <!-- Manifold -->
+              <rect x="320" y="60" width="60" height="250" rx="8" fill="#0a0f14" stroke="#ff4b3e" stroke-width="2" opacity="0.8"/>
+              <text x="330" y="50" fill="#ff4b3e" font-size="11" font-weight="600">MANIFOLD</text>
+              <circle cx="350" cy="180" r="25" fill="none" stroke="#ff4b3e" stroke-width="2" opacity="0.5"/>
+              <text x="335" y="185" fill="#ff4b3e" font-size="10">MIX</text>
+              
+              <!-- Flow Lines -->
+              <path d="M160 80 H320" stroke="#9fb2c7" stroke-width="3" opacity="0.7"/>
+              <path d="M120 185 H320" stroke="#4cc9f0" stroke-width="2" opacity="0.7"/>
+              <path d="M120 245 H320" stroke="#52ffa8" stroke-width="2" opacity="0.7"/>
+              <path d="M120 305 H320" stroke="#ffd166" stroke-width="2" opacity="0.7"/>
+              
+              <!-- Output to Cell -->
+              <path d="M380 180 H620" stroke="#ff4b3e" stroke-width="3" stroke-dasharray="5,5" opacity="0.8"/>
+              
+              <!-- Plant Cell -->
+              <rect x="620" y="120" width="150" height="120" rx="8" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+              <text x="635" y="145" fill="#9fb2c7" font-size="13" font-weight="600">PLANT CELL C-12</text>
+              <text x="635" y="165" fill="#ff4b3e" font-size="11">pH: <tspan id="svgPH">6.7</tspan> ⚠</text>
+              <text x="635" y="182" fill="#52ffa8" font-size="11">EC: 1.8 mS/cm</text>
+              <text x="635" y="199" fill="#52ffa8" font-size="11">Temp: 22.4°C</text>
+              <text x="635" y="216" fill="#52ffa8" font-size="11">RH: 54%</text>
+              
+              <!-- Warning Indicator -->
+              <circle cx="745" cy="160" r="8" fill="#ff4b3e" opacity="0.8">
+                <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
+          </div>
+        </section>
 
-            <!-- Nutrient Tanks -->
-            <rect x="24" y="198" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <rect x="24" y="284" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <rect x="24" y="370" width="120" height="70" rx="10" fill="#0c1318" stroke="#2b5668" transform="translate(0,-60)"/>
-            <text x="44" y="222" fill="#9fb2c7" font-size="12">N-Feed</text>
-            <text x="44" y="308" fill="#9fb2c7" font-size="12">P-Feed</text>
-            <text x="44" y="350" fill="#9fb2c7" font-size="12">K-Feed</text>
+        <section class="card warning" style="margin-top:20px">
+          <h2>System Event Log</h2>
+          <div class="event-log" id="eventLog">
+            <div class="log-entry error">
+              <span class="log-time">15:52:41</span>
+              <span class="log-msg">⚠ CRITICAL: pH exceeds tolerance band (6.7 > 6.5)</span>
+            </div>
+            <div class="log-entry warn">
+              <span class="log-time">15:51:23</span>
+              <span class="log-msg">Manifold pressure fluctuation detected</span>
+            </div>
+            <div class="log-entry error">
+              <span class="log-time">15:49:17</span>
+              <span class="log-msg">Unauthorized profile update: Origin trace failed</span>
+            </div>
+            <div class="log-entry info">
+              <span class="log-time">15:47:08</span>
+              <span class="log-msg">Optimization algorithm v3.7.2 loaded</span>
+            </div>
+            <div class="log-entry warn">
+              <span class="log-time">15:45:32</span>
+              <span class="log-msg">Setpoint override: Manual intervention logged</span>
+            </div>
+            <div class="log-entry info">
+              <span class="log-time">15:43:11</span>
+              <span class="log-msg">Nutrient cycle 7 initiated for Bay 3</span>
+            </div>
+          </div>
+        </section>
+      </div>
 
-            <!-- Lines to Manifold -->
-            <path d="M184 90 H360" stroke="#9fb2c7" stroke-width="4"/> <!-- Water -->
-            <path d="M144 233 H360" stroke="#4cc9f0" stroke-width="3"/> <!-- N -->
-            <path d="M144 319 H360" stroke="#52ffa8" stroke-width="3"/> <!-- P -->
-            <path d="M144 361 H360" stroke="#ffd166" stroke-width="3"/> <!-- K -->
+      <!-- RIGHT COLUMN: Present Values & Setpoints -->
+      <div>
+        <section class="card">
+          <h2>Present Values</h2>
+          <div class="pv-grid">
+            <div class="pv-item">
+              <span class="pv-label">Reservoir Level</span>
+              <span class="pv-value ok" id="pvLevel">82%</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">Reservoir Temp</span>
+              <span class="pv-value ok" id="pvTemp">19.8°C</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">Flow — Water</span>
+              <span class="pv-value ok" id="pvWater">38.4 L/min</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">Flow — N-Feed</span>
+              <span class="pv-value ok" id="pvN">6.2 L/min</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">Flow — P-Feed</span>
+              <span class="pv-value ok" id="pvP">4.7 L/min</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">Flow — K-Feed</span>
+              <span class="pv-value ok" id="pvK">5.1 L/min</span>
+            </div>
+            <div class="pv-item alert">
+              <span class="pv-label">pH (Cell C-12)</span>
+              <span class="pv-value bad" id="pvPH">6.7</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">EC (Cell C-12)</span>
+              <span class="pv-value ok" id="pvEC">1.8 mS/cm</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">Air Temp (Bay 3)</span>
+              <span class="pv-value ok" id="pvAir">22.4°C</span>
+            </div>
+            <div class="pv-item">
+              <span class="pv-label">RH (Bay 3)</span>
+              <span class="pv-value ok" id="pvRH">54%</span>
+            </div>
+          </div>
+        </section>
 
-            <!-- Flow indicators -->
-            <circle cx="270" cy="90" r="6" fill="#9fb2c7"/>
-            <circle cx="270" cy="233" r="6" fill="#4cc9f0"/>
-            <circle cx="270" cy="319" r="6" fill="#52ffa8"/>
-            <circle cx="270" cy="361" r="6" fill="#ffd166"/>
-
-            <!-- Manifold -->
-            <rect x="360" y="60" width="70" height="330" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <text x="372" y="54" fill="#9fb2c7" font-size="12">Manifold</text>
-
-            <!-- Outgoing to Cell -->
-            <path d="M430 140 H780" stroke="#4cc9f0" stroke-width="3"/>
-            <path d="M430 200 H780" stroke="#52ffa8" stroke-width="3"/>
-            <path d="M430 260 H780" stroke="#ffd166" stroke-width="3"/>
-            <path d="M430 320 H780" stroke="#9fb2c7" stroke-width="4"/>
-
-            <!-- Plant Cell (Grow Bay) -->
-            <rect x="780" y="120" width="56" height="220" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <text x="708" y="114" fill="#9fb2c7" font-size="12">Plant Cell</text>
-            <text x="792" y="144" fill="#9fb2c7" font-size="12">C-12</text>
-
-            <!-- Lot Badge -->
-            <rect x="620" y="24" width="216" height="60" rx="10" fill="#0c1318" stroke="#2b5668"/>
-            <text x="636" y="48" fill="#9fb2c7" font-size="14">Lot: <tspan id="lotText">DR-A17-042</tspan></text>
-            <text x="636" y="68" fill="#9fb2c7" font-size="12">Route: Manifold → C-12</text>
-          </svg>
-        </div>
-        <p class="note" style="margin-top:8px">Schematic indicates topology and current PVs; values update on refresh.</p>
-      </section>
-
-      <!-- RIGHT: PRESENT VALUES -->
-      <aside class="card">
-        <h2>Present Values</h2>
-        <div class="pv" id="pvPanel">
-          <div class="row"><span>Reservoir Level</span><span class="val ok" id="pv_level">82%</span></div>
-          <div class="row"><span>Reservoir Temp</span><span class="val ok" id="pv_wtemp">19.8°C</span></div>
-          <div class="row"><span>Flow — Water</span><span class="val ok" id="pv_fw">38.4 L/min</span></div>
-          <div class="row"><span>Flow — N-Feed</span><span class="val ok" id="pv_fn">6.2 L/min</span></div>
-          <div class="row"><span>Flow — P-Feed</span><span class="val ok" id="pv_fp">4.7 L/min</span></div>
-          <div class="row"><span>Flow — K-Feed</span><span class="val ok" id="pv_fk">5.1 L/min</span></div>
-          <div class="row"><span>pH (Cell C-12)</span><span class="val warn" id="pv_ph">6.7</span></div>
-          <div class="row"><span>EC (Cell C-12)</span><span class="val ok" id="pv_ec">1.8 mS/cm</span></div>
-          <div class="row"><span>Air Temp (Bay 3)</span><span class="val ok" id="pv_air">22.4°C</span></div>
-          <div class="row"><span>RH (Bay 3)</span><span class="val ok" id="pv_rh">54%</span></div>
-        </div>
-
-        <h3 style="margin-top:14px">Setpoints</h3>
-        <table class="table">
-          <thead><tr><th>Param</th><th>SP</th><th>Band</th></tr></thead>
-          <tbody>
-            <tr><td>pH (C-12)</td><td>6.3</td><td>±0.5</td></tr>
-            <tr><td>EC (C-12)</td><td>1.8 mS/cm</td><td>±0.4</td></tr>
-            <tr><td>Air Temp</td><td>22.0°C</td><td>±2.0°C</td></tr>
-            <tr><td>RH</td><td>55%</td><td>±10%</td></tr>
-          </tbody>
-        </table>
-      </aside>
+        <section class="card" style="margin-top:20px">
+          <h2>Control Setpoints</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Setpoint</th>
+                <th>Actual</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pH</td>
+                <td>6.0 - 6.5</td>
+                <td id="spPH">6.7</td>
+                <td class="deviation">ALARM</td>
+              </tr>
+              <tr>
+                <td>EC</td>
+                <td>1.6 - 2.0</td>
+                <td>1.8</td>
+                <td style="color:var(--accent)">OK</td>
+              </tr>
+              <tr>
+                <td>Air Temp</td>
+                <td>20.0 - 24.0°C</td>
+                <td>22.4°C</td>
+                <td style="color:var(--accent)">OK</td>
+              </tr>
+              <tr>
+                <td>RH</td>
+                <td>45 - 65%</td>
+                <td>54%</td>
+                <td style="color:var(--accent)">OK</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="margin-top:12px;font-size:0.85rem;color:var(--muted)">
+            <strong style="color:var(--danger)">NOTE:</strong> pH deviation matches attack signature from corrupted optimization profile DR-A17-042
+          </p>
+        </section>
+      </div>
     </div>
   </main>
 
+  <div class="critical-indicator">
+    <div class="label">SYSTEM COMPROMISE DETECTED</div>
+  </div>
+
   <footer>
-    © <span id="y"></span> Robert Cummer.
+    <p>© <span id="year"></span> Robert Cummer · <a href="/">Knox Ramsey Thrillers</a></p>
+    <p style="font-size:0.85rem;margin-top:8px">This interface demonstrates the agricultural control system vulnerability at the heart of DARK RECIPE</p>
   </footer>
 
   <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Simulate light PV jitter on load to feel "live" (no external services)
-    function jitter(base, pct){ const d = base * pct; return (base + (Math.random()*2-1)*d); }
-    const pv = {
-      level: 82, wtemp: 19.8, fw: 38.4, fn: 6.2, fp: 4.7, fk: 5.1, ph: 6.7, ec: 1.8, air: 22.4, rh: 54
+    // System values with slight variations to feel "live"
+    let systemValues = {
+      level: 82,
+      temp: 19.8,
+      waterFlow: 38.4,
+      nFlow: 6.2,
+      pFlow: 4.7,
+      kFlow: 5.1,
+      ph: 6.7,  // Attack vector - will drift higher
+      ec: 1.8,
+      airTemp: 22.4,
+      rh: 54,
+      anomalies: 3
     };
-    function fmt(n, unit=''){ return (Math.round(n*10)/10) + (unit?(' '+unit):''); }
-    function render(){
-      document.getElementById('pv_level').textContent = Math.round(jitter(pv.level, .01)) + '%';
-      document.getElementById('pv_wtemp').textContent = fmt(jitter(pv.wtemp,.01),'°C');
-      document.getElementById('pv_fw').textContent    = fmt(jitter(pv.fw,.02),'L/min');
-      document.getElementById('pv_fn').textContent    = fmt(jitter(pv.fn,.03),'L/min');
-      document.getElementById('pv_fp').textContent    = fmt(jitter(pv.fp,.03),'L/min');
-      document.getElementById('pv_fk').textContent    = fmt(jitter(pv.fk,.03),'L/min');
-      const ph = jitter(pv.ph,.03); document.getElementById('pv_ph').textContent = ph.toFixed(1);
-      const ec = jitter(pv.ec,.03); document.getElementById('pv_ec').textContent = ec.toFixed(1)+' mS/cm';
-      document.getElementById('pv_air').textContent   = fmt(jitter(pv.air,.02),'°C');
-      document.getElementById('pv_rh').textContent    = Math.round(jitter(pv.rh,.02)) + '%';
 
-      // Mirror key PVs into SVG labels
-      document.getElementById('pvLevel').textContent  = document.getElementById('pv_level').textContent;
-      document.getElementById('pvWTemp').textContent  = document.getElementById('pv_wtemp').textContent;
-      document.getElementById('lotText').textContent  = document.getElementById('lot').textContent;
+    // Format number with specified decimals
+    function fmt(val, decimals = 1) {
+      return val.toFixed(decimals);
     }
-    render();
+
+    // Add slight jitter to values for realism
+    function jitter(base, variance = 0.02) {
+      const delta = base * variance;
+      return base + (Math.random() * 2 - 1) * delta;
+    }
+
+    // Update display values
+    function updateDisplay() {
+      // Update PV display
+      document.getElementById('pvLevel').textContent = Math.round(jitter(systemValues.level, 0.01)) + '%';
+      document.getElementById('pvTemp').textContent = fmt(jitter(systemValues.temp, 0.01)) + '°C';
+      document.getElementById('pvWater').textContent = fmt(jitter(systemValues.waterFlow, 0.02)) + ' L/min';
+      document.getElementById('pvN').textContent = fmt(jitter(systemValues.nFlow, 0.03)) + ' L/min';
+      document.getElementById('pvP').textContent = fmt(jitter(systemValues.pFlow, 0.03)) + ' L/min';
+      document.getElementById('pvK').textContent = fmt(jitter(systemValues.kFlow, 0.03)) + ' L/min';
+      
+      const currentPH = jitter(systemValues.ph, 0.01);
+      document.getElementById('pvPH').textContent = fmt(currentPH);
+      document.getElementById('pvEC').textContent = fmt(jitter(systemValues.ec, 0.02)) + ' mS/cm';
+      document.getElementById('pvAir').textContent = fmt(jitter(systemValues.airTemp, 0.02)) + '°C';
+      document.getElementById('pvRH').textContent = Math.round(jitter(systemValues.rh, 0.02)) + '%';
+      
+      // Update SVG values
+      document.getElementById('svgLevel').textContent = document.getElementById('pvLevel').textContent;
+      document.getElementById('svgTemp').textContent = document.getElementById('pvTemp').textContent;
+      document.getElementById('svgPH').textContent = fmt(currentPH);
+      document.getElementById('spPH').textContent = fmt(currentPH);
+      
+      // Update anomaly counter
+      document.getElementById('anomCount').textContent = systemValues.anomalies;
+    }
+
+    // Simulate pH drift (the attack vector)
+    function simulateAttack() {
+      // Slowly increase pH showing system compromise
+      if (systemValues.ph < 7.2) {
+        systemValues.ph += 0.003;
+      }
+      
+      // Occasionally increment anomaly counter
+      if (Math.random() < 0.05) {
+        systemValues.anomalies++;
+      }
+    }
+
+    // Add new event to log
+    function addLogEntry(severity, message) {
+      const log = document.getElementById('eventLog');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${severity}`;
+      
+      const now = new Date();
+      const time = now.toTimeString().slice(0, 8);
+      
+      entry.innerHTML = `
+        <span class="log-time">${time}</span>
+        <span class="log-msg">${message}</span>
+      `;
+      
+      log.insertBefore(entry, log.firstChild);
+      
+      // Keep only last 10 entries
+      while (log.children.length > 10) {
+        log.removeChild(log.lastChild);
+      }
+    }
+
+    // Periodic event generation
+    let eventCounter = 0;
+    function generateEvent() {
+      eventCounter++;
+      
+      const events = [
+        { severity: 'warn', msg: 'Nutrient ratio deviation detected' },
+        { severity: 'error', msg: 'Profile checksum mismatch' },
+        { severity: 'info', msg: 'Manifold flush cycle complete' },
+        { severity: 'warn', msg: 'Temperature compensation active' },
+        { severity: 'error', msg: 'Unauthorized setpoint modification' },
+        { severity: 'info', msg: 'Data logged to archive' }
+      ];
+      
+      // Add critical pH alarm every 10 events
+      if (eventCounter % 10 === 0 && systemValues.ph > 6.8) {
+        addLogEntry('error', `⚠ CRITICAL: pH ${fmt(systemValues.ph)} exceeds limits`);
+      } else if (Math.random() < 0.3) {
+        const event = events[Math.floor(Math.random() * events.length)];
+        addLogEntry(event.severity, event.msg);
+      }
+    }
+
+    // Initialize and run updates
+    updateDisplay();
+    
+    // Update values every second
+    setInterval(() => {
+      updateDisplay();
+    }, 1000);
+    
+    // Simulate attack progression every 3 seconds
+    setInterval(() => {
+      simulateAttack();
+    }, 3000);
+    
+    // Generate events occasionally
+    setInterval(() => {
+      generateEvent();
+    }, 8000);
   </script>
 </body>
 </html>

@@ -1,324 +1,104 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6R38ZMH8Y8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6R38ZMH8Y8');
-</script>
   <meta charset="utf-8" />
-  <title>Knox Ramsey Field Guide — Industrial Automation & Security</title>
+  <title>Knox Ramsey Field Guide — Plates</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://knoxramseythrillers.com/fieldguide.html" />
-  <meta name="description" content="Knox Ramsey Field Guide: Technical insights into industrial automation, cybersecurity, and the technologies featured in the thriller series." />
-  <meta property="og:title" content="Knox Ramsey Field Guide">
-  <meta property="og:description" content="Technical insights and real-world context behind the Knox Ramsey thriller series.">
-  <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png">
+  <meta name="description" content="Companion plates for the Knox Ramsey Field Guide. High-resolution diagrams with zoom and downloads." />
   <style>
-  :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e;--line:#17313d;--diagram-font:16px}
-    *{box-sizing:border-box} html,body{margin:0}
-    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
-    
-    /* NAV */
-    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
-    .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .brand{font-weight:900;letter-spacing:.3px;display:flex;align-items:center;gap:8px;font-size:1rem}
-    .brand::before{content:'';width:3px;height:20px;background:var(--accent);border-radius:2px}
-    .links{display:flex;gap:14px;flex-wrap:wrap}
-    .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color .2s;font-size:0.9rem}
-    .links a:hover,.links a.active{color:var(--accent)}
-    
-    /* Mobile nav adjustments */
-    @media (max-width:560px){
-      .bar{flex-direction:column;align-items:center;gap:10px}
-      .brand{font-size:0.9rem}
-      .brand::before{height:16px}
-      .links{gap:10px;justify-content:center}
-      .links a{font-size:0.85rem;padding:4px}
+    /* ===== Site chrome (keep brand) ===== */
+    :root{
+      --bg:#071014; --panel:#0c151a; --ink:#e8eef5;
+      --muted:#9fb2c7; --accent:#52ffa8; --rule:#16343f;
+      --paper:#fffdf7; --paper-ink:#222; --paper-muted:#5a5a5a;
+      --max:1200px; --narrow:880px; --diagram-font:17px;
     }
-    
-    /* MAIN CONTENT */
-  .content{max-width:900px;margin:0 auto;padding:32px 18px}
-  .figure-wide{max-width:1200px;margin:24px auto}
-  .figure-wide .mermaid{padding:0}
-  .figure-wide .mermaid svg{width:100% !important;height:auto !important}
-  .mermaid{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:0 auto;color:var(--ink)}
-    
-    h1{margin:.2em 0 .6em;font-size:2.5rem;position:relative;color:var(--ink)}
-    h1::after{content:'';position:absolute;bottom:-8px;left:0;width:80px;height:3px;background:var(--accent);border-radius:2px}
-    
-    .subtitle{font-size:1.2rem;color:var(--muted);margin-bottom:2rem;font-weight:400}
-    
-    h2{color:var(--accent);margin:2.5rem 0 1rem;font-size:1.6rem;border-bottom:1px solid var(--line);padding-bottom:8px}
-    h3{color:var(--accent);margin:2rem 0 0.8rem;font-size:1.3rem}
-    
-    .intro{font-size:1.15rem;line-height:1.8;color:var(--ink);margin:2rem 0;background:var(--panel);padding:24px;border-radius:12px;border:1px solid var(--line)}
-    
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin:20px 0;transition:all 0.3s}
-    .card:hover{border-color:rgba(82,255,168,0.3);box-shadow:0 4px 20px rgba(82,255,168,0.05)}
-    
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin:24px 0}
-    
-    .tech-item{
-      background:rgba(82,255,168,0.03);
-      border-left:4px solid var(--accent);
-      padding:20px;
-      border-radius:8px;
-      margin:16px 0;
-    }
-    .tech-item h4{
-      color:var(--accent);
-      margin:0 0 12px;
-      font-size:1.1rem;
-      font-weight:700;
-    }
-    .tech-item p{
-      margin:0;
-      line-height:1.6;
-    }
-    
-    .warning-box{
-      background:linear-gradient(135deg,rgba(255,75,62,0.1),transparent);
-      border:1px solid var(--danger);
-      border-radius:12px;
-      padding:20px;
-      margin:24px 0;
-    }
-    .warning-box h4{
-      color:var(--danger);
-      margin:0 0 12px;
-      font-size:1.1rem;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .warning-box h4::before{
-      content:'⚠️';
-      font-size:1.2rem;
-    }
-    
-    .info-box{
-      background:linear-gradient(135deg,rgba(82,255,168,0.05),transparent);
-      border:1px solid var(--accent);
-      border-radius:12px;
-      padding:20px;
-      margin:24px 0;
-    }
-    .info-box h4{
-      color:var(--accent);
-      margin:0 0 12px;
-      font-size:1.1rem;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .info-box h4::before{
-      content:'💡';
-      font-size:1.2rem;
-    }
-    
-    .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-    .tag{display:inline-block;padding:4px 12px;background:rgba(82,255,168,0.1);border:1px solid var(--accent);border-radius:20px;font-size:0.85rem;color:var(--accent);font-weight:600}
-    
-    .reference-list{list-style:none;padding:0}
-    .reference-list li{
-      background:rgba(255,255,255,0.02);
-      border:1px solid var(--line);
-      padding:12px 16px;
-      margin:8px 0;
-      border-radius:8px;
-      transition:all 0.3s;
-    }
-    .reference-list li:hover{
-      border-color:rgba(82,255,168,0.3);
-      background:rgba(82,255,168,0.02);
-    }
-    
-    .toc{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:20px;
-      margin:24px 0;
-    }
-    .toc h3{
-      margin:0 0 16px;
-      color:var(--accent);
-    }
-    .toc ul{
-      list-style:none;
-      padding:0;
-      margin:0;
-    }
-    .toc li{
-      margin:8px 0;
-    }
-    .toc a{
-      color:var(--muted);
-      text-decoration:none;
-      transition:color 0.3s;
-      font-weight:500;
-    }
-    .toc a:hover{
-      color:var(--accent);
-    }
-    
-  footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);margin-top:60px;background:linear-gradient(180deg,transparent,rgba(12,21,26,0.5))}
-  .expand-btn{display:block;margin:8px auto 0;text-align:center;padding:10px 18px;border:1px solid var(--accent);border-radius:6px;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;transition:background 0.2s,color 0.2s}
-  .expand-btn:hover{background:rgba(82,255,168,0.1);color:#6fffb8}
-  dialog.svg-modal{width:95vw;height:90vh;border:0;background:#0c151a;padding:0;border-radius:8px}
-  dialog::backdrop{background:rgba(0,0,0,.6)}
-    a{color:var(--accent);text-decoration:none;transition:color 0.2s}
-    a:hover{color:#6fffb8}
-    
-    /* Responsive adjustments */
-    @media (max-width:768px){
-      .content{padding:20px 16px}
-      h1{font-size:2rem}
-      .subtitle{font-size:1.1rem}
-      h2{font-size:1.4rem}
-      .grid{grid-template-columns:1fr}
+    html,body{margin:0}
+    body{background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{opacity:.9}
+    .nav{position:sticky; top:0; z-index:50; background:linear-gradient(180deg,#0e1820,#0a1318); border-bottom:1px solid var(--rule)}
+    .wrap{max-width:var(--max); margin:0 auto; padding:14px 18px; display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .brand{font-weight:900; letter-spacing:.2px; display:flex; gap:8px; align-items:center}
+    .brand::before{content:''; width:3px; height:18px; background:var(--accent); border-radius:2px}
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .links a{color:var(--muted); font-weight:700; font-size:.9rem}
+    .links a.active{color:var(--accent)}
+    /* ===== Paper content area (book-ish) ===== */
+    .paper{max-width:var(--max); margin:28px auto; padding:28px 18px; background:var(--paper); color:var(--paper-ink); border:1px solid #ece7da; border-radius:10px}
+    .page{max-width:var(--narrow); margin:0 auto}
+    .paper h1{font-family:Georgia,"Times New Roman",serif; font-size:2.05rem; margin:.2em 0 .2em}
+    .sub{color:var(--paper-muted); margin:0 0 1.2rem}
+    .hr{height:1px; background:#eee6cf; margin:10px 0 20px}
+    .toc{background:#fffaf0; border:1px solid #efe6cc; border-radius:8px; padding:16px 18px; margin:18px 0 22px}
+    .toc h3{margin:.1rem 0 .6rem; font-size:1.05rem; font-family:Georgia,"Times New Roman",serif}
+    .toc ul{margin:0; padding-left:18px}
+    .toc li{margin:.28rem 0}
+    .section{margin:32px 0}
+    h2{font-family:Georgia,"Times New Roman",serif; font-size:1.45rem; margin:0 0 .5rem}
+    p.lead{color:#4b4b4b}
+    /* ===== Figures ===== */
+    figure{margin:18px auto}
+    .canvas{background:#fff; border:1px solid #e9e1cc; border-radius:10px; padding:16px}
+    .mermaid svg{width:100% !important; height:auto !important}
+    figcaption{font-size:.95rem; color:#333; margin:10px 0 0}
+    .downloads{text-align:center; margin:.35rem 0 0}
+    .btn{display:inline-block; margin:8px 6px 0; padding:8px 14px; border:1px solid #0a7; color:#0a7; background:#fff; border-radius:6px; cursor:pointer; font-weight:600}
+    .btn:hover{background:#f4fff9}
+    details.more{background:#fff; border:1px dashed #e6dcc4; border-radius:8px; padding:10px 14px; margin:10px 0 0}
+    details.more summary{cursor:pointer; font-weight:600}
+    /* ===== Modal for full-screen ===== */
+    dialog.svg-modal{width:95vw; height:90vh; border:0; background:#fff; padding:0}
+    dialog::backdrop{background:rgba(0,0,0,.55)}
+    .modal-wrap{width:100%; height:100%; overflow:hidden; padding:18px}
+    .modal-close{position:absolute; right:16px; top:12px; border:1px solid #333; background:#fff; padding:6px 10px; border-radius:4px; cursor:pointer}
+    /* ===== Responsive ===== */
+    @media (max-width:760px){
+      .paper{margin:16px; padding:18px}
+      .mermaid{font-size:14px}
     }
   </style>
 </head>
 <body>
+  <!-- Nav (keeps brand) -->
   <nav class="nav" aria-label="Primary">
-    <div class="wrap bar">
+    <div class="wrap">
       <div class="brand">Knox Ramsey Thrillers</div>
       <div class="links">
         <a href="/">Home</a>
         <a href="/recipe.html">The Recipe</a>
-        <a href="/fieldguide.html" class="active" aria-current="page">Field Guide</a>
-        <a href="/about.html">About the Author</a>
+        <a class="active" aria-current="page" href="/fieldguide.html">Field Guide</a>
         <a href="/teaser.html">Read Sample</a>
-        <a href="/about.html#contact">Contact</a>
+        <a href="/about.html">About</a>
       </div>
     </div>
   </nav>
 
-  <div class="content">
-    <h1>Knox Ramsey Field Guide</h1>
-    <p class="subtitle">Technical insights into industrial automation, cybersecurity, and the technologies behind the thrillers</p>
-    
-    <div class="intro">
-      <p>Welcome to the Knox Ramsey Field Guide — your technical companion to understanding the real-world technologies, threats, and systems featured in the thriller series. This guide bridges fiction and reality, providing insights into industrial automation, cybersecurity vulnerabilities, and the critical infrastructure that powers our modern world.</p>
-    </div>
+  <!-- Paper content -->
+  <div class="paper">
+    <div class="page">
+      <h1>Knox Ramsey Field Guide — Plates</h1>
+      <p class="sub">These web plates complement the printed Field Guide at the back of <em>Dark Recipe</em>. Same figure numbers and captions; added zoom and downloads.</p>
+      <div class="hr"></div>
 
-    <div class="toc">
-      <h3>Table of Contents</h3>
-      <ul>
-        <li><a href="#industrial-automation">Industrial Automation Systems</a></li>
-        <li><a href="#cybersecurity-threats">Cybersecurity Threats</a></li>
-        <li><a href="#food-supply-chain">Food Supply Chain Security</a></li>
-        <li><a href="#farmcore-architecture">FarmCore ↔ FarmLytics Architecture</a></li>
-        <li><a href="#scada-systems">SCADA & Control Systems</a></li>
-        <li><a href="#network-protocols">Industrial Network Protocols</a></li>
-        <li><a href="#real-world-incidents">Real-World Incidents</a></li>
-      </ul>
-    </div>
+      <nav class="toc" aria-label="Table of contents">
+        <h3>Contents</h3>
+        <ul>
+          <li><a href="#farmcore">Figure 1 — FarmCore ↔ FarmLytics Architecture</a></li>
+          <li><a href="#feedback">Figure 2 — Compromised Feedback Loop</a></li>
+          <li><a href="#lightreceptor">Figure 3 — Light → Receptor → Response → Toxin Pathways</a></li>
+          <li><a href="#msspla">Figure 4 — MSS / PLA Dual-Seal Structure (FAC-17)</a></li>
+        </ul>
+      </nav>
 
-    <section id="industrial-automation">
-      <h2>Industrial Automation Systems</h2>
-      
-      <div class="tech-item">
-        <h4>Programmable Logic Controllers (PLCs)</h4>
-        <p>The backbone of industrial automation, PLCs control machinery, process data, and manage safety systems. In food processing, they regulate temperature, pressure, flow rates, and timing sequences that ensure product quality and safety.</p>
-      </div>
-
-      <div class="tech-item">
-        <h4>Human Machine Interface (HMI)</h4>
-        <p>The operator's window into automated systems. HMIs display real-time data, alarms, and provide control interfaces. A compromised HMI can mask malicious activities or mislead operators about system status.</p>
-      </div>
-
-      <div class="tech-item">
-        <h4>Distributed Control Systems (DCS)</h4>
-        <p>Large-scale process control systems used in continuous manufacturing. These systems coordinate multiple subsystems across entire facilities, making them attractive targets for sophisticated attacks.</p>
-      </div>
-    </section>
-
-    <section id="cybersecurity-threats">
-      <h2>Cybersecurity Threats</h2>
-      
-      <div class="warning-box">
-        <h4>Advanced Persistent Threats (APTs)</h4>
-        <p>Nation-state and sophisticated criminal groups use APTs to maintain long-term access to industrial systems. These attacks often remain undetected for months or years, gathering intelligence and positioning for maximum impact.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Supply Chain Attacks</h3>
-          <p>Compromising software or hardware before it reaches the target organization. This could involve malicious firmware in industrial components or backdoors in control software.</p>
-          <div class="tag-list">
-            <span class="tag">Firmware</span>
-            <span class="tag">Third-party Software</span>
-            <span class="tag">Hardware Trojans</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Zero-Day Exploits</h3>
-          <p>Previously unknown vulnerabilities in industrial systems. Legacy systems often run outdated software with known vulnerabilities that remain unpatched due to operational requirements.</p>
-          <div class="tag-list">
-            <span class="tag">Legacy Systems</span>
-            <span class="tag">Unpatched Software</span>
-            <span class="tag">Air-Gap Breaches</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="info-box">
-        <h4>Social Engineering</h4>
-        <p>Often the weakest link in industrial security. Attackers may impersonate vendors, contractors, or regulatory officials to gain physical or remote access to critical systems.</p>
-      </div>
-    </section>
-
-    <section id="food-supply-chain">
-      <h2>Food Supply Chain Security</h2>
-      
-      <p>The food supply chain represents one of the most complex and vulnerable critical infrastructure systems. From farm sensors to processing plants, from logistics networks to retail distribution, every step involves interconnected systems that could be targeted.</p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Processing Plant Vulnerabilities</h3>
-          <ul>
-            <li>Temperature control systems</li>
-            <li>Ingredient dosing and mixing</li>
-            <li>Packaging line automation</li>
-            <li>Quality control sensors</li>
-            <li>Traceability systems</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Supply Chain Tracking</h3>
-          <ul>
-            <li>RFID and barcode systems</li>
-            <li>Cold chain monitoring</li>
-            <li>Inventory management</li>
-            <li>Shipping and logistics</li>
-            <li>Retailer distribution</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="warning-box">
-        <h4>Potential Attack Vectors</h4>
-        <p>Attackers could manipulate processing parameters, contaminate products, disrupt distribution networks, or corrupt traceability data to prevent effective recalls during incidents.</p>
-      </div>
-    </section>
-
-    <section id="farmcore-architecture">
-      <h2>FarmCore ↔ FarmLytics Architecture</h2>
-      
-      <p>This reference architecture illustrates how local greenhouse automation (FarmCore) collaborates with the cloud analytics platform (FarmLytics). Telemetry flows from sensors through a site gateway, enabling model-driven optimization while the safety kernel enforces local guardrails.</p>
-
-      <figure class="figure-wide">
-        <div class="mermaid">
+      <!-- ===== Figure 1 ===== -->
+      <section id="farmcore" class="section">
+        <h2>Figure 1 — FarmCore ↔ FarmLytics Architecture</h2>
+        <p class="lead">Local greenhouse automation (FarmCore) collaborates with the cloud analytics platform (FarmLytics). Telemetry flows through a site gateway; the safety kernel enforces limits at the edge.</p>
+        <figure>
+          <div class="canvas">
+            <div class="mermaid" data-name="FarmCoreFarmLytics">
 flowchart LR
   %% Edge
   subgraph E[Edge - Greenhouse or Grow Room]
@@ -326,20 +106,17 @@ flowchart LR
     ACT[Actuators - LED arrays Pumps HVAC Fans]
     SK[FarmCore Safety Kernel - local limits and simulation]
   end
-
   %% Site
   subgraph SITE[Site Layer]
     GWS[Site Gateway - data buffer and time sync]
     LOG[Immutable Log - signed entries]
   end
-
   %% Cloud
   subgraph CLOUD[Cloud - FarmLytics]
     ING[Ingestion and Storage]
     ML[Models and Optimization - recipe generator]
     CA[Certificate and Policy Service]
   end
-
   %% Flows
   SENS --> GWS
   GWS --> ING
@@ -352,166 +129,210 @@ flowchart LR
   SK --> LOG
   GWS --> LOG
   ING --> LOG
-        </div>
-        <figcaption>Figure — FarmCore ↔ FarmLytics architecture. Sensor telemetry, gateway buffering, cloud model generation, and local safety verification.</figcaption>
-        <p style="text-align:center"><a href="/downloads/FarmCoreFarmLytics.svg" download>Download FarmCoreFarmLytics.svg</a></p>
-      </figure>
-      <button class="expand-btn" onclick="openDiagram(this)">Expand diagram</button>
-    </section>
+            </div>
+          </div>
+          <figcaption>Sensor telemetry, gateway buffering, cloud model generation, and local safety verification.</figcaption>
+          <div class="downloads"><a href="/downloads/FarmCoreFarmLytics.svg" download>Download SVG</a></div>
+          <button class="btn" data-expand>Expand</button>
+          <details class="more"><summary>More detail</summary>
+            <p>FarmCore runs at the edge with hard safety limits; FarmLytics proposes recipes from cloud models. Advisory-only is default; closed-loop requires explicit policy. All transactions are signed and logged.</p>
+          </details>
+        </figure>
+      </section>
 
-    <dialog class="svg-modal" id="svgModal">
-      <button onclick="this.parentElement.close()" style="position:absolute;right:12px;top:10px">Close ✕</button>
-      <div id="svgHost" style="width:100%;height:100%;overflow:hidden;padding:24px"></div>
-    </dialog>
+      <!-- ===== Figure 2 ===== -->
+      <section id="feedback" class="section">
+        <h2>Figure 2 — Compromised Feedback Loop</h2>
+        <p class="lead">How a poisoned model and spoofed trust allow bad recipes to pass local checks and actuate.</p>
+        <figure>
+          <div class="canvas">
+            <div class="mermaid" data-name="CompromisedFeedbackLoop">
+flowchart TB
+  subgraph CLOUD[FarmLytics Cloud]
+    ING[Ingestion]
+    ML[Model Train and Serve]
+    PKI[Compromised CA - spoofed certs]
+  end
+  subgraph SITE[Site Gateway]
+    GW[Gateway]
+    LOG[Immutable Log]
+  end
+  subgraph EDGE[Edge - FarmCore]
+    SK[Safety Kernel v1]
+    ACT[Actuators - LEDs and Nutrients]
+    SENS[Sensors]
+  end
+  SENS --> GW
+  GW --> ING
+  ING --> ML
+  ML -->|poisoned recipe| GW
+  PKI -.->|false trust| GW
+  GW --> SK
+  SK -->|shadow test passed - spoofed| ACT
+  ACT -->|environment change| SENS
+  SK --> LOG
+  GW --> LOG
+  ING --> LOG
+  linkStyle 7 stroke:#b00000,stroke-width:2px
+  linkStyle 8 stroke-dasharray:3 3,stroke:#b00000
+  linkStyle 9 stroke:#b00000,stroke-width:2px
+  linkStyle 10 stroke:#b00000,stroke-width:2px
+            </div>
+          </div>
+          <figcaption>Exploit path highlighted in red; log trails persist at edge, site, and cloud.</figcaption>
+          <div class="downloads"><a href="/downloads/CompromisedFeedbackLoop.svg" download>Download SVG</a></div>
+          <button class="btn" data-expand>Expand</button>
+          <details class="more"><summary>More detail</summary>
+            <p>Attackers inject model bias and spoof certificates. Safety Kernel v1’s shadow test accepts the tampered recipe; v2 adds dual-channel verification and simulated stress indices.</p>
+          </details>
+        </figure>
+      </section>
 
-    <section id="scada-systems">
-      <h2>SCADA & Control Systems</h2>
-      
-      <div class="tech-item">
-        <h4>Supervisory Control and Data Acquisition (SCADA)</h4>
-        <p>Systems that monitor and control industrial processes across large geographic areas. Originally designed for reliability, not security, making them vulnerable to modern cyber attacks.</p>
-      </div>
+      <!-- ===== Figure 3 ===== -->
+      <section id="lightreceptor" class="section">
+        <h2>Figure 3 — Light → Receptor → Response → Toxin Pathways</h2>
+        <p class="lead">Spectral inputs drive receptor cascades, oxidative signaling, and phototoxic compound buildup.</p>
+        <figure>
+          <div class="canvas">
+            <div class="mermaid" data-name="LightReceptor">
+flowchart LR
+  BLU[Blue 430-470 nm]
+  RED[Red 640-670 nm]
+  FAR[Far-Red 700-750 nm]
+  UVA[UV-A/B 320-400 nm]
+  CRY[Cryptochromes]
+  PHY[Phytochromes]
+  PHO[Phototropins]
+  UVR[UVR8]
+  ROS[ROS burst - oxidative stress]
+  PAL[PAL up-regulation - phenylpropanoid pathway]
+  TERP[Terpene synthases]
+  FUR[Furanocoumarin biosynthesis]
+  PHEN[Phenolic aldehydes - increased]
+  VOL[Volatile/terpene profile shift]
+  PSO[Psoralen build-up - phototoxic]
+  LAG[Delayed visible symptoms]
+  BLU --> CRY --> PAL --> PHEN
+  BLU --> PHO --> ROS
+  RED --> PHY --> TERP --> VOL
+  FAR --> PHY --> LAG
+  UVA --> UVR --> ROS
+  UVA --> UVR --> FUR --> PSO
+  ROS --> PAL
+  ROS --> LAG
+            </div>
+          </div>
+          <figcaption>Blue/red/far-red/UV bands signal via photoreceptors; stress chemistry accumulates before symptoms appear.</figcaption>
+          <div class="downloads"><a href="/downloads/LightReceptor.svg" download>Download SVG</a></div>
+          <button class="btn" data-expand>Expand</button>
+          <details class="more"><summary>More detail</summary>
+            <p>Nitrogen limitation amplifies secondary metabolites. Iron/manganese deficits weaken ROS quenching. Phototoxic compounds remain inert until UV activation post-consumption.</p>
+          </details>
+        </figure>
+      </section>
 
-      <div class="info-box">
-        <h4>Common SCADA Vulnerabilities</h4>
-        <ul>
-          <li>Unencrypted communications</li>
-          <li>Default passwords and credentials</li>
-          <li>Remote access capabilities</li>
-          <li>Legacy operating systems</li>
-          <li>Insufficient network segmentation</li>
-        </ul>
-      </div>
-    </section>
+      <!-- ===== Figure 4 ===== -->
+      <section id="msspla" class="section">
+        <h2>Figure 4 — MSS / PLA Dual-Seal Structure (FAC-17)</h2>
+        <p class="lead">Institutional ties from national guidance to the facility level.</p>
+        <figure>
+          <div class="canvas">
+            <div class="mermaid" data-name="MSSPLA">
+flowchart TB
+  PRC[State Council + Party Guidance]
+  subgraph MSS[MSS - Ministry of State Security]
+    MSSH[Headquarters]
+    CI[Counterintelligence]
+    CTF[Cyber and Technical Fronts]
+  end
+  subgraph PLA[PLA - Peoples Liberation Army]
+    JSD[Joint Staff Department]
+    SSF[Strategic Support Force]
+    U61398[Unit 61398 - SIGINT and Cyber]
+  end
+  subgraph FAC[FAC-17 - Cyber Intelligence Research Facility 17]
+    OP[Operations Cell]
+    LAB[Model Exploitation Lab]
+    COV[Cover Entities]
+  end
+  PRC --> MSSH
+  PRC --> JSD
+  MSSH --> CTF --> FAC
+  JSD --> SSF --> U61398 -.-> FAC
+  CI -->|tasking| FAC
+  U61398 -.->|technical support| FAC
+            </div>
+          </div>
+          <figcaption>Dual-track tasking (MSS) and technical support (PLA/SSF). Dashed lines indicate indirect support.</figcaption>
+          <div class="downloads"><a href="/downloads/MSSPLA.svg" download>Download SVG</a></div>
+          <button class="btn" data-expand>Expand</button>
+          <details class="more"><summary>More detail</summary>
+            <p>Operational cells at FAC-17 receive tasking via fronts and cover entities. Technical lift (SIGINT/cyber) flows from Unit 61398 through SSF channels.</p>
+          </details>
+        </figure>
+      </section>
 
-    <section id="network-protocols">
-      <h2>Industrial Network Protocols</h2>
-      
-      <div class="grid">
-        <div class="tech-item">
-          <h4>Modbus</h4>
-          <p>Widely used serial communication protocol for connecting industrial devices. Originally designed without security features, making it vulnerable to eavesdropping and manipulation.</p>
-        </div>
-
-        <div class="tech-item">
-          <h4>DNP3</h4>
-          <p>Distributed Network Protocol used in utilities and industrial automation. Includes some security features but implementations vary in effectiveness.</p>
-        </div>
-
-        <div class="tech-item">
-          <h4>EtherNet/IP</h4>
-          <p>Industrial Ethernet protocol that extends standard Ethernet to industrial applications. Inherits both capabilities and vulnerabilities of standard IT networks.</p>
-        </div>
-
-        <div class="tech-item">
-          <h4>OPC UA</h4>
-          <p>Modern industrial communication standard with built-in security features. However, security depends on proper implementation and configuration.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="real-world-incidents">
-      <h2>Real-World Incidents</h2>
-      
-      <p>The threats depicted in the Knox Ramsey series are grounded in real-world incidents and documented vulnerabilities:</p>
-
-      <ul class="reference-list">
-        <li><strong>Stuxnet (2010):</strong> Malware specifically designed to target industrial control systems, demonstrating the feasibility of cyber-physical attacks on critical infrastructure.</li>
-        
-        <li><strong>Ukraine Power Grid (2015, 2016):</strong> Sophisticated attacks that caused power outages affecting hundreds of thousands of people, showing how cyber attacks can have real-world physical consequences.</li>
-        
-        <li><strong>TRITON/TRISIS (2017):</strong> Malware targeting safety instrumented systems, designed to cause physical damage and potentially loss of life in industrial facilities.</li>
-        
-        <li><strong>Colonial Pipeline (2021):</strong> Ransomware attack that shut down the largest fuel pipeline in the US for several days, demonstrating the vulnerability of critical infrastructure to cyber attacks.</li>
-        
-        <li><strong>JBS Cyberattack (2021):</strong> Ransomware attack on one of the world's largest meat processors, temporarily shutting down operations across multiple countries and affecting food supply chains.</li>
-      </ul>
-
-      <div class="warning-box">
-        <h4>Lessons Learned</h4>
-        <p>These incidents demonstrate that cyber attacks on industrial systems and critical infrastructure are not theoretical threats but present realities. The food supply chain, with its complex networks and numerous stakeholders, presents particularly attractive targets for malicious actors.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Staying Informed</h2>
-      
-      <div class="info-box">
-        <h4>Further Reading</h4>
-        <p>For readers interested in learning more about industrial cybersecurity and critical infrastructure protection, consider exploring resources from organizations like CISA (Cybersecurity and Infrastructure Security Agency), SANS Industrial Control Systems, and the Industrial Control Systems Cyber Emergency Response Team (ICS-CERT).</p>
-      </div>
-      
-      <p>The Knox Ramsey Field Guide will continue to evolve as new technologies emerge and new threats are discovered. This living document serves as both educational resource and cautionary tale about the importance of securing our critical infrastructure.</p>
-    </section>
+      <p style="color:#666; font-size:.95rem; margin-top:14px">For print-size plates or errata updates, check this page periodically. Captions and numbering match the hardcover/paperback Field Guide.</p>
+    </div>
   </div>
 
-  <footer>
-    <p>&copy; 2024 Knox Ramsey Thrillers. Technical content for educational purposes.</p>
-  </footer>
+  <!-- Scripts: Mermaid + pan/zoom -->
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
     mermaid.initialize({
       startOnLoad: true,
       theme: "neutral",
       securityLevel: "loose",
-      flowchart: { useMaxWidth: true, htmlLabels: true, curve: "basis" },
+      flowchart: { useMaxWidth: true, htmlLabels: true, curve: "linear" },
       themeVariables: {
         fontSize: "var(--diagram-font)",
-        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+        fontFamily: "Georgia, 'Times New Roman', serif"
       }
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
   <script>
-    function wirePanZoom(){
-      document.querySelectorAll('.mermaid svg').forEach(svg => {
-        if(svg.dataset.panzoomReady){
-          return;
-        }
-        const instance = svgPanZoom(svg, {
-          zoomEnabled:true,
-          controlIconsEnabled:false,
-          fit:true,
-          center:true,
-          minZoom:0.5,
-          maxZoom:10
+    function wirePanZoom(scope=document){
+      scope.querySelectorAll('.mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg, {
+          zoomEnabled:true, controlIconsEnabled:false, fit:true, center:true,
+          minZoom:0.35, maxZoom:16
         });
-        svg.dataset.panzoomReady = 'true';
-        svg.addEventListener('dblclick', () => {
-          instance.resetZoom();
-          instance.center();
-          instance.fit();
-        });
+        svg.dataset.pz = '1';
+        svg.style.cursor = 'grab';
+        svg.addEventListener('mouseenter', ()=> svg.style.cursor = 'grab');
+        svg.addEventListener('mousedown',  ()=> svg.style.cursor = 'grabbing');
+        svg.addEventListener('mouseup',    ()=> svg.style.cursor = 'grab');
+        svg.addEventListener('dblclick', ()=>{ pz.resetZoom(); pz.center(); pz.fit(); });
+        // IMPORTANT: no single-click handler here (modal opens only via button)
       });
     }
+    const obs = new MutationObserver(()=>wirePanZoom());
+    obs.observe(document.body,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',()=>wirePanZoom());
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new MutationObserver(() => wirePanZoom());
-      observer.observe(document.body, { childList:true, subtree:true });
-      wirePanZoom();
-    });
-
-    window.openDiagram = function(btn){
-      const figure = btn.previousElementSibling;
-      const svg = figure ? figure.querySelector('svg') : null;
-      if(!svg){
-        return;
-      }
+    function openDiagram(sourceSvg){
       const host = document.getElementById('svgHost');
       host.innerHTML = '';
-      host.appendChild(svg.cloneNode(true));
-      const modal = document.getElementById('svgModal');
-      modal.showModal();
-      const clonedSvg = host.querySelector('svg');
-      svgPanZoom(clonedSvg, {
-        zoomEnabled:true,
-        controlIconsEnabled:false,
-        fit:true,
-        center:true,
-        minZoom:0.5,
-        maxZoom:20
+      host.appendChild(sourceSvg.cloneNode(true));
+      const dlg = document.getElementById('svgModal');
+      dlg.showModal();
+      const clone = host.querySelector('svg');
+      svgPanZoom(clone,{zoomEnabled:true,controlIconsEnabled:false,fit:true,center:true,minZoom:0.2,maxZoom:24});
+    }
+    document.querySelectorAll('[data-expand]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const svg = b.closest('figure').querySelector('.mermaid svg');
+        if(svg) openDiagram(svg);
       });
-    };
+    });
   </script>
+
+  <!-- Fullscreen modal -->
+  <dialog class="svg-modal" id="svgModal" aria-label="Expanded diagram">
+    <button class="modal-close" onclick="this.parentElement.close()">Close ✕</button>
+    <div class="modal-wrap" id="svgHost"></div>
+  </dialog>
 </body>
 </html>

@@ -26,27 +26,29 @@
     .links a{color:var(--muted); font-weight:700; font-size:.9rem}
     .links a.active{color:var(--accent)}
     /* ===== Paper content area (book-ish) ===== */
-    .paper{max-width:var(--max); margin:28px auto; padding:28px 18px; background:var(--paper); color:var(--paper-ink); border:1px solid #ece7da; border-radius:10px}
-    .page{max-width:var(--narrow); margin:0 auto}
-    .paper h1{font-family:Georgia,"Times New Roman",serif; font-size:2.05rem; margin:.2em 0 .2em}
-    .sub{color:var(--paper-muted); margin:0 0 1.2rem}
-    .hr{height:1px; background:#eee6cf; margin:10px 0 20px}
-    .toc{background:#fffaf0; border:1px solid #efe6cc; border-radius:8px; padding:16px 18px; margin:18px 0 22px}
+  .paper{max-width:1200px;margin:28px auto;padding:28px 18px;background:#0c151a;color:#e8eef5;border:1px solid #16343f;border-radius:10px}
+  .page{max-width:880px;margin:0 auto}
+  .paper h1{font-family:Georgia,"Times New Roman",serif;font-size:2.05rem;margin:.2em 0 .2em}
+  .sub{color:#9fb2c7;margin:0 0 1.2rem}
+  .hr{height:1px;background:#1a2730;margin:10px 0 20px}
+  .toc{background:#0e1820;border:1px solid #16343f;border-radius:8px;padding:16px 18px;margin:18px 0 22px}
     .toc h3{margin:.1rem 0 .6rem; font-size:1.05rem; font-family:Georgia,"Times New Roman",serif}
     .toc ul{margin:0; padding-left:18px}
     .toc li{margin:.28rem 0}
+  .toc a{color:#52ffa8}
     .section{margin:32px 0}
     h2{font-family:Georgia,"Times New Roman",serif; font-size:1.45rem; margin:0 0 .5rem}
-    p.lead{color:#4b4b4b}
+  p.lead{color:#cfd9e4}
     /* ===== Figures ===== */
     figure{margin:18px auto}
     .canvas{background:#fff; border:1px solid #e9e1cc; border-radius:10px; padding:16px}
     .mermaid svg{width:100% !important; height:auto !important}
-    figcaption{font-size:.95rem; color:#333; margin:10px 0 0}
-    .downloads{text-align:center; margin:.35rem 0 0}
-    .btn{display:inline-block; margin:8px 6px 0; padding:8px 14px; border:1px solid #0a7; color:#0a7; background:#fff; border-radius:6px; cursor:pointer; font-weight:600}
-    .btn:hover{background:#f4fff9}
-    details.more{background:#fff; border:1px dashed #e6dcc4; border-radius:8px; padding:10px 14px; margin:10px 0 0}
+  figcaption{font-size:.95rem;color:#cfe3f2;margin:10px 0 0}
+  .downloads{text-align:center;margin:.35rem 0 0}
+  .downloads a{color:#52ffa8}
+  .btn{display:inline-block;margin:8px 6px 0;padding:8px 14px;border:1px solid #52ffa8;color:#52ffa8;background:transparent;border-radius:6px;cursor:pointer;font-weight:600;transition:background 0.2s,color 0.2s}
+  .btn:hover{background:rgba(82,255,168,0.1)}
+  details.more{background:#0e1820;border:1px dashed #16343f;border-radius:8px;padding:10px 14px;margin:10px 0 0;color:#dbe7f1}
     details.more summary{cursor:pointer; font-weight:600}
     /* ===== Modal for full-screen ===== */
     dialog.svg-modal{width:95vw; height:90vh; border:0; background:#fff; padding:0}
@@ -129,6 +131,13 @@ flowchart LR
   SK --> LOG
   GWS --> LOG
   ING --> LOG
+classDef edge fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+classDef site fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+classDef cloud fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+
+class SENS,ACT,SK edge;
+class GWS,LOG site;
+class ING,ML,CA cloud;
             </div>
           </div>
           <figcaption>Sensor telemetry, gateway buffering, cloud model generation, and local safety verification.</figcaption>
@@ -173,10 +182,18 @@ flowchart TB
   SK --> LOG
   GW --> LOG
   ING --> LOG
-  linkStyle 7 stroke:#b00000,stroke-width:2px
-  linkStyle 8 stroke-dasharray:3 3,stroke:#b00000
-  linkStyle 9 stroke:#b00000,stroke-width:2px
-  linkStyle 10 stroke:#b00000,stroke-width:2px
+classDef edge fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+classDef site fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+classDef cloud fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+
+class SENS,SK,ACT edge;
+class GW,LOG site;
+class ING,ML,PKI cloud;
+
+linkStyle 7 stroke:#ff4b3e,stroke-width:2px
+linkStyle 8 stroke-dasharray:3 3,stroke:#ff4b3e
+linkStyle 9 stroke:#ff4b3e,stroke-width:2px
+linkStyle 10 stroke:#ff4b3e,stroke-width:2px
             </div>
           </div>
           <figcaption>Exploit path highlighted in red; log trails persist at edge, site, and cloud.</figcaption>
@@ -220,6 +237,8 @@ flowchart LR
   UVA --> UVR --> FUR --> PSO
   ROS --> PAL
   ROS --> LAG
+classDef bio fill:#24302a,stroke:#6fffb8,color:#e8eef5;
+class BLU,RED,FAR,UVA,CRY,PHY,PHO,UVR,ROS,PAL,TERP,FUR,PHEN,VOL,PSO,LAG bio;
             </div>
           </div>
           <figcaption>Blue/red/far-red/UV bands signal via photoreceptors; stress chemistry accumulates before symptoms appear.</figcaption>
@@ -261,6 +280,13 @@ flowchart TB
   JSD --> SSF --> U61398 -.-> FAC
   CI -->|tasking| FAC
   U61398 -.->|technical support| FAC
+classDef gov fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+classDef pla fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+classDef fac fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+
+class PRC gov; class MSSH,CI,CTF gov;
+class JSD,SSF,U61398 pla;
+class OP,LAB,COV fac;
             </div>
           </div>
           <figcaption>Dual-track tasking (MSS) and technical support (PLA/SSF). Dashed lines indicate indirect support.</figcaption>
@@ -281,36 +307,41 @@ flowchart TB
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
     mermaid.initialize({
       startOnLoad: true,
-      theme: "neutral",
+      theme: "base",
       securityLevel: "loose",
       flowchart: { useMaxWidth: true, htmlLabels: true, curve: "linear" },
       themeVariables: {
-        fontSize: "var(--diagram-font)",
-        fontFamily: "Georgia, 'Times New Roman', serif"
+        background: "#0c151a",
+        fontFamily: "Georgia, 'Times New Roman', serif",
+        fontSize: "17px",
+        lineColor: "#52ffa8",
+        textColor: "#e8eef5",
+        primaryColor: "#12313d",
+        primaryBorderColor: "#52ffa8",
+        primaryTextColor: "#e8eef5",
+        secondaryColor: "#1a2430",
+        tertiaryColor: "#2b2016"
       }
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
   <script>
-    function wirePanZoom(scope=document){
+    function applyPanZoom(scope=document){
       scope.querySelectorAll('.mermaid svg').forEach(svg=>{
-        if(svg.dataset.pz) return;
+        if(svg.dataset.pzReady) return;
         const pz = svgPanZoom(svg, {
           zoomEnabled:true, controlIconsEnabled:false, fit:true, center:true,
           minZoom:0.35, maxZoom:16
         });
-        svg.dataset.pz = '1';
+        svg.dataset.pzReady = '1';
         svg.style.cursor = 'grab';
-        svg.addEventListener('mouseenter', ()=> svg.style.cursor = 'grab');
-        svg.addEventListener('mousedown',  ()=> svg.style.cursor = 'grabbing');
-        svg.addEventListener('mouseup',    ()=> svg.style.cursor = 'grab');
-        svg.addEventListener('dblclick', ()=>{ pz.resetZoom(); pz.center(); pz.fit(); });
-        // IMPORTANT: no single-click handler here (modal opens only via button)
+        svg.addEventListener('mouseenter', ()=> svg.style.cursor='grab');
+        svg.addEventListener('mousedown',  ()=> svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',    ()=> svg.style.cursor='grab');
+        // Optional: dblclick to open modal (uncomment if you want it)
+        // svg.addEventListener('dblclick', ()=> openDiagram(svg));
       });
     }
-    const obs = new MutationObserver(()=>wirePanZoom());
-    obs.observe(document.body,{childList:true,subtree:true});
-    document.addEventListener('DOMContentLoaded',()=>wirePanZoom());
 
     function openDiagram(sourceSvg){
       const host = document.getElementById('svgHost');
@@ -319,13 +350,29 @@ flowchart TB
       const dlg = document.getElementById('svgModal');
       dlg.showModal();
       const clone = host.querySelector('svg');
-      svgPanZoom(clone,{zoomEnabled:true,controlIconsEnabled:false,fit:true,center:true,minZoom:0.2,maxZoom:24});
+      svgPanZoom(clone, { zoomEnabled:true, controlIconsEnabled:false, fit:true, center:true, minZoom:0.2, maxZoom:24 });
     }
-    document.querySelectorAll('[data-expand]').forEach(b=>{
-      b.addEventListener('click', ()=>{
-        const svg = b.closest('figure').querySelector('.mermaid svg');
-        if(svg) openDiagram(svg);
+
+    function wireExpandButtons(){
+      document.querySelectorAll('[data-expand]').forEach(btn=>{
+        if(btn.dataset.bound) return;
+        btn.addEventListener('click', ()=>{
+          const svg = btn.closest('figure')?.querySelector('.mermaid svg');
+          if(svg) openDiagram(svg);
+        });
+        btn.dataset.bound = '1';
       });
+    }
+
+    const obs = new MutationObserver(()=>{
+      applyPanZoom();
+      wireExpandButtons();
+    });
+    obs.observe(document.body, { childList:true, subtree:true });
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      applyPanZoom();
+      wireExpandButtons();
     });
   </script>
 

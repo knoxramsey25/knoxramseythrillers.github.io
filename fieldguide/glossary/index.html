@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Glossary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Concise definitions used across the Knox Ramsey universe."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:900px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.wrap{padding:28px 18px}
+    .card{background:#0c151a;border:1px solid #16343f;border-radius:12px;padding:20px}
+    dt{font-weight:800}
+    dd{margin:0 0 14px 0;color:#cfe3f2}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Glossary</h1>
+    <div class="card">
+      <dl>
+        <dt>Actuator</dt><dd>Device that changes physical conditions (pumps, valves, LEDs, fans) under control logic.</dd>
+        <dt>Advisory Mode</dt><dd>Cloud suggests setpoints; the edge executes only after local verification.</dd>
+        <dt>APTs (Advanced Persistent Threats)</dt><dd>Long-dwell intrusions by state-aligned or highly resourced actors.</dd>
+        <dt>Certificate Authority (CA)</dt><dd>Trust service that issues digital certs; if spoofed, attackers can pass as trusted.</dd>
+        <dt>Closed-Loop Control</dt><dd>Automatic adjustments based on feedback; powerful and risky without independent checks.</dd>
+        <dt>EC</dt><dd>Electrical Conductivity; proxy for nutrient strength in solution.</dd>
+        <dt>Edge</dt><dd>Local compute near sensors/actuators; reduces latency and preserves autonomy.</dd>
+        <dt>FarmCore</dt><dd>Edge-side automation: sensors, actuators, and a safety kernel enforcing local limits.</dd>
+        <dt>FarmLytics</dt><dd>Cloud analytics that ingests telemetry, trains models, and proposes “recipes.”</dd>
+        <dt>Furanocoumarins / Psoralens</dt><dd>Plant compounds that can become phototoxic upon UV exposure.</dd>
+        <dt>HMI</dt><dd>Human–Machine Interface displaying real-time status, alarms, and controls.</dd>
+        <dt>Immutable Log</dt><dd>Append-only record of events, signed to prevent tampering.</dd>
+        <dt>Model Weights</dt><dd>Learned parameters of an AI model; if altered, behavior changes even when code is unchanged.</dd>
+        <dt>PAL</dt><dd>Phenylalanine Ammonia-Lyase; enzyme initiating phenolic synthesis under stress.</dd>
+        <dt>PAR / PPFD</dt><dd>Light available to plants / intensity at canopy (photosynthetic photon flux density).</dd>
+        <dt>Photoreceptors</dt><dd>Plant proteins that detect spectra (phytochromes, cryptochromes, phototropins, UVR8).</dd>
+        <dt>ROS</dt><dd>Reactive Oxygen Species; short-lived oxidants that signal stress and damage cells at high levels.</dd>
+        <dt>Safety Kernel (v2)</dt><dd>Edge runtime validating recipes with dual-channel checks and simulated stress indices.</dd>
+        <dt>Shadow Test</dt><dd>Local simulation of a proposed recipe before real execution.</dd>
+        <dt>Setpoint</dt><dd>Target value for a controlled variable (e.g., pH 6.0, EC 2.2 mS/cm).</dd>
+        <dt>Spectral Ratio</dt><dd>Relative mix of light bands (blue/red/far-red/UV) delivered to canopy.</dd>
+        <dt>Telemetry</dt><dd>Time-series measurements streamed from sensors to controllers and analytics.</dd>
+      </dl>
+    </div>
+  </main>
+</body>
+</html>

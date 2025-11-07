@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Plant Biology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Spectral bands, stress signaling, and the phototoxic cascade exploited in Dark Recipe."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1000px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.wrap{padding:28px 18px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+    .figure{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+    .figure header{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
+    .mermaid{padding:16px}
+    .muted{color:var(--muted)}
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad:true,
+      theme:"base",
+      securityLevel:"loose",
+      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"linear"},
+      themeVariables:{
+        background:"#0c151a",
+        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        fontSize:"16px",
+        lineColor:"#6fffb8",
+        textColor:"#e8eef5",
+        primaryColor:"#24302a",
+        primaryBorderColor:"#6fffb8",
+        primaryTextColor:"#e8eef5"
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    function enablePanZoom(scope=document){
+      scope.querySelectorAll('.mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg,{zoomEnabled:true,fit:true,center:true,minZoom:0.3,maxZoom:16});
+        svg.dataset.pz='1';
+        svg.style.cursor='grab';
+        svg.addEventListener('mousedown',()=>svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',()=>svg.style.cursor='grab');
+      });
+    }
+    const observer=new MutationObserver(()=>enablePanZoom());
+    observer.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',enablePanZoom);
+  </script>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Plant Biology</h1>
+    <div class="panel">
+      <p class="muted">Spectral inputs drive receptor cascades, oxidative signaling, and phototoxic compound buildup. This section summarizes the biochemical pathways referenced in <em>Dark Recipe</em>.</p>
+    </div>
+
+    <figure class="figure">
+      <header>Light → Receptor → Response → Toxin Pathways</header>
+      <div class="mermaid">
+flowchart LR
+  %% Bands
+  BLU[Blue 430-470 nm]
+  RED[Red 640-670 nm]
+  FAR[Far-Red 700-750 nm]
+  UVA[UV-A/B 320-400 nm]
+
+  %% Receptors
+  CRY[Cryptochromes]
+  PHY[Phytochromes]
+  PHO[Phototropins]
+  UVR[UVR8]
+
+  %% Responses
+  ROS[ROS burst - oxidative stress]
+  PAL[PAL up-regulation - phenylpropanoid pathway]
+  TERP[Terpene synthases]
+  FUR[Furanocoumarin biosynthesis]
+
+  %% Outcomes
+  PHEN[Phenolic aldehydes - increased]
+  VOL[Volatile/terpene profile shift]
+  PSO[Psoralen build-up - phototoxic]
+  LAG[Delayed visible symptoms]
+
+  %% Wiring
+  BLU --> CRY --> PAL --> PHEN
+  BLU --> PHO --> ROS
+  RED --> PHY --> TERP --> VOL
+  FAR --> PHY --> LAG
+  UVA --> UVR --> ROS
+  UVA --> UVR --> FUR --> PSO
+  ROS --> PAL
+  ROS --> LAG
+
+  %% Style
+  classDef bio fill:#24302a,stroke:#6fffb8,color:#e8eef5;
+  class BLU,RED,FAR,UVA,CRY,PHY,PHO,UVR,ROS,PAL,TERP,FUR,PHEN,VOL,PSO,LAG bio;
+      </div>
+    </figure>
+
+    <section class="panel">
+      <h2>Field Notes</h2>
+      <p class="muted">Nitrogen limitation amplifies secondary metabolites. Iron and manganese deficits weaken ROS quenching. Phototoxic compounds remain inert until UV activation post-consumption.</p>
+    </section>
+  </main>
+</body>
+</html>

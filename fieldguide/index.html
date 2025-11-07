@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Knox Ramsey Field Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Technical and biological companion to Dark Recipe. Systems, biology, threat vectors, and intelligence context."/>
+  <meta property="og:title" content="Knox Ramsey Field Guide"/>
+  <meta property="og:description" content="Systems, biology, threat vectors, and intelligence context for the Knox Ramsey universe."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.wrap{padding:28px 18px}
+    .intro{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:22px}
+    .banner{background:rgba(82,255,168,0.08);border:1px solid rgba(82,255,168,0.4);border-radius:10px;padding:14px 16px;margin-bottom:18px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;height:100%;display:flex;flex-direction:column}
+    .card p{flex:1;margin-bottom:14px;color:var(--muted)}
+    .btn{display:inline-block;border:1px solid var(--accent);border-radius:8px;padding:10px 14px;font-weight:700}
+    .btn:hover{background:rgba(82,255,168,0.1)}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Field Guide</h1>
+    <div class="banner">For context within <em>Dark Recipe</em>. Full explanations may reveal plot elements.</div>
+    <div class="intro">
+      <p>This online guide complements the printed novel with color diagrams, interactive views, and concise technical context. It may reference plot elements.</p>
+      <p class="muted">Educational context only. No operational procedures are published.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Systems &amp; Control</h3>
+        <p>FarmCore ↔ FarmLytics architecture, safety kernel, and HMI dashboard.</p>
+        <a class="btn" href="/fieldguide/systems/">Open module →</a>
+      </div>
+      <div class="card">
+        <h3>Plant Biology</h3>
+        <p>Spectral bands, stress signaling, and the phototoxic cascade exploited in the novel.</p>
+        <a class="btn" href="/fieldguide/biology/">Open module →</a>
+      </div>
+      <div class="card">
+        <h3>Threat Vectors</h3>
+        <p>Supply chain compromises, certificate spoofing, and closed-loop failures.</p>
+        <a class="btn" href="/fieldguide/threats/">Open module →</a>
+      </div>
+      <div class="card">
+        <h3>Intelligence Context</h3>
+        <p>MSS/PLA structure, cover entities, and institutional dynamics behind the attack.</p>
+        <a class="btn" href="/fieldguide/intelligence/">Open module →</a>
+      </div>
+      <div class="card">
+        <h3>Glossary</h3>
+        <p>Concise definitions for key terms used across the series.</p>
+        <a class="btn" href="/fieldguide/glossary/">View glossary →</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

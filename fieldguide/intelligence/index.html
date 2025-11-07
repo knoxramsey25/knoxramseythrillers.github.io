@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Intelligence Context</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Organizational structure linking MSS, PLA, and the FAC-17 research facility."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1000px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.wrap{padding:28px 18px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+    .figure{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+    .figure header{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
+    .mermaid{padding:16px}
+    .muted{color:var(--muted)}
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad:true,
+      theme:"base",
+      securityLevel:"loose",
+      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"linear"},
+      themeVariables:{
+        background:"#0c151a",
+        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        fontSize:"16px",
+        lineColor:"#52ffa8",
+        textColor:"#e8eef5",
+        primaryColor:"#1a2430",
+        primaryBorderColor:"#52ffa8",
+        primaryTextColor:"#e8eef5"
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    function enablePanZoom(scope=document){
+      scope.querySelectorAll('.mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg,{zoomEnabled:true,fit:true,center:true,minZoom:0.3,maxZoom:16});
+        svg.dataset.pz='1';
+        svg.style.cursor='grab';
+        svg.addEventListener('mousedown',()=>svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',()=>svg.style.cursor='grab');
+      });
+    }
+    const observer=new MutationObserver(()=>enablePanZoom());
+    observer.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',enablePanZoom);
+  </script>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Intelligence Context</h1>
+    <div class="panel">
+      <p class="muted">Institutional linkages guiding the cyber operation. The diagram below aligns MSS operational cells with PLA technical support.</p>
+    </div>
+
+    <figure class="figure">
+      <header>MSS / PLA Dual-Seal Structure (FAC-17)</header>
+      <div class="mermaid">
+flowchart TB
+  %% Top
+  PRC[State Council + Party Guidance]
+
+  %% MSS
+  subgraph MSS[MSS - Ministry of State Security]
+    MSSH[Headquarters]
+    CI[Counterintelligence]
+    CTF[Cyber and Technical Fronts]
+  end
+
+  %% PLA
+  subgraph PLA[PLA - Peoples Liberation Army]
+    JSD[Joint Staff Department]
+    SSF[Strategic Support Force]
+    U61398[Unit 61398 - SIGINT and Cyber]
+  end
+
+  %% Facility
+  subgraph FAC[FAC-17 - Cyber Intelligence Research Facility 17]
+    OP[Operations Cell]
+    LAB[Model Exploitation Lab]
+    COV[Cover Entities]
+  end
+
+  %% Links
+  PRC --> MSSH
+  PRC --> JSD
+  MSSH --> CTF --> FAC
+  JSD --> SSF --> U61398 -.-> FAC
+  CI -->|tasking| FAC
+  U61398 -.->|technical support| FAC
+
+  %% Styles
+  classDef gov fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+  classDef pla fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+  classDef fac fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+
+  class PRC,MSSH,CI,CTF gov;
+  class JSD,SSF,U61398 pla;
+  class OP,LAB,COV fac;
+      </div>
+    </figure>
+
+    <section class="panel">
+      <h2>Analyst Notes</h2>
+      <p class="muted">Operational cells at FAC-17 receive tasking via fronts and cover entities. Technical lift (SIGINT/cyber) flows from Unit 61398 through SSF channels. The novel dramatizes bureaucratic friction inside this structure.</p>
+    </section>
+  </main>
+</body>
+</html>

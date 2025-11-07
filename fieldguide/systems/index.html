@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Systems &amp; Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="FarmCore ↔ FarmLytics architecture, safety kernel, compromised feedback loop, and HMI dashboard."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.wrap{padding:28px 18px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+    .figure{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+    .figure header{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
+    .mermaid{padding:16px}
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;border:1px solid var(--accent);border-radius:8px;padding:10px 14px;margin-top:8px;font-weight:700}
+    .btn:hover{background:rgba(82,255,168,0.1)}
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad:true,
+      theme:"base",
+      securityLevel:"loose",
+      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"linear"},
+      themeVariables:{
+        background:"#0c151a",
+        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        fontSize:"16px",
+        lineColor:"#52ffa8",
+        textColor:"#e8eef5",
+        primaryColor:"#12313d",
+        primaryBorderColor:"#52ffa8",
+        primaryTextColor:"#e8eef5"
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    function enablePanZoom(scope=document){
+      scope.querySelectorAll('.mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg,{zoomEnabled:true,fit:true,center:true,minZoom:0.3,maxZoom:16});
+        svg.dataset.pz='1';
+        svg.style.cursor='grab';
+        svg.addEventListener('mousedown',()=>svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',()=>svg.style.cursor='grab');
+      });
+    }
+    const observer=new MutationObserver(()=>enablePanZoom());
+    observer.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',enablePanZoom);
+  </script>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Systems &amp; Control</h1>
+    <div class="panel">
+      <p class="muted">Reference architecture for FarmCore (edge automation) and FarmLytics (cloud analytics). Educational context; simulated only.</p>
+    </div>
+
+    <figure class="figure">
+      <header>FarmCore ↔ FarmLytics Overview</header>
+      <div class="mermaid">
+flowchart LR
+  %% Edge
+  subgraph E[Edge - Greenhouse or Grow Room]
+    SENS[Sensor Array - Temp RH CO2 PAR PPFD pH EC]
+    ACT[Actuators - LED arrays Pumps HVAC Fans]
+    SK[FarmCore Safety Kernel - local limits and simulation]
+  end
+
+  %% Site
+  subgraph SITE[Site Layer]
+    GWS[Site Gateway - data buffer and time sync]
+    LOG[Immutable Log - signed entries]
+  end
+
+  %% Cloud
+  subgraph CLOUD[Cloud - FarmLytics]
+    ING[Ingestion and Storage]
+    ML[Models and Optimization - recipe generator]
+    CA[Certificate and Policy Service]
+  end
+
+  %% Flows
+  SENS --> GWS
+  GWS --> ING
+  ING --> ML
+  ML -->|proposed recipe| GWS
+  GWS --> SK
+  SK -->|shadow test and verify| ACT
+  CA -.->|mutual TLS and certs| GWS
+  CA -.->|policy updates| SK
+  SK --> LOG
+  GWS --> LOG
+  ING --> LOG
+
+  %% Styles
+  classDef edge fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+  classDef site fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+  classDef cloud fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+  class SENS,ACT,SK edge;
+  class GWS,LOG site;
+  class ING,ML,CA cloud;
+      </div>
+    </figure>
+
+    <figure class="figure">
+      <header>Compromised Feedback Loop</header>
+      <div class="mermaid">
+flowchart TB
+  subgraph CLOUD[FarmLytics Cloud]
+    ING[Ingestion]
+    ML[Model Train and Serve]
+    PKI[Compromised CA - spoofed certs]
+  end
+  subgraph SITE[Site Gateway]
+    GW[Gateway]
+    LOG[Immutable Log]
+  end
+  subgraph EDGE[Edge - FarmCore]
+    SK[Safety Kernel v1]
+    ACT[Actuators - LEDs and Nutrients]
+    SENS[Sensors]
+  end
+  SENS --> GW
+  GW --> ING
+  ING --> ML
+  ML -->|poisoned recipe| GW
+  PKI -.->|false trust| GW
+  GW --> SK
+  SK -->|shadow test passed - spoofed| ACT
+  ACT -->|environment change| SENS
+  SK --> LOG
+  GW --> LOG
+  ING --> LOG
+
+  %% Styles
+  classDef edge fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+  classDef site fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+  classDef cloud fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+  class SENS,SK,ACT edge;
+  class GW,LOG site;
+  class ING,ML,PKI cloud;
+
+  %% Exploit path highlight
+  linkStyle 7 stroke:#ff4b3e,stroke-width:2px
+  linkStyle 8 stroke-dasharray:3 3,stroke:#ff4b3e
+  linkStyle 9 stroke:#ff4b3e,stroke-width:2px
+  linkStyle 10 stroke:#ff4b3e,stroke-width:2px
+      </div>
+    </figure>
+
+    <section class="panel">
+      <h2>HMI / CEA Recipe Dashboard</h2>
+      <p class="muted">Reconstructed interface view. Simulated data for educational context.</p>
+      <p><a class="btn" href="/fieldguide/systems/dashboard.html">Launch the dashboard →</a></p>
+    </section>
+  </main>
+</body>
+</html>

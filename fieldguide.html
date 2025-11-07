@@ -41,7 +41,7 @@
   p.lead{color:#cfd9e4}
     /* ===== Figures ===== */
     figure{margin:18px auto}
-    .canvas{background:#fff; border:1px solid #e9e1cc; border-radius:10px; padding:16px}
+  .canvas{background:#0f1a20;border:1px solid #16343f;border-radius:10px;padding:16px}
     .mermaid svg{width:100% !important; height:auto !important}
   figcaption{font-size:.95rem;color:#cfe3f2;margin:10px 0 0}
   .downloads{text-align:center;margin:.35rem 0 0}
@@ -51,10 +51,12 @@
   details.more{background:#0e1820;border:1px dashed #16343f;border-radius:8px;padding:10px 14px;margin:10px 0 0;color:#dbe7f1}
     details.more summary{cursor:pointer; font-weight:600}
     /* ===== Modal for full-screen ===== */
-    dialog.svg-modal{width:95vw; height:90vh; border:0; background:#fff; padding:0}
-    dialog::backdrop{background:rgba(0,0,0,.55)}
-    .modal-wrap{width:100%; height:100%; overflow:hidden; padding:18px}
-    .modal-close{position:absolute; right:16px; top:12px; border:1px solid #333; background:#fff; padding:6px 10px; border-radius:4px; cursor:pointer}
+  dialog.svg-modal{width:95vw;height:90vh;border:1px solid #16343f;background:#0a141b;color:#e8eef5;padding:0;border-radius:10px}
+  dialog::backdrop{background:rgba(4,12,18,.75)}
+  .modal-wrap{width:100%;height:100%;overflow:hidden;padding:18px;background:#071014}
+  .modal-wrap svg{width:100% !important;height:100% !important}
+  .modal-close{position:absolute;right:16px;top:12px;border:1px solid #52ffa8;background:#0a141b;color:#e8eef5;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:600}
+  .modal-close:hover{background:rgba(82,255,168,0.12)}
     /* ===== Responsive ===== */
     @media (max-width:760px){
       .paper{margin:16px; padding:18px}
@@ -350,6 +352,13 @@ class OP,LAB,COV fac;
       const dlg = document.getElementById('svgModal');
       dlg.showModal();
       const clone = host.querySelector('svg');
+      if(!clone){
+        return;
+      }
+      clone.removeAttribute('width');
+      clone.removeAttribute('height');
+      clone.style.width = '100%';
+      clone.style.height = '100%';
       svgPanZoom(clone, { zoomEnabled:true, controlIconsEnabled:false, fit:true, center:true, minZoom:0.2, maxZoom:24 });
     }
 

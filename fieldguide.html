@@ -27,7 +27,7 @@
     .links a.active{color:var(--accent)}
     /* ===== Paper content area (book-ish) ===== */
   .paper{max-width:1200px;margin:28px auto;padding:28px 18px;background:#0c151a;color:#e8eef5;border:1px solid #16343f;border-radius:10px}
-  .page{max-width:880px;margin:0 auto}
+  .page{max-width:1080px;margin:0 auto}
   .paper h1{font-family:Georgia,"Times New Roman",serif;font-size:2.05rem;margin:.2em 0 .2em}
   .sub{color:#9fb2c7;margin:0 0 1.2rem}
   .hr{height:1px;background:#1a2730;margin:10px 0 20px}
@@ -41,10 +41,9 @@
   p.lead{color:#cfd9e4}
     /* ===== Figures ===== */
     figure{margin:18px auto}
-  .canvas{background:#0f1a20;border:1px solid #16343f;border-radius:10px;padding:16px;overflow-x:auto}
-    .canvas .mermaid{display:inline-block;min-width:720px}
-    .mermaid svg{width:100% !important;height:auto !important}
-    .mermaid-wide svg{min-width:1100px}
+  .canvas{background:#0f1a20;border:1px solid #16343f;border-radius:10px;padding:16px}
+    .canvas .mermaid{display:block;width:100%;}
+    .mermaid svg{width:100% !important;max-width:none !important;height:auto !important}
   figcaption{font-size:.95rem;color:#cfe3f2;margin:10px 0 0}
   .downloads{text-align:center;margin:.35rem 0 0}
   .downloads a{color:#52ffa8}
@@ -313,7 +312,7 @@ class OP,LAB,COV fac;
       startOnLoad: true,
       theme: "base",
       securityLevel: "loose",
-  flowchart: { useMaxWidth: false, htmlLabels: true, curve: "linear" },
+  flowchart: { useMaxWidth: true, htmlLabels: true, curve: "linear" },
       themeVariables: {
         background: "#0c151a",
         fontFamily: "Georgia, 'Times New Roman', serif",

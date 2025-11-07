@@ -435,9 +435,20 @@ flowchart LR
   <footer>
     <p>&copy; 2024 Knox Ramsey Thrillers. Technical content for educational purposes.</p>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        background: "#0c151a",
+        primaryColor: "#12232b",
+        primaryTextColor: "#e8eef5",
+        primaryBorderColor: "#52ffa8",
+        lineColor: "#52ffa8",
+        tertiaryColor: "#17313d"
+      }
+    });
   </script>
 </body>
 </html>

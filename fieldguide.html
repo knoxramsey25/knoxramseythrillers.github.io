@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6R38ZMH8Y8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6R38ZMH8Y8');
+</script>
+  <meta charset="utf-8" />
+  <title>Knox Ramsey Field Guide — Industrial Automation & Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://knoxramseythrillers.com/fieldguide.html" />
+  <meta name="description" content="Knox Ramsey Field Guide: Technical insights into industrial automation, cybersecurity, and the technologies featured in the thriller series." />
+  <meta property="og:title" content="Knox Ramsey Field Guide">
+  <meta property="og:description" content="Technical insights and real-world context behind the Knox Ramsey thriller series.">
+  <meta property="og:image" content="https://knoxramseythrillers.com/assets/CoverArt.png">
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--danger:#ff4b3e;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px;display:flex;align-items:center;gap:8px;font-size:1rem}
+    .brand::before{content:'';width:3px;height:20px;background:var(--accent);border-radius:2px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color .2s;font-size:0.9rem}
+    .links a:hover,.links a.active{color:var(--accent)}
+    
+    /* Mobile nav adjustments */
+    @media (max-width:560px){
+      .bar{flex-direction:column;align-items:center;gap:10px}
+      .brand{font-size:0.9rem}
+      .brand::before{height:16px}
+      .links{gap:10px;justify-content:center}
+      .links a{font-size:0.85rem;padding:4px}
+    }
+    
+    /* MAIN CONTENT */
+  .content{max-width:900px;margin:0 auto;padding:32px 18px}
+  .mermaid{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin:0 auto;color:var(--ink)}
+    
+    h1{margin:.2em 0 .6em;font-size:2.5rem;position:relative;color:var(--ink)}
+    h1::after{content:'';position:absolute;bottom:-8px;left:0;width:80px;height:3px;background:var(--accent);border-radius:2px}
+    
+    .subtitle{font-size:1.2rem;color:var(--muted);margin-bottom:2rem;font-weight:400}
+    
+    h2{color:var(--accent);margin:2.5rem 0 1rem;font-size:1.6rem;border-bottom:1px solid var(--line);padding-bottom:8px}
+    h3{color:var(--accent);margin:2rem 0 0.8rem;font-size:1.3rem}
+    
+    .intro{font-size:1.15rem;line-height:1.8;color:var(--ink);margin:2rem 0;background:var(--panel);padding:24px;border-radius:12px;border:1px solid var(--line)}
+    
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin:20px 0;transition:all 0.3s}
+    .card:hover{border-color:rgba(82,255,168,0.3);box-shadow:0 4px 20px rgba(82,255,168,0.05)}
+    
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin:24px 0}
+    
+    .tech-item{
+      background:rgba(82,255,168,0.03);
+      border-left:4px solid var(--accent);
+      padding:20px;
+      border-radius:8px;
+      margin:16px 0;
+    }
+    .tech-item h4{
+      color:var(--accent);
+      margin:0 0 12px;
+      font-size:1.1rem;
+      font-weight:700;
+    }
+    .tech-item p{
+      margin:0;
+      line-height:1.6;
+    }
+    
+    .warning-box{
+      background:linear-gradient(135deg,rgba(255,75,62,0.1),transparent);
+      border:1px solid var(--danger);
+      border-radius:12px;
+      padding:20px;
+      margin:24px 0;
+    }
+    .warning-box h4{
+      color:var(--danger);
+      margin:0 0 12px;
+      font-size:1.1rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .warning-box h4::before{
+      content:'⚠️';
+      font-size:1.2rem;
+    }
+    
+    .info-box{
+      background:linear-gradient(135deg,rgba(82,255,168,0.05),transparent);
+      border:1px solid var(--accent);
+      border-radius:12px;
+      padding:20px;
+      margin:24px 0;
+    }
+    .info-box h4{
+      color:var(--accent);
+      margin:0 0 12px;
+      font-size:1.1rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .info-box h4::before{
+      content:'💡';
+      font-size:1.2rem;
+    }
+    
+    .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+    .tag{display:inline-block;padding:4px 12px;background:rgba(82,255,168,0.1);border:1px solid var(--accent);border-radius:20px;font-size:0.85rem;color:var(--accent);font-weight:600}
+    
+    .reference-list{list-style:none;padding:0}
+    .reference-list li{
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--line);
+      padding:12px 16px;
+      margin:8px 0;
+      border-radius:8px;
+      transition:all 0.3s;
+    }
+    .reference-list li:hover{
+      border-color:rgba(82,255,168,0.3);
+      background:rgba(82,255,168,0.02);
+    }
+    
+    .toc{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:20px;
+      margin:24px 0;
+    }
+    .toc h3{
+      margin:0 0 16px;
+      color:var(--accent);
+    }
+    .toc ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .toc li{
+      margin:8px 0;
+    }
+    .toc a{
+      color:var(--muted);
+      text-decoration:none;
+      transition:color 0.3s;
+      font-weight:500;
+    }
+    .toc a:hover{
+      color:var(--accent);
+    }
+    
+    footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:var(--muted);margin-top:60px;background:linear-gradient(180deg,transparent,rgba(12,21,26,0.5))}
+    a{color:var(--accent);text-decoration:none;transition:color 0.2s}
+    a:hover{color:#6fffb8}
+    
+    /* Responsive adjustments */
+    @media (max-width:768px){
+      .content{padding:20px 16px}
+      h1{font-size:2rem}
+      .subtitle{font-size:1.1rem}
+      h2{font-size:1.4rem}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand">Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/recipe.html">The Recipe</a>
+        <a href="/fieldguide.html" class="active" aria-current="page">Field Guide</a>
+        <a href="/about.html">About the Author</a>
+        <a href="/teaser.html">Read Sample</a>
+        <a href="/about.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h1>Knox Ramsey Field Guide</h1>
+    <p class="subtitle">Technical insights into industrial automation, cybersecurity, and the technologies behind the thrillers</p>
+    
+    <div class="intro">
+      <p>Welcome to the Knox Ramsey Field Guide — your technical companion to understanding the real-world technologies, threats, and systems featured in the thriller series. This guide bridges fiction and reality, providing insights into industrial automation, cybersecurity vulnerabilities, and the critical infrastructure that powers our modern world.</p>
+    </div>
+
+    <div class="toc">
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#industrial-automation">Industrial Automation Systems</a></li>
+        <li><a href="#cybersecurity-threats">Cybersecurity Threats</a></li>
+        <li><a href="#food-supply-chain">Food Supply Chain Security</a></li>
+        <li><a href="#farmcore-architecture">FarmCore ↔ FarmLytics Architecture</a></li>
+        <li><a href="#scada-systems">SCADA & Control Systems</a></li>
+        <li><a href="#network-protocols">Industrial Network Protocols</a></li>
+        <li><a href="#real-world-incidents">Real-World Incidents</a></li>
+      </ul>
+    </div>
+
+    <section id="industrial-automation">
+      <h2>Industrial Automation Systems</h2>
+      
+      <div class="tech-item">
+        <h4>Programmable Logic Controllers (PLCs)</h4>
+        <p>The backbone of industrial automation, PLCs control machinery, process data, and manage safety systems. In food processing, they regulate temperature, pressure, flow rates, and timing sequences that ensure product quality and safety.</p>
+      </div>
+
+      <div class="tech-item">
+        <h4>Human Machine Interface (HMI)</h4>
+        <p>The operator's window into automated systems. HMIs display real-time data, alarms, and provide control interfaces. A compromised HMI can mask malicious activities or mislead operators about system status.</p>
+      </div>
+
+      <div class="tech-item">
+        <h4>Distributed Control Systems (DCS)</h4>
+        <p>Large-scale process control systems used in continuous manufacturing. These systems coordinate multiple subsystems across entire facilities, making them attractive targets for sophisticated attacks.</p>
+      </div>
+    </section>
+
+    <section id="cybersecurity-threats">
+      <h2>Cybersecurity Threats</h2>
+      
+      <div class="warning-box">
+        <h4>Advanced Persistent Threats (APTs)</h4>
+        <p>Nation-state and sophisticated criminal groups use APTs to maintain long-term access to industrial systems. These attacks often remain undetected for months or years, gathering intelligence and positioning for maximum impact.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Supply Chain Attacks</h3>
+          <p>Compromising software or hardware before it reaches the target organization. This could involve malicious firmware in industrial components or backdoors in control software.</p>
+          <div class="tag-list">
+            <span class="tag">Firmware</span>
+            <span class="tag">Third-party Software</span>
+            <span class="tag">Hardware Trojans</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Zero-Day Exploits</h3>
+          <p>Previously unknown vulnerabilities in industrial systems. Legacy systems often run outdated software with known vulnerabilities that remain unpatched due to operational requirements.</p>
+          <div class="tag-list">
+            <span class="tag">Legacy Systems</span>
+            <span class="tag">Unpatched Software</span>
+            <span class="tag">Air-Gap Breaches</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h4>Social Engineering</h4>
+        <p>Often the weakest link in industrial security. Attackers may impersonate vendors, contractors, or regulatory officials to gain physical or remote access to critical systems.</p>
+      </div>
+    </section>
+
+    <section id="food-supply-chain">
+      <h2>Food Supply Chain Security</h2>
+      
+      <p>The food supply chain represents one of the most complex and vulnerable critical infrastructure systems. From farm sensors to processing plants, from logistics networks to retail distribution, every step involves interconnected systems that could be targeted.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Processing Plant Vulnerabilities</h3>
+          <ul>
+            <li>Temperature control systems</li>
+            <li>Ingredient dosing and mixing</li>
+            <li>Packaging line automation</li>
+            <li>Quality control sensors</li>
+            <li>Traceability systems</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Supply Chain Tracking</h3>
+          <ul>
+            <li>RFID and barcode systems</li>
+            <li>Cold chain monitoring</li>
+            <li>Inventory management</li>
+            <li>Shipping and logistics</li>
+            <li>Retailer distribution</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <h4>Potential Attack Vectors</h4>
+        <p>Attackers could manipulate processing parameters, contaminate products, disrupt distribution networks, or corrupt traceability data to prevent effective recalls during incidents.</p>
+      </div>
+    </section>
+
+    <section id="farmcore-architecture">
+      <h2>FarmCore ↔ FarmLytics Architecture</h2>
+      
+      <p>This reference architecture illustrates how local greenhouse automation (FarmCore) collaborates with the cloud analytics platform (FarmLytics). Telemetry flows from sensors through a site gateway, enabling model-driven optimization while the safety kernel enforces local guardrails.</p>
+
+      <figure>
+        <div class="mermaid">
+flowchart LR
+  %% Edge
+  subgraph E[Edge - Greenhouse or Grow Room]
+    SENS[Sensor Array - Temp RH CO2 PAR PPFD pH EC]
+    ACT[Actuators - LED arrays Pumps HVAC Fans]
+    SK[FarmCore Safety Kernel - local limits and simulation]
+  end
+
+  %% Site
+  subgraph SITE[Site Layer]
+    GWS[Site Gateway - data buffer and time sync]
+    LOG[Immutable Log - signed entries]
+  end
+
+  %% Cloud
+  subgraph CLOUD[Cloud - FarmLytics]
+    ING[Ingestion and Storage]
+    ML[Models and Optimization - recipe generator]
+    CA[Certificate and Policy Service]
+  end
+
+  %% Flows
+  SENS --> GWS
+  GWS --> ING
+  ING --> ML
+  ML -->|proposed recipe| GWS
+  GWS --> SK
+  SK -->|shadow test and verify| ACT
+  CA -.->|mutual TLS and certs| GWS
+  CA -.->|policy updates| SK
+  SK --> LOG
+  GWS --> LOG
+  ING --> LOG
+        </div>
+        <figcaption>Figure — FarmCore ↔ FarmLytics architecture. Sensor telemetry, gateway buffering, cloud model generation, and local safety verification.</figcaption>
+        <p style="text-align:center"><a href="/downloads/FarmCoreFarmLytics.svg" download>Download FarmCoreFarmLytics.svg</a></p>
+      </figure>
+    </section>
+
+    <section id="scada-systems">
+      <h2>SCADA & Control Systems</h2>
+      
+      <div class="tech-item">
+        <h4>Supervisory Control and Data Acquisition (SCADA)</h4>
+        <p>Systems that monitor and control industrial processes across large geographic areas. Originally designed for reliability, not security, making them vulnerable to modern cyber attacks.</p>
+      </div>
+
+      <div class="info-box">
+        <h4>Common SCADA Vulnerabilities</h4>
+        <ul>
+          <li>Unencrypted communications</li>
+          <li>Default passwords and credentials</li>
+          <li>Remote access capabilities</li>
+          <li>Legacy operating systems</li>
+          <li>Insufficient network segmentation</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="network-protocols">
+      <h2>Industrial Network Protocols</h2>
+      
+      <div class="grid">
+        <div class="tech-item">
+          <h4>Modbus</h4>
+          <p>Widely used serial communication protocol for connecting industrial devices. Originally designed without security features, making it vulnerable to eavesdropping and manipulation.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>DNP3</h4>
+          <p>Distributed Network Protocol used in utilities and industrial automation. Includes some security features but implementations vary in effectiveness.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>EtherNet/IP</h4>
+          <p>Industrial Ethernet protocol that extends standard Ethernet to industrial applications. Inherits both capabilities and vulnerabilities of standard IT networks.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>OPC UA</h4>
+          <p>Modern industrial communication standard with built-in security features. However, security depends on proper implementation and configuration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="real-world-incidents">
+      <h2>Real-World Incidents</h2>
+      
+      <p>The threats depicted in the Knox Ramsey series are grounded in real-world incidents and documented vulnerabilities:</p>
+
+      <ul class="reference-list">
+        <li><strong>Stuxnet (2010):</strong> Malware specifically designed to target industrial control systems, demonstrating the feasibility of cyber-physical attacks on critical infrastructure.</li>
+        
+        <li><strong>Ukraine Power Grid (2015, 2016):</strong> Sophisticated attacks that caused power outages affecting hundreds of thousands of people, showing how cyber attacks can have real-world physical consequences.</li>
+        
+        <li><strong>TRITON/TRISIS (2017):</strong> Malware targeting safety instrumented systems, designed to cause physical damage and potentially loss of life in industrial facilities.</li>
+        
+        <li><strong>Colonial Pipeline (2021):</strong> Ransomware attack that shut down the largest fuel pipeline in the US for several days, demonstrating the vulnerability of critical infrastructure to cyber attacks.</li>
+        
+        <li><strong>JBS Cyberattack (2021):</strong> Ransomware attack on one of the world's largest meat processors, temporarily shutting down operations across multiple countries and affecting food supply chains.</li>
+      </ul>
+
+      <div class="warning-box">
+        <h4>Lessons Learned</h4>
+        <p>These incidents demonstrate that cyber attacks on industrial systems and critical infrastructure are not theoretical threats but present realities. The food supply chain, with its complex networks and numerous stakeholders, presents particularly attractive targets for malicious actors.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Staying Informed</h2>
+      
+      <div class="info-box">
+        <h4>Further Reading</h4>
+        <p>For readers interested in learning more about industrial cybersecurity and critical infrastructure protection, consider exploring resources from organizations like CISA (Cybersecurity and Infrastructure Security Agency), SANS Industrial Control Systems, and the Industrial Control Systems Cyber Emergency Response Team (ICS-CERT).</p>
+      </div>
+      
+      <p>The Knox Ramsey Field Guide will continue to evolve as new technologies emerge and new threats are discovered. This living document serves as both educational resource and cautionary tale about the importance of securing our critical infrastructure.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Knox Ramsey Thrillers. Technical content for educational purposes.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
+</body>
+</html>

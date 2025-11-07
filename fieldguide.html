@@ -41,8 +41,10 @@
   p.lead{color:#cfd9e4}
     /* ===== Figures ===== */
     figure{margin:18px auto}
-  .canvas{background:#0f1a20;border:1px solid #16343f;border-radius:10px;padding:16px}
-    .mermaid svg{width:100% !important; height:auto !important}
+  .canvas{background:#0f1a20;border:1px solid #16343f;border-radius:10px;padding:16px;overflow-x:auto}
+    .canvas .mermaid{display:inline-block;min-width:720px}
+    .mermaid svg{width:100% !important;height:auto !important}
+    .mermaid-wide svg{min-width:1100px}
   figcaption{font-size:.95rem;color:#cfe3f2;margin:10px 0 0}
   .downloads{text-align:center;margin:.35rem 0 0}
   .downloads a{color:#52ffa8}
@@ -73,7 +75,8 @@
         <a href="/">Home</a>
         <a href="/recipe.html">The Recipe</a>
         <a href="/teaser.html">Read Sample</a>
-        <a href="/about.html">About</a>
+  <a href="/about.html">About</a>
+  <a href="/about.html#contact">Contact</a>
       </div>
     </div>
   </nav>
@@ -101,7 +104,7 @@
         <p class="lead">Local greenhouse automation (FarmCore) collaborates with the cloud analytics platform (FarmLytics). Telemetry flows through a site gateway; the safety kernel enforces limits at the edge.</p>
         <figure>
           <div class="canvas">
-            <div class="mermaid" data-name="FarmCoreFarmLytics">
+            <div class="mermaid mermaid-wide" data-name="FarmCoreFarmLytics">
 flowchart LR
   %% Edge
   subgraph E[Edge - Greenhouse or Grow Room]
@@ -212,7 +215,7 @@ linkStyle 10 stroke:#ff4b3e,stroke-width:2px
         <p class="lead">Spectral inputs drive receptor cascades, oxidative signaling, and phototoxic compound buildup.</p>
         <figure>
           <div class="canvas">
-            <div class="mermaid" data-name="LightReceptor">
+            <div class="mermaid mermaid-wide" data-name="LightReceptor">
 flowchart LR
   BLU[Blue 430-470 nm]
   RED[Red 640-670 nm]
@@ -310,7 +313,7 @@ class OP,LAB,COV fac;
       startOnLoad: true,
       theme: "base",
       securityLevel: "loose",
-      flowchart: { useMaxWidth: true, htmlLabels: true, curve: "linear" },
+  flowchart: { useMaxWidth: false, htmlLabels: true, curve: "linear" },
       themeVariables: {
         background: "#0c151a",
         fontFamily: "Georgia, 'Times New Roman', serif",

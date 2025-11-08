@@ -1,25 +1,835 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>CEA Recipe Dashboard — Coming Soon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="Placeholder for the interactive FarmCore HMI dashboard."/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6R38ZMH8Y8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6R38ZMH8Y8');
+  </script>
+  <meta charset="utf-8" />
+  <title>Live HMI Dashboard — Field Guide | DARK RECIPE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://knoxramseythrillers.com/fieldguide/systems/dashboard.html" />
+  <meta name="description" content="Live HMI view showing the agricultural control system compromise from DARK RECIPE. Watch the attack unfold in real-time." />
+  <link rel="stylesheet" href="/assets/css/site.css">
   <style>
-    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
-    *{box-sizing:border-box} html,body{margin:0}
-    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:18px}
-    .card{max-width:520px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;text-align:center}
-    a{color:var(--accent);text-decoration:none;font-weight:700}
-    a:hover{opacity:.9}
+    :root{
+      --bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;
+      --accent:#52ffa8;--accent2:#4cc9f0;--warn:#ffd166;--danger:#ff4b3e;
+      --line:#17313d;--critical:#ff2244
+    }
+    
+    /* Binder Layout */
+    .binder{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:0;
+      min-height:calc(100vh - 60px);
+      background:var(--bg);
+    }
+    
+    .sidebar{
+      background:var(--panel);
+      border-right:1px solid var(--line);
+      padding:2rem 1.5rem;
+      position:sticky;
+      top:80px;
+      height:fit-content;
+      max-height:calc(100vh - 100px);
+      overflow-y:auto;
+    }
+    
+    .sidebar h2{
+      margin:0 0 1.5rem 0;
+      font-size:1.3rem;
+      color:var(--accent);
+    }
+    
+    .sidebar .search{
+      margin-bottom:1.5rem;
+    }
+    
+    .sidebar .search input{
+      width:100%;
+      padding:0.6rem;
+      background:var(--bg);
+      border:1px solid var(--line);
+      border-radius:6px;
+      color:var(--ink);
+      font-size:0.9rem;
+    }
+    
+    .sidebar nav{
+      display:flex;
+      flex-direction:column;
+      gap:0.3rem;
+    }
+    
+    .sidebar nav a{
+      padding:0.7rem 1rem;
+      color:var(--ink);
+      text-decoration:none;
+      border-left:3px solid transparent;
+      transition:all 0.2s;
+      border-radius:4px;
+    }
+    
+    .sidebar nav a:hover{
+      background:linear-gradient(90deg, rgba(82,255,168,0.08), transparent);
+      border-left-color:var(--accent);
+    }
+    
+    .sidebar nav a.active{
+      background:linear-gradient(90deg, rgba(82,255,168,0.12), transparent);
+      border-left-color:var(--accent);
+      color:var(--accent);
+      font-weight:600;
+    }
+    
+    .content{
+      padding:2rem;
+      max-width:1400px;
+    }
+    
+    @media (max-width:900px){
+      .binder{
+        grid-template-columns:1fr;
+      }
+      .sidebar{
+        position:relative;
+        top:0;
+        max-height:none;
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+    }
+    
+    /* Dashboard-specific styles */
+    .demo-header{
+      background:linear-gradient(135deg,rgba(82,255,168,0.08),transparent);
+      border:1px solid var(--accent);
+      border-radius:8px;
+      padding:1.5rem;
+      margin-bottom:2rem;
+    }
+    
+    .demo-header h1{
+      margin:0 0 0.5rem 0;
+      font-size:1.8rem;
+      color:var(--accent);
+    }
+    
+    .demo-header p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    
+    .demo-header strong{
+      color:var(--ink);
+    }
+    
+    /* Status chips */
+    .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin:1rem 0;
+    }
+    
+    .chip{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:5px 12px;
+      background:rgba(12,21,26,0.8);
+      font-size:0.85rem;
+    }
+    
+    .chip.alert{
+      background:rgba(255,75,62,0.1);
+      border-color:var(--danger);
+      animation:alertPulse 2s infinite;
+    }
+    
+    @keyframes alertPulse{0%,100%{opacity:1}50%{opacity:0.7}}
+    
+    /* Main Layout */
+    .layout{
+      display:grid;
+      grid-template-columns:1.5fr 1fr;
+      gap:20px;
+    }
+    
+    @media (max-width:980px){
+      .layout{grid-template-columns:1fr}
+    }
+    
+    /* Cards */
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      opacity:0.5;
+    }
+    
+    .card.warning::before{
+      background:linear-gradient(90deg,var(--danger),var(--warn));
+      animation:warningGlow 3s infinite;
+    }
+    
+    @keyframes warningGlow{0%,100%{opacity:0.3}50%{opacity:0.8}}
+    
+    h2,h3{
+      margin:0.5rem 0;
+      font-size:1.2rem;
+      color:var(--accent);
+      font-weight:700;
+    }
+    
+    h3{
+      font-size:1rem;
+      color:var(--ink);
+    }
+    
+    /* Schematic */
+    .schem{
+      background:#0a0f14;
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:12px;
+      position:relative;
+    }
+    
+    .schem svg{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    
+    /* Legend */
+    .legend{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+      font-size:0.85rem;
+    }
+    
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      background:rgba(12,21,26,0.6);
+      border:1px solid var(--line);
+      border-radius:20px;
+    }
+    
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+    }
+    
+    .dot.water{background:var(--muted)}
+    .dot.n{background:var(--accent2)}
+    .dot.p{background:var(--accent)}
+    .dot.k{background:var(--warn)}
+    
+    /* Present Values Grid */
+    .pv-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    
+    @media (max-width:520px){
+      .pv-grid{grid-template-columns:1fr}
+    }
+    
+    .pv-item{
+      background:rgba(12,21,26,0.5);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition:all 0.3s;
+    }
+    
+    .pv-item:hover{background:rgba(12,21,26,0.8)}
+    .pv-item.alert{border-color:var(--danger);background:rgba(255,75,62,0.05)}
+    .pv-label{color:var(--muted);font-size:0.85rem}
+    .pv-value{font-weight:800;font-size:0.95rem}
+    .pv-value.ok{color:var(--accent)}
+    .pv-value.warn{color:var(--warn)}
+    .pv-value.bad{color:var(--danger);animation:valuePulse 2s infinite}
+    
+    @keyframes valuePulse{0%,100%{opacity:1}50%{opacity:0.6}}
+    
+    /* Setpoints Table - IMPROVED CONTRAST */
+    .table{
+      width:100%;
+      margin-top:12px;
+      font-size:0.9rem;
+    }
+    
+    .table th,.table td{
+      padding:8px;
+      text-align:left;
+      border-bottom:1px solid var(--line);
+    }
+    
+    .table th{
+      color:var(--ink);
+      font-weight:700;
+      font-size:0.85rem;
+      background:rgba(82,255,168,0.05);
+    }
+    
+    .table td{
+      font-family:ui-monospace,monospace;
+      color:var(--ink);
+    }
+    
+    .deviation{
+      color:var(--danger);
+      font-weight:700;
+    }
+    
+    @media (max-width:600px){
+      .table{font-size:0.8rem}
+      .table th,.table td{padding:6px}
+    }
+    
+    /* Event Log - IMPROVED CONTRAST */
+    .event-log{
+      background:rgba(15,25,30,0.9);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:12px;
+      max-height:300px;
+      overflow-y:auto;
+      font-size:0.85rem;
+    }
+    
+    .log-entry{
+      padding:6px 8px;
+      margin:4px 0;
+      border-left:3px solid var(--line);
+      background:rgba(20,35,45,0.7);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    
+    .log-entry.info{
+      border-left-color:var(--accent2);
+      background:rgba(76,201,240,0.08);
+    }
+    
+    .log-entry.warn{
+      border-left-color:var(--warn);
+      background:rgba(255,209,102,0.1);
+    }
+    
+    .log-entry.error{
+      border-left-color:var(--danger);
+      background:rgba(255,75,62,0.12);
+      animation:logPulse 2s;
+    }
+    
+    @keyframes logPulse{0%{background:rgba(255,75,62,0.2)}100%{background:rgba(255,75,62,0.12)}}
+    
+    .log-time{
+      color:var(--accent);
+      font-size:0.8rem;
+      min-width:60px;
+      font-weight:600;
+    }
+    
+    .log-msg{
+      flex:1;
+      color:var(--ink);
+    }
+    
+    @media (max-width:600px){
+      .event-log{font-size:0.75rem;padding:8px}
+      .log-time{font-size:0.7rem;min-width:50px}
+    }
+    
+    /* Critical State Indicator */
+    .critical-indicator{
+      position:fixed;
+      top:100px;
+      right:20px;
+      background:rgba(255,34,68,0.15);
+      border:2px solid var(--critical);
+      border-radius:8px;
+      padding:12px 16px;
+      animation:criticalBlink 3s infinite;
+      z-index:100;
+      box-shadow:0 0 20px rgba(255,34,68,0.3);
+    }
+    
+    @keyframes criticalBlink{0%,100%{opacity:0.9}50%{opacity:1}}
+    
+    .critical-indicator .label{
+      color:var(--critical);
+      font-weight:800;
+      font-size:0.85rem;
+      text-shadow:0 0 8px rgba(255,34,68,0.5);
+    }
+    
+    @media (max-width:768px){
+      .critical-indicator{
+        position:fixed;
+        bottom:20px;
+        right:10px;
+        top:auto;
+        padding:8px 12px;
+      }
+      .critical-indicator .label{font-size:0.75rem}
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>CEA Recipe Dashboard</h1>
-    <p class="muted">Interactive simulation coming soon. This module will display the FarmCore HMI view with read-only telemetry and recipe playback.</p>
-    <p><a href="/fieldguide/systems/">← Back to Systems &amp; Control</a></p>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand"><img class="brand-logo" src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="112" height="28" loading="lazy" decoding="async"/>Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search">
+        <input type="search" placeholder="Search..." aria-label="Search Field Guide">
+      </div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html" class="active">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="demo-header">
+        <h1>Live HMI — Agricultural Control System</h1>
+        <div class="chips">
+          <span class="chip">Lot: <strong>C-12</strong></span>
+          <span class="chip">Bay: <strong>3</strong></span>
+          <span class="chip alert">⚠ Anomalies: <strong id="anomCount">3</strong></span>
+        </div>
+        <p><strong>DARK RECIPE INTERFACE:</strong> This HMI recreates the control system Knox Ramsey monitored when he detected the agricultural attack. Notice the pH drift above setpoint—the first sign of weaponized optimization algorithms corrupting the nutrient recipe.</p>
+      </div>
+
+      <div class="layout">
+        <!-- LEFT COLUMN: Schematic & Event Log -->
+        <div>
+          <section class="card">
+            <h2>Process Flow Schematic</h2>
+            <div class="legend">
+              <span class="legend-item"><span class="dot water"></span> Water</span>
+              <span class="legend-item"><span class="dot n"></span> N-Feed</span>
+              <span class="legend-item"><span class="dot p"></span> P-Feed</span>
+              <span class="legend-item"><span class="dot k"></span> K-Feed</span>
+            </div>
+            <div class="schem">
+              <svg viewBox="0 0 800 360" aria-label="Nutrient delivery system schematic">
+                <!-- Water Reservoir -->
+                <rect x="20" y="30" width="140" height="100" rx="8" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+                <text x="35" y="55" fill="#9fb2c7" font-size="13" font-weight="600">RESERVOIR</text>
+                <text x="35" y="75" fill="#52ffa8" font-size="11">Level: <tspan id="svgLevel">82%</tspan></text>
+                <text x="35" y="92" fill="#52ffa8" font-size="11">Temp: <tspan id="svgTemp">19.8°C</tspan></text>
+                
+                <!-- Nutrient Tanks -->
+                <rect x="20" y="160" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+                <text x="35" y="185" fill="#4cc9f0" font-size="11" font-weight="600">N-FEED</text>
+                <text x="35" y="200" fill="#4cc9f0" font-size="10" id="svgNFlow">6.2 L/m</text>
+                
+                <rect x="20" y="220" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+                <text x="35" y="245" fill="#52ffa8" font-size="11" font-weight="600">P-FEED</text>
+                <text x="35" y="260" fill="#52ffa8" font-size="10" id="svgPFlow">4.7 L/m</text>
+                
+                <rect x="20" y="280" width="100" height="50" rx="6" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+                <text x="35" y="305" fill="#ffd166" font-size="11" font-weight="600">K-FEED</text>
+                <text x="35" y="320" fill="#ffd166" font-size="10" id="svgKFlow">5.1 L/m</text>
+                
+                <!-- Manifold -->
+                <rect x="320" y="60" width="60" height="250" rx="8" fill="#0a0f14" stroke="#ff4b3e" stroke-width="2" opacity="0.8"/>
+                <text x="330" y="50" fill="#ff4b3e" font-size="11" font-weight="600">MANIFOLD</text>
+                <circle cx="350" cy="180" r="25" fill="none" stroke="#ff4b3e" stroke-width="2" opacity="0.5">
+                  <animate attributeName="r" values="23;28;23" dur="1.5s" repeatCount="indefinite"/>
+                </circle>
+                <text x="335" y="185" fill="#ff4b3e" font-size="10">MIX</text>
+                
+                <!-- Flow Lines with animation -->
+                <path d="M160 80 H320" stroke="#9fb2c7" stroke-width="3" opacity="0.7"/>
+                <path d="M120 185 H320" stroke="#4cc9f0" stroke-width="2" opacity="0.7"/>
+                <path d="M120 245 H320" stroke="#52ffa8" stroke-width="2" opacity="0.7"/>
+                <path d="M120 305 H320" stroke="#ffd166" stroke-width="2" opacity="0.7"/>
+                
+                <!-- Flow indicators with pulse -->
+                <circle cx="270" cy="80" r="6" fill="#9fb2c7">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="270" cy="185" r="6" fill="#4cc9f0">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="270" cy="245" r="6" fill="#52ffa8">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="1.6s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="270" cy="305" r="6" fill="#ffd166">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="1.7s" repeatCount="indefinite"/>
+                </circle>
+                
+                <!-- Output to Cell -->
+                <path d="M380 180 H620" stroke="#ff4b3e" stroke-width="3" stroke-dasharray="5,5" opacity="0.8">
+                  <animate attributeName="stroke-dashoffset" values="0;-10" dur="0.5s" repeatCount="indefinite"/>
+                </path>
+                
+                <!-- Plant Cell -->
+                <rect x="620" y="120" width="150" height="120" rx="8" fill="#0a0f14" stroke="#17313d" stroke-width="2"/>
+                <text x="635" y="145" fill="#9fb2c7" font-size="13" font-weight="600">PLANT CELL C-12</text>
+                <text x="635" y="165" fill="#ff4b3e" font-size="11">pH: <tspan id="svgPH">6.7</tspan> ⚠</text>
+                <text x="635" y="182" fill="#52ffa8" font-size="11">EC: <tspan id="svgEC">1.8</tspan> mS/cm</text>
+                <text x="635" y="199" fill="#52ffa8" font-size="11">Temp: <tspan id="svgAir">22.4</tspan>°C</text>
+                <text x="635" y="216" fill="#52ffa8" font-size="11">RH: <tspan id="svgRH">54</tspan>%</text>
+                
+                <!-- Warning Indicator -->
+                <circle cx="745" cy="160" r="8" fill="#ff4b3e" opacity="0.8">
+                  <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1s" repeatCount="indefinite"/>
+                  <animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+            </div>
+          </section>
+
+          <section class="card warning" style="margin-top:20px">
+            <h2>System Event Log</h2>
+            <div class="event-log" id="eventLog">
+              <div class="log-entry error">
+                <span class="log-time">15:52:41</span>
+                <span class="log-msg">⚠ CRITICAL: pH exceeds tolerance band (6.7 > 6.5)</span>
+              </div>
+              <div class="log-entry warn">
+                <span class="log-time">15:51:23</span>
+                <span class="log-msg">Manifold pressure fluctuation detected</span>
+              </div>
+              <div class="log-entry error">
+                <span class="log-time">15:49:17</span>
+                <span class="log-msg">Unauthorized profile update: Origin trace failed</span>
+              </div>
+              <div class="log-entry info">
+                <span class="log-time">15:47:08</span>
+                <span class="log-msg">Optimization algorithm v3.7.2 loaded</span>
+              </div>
+              <div class="log-entry warn">
+                <span class="log-time">15:45:32</span>
+                <span class="log-msg">Setpoint override: Manual intervention logged</span>
+              </div>
+              <div class="log-entry info">
+                <span class="log-time">15:43:11</span>
+                <span class="log-msg">Nutrient cycle 7 initiated for Bay 3</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- RIGHT COLUMN: Present Values & Setpoints -->
+        <div>
+          <section class="card">
+            <h2>Present Values</h2>
+            <div class="pv-grid">
+              <div class="pv-item">
+                <span class="pv-label">Reservoir Level</span>
+                <span class="pv-value ok" id="pvLevel">82%</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">Reservoir Temp</span>
+                <span class="pv-value ok" id="pvTemp">19.8°C</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">Flow — Water</span>
+                <span class="pv-value ok" id="pvWater">38.4 L/min</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">Flow — N-Feed</span>
+                <span class="pv-value ok" id="pvN">6.2 L/min</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">Flow — P-Feed</span>
+                <span class="pv-value ok" id="pvP">4.7 L/min</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">Flow — K-Feed</span>
+                <span class="pv-value ok" id="pvK">5.1 L/min</span>
+              </div>
+              <div class="pv-item alert">
+                <span class="pv-label">pH (Cell C-12)</span>
+                <span class="pv-value bad" id="pvPH">6.7</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">EC (Cell C-12)</span>
+                <span class="pv-value ok" id="pvEC">1.8 mS/cm</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">Air Temp (Bay 3)</span>
+                <span class="pv-value ok" id="pvAir">22.4°C</span>
+              </div>
+              <div class="pv-item">
+                <span class="pv-label">RH (Bay 3)</span>
+                <span class="pv-value ok" id="pvRH">54%</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:20px">
+            <h2>Control Setpoints</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Setpoint</th>
+                  <th>Actual</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>pH</td>
+                  <td>6.0 - 6.5</td>
+                  <td id="spPH">6.7</td>
+                  <td class="deviation">ALARM</td>
+                </tr>
+                <tr>
+                  <td>EC</td>
+                  <td>1.6 - 2.0</td>
+                  <td id="spEC">1.8</td>
+                  <td style="color:var(--accent)">OK</td>
+                </tr>
+                <tr>
+                  <td>Air Temp</td>
+                  <td>20.0 - 24.0°C</td>
+                  <td id="spAir">22.4°C</td>
+                  <td style="color:var(--accent)">OK</td>
+                </tr>
+                <tr>
+                  <td>RH</td>
+                  <td>45 - 65%</td>
+                  <td id="spRH">54%</td>
+                  <td style="color:var(--accent)">OK</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top:12px;font-size:0.85rem;color:var(--muted)">
+              <strong style="color:var(--danger)">NOTE:</strong> pH deviation matches attack signature from corrupted optimization profile DR-A17-042
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
   </div>
+
+  <div class="critical-indicator">
+    <div class="label">SYSTEM COMPROMISE DETECTED</div>
+  </div>
+
+  <script src="/assets/js/fieldguide.js"></script>
+  <script>
+    // System values with slight variations to feel "live"
+    let systemValues = {
+      level: 82,
+      temp: 19.8,
+      waterFlow: 38.4,
+      nFlow: 6.2,
+      pFlow: 4.7,
+      kFlow: 5.1,
+      ph: 6.7,  // Attack vector - will drift higher
+      ec: 1.8,
+      airTemp: 22.4,
+      rh: 54,
+      anomalies: 3
+    };
+
+    // Format number with specified decimals
+    function fmt(val, decimals = 1) {
+      return val.toFixed(decimals);
+    }
+
+    // Add slight jitter to values for realism
+    function jitter(base, variance = 0.02) {
+      const delta = base * variance;
+      return base + (Math.random() * 2 - 1) * delta;
+    }
+
+    // Update display values
+    function updateDisplay() {
+      // Update PV display with more variation
+      const levelVal = Math.round(jitter(systemValues.level, 0.01));
+      const tempVal = fmt(jitter(systemValues.temp, 0.01));
+      const waterVal = fmt(jitter(systemValues.waterFlow, 0.03));
+      const nVal = fmt(jitter(systemValues.nFlow, 0.04));
+      const pVal = fmt(jitter(systemValues.pFlow, 0.04));
+      const kVal = fmt(jitter(systemValues.kFlow, 0.04));
+      const currentPH = jitter(systemValues.ph, 0.02);
+      const ecVal = fmt(jitter(systemValues.ec, 0.03));
+      const airVal = fmt(jitter(systemValues.airTemp, 0.02));
+      const rhVal = Math.round(jitter(systemValues.rh, 0.03));
+      
+      // Update main display
+      document.getElementById('pvLevel').textContent = levelVal + '%';
+      document.getElementById('pvTemp').textContent = tempVal + '°C';
+      document.getElementById('pvWater').textContent = waterVal + ' L/min';
+      document.getElementById('pvN').textContent = nVal + ' L/min';
+      document.getElementById('pvP').textContent = pVal + ' L/min';
+      document.getElementById('pvK').textContent = kVal + ' L/min';
+      document.getElementById('pvPH').textContent = fmt(currentPH);
+      document.getElementById('pvEC').textContent = ecVal + ' mS/cm';
+      document.getElementById('pvAir').textContent = airVal + '°C';
+      document.getElementById('pvRH').textContent = rhVal + '%';
+      
+      // Update SVG values
+      document.getElementById('svgLevel').textContent = levelVal + '%';
+      document.getElementById('svgTemp').textContent = tempVal + '°C';
+      document.getElementById('svgNFlow').textContent = nVal + ' L/m';
+      document.getElementById('svgPFlow').textContent = pVal + ' L/m';
+      document.getElementById('svgKFlow').textContent = kVal + ' L/m';
+      document.getElementById('svgPH').textContent = fmt(currentPH);
+      document.getElementById('svgEC').textContent = ecVal;
+      document.getElementById('svgAir').textContent = airVal;
+      document.getElementById('svgRH').textContent = rhVal;
+      
+      // Update setpoint table
+      document.getElementById('spPH').textContent = fmt(currentPH);
+      document.getElementById('spEC').textContent = ecVal;
+      document.getElementById('spAir').textContent = airVal + '°C';
+      document.getElementById('spRH').textContent = rhVal + '%';
+      
+      // Update anomaly counter
+      document.getElementById('anomCount').textContent = systemValues.anomalies;
+      
+      // Change pH color based on value
+      if (currentPH > 7.0) {
+        document.getElementById('pvPH').style.color = '#ff2244';
+      }
+    }
+
+    // Simulate pH drift (the attack vector)
+    function simulateAttack() {
+      // Rapidly increase pH showing system compromise
+      if (systemValues.ph < 7.5) {
+        systemValues.ph += 0.008;
+      }
+      
+      // More frequent anomaly counter increments
+      if (Math.random() < 0.15) {
+        systemValues.anomalies++;
+      }
+      
+      // Occasional flow disruptions
+      if (Math.random() < 0.1) {
+        systemValues.nFlow = jitter(6.2, 0.15);
+        systemValues.pFlow = jitter(4.7, 0.15);
+        systemValues.kFlow = jitter(5.1, 0.15);
+      }
+    }
+
+    // Add new event to log
+    function addLogEntry(severity, message) {
+      const log = document.getElementById('eventLog');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${severity}`;
+      
+      const now = new Date();
+      const time = now.toTimeString().slice(0, 8);
+      
+      entry.innerHTML = `
+        <span class="log-time">${time}</span>
+        <span class="log-msg">${message}</span>
+      `;
+      
+      log.insertBefore(entry, log.firstChild);
+      
+      // Keep only last 12 entries
+      while (log.children.length > 12) {
+        log.removeChild(log.lastChild);
+      }
+    }
+
+    // Periodic event generation
+    let eventCounter = 0;
+    function generateEvent() {
+      eventCounter++;
+      
+      const events = [
+        { severity: 'warn', msg: 'Nutrient ratio deviation: N/P/K balance unstable' },
+        { severity: 'error', msg: 'Profile checksum mismatch - signature invalid' },
+        { severity: 'info', msg: 'Manifold flush cycle initiated' },
+        { severity: 'warn', msg: 'Temperature compensation active - drift detected' },
+        { severity: 'error', msg: '⚠ Unauthorized setpoint modification from external source' },
+        { severity: 'info', msg: 'Data logged to archive buffer' },
+        { severity: 'warn', msg: 'Flow sensor variance exceeds threshold' },
+        { severity: 'error', msg: 'Authentication failure on control channel' },
+        { severity: 'warn', msg: 'EC drift compensation applied' },
+        { severity: 'info', msg: 'Backup profile loaded - primary corrupted' }
+      ];
+      
+      // Add critical pH alarm more frequently
+      if (eventCounter % 5 === 0 && systemValues.ph > 6.8) {
+        addLogEntry('error', `⚠ CRITICAL: pH ${fmt(systemValues.ph)} exceeds operational limits`);
+      } else if (Math.random() < 0.4) {
+        const event = events[Math.floor(Math.random() * events.length)];
+        addLogEntry(event.severity, event.msg);
+      }
+    }
+
+    // Initialize and run updates
+    updateDisplay();
+    
+    // Update values rapidly for dynamic feel
+    setInterval(() => {
+      updateDisplay();
+    }, 200);
+    
+    // Simulate attack progression quickly
+    setInterval(() => {
+      simulateAttack();
+    }, 800);
+    
+    // Generate events frequently for action
+    setInterval(() => {
+      generateEvent();
+    }, 2000);
+  </script>
 </body>
 </html>
-<script src="/assets/js/fieldguide.js"></script>

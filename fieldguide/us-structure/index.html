@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Inter-Agency Structure</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Inter-agency overview of U.S. cyber-physical response structures."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    .sidebar{position:sticky;top:80px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
+    .sidebar h2{margin:0 0 16px 0;font-size:1.1rem;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px}
+    .sidebar nav{display:flex;flex-direction:column;gap:4px}
+    .sidebar nav a{display:block;padding:10px 12px;border-radius:6px;color:var(--muted);font-weight:600;border-left:3px solid transparent;transition:all 0.2s}
+    .sidebar nav a:hover{background:rgba(82,255,168,0.06);color:var(--accent);border-left-color:var(--accent)}
+    .sidebar nav a.active{background:linear-gradient(90deg,rgba(82,255,168,0.08),transparent);color:var(--accent);border-left-color:var(--accent);font-weight:800}
+    @media (max-width:900px){.binder{grid-template-columns:1fr;gap:16px}.sidebar{position:relative;top:0}}
+    main.content{min-width:0}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand"><img class="brand-logo" src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="112" height="28" loading="lazy" decoding="async"/>Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search"><input type="search" placeholder="Search..." aria-label="Search Field Guide"></div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <main style="max-width:820px;margin:3rem auto;padding:0 1.5rem;color:#e0e0e0;font-family:'Georgia',serif;line-height:1.7;">
+        <h1 style="color:#fff;text-align:center;">Inter-Agency Structure</h1>
+        <p>
+          The American response to cyber-physical threats sits at a crossroads of defense, commerce, and agriculture. 
+          No single agency owns it; responsibility drifts like static between channels.
+        </p>
+        <section style="margin-top:2rem;">
+          <h2 style="color:#fff;">Department of Homeland Security (DHS)</h2>
+          <p>Coordinates critical-infrastructure protection through CISA. Oversees private-sector outreach yet depends on voluntary compliance.</p>
+        </section>
+        <section>
+          <h2 style="color:#fff;">Federal Bureau of Investigation (FBI)</h2>
+          <p>Leads domestic counter-intelligence investigations. Agent Steele’s unit operates within its Cyber Division’s Critical Infrastructure Section.</p>
+        </section>
+        <section>
+          <h2 style="color:#fff;">Department of Defense (DoD) / U.S. Cyber Command</h2>
+          <p>Provides offensive and defensive cyber capability. Often shares analysts with the National Security Agency (NSA), blurring oversight lines.</p>
+        </section>
+        <section>
+          <h2 style="color:#fff;">USDA / DOE Partnerships</h2>
+          <p>Joint research programs manage energy and agricultural automation—the same sectors targeted in the novel’s chain reaction.</p>
+        </section>
+        <blockquote style="border-left:3px solid #900;padding-left:1rem;color:#ccc;font-style:italic;margin-top:2rem;">
+          “Interdependence is the system’s strength and its blind spot.”
+        </blockquote>
+      </main>
+    </main>
+  </div>
+  <script src="/assets/js/fieldguide.js"></script>
+</body>
+</html>

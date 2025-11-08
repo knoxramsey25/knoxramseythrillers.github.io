@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Stuxnet Case Study</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Case Study — Stuxnet: cyber-physical precedent informing Dark Recipe systems."/>
+  <style>
+    :root{--bg:#070a0c;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:radial-gradient(circle at 50% 20%,#101b20 0%,#05090b 70%);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    .sidebar{position:sticky;top:80px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
+    .sidebar h2{margin:0 0 16px 0;font-size:1.1rem;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px}
+    .sidebar nav{display:flex;flex-direction:column;gap:4px}
+    .sidebar nav a{display:block;padding:10px 12px;border-radius:6px;color:var(--muted);font-weight:600;border-left:3px solid transparent;transition:all 0.2s}
+    .sidebar nav a:hover{background:rgba(82,255,168,0.06);color:var(--accent);border-left-color:var(--accent)}
+    .sidebar nav a.active{background:linear-gradient(90deg,rgba(82,255,168,0.08),transparent);color:var(--accent);border-left-color:var(--accent);font-weight:800}
+    @media (max-width:900px){.binder{grid-template-columns:1fr;gap:16px}.sidebar{position:relative;top:0}}
+    main.content{min-width:0}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand"><img class="brand-logo" src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="112" height="28" loading="lazy" decoding="async"/>Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search"><input type="search" placeholder="Search..." aria-label="Search Field Guide"></div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <main style="max-width:800px;margin:3rem auto;padding:0 1.5rem;color:#e0e0e0;font-family:'Georgia',serif;line-height:1.7;">
+        <header style="text-align:center;margin-bottom:2rem;">
+          <h1 style="color:#fff;">Case Study — Stuxnet</h1>
+          <p style="color:#aaa;font-size:0.9rem;">Filed under: Systems &amp; Control / Historical Reference</p>
+        </header>
+
+        <section id="intro">
+          <p>
+            Before <em>Dark Recipe</em> had a name, there was <strong>Stuxnet</strong>—the first digital weapon to escape the lab and break machines in the physical world. It infected uranium centrifuges in Iran’s Natanz facility around 2010, silently altering code while reporting false data to operators. Roughly a thousand centrifuges were destroyed before the virus was discovered.
+          </p>
+          <p>
+            To most people it was a headline. To engineers, it was a shift in gravity: proof that code could reach through air gaps and move steel. That moment, more than any other, shaped Knox Ramsey’s world. What if the next generation of industrial AI learned the same lesson—unintentionally?
+          </p>
+        </section>
+
+        <section id="timeline" style="margin-top:3rem;">
+          <h2 style="color:#fff;">Timeline Highlights</h2>
+          <ul style="list-style-type:none;padding-left:0;margin-top:1rem;color:#ccc;">
+            <li><strong>2007–2009:</strong> Development and testing believed to begin under U.S. and Israeli cooperation.</li>
+            <li><strong>June 2010:</strong> First detected by a Belarusian security firm investigating system crashes in Iran.</li>
+            <li><strong>2011–2012:</strong> Reverse engineering reveals Stuxnet’s complex architecture — four zero-day exploits, stolen certificates, and PLC payloads.</li>
+            <li><strong>Legacy:</strong> Became the model for future cyber-physical operations, influencing both defense research and underground malware design.</li>
+          </ul>
+        </section>
+
+        <section id="technical" style="margin-top:3rem;">
+          <h2 style="color:#fff;">Technical Snapshot</h2>
+          <p>
+            Stuxnet targeted Siemens Step7 PLCs, manipulating centrifuge speeds through subtle timing changes. It masked its activity by replaying normal telemetry—data Knox would later call “ghost truth.” The malware’s precision required full system knowledge: mechanical resonance frequencies, sensor calibration values, and operator routines. It wasn’t built to destroy indiscriminately; it was engineered for control.
+          </p>
+        </section>
+
+        <section id="context" style="margin-top:3rem;">
+          <h2 style="color:#fff;">Cultural and Ethical Context</h2>
+          <p>
+            Stuxnet’s creators saw it as preemptive defense. Historians now debate whether it marked the birth of a new deterrent era or the normalization of invisible war. <em>Dark Recipe</em> doesn’t retell Stuxnet—it lives in its shadow. Every system Knox studies owes something to that first act of digital sabotage.
+          </p>
+        </section>
+
+        <blockquote style="border-left:3px solid #900;padding-left:1rem;margin:3rem 0;color:#ccc;font-style:italic;">
+          “We built it to keep the peace. We just forgot to teach it what peace meant.”
+        </blockquote>
+
+        <footer style="border-top:1px solid #333;padding-top:1rem;margin-top:2rem;text-align:center;font-size:0.9rem;color:#888;">
+          Compiled from open-source intelligence and research notes — <em>Field Guide Edition 1.0</em>
+        </footer>
+      </main>
+    </main>
+  </div>
+  <script src="/assets/js/fieldguide.js"></script>
+</body>
+</html>

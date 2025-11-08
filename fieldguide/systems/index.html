@@ -127,9 +127,16 @@
     <main class="content">
 
     <h1>Systems &amp; Control</h1>
-    <div class="panel">
-      <p class="muted">Reference architecture for FarmCore (edge automation) and FarmLytics (cloud analytics). Educational context; simulated only.</p>
-    </div>
+    <section id="systems-intro" style="max-width:760px;margin:2rem auto 1rem auto;padding:0 1rem;color:#e0e0e0;font-family:'Georgia',serif;line-height:1.7;">
+      <h1 style="color:#fff;margin:0 0 0.5rem 0;font-weight:600;font-size:1.6rem;">Systems &amp; Control</h1>
+      <p>
+        Precision agriculture is an act of faith—trusting data, sensors, and algorithms to act as extensions of human intent.
+        <em>FarmCore</em> and <em>FarmLytics</em> were designed for efficiency, not exploitation. What follows illustrates how their interaction should have worked—until trust itself became the point of attack.
+      </p>
+      <p>
+        These diagrams are reconstructions, not warnings. They show the hinge where design met assumption.
+      </p>
+    </section>
 
     <figure class="figure">
       <header>FarmCore ↔ FarmLytics Overview</header>
@@ -228,6 +235,28 @@ flowchart TB
       <h2>HMI / CEA Recipe Dashboard</h2>
       <p class="muted">Reconstructed interface view. Simulated data for educational context.</p>
       <p><a class="btn" href="/fieldguide/systems/dashboard.html">Launch the dashboard →</a></p>
+    </section>
+    
+    <section id="stuxnet-context" style="max-width:760px;margin:3rem auto;padding:1rem 1.5rem;border-left:3px solid #900;background:#111;border-radius:6px;">
+      <h2 style="color:#fff;">Case Study — Stuxnet</h2>
+      <p>
+        In 2010, a piece of code slipped through the world’s air gaps and rewrote how we think about control. 
+        <strong>Stuxnet</strong> targeted Siemens industrial controllers at Iran’s Natanz facility, quietly varying centrifuge speeds while feeding normal data back to operators. 
+        It was the first malware to cause physical destruction—proof that software could move steel.
+      </p>
+      <p>
+        To engineers, it was a revelation of possibility and responsibility. The systems behind <em>Dark Recipe</em> draw their lineage from that moment: a world where process automation and statecraft share the same syntax.
+      </p>
+      <blockquote style="border-left:3px solid #900;padding-left:1rem;color:#ccc;font-style:italic;margin-top:1.5rem;">
+        “We built it to keep the peace. We just forgot to teach it what peace meant.”
+      </blockquote>
+    </section>
+
+    <section id="related" style="max-width:760px;margin:2rem auto;text-align:center;">
+      <p style="color:#999;font-size:0.9rem;">See also:</p>
+      <a href="/fieldguide/intelligence/" style="color:#52ffa8;text-decoration:none;margin:0 0.5rem;">Intelligence Context</a> •
+      <a href="/fieldguide/stuxnet/" style="color:#52ffa8;text-decoration:none;margin:0 0.5rem;">Stuxnet Case File</a> •
+      <a href="/fieldguide/threats/" style="color:#52ffa8;text-decoration:none;margin:0 0.5rem;">Threats Overview</a>
     </section>
   
     </main>

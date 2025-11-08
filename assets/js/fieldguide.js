@@ -218,6 +218,22 @@
   }
 
   if(inFieldGuide()){
+    // Inject global Mermaid palette overrides once for all diagrams (CSS approach)
+    (function injectMermaidTheme(){
+      if(document.getElementById('fg-mermaid-theme')) return;
+      var css = `:root{--mermaid-bg:#0d171c;--mermaid-node-bg:#12313d;--mermaid-border:#52ffa8;--mermaid-text:#e8eef5}`+
+        `.mermaid svg{background:var(--mermaid-bg)!important}`+
+        `.mermaid .node rect,.mermaid .node polygon{fill:var(--mermaid-node-bg)!important;stroke:var(--mermaid-border)!important}`+
+        `.mermaid .cluster rect{fill:var(--mermaid-node-bg)!important;stroke:var(--mermaid-border)!important}`+
+        `.mermaid .edgePath path{stroke:var(--mermaid-border)!important}`+
+        `.mermaid text, .mermaid span{fill:var(--mermaid-text)!important}`+
+        `.mermaid .label foreignObject{color:var(--mermaid-text)!important}`+
+        `.mermaid .node > *{transition:fill .25s ease, stroke .25s ease}`;
+      var styleTag = document.createElement('style');
+      styleTag.id = 'fg-mermaid-theme';
+      styleTag.textContent = css;
+      document.head.appendChild(styleTag);
+    })();
     fetchSidebar().then(function(html){
       insertSidebar(html);
       return fetchIndex();

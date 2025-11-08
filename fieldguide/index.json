@@ -1,0 +1,8 @@
+[
+  {"title":"Field Guide Overview","url":"/fieldguide/","excerpt":"Overview of the Field Guide and purpose for the series."},
+  {"title":"Plant Biology","url":"/fieldguide/biology/","excerpt":"Spectral bands, stress signaling, and phototoxic cascades referenced in Dark Recipe."},
+  {"title":"Glossary","url":"/fieldguide/glossary/","excerpt":"Definitions for technical terms used in the series."},
+  {"title":"Intelligence","url":"/fieldguide/intelligence/","excerpt":"Notes on intelligence tradecraft and analytic methods."},
+  {"title":"Systems","url":"/fieldguide/systems/","excerpt":"Control systems and FarmCore / FarmLytics systems described in the novels."},
+  {"title":"Threats","url":"/fieldguide/threats/","excerpt":"Threat modeling and adversary tactics referenced in the story."}
+]

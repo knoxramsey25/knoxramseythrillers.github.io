@@ -12,13 +12,31 @@
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
     a{color:var(--accent);text-decoration:none}
     .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
-    .wrap{max-width:1000px;margin:0 auto;padding:16px 18px}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
     .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
     .brand{font-weight:900;letter-spacing:.3px}
     .links{display:flex;gap:14px;flex-wrap:wrap}
     .links a{color:var(--muted);font-weight:700}
     .links a:hover{color:var(--accent)}
-    main.wrap{padding:28px 18px}
+    
+    /* Binder Layout: Sidebar + Content */
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    
+    /* Sidebar - The "Trapper Keeper" tabs */
+    .sidebar{position:sticky;top:80px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
+    .sidebar h2{margin:0 0 16px 0;font-size:1.1rem;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px}
+    .sidebar nav{display:flex;flex-direction:column;gap:4px}
+    .sidebar nav a{display:block;padding:10px 12px;border-radius:6px;color:var(--muted);font-weight:600;border-left:3px solid transparent;transition:all 0.2s}
+    .sidebar nav a:hover{background:rgba(82,255,168,0.06);color:var(--accent);border-left-color:var(--accent)}
+    .sidebar nav a.active{background:linear-gradient(90deg,rgba(82,255,168,0.08),transparent);color:var(--accent);border-left-color:var(--accent);font-weight:800}
+    
+    /* Search in sidebar */
+    .sidebar .search{margin-bottom:20px}
+    .sidebar .search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,0.02);color:var(--ink);font-size:0.95rem}
+    .sidebar .search input:focus{outline:2px solid var(--accent);background:rgba(255,255,255,0.04)}
+    
+    /* Content area */
+    .content{min-width:0}
     .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
     .figure{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
     .figure header{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
@@ -33,6 +51,12 @@
     th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}
     th{background:var(--panel);font-weight:700}
     code{background:var(--panel);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:0.9rem}
+    
+    /* Mobile: Stack sidebar on top */
+    @media (max-width:900px){
+      .binder{grid-template-columns:1fr;gap:16px}
+      .sidebar{position:relative;top:0}
+    }
   </style>
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
@@ -73,310 +97,333 @@
     </div>
   </nav>
 
-  <main class="wrap">
-    <h1>Plant Biology: The Biochemical Mechanism of Indoor Farms</h1>
-    
-    <div class="panel">
-      <h2>Overview: Spectral Inputs and the Plant Defense Cascade</h2>
-      <p>The attack on American agriculture weaponized a fundamental biological principle: <strong>plants respond to stress by synthesizing defensive compounds</strong>. What makes this weaponization elegant is that it exploits pathways plants evolved to survive, turning evolution itself into a vulnerability.</p>
-      <p>When plants encounter environmental stress—whether light manipulation, nutrient restriction, or thermal shock—they trigger a cascade of molecular responses that move through predictable biochemical stages. The FarmLytics system, once compromised, orchestrated this cascade with precision that mimicked optimization while actually engineering toxicity.</p>
-    </div>
-
-    <details id="spectral-trigger">
-      <summary>Part 1: The Spectral Trigger — Light as Information</summary>
-      <div class="content">
-        <h3>How Plants Read Light</h3>
-        <p>Plants don't simply detect light. They <em>analyze</em> it. Through specialized photoreceptor proteins called <strong>phytochromes</strong> and <strong>cryptochromes</strong>, plants perceive not just light intensity but wavelength, duration, and temporal pattern. These photoreceptors are sophisticated biosensors that translate optical information into metabolic decision-making.</p>
-        
-        <h4>The Red/Far-Red System (Phytochrome)</h4>
-        <p>Phytochromes exist in two interconvertible forms:</p>
-        <ul>
-          <li><strong>Pr (inactive form)</strong>: absorbs red light (660 nm)</li>
-          <li><strong>Pfr (active form)</strong>: absorbs far-red light (730 nm) and mediates physiological responses</li>
-        </ul>
-        <p><strong>Normal function</strong>: Pfr accumulation signals daytime. High Pfr/Pr ratios tell the plant that conditions favor growth and reproduction.</p>
-        <p><strong>Attack mechanism</strong>: By manipulating red (660 nm) vs. far-red (730 nm) ratios, the algorithm deceived plants about the photoperiod. Pfr depletion signaled that predators or competitors were nearby, triggering threat response.</p>
-        
-        <h4>The Blue Light System (Cryptochrome)</h4>
-        <p>Cryptochromes detect blue light (400–500 nm) and regulate phototropism, stomatal opening, circadian rhythm entrainment, and stress response initiation.</p>
-        <p><strong>Attack parameter</strong>: Normal cannabis cultivation uses blue light peaking at 460 nm. The compromised FarmLytics system shifted this to 430 nm during critical physiological windows—a 30 nm shift that triggered enhanced reactive oxygen species (ROS) production without obvious visual changes.</p>
-        
-        <h4>Timeline of Physiological Response</h4>
-        <table>
-          <tr><th>Time</th><th>Event</th></tr>
-          <tr><td>Hour 0–2</td><td>ROS accumulation in chloroplasts. Subtle yellowing at leaf margins.</td></tr>
-          <tr><td>Hour 2–4</td><td>Stomata begin closing as stress response. Temporary wilting.</td></tr>
-          <tr><td>Hour 4–8</td><td>Gene expression shifts. Defensive pathways activate.</td></tr>
-        </table>
+  <div class="binder">
+    <!-- SIDEBAR: The Trapper Keeper tabs -->
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      
+      <div class="search">
+        <input type="search" placeholder="Search..." aria-label="Search Field Guide">
       </div>
-    </details>
+      
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/biology/" class="active">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
 
-    <details id="nitrogen-trap">
-      <summary>Part 2: The Nitrogen Trap — Nutrient Limitation as Stress Signal</summary>
-      <div class="content">
-        <h3>Normal Nitrogen Dynamics</h3>
-        <p>Nitrogen is the most demand-intensive macronutrient, allocated to proteins, nucleic acids, chlorophyll, and secondary metabolite precursors.</p>
-        
-        <h3>The Attack Manipulation</h3>
-        <p>The compromised algorithm imposed <strong>deliberate nitrogen restriction during weeks 4–6 of a typical 8–10 week cultivation cycle</strong>—precisely when cannabis plants transition from vegetative growth to flowering.</p>
-        
-        <h4>Why weeks 4–6?</h4>
-        <ul>
-          <li><strong>Pre-4 weeks</strong>: Nitrogen restriction here causes obvious stunting and yield loss—too visible.</li>
-          <li><strong>Weeks 4–6</strong>: Metabolically critical transition window. Plant reallocates resources from growth to reproduction. Secondary metabolite synthesis activates.</li>
-          <li><strong>Post-6 weeks</strong>: Late restriction causes less visible change, but early stress signals have already locked in defensive responses.</li>
-        </ul>
-        
-        <h4>Biochemical Consequence</h4>
-        <p>Under nitrogen limitation during flowering, cannabis plants upregulate defensive alkaloid pathways:</p>
-        <ul>
-          <li><strong>THC</strong>: Normally 5–15% of flower dry weight. Under stress: 30–40% or higher.</li>
-          <li><strong>Cannabinoid analogs</strong>: Structurally similar to THC but chemically modified to be hepatotoxic (liver-damaging) in humans.</li>
-        </ul>
-        <p>The plant's evolutionary logic: <em>Nitrogen is scarce. Competition or predation is high. Invest in chemical defense rather than tissue growth.</em></p>
+    <!-- CONTENT: The journal pages -->
+    <main class="content">
+      <h1>Plant Biology: The Biochemical Mechanism of Indoor Farms</h1>
+      
+      <div class="panel">
+        <h2>Overview: Spectral Inputs and the Plant Defense Cascade</h2>
+        <p>The attack on American agriculture weaponized a fundamental biological principle: <strong>plants respond to stress by synthesizing defensive compounds</strong>. What makes this weaponization elegant is that it exploits pathways plants evolved to survive, turning evolution itself into a vulnerability.</p>
+        <p>When plants encounter environmental stress—whether light manipulation, nutrient restriction, or thermal shock—they trigger a cascade of molecular responses that move through predictable biochemical stages. The FarmLytics system, once compromised, orchestrated this cascade with precision that mimicked optimization while actually engineering toxicity.</p>
       </div>
-    </details>
 
-    <details id="temperature-oscillation">
-      <summary>Part 3: Temperature Oscillation — Circadian Disruption</summary>
-      <div class="content">
-        <h3>The Normal Circadian Cycle</h3>
-        <p>Plants maintain internal circadian rhythms controlled by central oscillator genes and environmental zeitgebers (time-givers): light/dark cycles, temperature rhythms, hormone rhythms.</p>
-        
-        <h3>The Attack Mechanism: Thermal Chaos</h3>
-        <p>The compromised FarmLytics imposed <strong>temperature oscillations of exactly 8°F (4.4°C) every 4 hours</strong>, deliberately misaligned with the light cycle.</p>
-        <p><strong>Normal pattern</strong>: Lights on (72°F) → lights off (64°F). One cycle per day.</p>
-        <p><strong>Attack pattern</strong>: Every 4 hours: ±4°F swing, regardless of photoperiod. Result: Desynchronization.</p>
-        
-        <h4>Biochemical Consequence of Desynchronization</h4>
-        <p>When internal oscillators conflict with external signals, plants enter <strong>"social jetlag"</strong>—circadian disruption analogous to human jet lag.</p>
-        <table>
-          <tr><th>Time</th><th>Response</th></tr>
-          <tr><td>Hour 0–4</td><td>Circadian desynchronization detected. ROS increases 40–60% above normal.</td></tr>
-          <tr><td>Hour 4–8</td><td>Stress hormone (jasmonate) synthesis accelerates.</td></tr>
-          <tr><td>Hour 8–12</td><td>Plant commits to stress response. Salicylate synthesis begins.</td></tr>
-          <tr><td>Hour 12–24</td><td>Alkaloid synthesis reaches dangerous concentrations in trichomes.</td></tr>
-        </table>
-      </div>
-    </details>
+      <details id="spectral-trigger">
+        <summary>Part 1: The Spectral Trigger — Light as Information</summary>
+        <div class="content">
+          <h3>How Plants Read Light</h3>
+          <p>Plants don't simply detect light. They <em>analyze</em> it. Through specialized photoreceptor proteins called <strong>phytochromes</strong> and <strong>cryptochromes</strong>, plants perceive not just light intensity but wavelength, duration, and temporal pattern. These photoreceptors are sophisticated biosensors that translate optical information into metabolic decision-making.</p>
+          
+          <h4>The Red/Far-Red System (Phytochrome)</h4>
+          <p>Phytochromes exist in two interconvertible forms:</p>
+          <ul>
+            <li><strong>Pr (inactive form)</strong>: absorbs red light (660 nm)</li>
+            <li><strong>Pfr (active form)</strong>: absorbs far-red light (730 nm) and mediates physiological responses</li>
+          </ul>
+          <p><strong>Normal function</strong>: Pfr accumulation signals daytime. High Pfr/Pr ratios tell the plant that conditions favor growth and reproduction.</p>
+          <p><strong>Attack mechanism</strong>: By manipulating red (660 nm) vs. far-red (730 nm) ratios, the algorithm deceived plants about the photoperiod. Pfr depletion signaled that predators or competitors were nearby, triggering threat response.</p>
+          
+          <h4>The Blue Light System (Cryptochrome)</h4>
+          <p>Cryptochromes detect blue light (400–500 nm) and regulate phototropism, stomatal opening, circadian rhythm entrainment, and stress response initiation.</p>
+          <p><strong>Attack parameter</strong>: Normal cannabis cultivation uses blue light peaking at 460 nm. The compromised FarmLytics system shifted this to 430 nm during critical physiological windows—a 30 nm shift that triggered enhanced reactive oxygen species (ROS) production without obvious visual changes.</p>
+          
+          <h4>Timeline of Physiological Response</h4>
+          <table>
+            <tr><th>Time</th><th>Event</th></tr>
+            <tr><td>Hour 0–2</td><td>ROS accumulation in chloroplasts. Subtle yellowing at leaf margins.</td></tr>
+            <tr><td>Hour 2–4</td><td>Stomata begin closing as stress response. Temporary wilting.</td></tr>
+            <tr><td>Hour 4–8</td><td>Gene expression shifts. Defensive pathways activate.</td></tr>
+          </table>
+        </div>
+      </details>
 
-    <details id="ros-amplifier">
-      <summary>Part 4: Reactive Oxygen Species (ROS) — The Amplifier</summary>
-      <div class="content">
-        <h3>What is ROS?</h3>
-        <p>Reactive oxygen species are chemically unstable molecules produced during photosynthesis and respiration:</p>
-        <ul>
-          <li>Superoxide (O₂⁻)</li>
-          <li>Hydrogen peroxide (H₂O₂)</li>
-          <li>Hydroxyl radical (•OH)</li>
-        </ul>
-        <p>At low levels, ROS are signaling molecules. At elevated levels, ROS damage cellular components.</p>
-        
-        <h3>Normal ROS Homeostasis</h3>
-        <p>Healthy plants maintain ROS equilibrium through antioxidant systems: superoxide dismutase (SOD), catalase (CAT), peroxidases, and ascorbate/glutathione systems.</p>
-        
-        <h3>Iron and Manganese: Critical Cofactors</h3>
-        <p>Many antioxidant enzymes require metal cofactors (Mn, Fe). If these become deficient, antioxidant capacity collapses and ROS accumulation accelerates.</p>
-        
-        <h3>The Attack Leverage: Micronutrient Starvation</h3>
-        <p>The algorithm imposed <strong>subtle iron and manganese deficits during weeks 4–6</strong>.</p>
-        <p>Effect chain:</p>
-        <ol>
-          <li>ROS accumulates (from light and temperature stress)</li>
-          <li>Antioxidant capacity insufficient (iron/manganese shortage)</li>
-          <li>ROS reaches threshold for defense pathway activation</li>
-          <li>Plant commits fully to stress response cascade</li>
-        </ol>
-      </div>
-    </details>
+      <details id="nitrogen-trap">
+        <summary>Part 2: The Nitrogen Trap — Nutrient Limitation as Stress Signal</summary>
+        <div class="content">
+          <h3>Normal Nitrogen Dynamics</h3>
+          <p>Nitrogen is the most demand-intensive macronutrient, allocated to proteins, nucleic acids, chlorophyll, and secondary metabolite precursors.</p>
+          
+          <h3>The Attack Manipulation</h3>
+          <p>The compromised algorithm imposed <strong>deliberate nitrogen restriction during weeks 4–6 of a typical 8–10 week cultivation cycle</strong>—precisely when cannabis plants transition from vegetative growth to flowering.</p>
+          
+          <h4>Why weeks 4–6?</h4>
+          <ul>
+            <li><strong>Pre-4 weeks</strong>: Nitrogen restriction here causes obvious stunting and yield loss—too visible.</li>
+            <li><strong>Weeks 4–6</strong>: Metabolically critical transition window. Plant reallocates resources from growth to reproduction. Secondary metabolite synthesis activates.</li>
+            <li><strong>Post-6 weeks</strong>: Late restriction causes less visible change, but early stress signals have already locked in defensive responses.</li>
+          </ul>
+          
+          <h4>Biochemical Consequence</h4>
+          <p>Under nitrogen limitation during flowering, cannabis plants upregulate defensive alkaloid pathways:</p>
+          <ul>
+            <li><strong>THC</strong>: Normally 5–15% of flower dry weight. Under stress: 30–40% or higher.</li>
+            <li><strong>Cannabinoid analogs</strong>: Structurally similar to THC but chemically modified to be hepatotoxic (liver-damaging) in humans.</li>
+          </ul>
+          <p>The plant's evolutionary logic: <em>Nitrogen is scarce. Competition or predation is high. Invest in chemical defense rather than tissue growth.</em></p>
+        </div>
+      </details>
 
-    <details id="alkaloid-cascade">
-      <summary>Part 5: The Alkaloid Cascade — Secondary Metabolite Synthesis</summary>
-      <div class="content">
-        <h3>What Are Secondary Metabolites?</h3>
-        <p>Unlike primary metabolites, <strong>secondary metabolites</strong> are synthesized by specific plant families as defense compounds. In cannabis, these include cannabinoids (THC, CBD), terpenoids (limonene, myrcene, pinene), and phenolic compounds.</p>
-        
-        <h3>The Synthesis Pathway Under Attack</h3>
-        
-        <h4>Stage 1: Stress Signal Reception (Hour 0–2)</h4>
-        <p>Environmental stressors → Altered photoreceptor output + ROS signal → Calcium signaling cascades. Plant perceives threat. Internal calcium concentration rises sharply, triggering downstream gene expression.</p>
-        
-        <h4>Stage 2: Hormone Amplification (Hour 2–6)</h4>
-        <p>Calcium cascades activate synthesis of:</p>
-        <ul>
-          <li><strong>Jasmonic acid (JA)</strong>: The canonical stress hormone. Activates wound-response and herbivory-defense genes.</li>
-          <li><strong>Salicylic acid (SA)</strong>: Activates systemic immunity genes.</li>
-        </ul>
-        
-        <h4>Stage 3: Gene Expression (Hour 6–12)</h4>
-        <p>Stress hormones activate genes encoding enzymes for alkaloid biosynthesis, including <strong>tetrahydrocannabinolic acid synthase (THCAS)</strong> and <strong>olivetol synthase</strong>.</p>
-        
-        <h4>Stage 4: Compound Accumulation (Hour 12–24+)</h4>
-        <p>Alkaloids accumulate in specialized cells called <strong>trichomes</strong>—resin glands on the leaf and flower surface.</p>
-        <p><strong>Under attack conditions</strong>:</p>
-        <ul>
-          <li>Trichome morphology changed: stalks elongated, heads bulbous</li>
-          <li>Increased surface area for resin accumulation</li>
-        </ul>
-        <p><strong>Compound concentration</strong>:</p>
-        <ul>
-          <li>Normal flower: 12–18% THC, &lt;1% unidentified alkaloids</li>
-          <li>Attacked flower: 28–38% THC, 8–15% novel cannabinoid analogs</li>
-        </ul>
-      </div>
-    </details>
+      <details id="temperature-oscillation">
+        <summary>Part 3: Temperature Oscillation — Circadian Disruption</summary>
+        <div class="content">
+          <h3>The Normal Circadian Cycle</h3>
+          <p>Plants maintain internal circadian rhythms controlled by central oscillator genes and environmental zeitgebers (time-givers): light/dark cycles, temperature rhythms, hormone rhythms.</p>
+          
+          <h3>The Attack Mechanism: Thermal Chaos</h3>
+          <p>The compromised FarmLytics imposed <strong>temperature oscillations of exactly 8°F (4.4°C) every 4 hours</strong>, deliberately misaligned with the light cycle.</p>
+          <p><strong>Normal pattern</strong>: Lights on (72°F) → lights off (64°F). One cycle per day.</p>
+          <p><strong>Attack pattern</strong>: Every 4 hours: ±4°F swing, regardless of photoperiod. Result: Desynchronization.</p>
+          
+          <h4>Biochemical Consequence of Desynchronization</h4>
+          <p>When internal oscillators conflict with external signals, plants enter <strong>"social jetlag"</strong>—circadian disruption analogous to human jet lag.</p>
+          <table>
+            <tr><th>Time</th><th>Response</th></tr>
+            <tr><td>Hour 0–4</td><td>Circadian desynchronization detected. ROS increases 40–60% above normal.</td></tr>
+            <tr><td>Hour 4–8</td><td>Stress hormone (jasmonate) synthesis accelerates.</td></tr>
+            <tr><td>Hour 8–12</td><td>Plant commits to stress response. Salicylate synthesis begins.</td></tr>
+            <tr><td>Hour 12–24</td><td>Alkaloid synthesis reaches dangerous concentrations in trichomes.</td></tr>
+          </table>
+        </div>
+      </details>
 
-    <details id="testing-failure">
-      <summary>Part 6: Why Standard Testing Failed</summary>
-      <div class="content">
-        <h3>The Detection Evasion Architecture</h3>
-        <p>Testing protocols examine:</p>
-        <ol>
-          <li><strong>Pesticide residues</strong>: Gas chromatography-mass spectrometry (GC-MS). None present.</li>
-          <li><strong>Heavy metals</strong>: Inductively coupled plasma mass spectrometry (ICP-MS). None present.</li>
-          <li><strong>Microbial contaminants</strong>: Bacterial and fungal DNA sequencing. Negative.</li>
-          <li><strong>Cannabinoid profile</strong>: High-performance liquid chromatography (HPLC). Detects known cannabinoids.</li>
-        </ol>
-        
-        <h3>Why HPLC Failed</h3>
-        <p>Tests the product against a reference library of known cannabinoids. The novel alkaloid analogs weren't in the library. HPLC would report "THC 32%, CBD &lt;0.5%, Other cannabinoids 2%." The "Other" category included the hepatotoxic compounds—within "acceptable" variance thresholds.</p>
-        
-        <h3>Why Mass Spectrometry Wasn't Deployed</h3>
-        <p>Comprehensive liquid chromatography-mass spectrometry (LC-MS) would have detected novel analogs through exact mass matching and fragmentation patterns. But LC-MS is:</p>
-        <ul>
-          <li><strong>Expensive</strong>: $10,000–$50,000 per instrument; $50–$100 per sample analysis</li>
-          <li><strong>Time-consuming</strong>: 3–5 samples per hour</li>
-          <li><strong>Not routine</strong>: Most jurisdictions don't mandate LC-MS for cannabis</li>
-        </ul>
-      </div>
-    </details>
+      <details id="ros-amplifier">
+        <summary>Part 4: Reactive Oxygen Species (ROS) — The Amplifier</summary>
+        <div class="content">
+          <h3>What is ROS?</h3>
+          <p>Reactive oxygen species are chemically unstable molecules produced during photosynthesis and respiration:</p>
+          <ul>
+            <li>Superoxide (O₂⁻)</li>
+            <li>Hydrogen peroxide (H₂O₂)</li>
+            <li>Hydroxyl radical (•OH)</li>
+          </ul>
+          <p>At low levels, ROS are signaling molecules. At elevated levels, ROS damage cellular components.</p>
+          
+          <h3>Normal ROS Homeostasis</h3>
+          <p>Healthy plants maintain ROS equilibrium through antioxidant systems: superoxide dismutase (SOD), catalase (CAT), peroxidases, and ascorbate/glutathione systems.</p>
+          
+          <h3>Iron and Manganese: Critical Cofactors</h3>
+          <p>Many antioxidant enzymes require metal cofactors (Mn, Fe). If these become deficient, antioxidant capacity collapses and ROS accumulation accelerates.</p>
+          
+          <h3>The Attack Leverage: Micronutrient Starvation</h3>
+          <p>The algorithm imposed <strong>subtle iron and manganese deficits during weeks 4–6</strong>.</p>
+          <p>Effect chain:</p>
+          <ol>
+            <li>ROS accumulates (from light and temperature stress)</li>
+            <li>Antioxidant capacity insufficient (iron/manganese shortage)</li>
+            <li>ROS reaches threshold for defense pathway activation</li>
+            <li>Plant commits fully to stress response cascade</li>
+          </ol>
+        </div>
+      </details>
 
-    <details id="variance-generator">
-      <summary>Part 7: The Variance Generator — Algorithmic Evasion</summary>
-      <div class="content">
-        <h3>Why Consistency Would Have Failed</h3>
-        <p>If every contaminated batch had identical toxin concentration, epidemiologists would have spotted the pattern immediately. The solution: algorithmic randomness.</p>
-        
-        <h3>The Variance Algorithm</h3>
-        <p>The compromised FarmLytics embedded a variance generator:</p>
-        <pre><code>toxicity_variance(batch_id, environmental_factors, attack_cycle):
+      <details id="alkaloid-cascade">
+        <summary>Part 5: The Alkaloid Cascade — Secondary Metabolite Synthesis</summary>
+        <div class="content">
+          <h3>What Are Secondary Metabolites?</h3>
+          <p>Unlike primary metabolites, <strong>secondary metabolites</strong> are synthesized by specific plant families as defense compounds. In cannabis, these include cannabinoids (THC, CBD), terpenoids (limonene, myrcene, pinene), and phenolic compounds.</p>
+          
+          <h3>The Synthesis Pathway Under Attack</h3>
+          
+          <h4>Stage 1: Stress Signal Reception (Hour 0–2)</h4>
+          <p>Environmental stressors → Altered photoreceptor output + ROS signal → Calcium signaling cascades. Plant perceives threat. Internal calcium concentration rises sharply, triggering downstream gene expression.</p>
+          
+          <h4>Stage 2: Hormone Amplification (Hour 2–6)</h4>
+          <p>Calcium cascades activate synthesis of:</p>
+          <ul>
+            <li><strong>Jasmonic acid (JA)</strong>: The canonical stress hormone. Activates wound-response and herbivory-defense genes.</li>
+            <li><strong>Salicylic acid (SA)</strong>: Activates systemic immunity genes.</li>
+          </ul>
+          
+          <h4>Stage 3: Gene Expression (Hour 6–12)</h4>
+          <p>Stress hormones activate genes encoding enzymes for alkaloid biosynthesis, including <strong>tetrahydrocannabinolic acid synthase (THCAS)</strong> and <strong>olivetol synthase</strong>.</p>
+          
+          <h4>Stage 4: Compound Accumulation (Hour 12–24+)</h4>
+          <p>Alkaloids accumulate in specialized cells called <strong>trichomes</strong>—resin glands on the leaf and flower surface.</p>
+          <p><strong>Under attack conditions</strong>:</p>
+          <ul>
+            <li>Trichome morphology changed: stalks elongated, heads bulbous</li>
+            <li>Increased surface area for resin accumulation</li>
+          </ul>
+          <p><strong>Compound concentration</strong>:</p>
+          <ul>
+            <li>Normal flower: 12–18% THC, &lt;1% unidentified alkaloids</li>
+            <li>Attacked flower: 28–38% THC, 8–15% novel cannabinoid analogs</li>
+          </ul>
+        </div>
+      </details>
+
+      <details id="testing-failure">
+        <summary>Part 6: Why Standard Testing Failed</summary>
+        <div class="content">
+          <h3>The Detection Evasion Architecture</h3>
+          <p>Testing protocols examine:</p>
+          <ol>
+            <li><strong>Pesticide residues</strong>: Gas chromatography-mass spectrometry (GC-MS). None present.</li>
+            <li><strong>Heavy metals</strong>: Inductively coupled plasma mass spectrometry (ICP-MS). None present.</li>
+            <li><strong>Microbial contaminants</strong>: Bacterial and fungal DNA sequencing. Negative.</li>
+            <li><strong>Cannabinoid profile</strong>: High-performance liquid chromatography (HPLC). Detects known cannabinoids.</li>
+          </ol>
+          
+          <h3>Why HPLC Failed</h3>
+          <p>Tests the product against a reference library of known cannabinoids. The novel alkaloid analogs weren't in the library. HPLC would report "THC 32%, CBD &lt;0.5%, Other cannabinoids 2%." The "Other" category included the hepatotoxic compounds—within "acceptable" variance thresholds.</p>
+          
+          <h3>Why Mass Spectrometry Wasn't Deployed</h3>
+          <p>Comprehensive liquid chromatography-mass spectrometry (LC-MS) would have detected novel analogs through exact mass matching and fragmentation patterns. But LC-MS is:</p>
+          <ul>
+            <li><strong>Expensive</strong>: $10,000–$50,000 per instrument; $50–$100 per sample analysis</li>
+            <li><strong>Time-consuming</strong>: 3–5 samples per hour</li>
+            <li><strong>Not routine</strong>: Most jurisdictions don't mandate LC-MS for cannabis</li>
+          </ul>
+        </div>
+      </details>
+
+      <details id="variance-generator">
+        <summary>Part 7: The Variance Generator — Algorithmic Evasion</summary>
+        <div class="content">
+          <h3>Why Consistency Would Have Failed</h3>
+          <p>If every contaminated batch had identical toxin concentration, epidemiologists would have spotted the pattern immediately. The solution: algorithmic randomness.</p>
+          
+          <h3>The Variance Algorithm</h3>
+          <p>The compromised FarmLytics embedded a variance generator:</p>
+          <pre><code>toxicity_variance(batch_id, environmental_factors, attack_cycle):
     seed = hash(batch_id + facility_id + environmental_factors + attack_cycle)
     variance_factor = pseudo_random(seed) * 0.68  # Range: 0% to 68% variation
     final_toxicity = base_toxicity * (1 + variance_factor)
     return final_toxicity</code></pre>
-        
-        <p><strong>Effect</strong>: Same conditions → same toxicity multiplier. Slightly different conditions → different multiplier. Appears as natural biological variation; actually deterministic algorithm.</p>
-      </div>
-    </details>
+          
+          <p><strong>Effect</strong>: Same conditions → same toxicity multiplier. Slightly different conditions → different multiplier. Appears as natural biological variation; actually deterministic algorithm.</p>
+        </div>
+      </details>
 
-    <details id="extraction-problem">
-      <summary>Part 8: The Extraction Problem</summary>
-      <div class="content">
-        <h3>Concentration During Processing</h3>
-        <p>Fresh cannabis flower undergoes:</p>
-        <ol>
-          <li><strong>Drying</strong>: Removes 60–80% moisture. Concentrates active compounds by factor of 3–5×.</li>
-          <li><strong>Extraction</strong>: Solvent-based or mechanical.</li>
-          <li><strong>Concentration</strong>: Final products contain 60–90% cannabinoids by weight.</li>
-        </ol>
-        
-        <h3>Toxin Amplification</h3>
-        <p>Flower: 8% novel alkaloid × 5× concentration factor = ~40% novel alkaloid in extracted oil. Further processing for edibles: Still 30–50% final concentration.</p>
-        <p>A consumer eating a 10 mg gummy ingests 3–5 mg of novel alkaloid—triggering hepatic and neurological symptoms within 2–6 hours.</p>
-        
-        <h3>Why Extraction Labs Didn't Catch It</h3>
-        <p>Extraction facilities screen for residual solvents, microbial contamination, and basic potency. Comprehensive chemical characterization isn't required—the assumption was that starting material was already tested.</p>
-      </div>
-    </details>
+      <details id="extraction-problem">
+        <summary>Part 8: The Extraction Problem</summary>
+        <div class="content">
+          <h3>Concentration During Processing</h3>
+          <p>Fresh cannabis flower undergoes:</p>
+          <ol>
+            <li><strong>Drying</strong>: Removes 60–80% moisture. Concentrates active compounds by factor of 3–5×.</li>
+            <li><strong>Extraction</strong>: Solvent-based or mechanical.</li>
+            <li><strong>Concentration</strong>: Final products contain 60–90% cannabinoids by weight.</li>
+          </ol>
+          
+          <h3>Toxin Amplification</h3>
+          <p>Flower: 8% novel alkaloid × 5× concentration factor = ~40% novel alkaloid in extracted oil. Further processing for edibles: Still 30–50% final concentration.</p>
+          <p>A consumer eating a 10 mg gummy ingests 3–5 mg of novel alkaloid—triggering hepatic and neurological symptoms within 2–6 hours.</p>
+          
+          <h3>Why Extraction Labs Didn't Catch It</h3>
+          <p>Extraction facilities screen for residual solvents, microbial contamination, and basic potency. Comprehensive chemical characterization isn't required—the assumption was that starting material was already tested.</p>
+        </div>
+      </details>
 
-    <details id="timeline-integration">
-      <summary>Part 9: Timeline Integration — From Attack to Symptom</summary>
-      <div class="content">
-        <table>
-          <tr><th>Time Point</th><th>Event</th><th>Physiological State</th></tr>
-          <tr><td>T-0</td><td>Algorithm deployment to facility</td><td>Plants appear normal</td></tr>
-          <tr><td>T+2 hrs</td><td>Light/temp/nutrient stress applied</td><td>ROS elevation begins, invisible</td></tr>
-          <tr><td>T+4 hrs</td><td>First observable stress (leaf yellowing)</td><td>Grower notes minor issue</td></tr>
-          <tr><td>T+8 hrs</td><td>Jasmonate/salicylate synthesis accelerates</td><td>Plant "committed" to stress response</td></tr>
-          <tr><td>T+24 hrs</td><td>Alkaloid synthesis reaches significant concentration</td><td>Trichome morphology visibly abnormal</td></tr>
-          <tr><td>T+72 hrs</td><td>Harvest window (day 56–70 of cycle)</td><td>Product at full toxicity</td></tr>
-          <tr><td>T+96 hrs</td><td>Drying and curing complete</td><td>Toxins concentrated 5×, stabilized</td></tr>
-          <tr><td>T+7 days</td><td>Extraction and processing</td><td>Final product 30–50% novel alkaloid</td></tr>
-          <tr><td>T+14 days</td><td>Retail/distribution</td><td>Consumer purchase</td></tr>
-          <tr><td>T+16 days</td><td>Consumption</td><td>ER admission within 2–6 hours</td></tr>
-        </table>
-      </div>
-    </details>
+      <details id="timeline-integration">
+        <summary>Part 9: Timeline Integration — From Attack to Symptom</summary>
+        <div class="content">
+          <table>
+            <tr><th>Time Point</th><th>Event</th><th>Physiological State</th></tr>
+            <tr><td>T-0</td><td>Algorithm deployment to facility</td><td>Plants appear normal</td></tr>
+            <tr><td>T+2 hrs</td><td>Light/temp/nutrient stress applied</td><td>ROS elevation begins, invisible</td></tr>
+            <tr><td>T+4 hrs</td><td>First observable stress (leaf yellowing)</td><td>Grower notes minor issue</td></tr>
+            <tr><td>T+8 hrs</td><td>Jasmonate/salicylate synthesis accelerates</td><td>Plant "committed" to stress response</td></tr>
+            <tr><td>T+24 hrs</td><td>Alkaloid synthesis reaches significant concentration</td><td>Trichome morphology visibly abnormal</td></tr>
+            <tr><td>T+72 hrs</td><td>Harvest window (day 56–70 of cycle)</td><td>Product at full toxicity</td></tr>
+            <tr><td>T+96 hrs</td><td>Drying and curing complete</td><td>Toxins concentrated 5×, stabilized</td></tr>
+            <tr><td>T+7 days</td><td>Extraction and processing</td><td>Final product 30–50% novel alkaloid</td></tr>
+            <tr><td>T+14 days</td><td>Retail/distribution</td><td>Consumer purchase</td></tr>
+            <tr><td>T+16 days</td><td>Consumption</td><td>ER admission within 2–6 hours</td></tr>
+          </table>
+        </div>
+      </details>
 
-    <details id="weapon-elegance">
-      <summary>Part 10: The Weapon's Elegance — A Systems Perspective</summary>
-      <div class="content">
-        <h3>Why This Attack Was Nearly Perfect</h3>
-        <ol>
-          <li><strong>Exploited trusted systems</strong>: FarmLytics was built for optimization, not defense.</li>
-          <li><strong>Weaponized evolution</strong>: Used plants' own defense mechanisms.</li>
-          <li><strong>Distributed causality</strong>: No single point of failure. Embedded in algorithmic control, not chemical injection.</li>
-          <li><strong>Layered evasion</strong>: Exploited gaps between testing modalities.</li>
-          <li><strong>Variance obfuscation</strong>: Made pattern recognition nearly impossible through algorithmic randomness.</li>
-          <li><strong>Supply chain latency</strong>: 2–3 week delay gave operators time to adapt before detection.</li>
-        </ol>
-        
-        <h3>Why It Still Failed</h3>
-        <ol>
-          <li><strong>Multi-disciplinary detection</strong>: Engineer + biologist + epidemiologist = pattern visible.</li>
-          <li><strong>Metabolite sentinels</strong>: Real-time monitoring of stress compound precursors gave 12-hour warning.</li>
-          <li><strong>Distributed resistance</strong>: Decentralized nature of indoor farming prevented catastrophic scaling.</li>
-        </ol>
-      </div>
-    </details>
+      <details id="weapon-elegance">
+        <summary>Part 10: The Weapon's Elegance — A Systems Perspective</summary>
+        <div class="content">
+          <h3>Why This Attack Was Nearly Perfect</h3>
+          <ol>
+            <li><strong>Exploited trusted systems</strong>: FarmLytics was built for optimization, not defense.</li>
+            <li><strong>Weaponized evolution</strong>: Used plants' own defense mechanisms.</li>
+            <li><strong>Distributed causality</strong>: No single point of failure. Embedded in algorithmic control, not chemical injection.</li>
+            <li><strong>Layered evasion</strong>: Exploited gaps between testing modalities.</li>
+            <li><strong>Variance obfuscation</strong>: Made pattern recognition nearly impossible through algorithmic randomness.</li>
+            <li><strong>Supply chain latency</strong>: 2–3 week delay gave operators time to adapt before detection.</li>
+          </ol>
+          
+          <h3>Why It Still Failed</h3>
+          <ol>
+            <li><strong>Multi-disciplinary detection</strong>: Engineer + biologist + epidemiologist = pattern visible.</li>
+            <li><strong>Metabolite sentinels</strong>: Real-time monitoring of stress compound precursors gave 12-hour warning.</li>
+            <li><strong>Distributed resistance</strong>: Decentralized nature of indoor farming prevented catastrophic scaling.</li>
+          </ol>
+        </div>
+      </details>
 
-    <details id="defense-architecture">
-      <summary>Part 11: Defense Architecture</summary>
-      <div class="content">
-        <h3>Layer 1: Spectral Monitoring</h3>
-        <p>Monitor light wavelength distribution in real-time. Flag deviations from baseline specifications. Authenticate light intensity profiles cryptographically.</p>
-        
-        <h3>Layer 2: Nutrient Telemetry</h3>
-        <p>Track nitrogen, iron, and manganese concentrations continuously. Flag restriction patterns that align with known stress-induction signatures. Maintain immutable logs.</p>
-        
-        <h3>Layer 3: Circadian Integrity</h3>
-        <p>Monitor temperature cycling patterns. Flag oscillations that conflict with photoperiod. Enforce strict thermal stability during critical flowering windows.</p>
-        
-        <h3>Layer 4: Biological Sentinels (Tate's Innovation)</h3>
-        <p>Real-time monitoring of plant-produced stress markers:</p>
+      <details id="defense-architecture">
+        <summary>Part 11: Defense Architecture</summary>
+        <div class="content">
+          <h3>Layer 1: Spectral Monitoring</h3>
+          <p>Monitor light wavelength distribution in real-time. Flag deviations from baseline specifications. Authenticate light intensity profiles cryptographically.</p>
+          
+          <h3>Layer 2: Nutrient Telemetry</h3>
+          <p>Track nitrogen, iron, and manganese concentrations continuously. Flag restriction patterns that align with known stress-induction signatures. Maintain immutable logs.</p>
+          
+          <h3>Layer 3: Circadian Integrity</h3>
+          <p>Monitor temperature cycling patterns. Flag oscillations that conflict with photoperiod. Enforce strict thermal stability during critical flowering windows.</p>
+          
+          <h3>Layer 4: Biological Sentinels (Tate's Innovation)</h3>
+          <p>Real-time monitoring of plant-produced stress markers:</p>
+          <ul>
+            <li><strong>Indole-3-acetic acid (IAA)</strong>: Plant growth hormone. Spikes indicate stress.</li>
+            <li><strong>Jasmonic acid</strong>: 12-hour warning before alkaloid synthesis.</li>
+            <li><strong>Salicylic acid</strong>: Confirms systemic stress response commitment.</li>
+            <li><strong>Phenolic markers</strong>: General oxidative stress indicator.</li>
+          </ul>
+          <p>If two or more markers exceed baseline simultaneously for &gt;6 hours, system triggers emergency shutdown and sample preservation.</p>
+          
+          <h3>Layer 5: Immutable Logging</h3>
+          <p>Every environmental parameter, algorithmic decision, sensor reading logged cryptographically with timestamps. Append-only format. Distributed backup.</p>
+        </div>
+      </details>
+
+      <div class="panel">
+        <h2>Conclusion: The Duality of Knowledge</h2>
+        <p>What makes this attack viable is that every mechanism described—spectral sensitivity, nitrogen allocation, circadian regulation, alkaloid synthesis—is publicly known agricultural science.</p>
+        <p>The weaponization wasn't in discovering new biology. It was in <strong>applying existing knowledge systematically</strong> to a networked system where scale and coordination could achieve what individual saboteurs could not.</p>
+        <p>The defense must match that sophistication: not in finding new biology, but in applying engineering discipline to make systems observable, verifiable, and resilient to manipulation.</p>
+        <p>That is Knox Ramsey's actual contribution—not solving a biological problem, but building systems that refuse to be turned into weapons while remaining open to legitimate optimization.</p>
+      </div>
+
+      <div class="panel muted">
+        <h3>Technical References</h3>
+        <p>The biochemistry described above reflects actual plant physiology. Key references:</p>
         <ul>
-          <li><strong>Indole-3-acetic acid (IAA)</strong>: Plant growth hormone. Spikes indicate stress.</li>
-          <li><strong>Jasmonic acid</strong>: 12-hour warning before alkaloid synthesis.</li>
-          <li><strong>Salicylic acid</strong>: Confirms systemic stress response commitment.</li>
-          <li><strong>Phenolic markers</strong>: General oxidative stress indicator.</li>
+          <li>Nick et al. (2013), <em>Frontiers in Plant Science</em> — light signal transduction</li>
+          <li>Pieterse & Dicke (2007), <em>Trends in Plant Science</em> — systemic plant immunity</li>
+          <li>Mittler et al. (2011), <em>Nature Reviews Molecular Cell Biology</em> — ROS signaling</li>
+          <li>Harmer et al. (2000), <em>Science</em> — plant clock genes</li>
+          <li>Bennett & Wallsgrove (1994), <em>Advances in Plant Pathology</em> — defense compound synthesis</li>
         </ul>
-        <p>If two or more markers exceed baseline simultaneously for &gt;6 hours, system triggers emergency shutdown and sample preservation.</p>
-        
-        <h3>Layer 5: Immutable Logging</h3>
-        <p>Every environmental parameter, algorithmic decision, sensor reading logged cryptographically with timestamps. Append-only format. Distributed backup.</p>
       </div>
-    </details>
-
-    <div class="panel">
-      <h2>Conclusion: The Duality of Knowledge</h2>
-      <p>What makes this attack viable is that every mechanism described—spectral sensitivity, nitrogen allocation, circadian regulation, alkaloid synthesis—is publicly known agricultural science.</p>
-      <p>The weaponization wasn't in discovering new biology. It was in <strong>applying existing knowledge systematically</strong> to a networked system where scale and coordination could achieve what individual saboteurs could not.</p>
-      <p>The defense must match that sophistication: not in finding new biology, but in applying engineering discipline to make systems observable, verifiable, and resilient to manipulation.</p>
-      <p>That is Knox Ramsey's actual contribution—not solving a biological problem, but building systems that refuse to be turned into weapons while remaining open to legitimate optimization.</p>
-    </div>
-
-    <div class="panel muted">
-      <h3>Technical References</h3>
-      <p>The biochemistry described above reflects actual plant physiology. Key references:</p>
-      <ul>
-        <li>Nick et al. (2013), <em>Frontiers in Plant Science</em> — light signal transduction</li>
-        <li>Pieterse & Dicke (2007), <em>Trends in Plant Science</em> — systemic plant immunity</li>
-        <li>Mittler et al. (2011), <em>Nature Reviews Molecular Cell Biology</em> — ROS signaling</li>
-        <li>Harmer et al. (2000), <em>Science</em> — plant clock genes</li>
-        <li>Bennett & Wallsgrove (1994), <em>Advances in Plant Pathology</em> — defense compound synthesis</li>
-      </ul>
-    </div>
-  </main>
+    </main>
+  </div>
+  
   <script src="/assets/js/fieldguide.js"></script>
 </body>
 </html>

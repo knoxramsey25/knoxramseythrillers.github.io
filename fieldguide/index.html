@@ -127,6 +127,11 @@
       transform: translateY(-6px) scale(1.03);
       box-shadow: 0 8px 18px rgba(0,0,0,0.35);
     }
+
+    /* Homepage 3-column grid inside main (uses existing binder sidebar as the left column) */
+    #fg-home-grid{display:grid;grid-template-columns:1fr 260px;gap:2rem;align-items:start}
+    #book-column{position:sticky;top:100px}
+    @media (max-width:900px){#fg-home-grid{grid-template-columns:1fr}#book-column{position:static;margin-top:2rem}}
   </style>
 </head>
 <body>
@@ -162,33 +167,38 @@
     <main class="content">
 
     <h1 style="position:absolute;left:-9999px">Field Guide Overview</h1>
-    
-    <div class="fieldguide-intro">
-      <img src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" class="center-logo">
-      <p class="tagline">
-        Interactive Field Guide for <strong>Dark Recipe</strong><br>
-        <span class="sub">Fictional systems • Real science • Narrative intelligence</span>
-      </p>
-      <p class="notice">Navigate sections using the sidebar. Full technical context may reveal plot elements.</p>
-    </div>
 
-    <section id="book-cover" style="text-align:center; margin: 3rem 0 2rem 0;">
-      <h2 style="font-family:Georgia,serif; font-weight:400; letter-spacing:0.5px; color:var(--ink); margin-bottom:1.5rem;">
-        <em>Dark Recipe — A Knox Ramsey Thriller</em>
-      </h2>
-      <div class="cover-wrapper">
+    <div id="fg-home-grid">
+      <!-- Center Content: Author Welcome -->
+      <section id="author-welcome" style="max-width:720px;margin:4rem auto;padding:0 1.5rem;color:#e0e0e0;font-family:'Georgia',serif;line-height:1.7;">
+        <h1 style="font-weight:400;text-align:center;color:#fff;margin-bottom:1.2rem;">
+          Welcome to the Knox Ramsey Field Guide
+        </h1>
+
+        <p>If you’ve arrived here, it’s because you wanted a deeper experience—one that looks beyond the story to see how much truth lives inside the fiction. I’m glad you did.</p>
+
+        <p>Writing <em>Dark Recipe</em> meant living inside the overlap of engineering, biology, and security—fields where the smallest decisions, even made with the best intentions, can echo in ways no one expects. This guide opens that research. It isn’t here to lecture or to predict collapse; it’s a quiet reminder of what happens when human ingenuity outpaces human caution.</p>
+
+        <p>The pages ahead trace the groundwork behind Knox Ramsey’s world: the science that inspired it, the ethics that haunted it, and the historical moments—Stuxnet among them—that still shape how we think about technology and control. The Field Guide is my way of saying <em>thank you</em> for wanting to look deeper, and for caring enough to ask how much of it could be true.</p>
+
+        <blockquote style="border-left:3px solid #900;padding-left:1rem;margin-top:2rem;color:#ccc;font-style:italic;">
+          “Even precision has its blind spots.”  
+          — From <em>Dark Recipe</em>
+        </blockquote>
+      </section>
+
+      <!-- Right Column: Book Display (sticky on wide screens) -->
+      <aside id="book-column" style="text-align:center;">
         <img 
           src="/CoverArt.png" 
           alt="Dark Recipe book cover – working version"
-          class="fade-in interactive-cover"
-          width="300"
-          height="450"
+          style="max-width:220px;width:100%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.5);"
+          width="220" height="330"
         >
-      </div>
-      <p style="font-size:0.9rem; color:var(--muted); margin-top:0.75rem;">
-        Working cover — final artwork pending.
-      </p>
-    </section>
+        <p style="color:#999;font-size:0.85rem;margin-top:0.5rem;">Working cover — final artwork pending</p>
+        <a href="/darkrecipe/" style="display:inline-block;margin-top:1rem;padding:0.5rem 1rem;background:#900;color:#fff;text-decoration:none;border-radius:4px;font-size:0.9rem;">About the Book</a>
+      </aside>
+    </div>
   
     </main>
   </div>

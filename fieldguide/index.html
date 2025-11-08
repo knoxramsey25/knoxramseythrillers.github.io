@@ -53,6 +53,51 @@
       .binder{grid-template-columns:1fr;gap:16px}
       .sidebar{position:relative;top:0}
     }
+    
+    /* Field Guide Intro - Atmospheric Landing */
+    .fieldguide-intro{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:70vh;
+      text-align:center;
+      padding:2rem 1rem;
+    }
+    .center-logo{
+      width:280px;
+      max-width:80%;
+      filter:drop-shadow(0 0 16px rgba(82,255,168,0.4));
+      margin-bottom:2rem;
+      animation:pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%, 100%{filter:drop-shadow(0 0 16px rgba(82,255,168,0.4))}
+      50%{filter:drop-shadow(0 0 24px rgba(82,255,168,0.6))}
+    }
+    .tagline{
+      font-size:1.2rem;
+      color:var(--ink);
+      line-height:1.8;
+      margin:0 0 1.5rem 0;
+    }
+    .tagline strong{
+      color:var(--accent);
+      font-weight:800;
+    }
+    .tagline .sub{
+      display:block;
+      font-size:0.95rem;
+      color:var(--muted);
+      margin-top:0.5rem;
+      font-weight:400;
+    }
+    .notice{
+      color:var(--muted);
+      font-size:0.9rem;
+      margin:2rem 0 0 0;
+      opacity:0.8;
+    }
   </style>
 </head>
 <body>
@@ -82,44 +127,21 @@
         <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
         <a href="/fieldguide/threats/">Threats</a>
         <a href="/fieldguide/glossary/">Glossary</a>
+        <a href="/fieldguide/demo/">Live Demo</a>
       </nav>
     </aside>
 
     <main class="content">
 
-    <h1>Field Guide</h1>
-    <div class="banner">For context within <em>Dark Recipe</em>. Full explanations may reveal plot elements.</div>
-    <div class="intro">
-      <p>This online guide complements the printed novel with color diagrams, interactive views, and concise technical context. It may reference plot elements.</p>
-      <p class="muted">Educational context only. No operational procedures are published.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Systems &amp; Control</h3>
-        <p>FarmCore ↔ FarmLytics architecture, safety kernel, and HMI dashboard.</p>
-        <a class="btn" href="/fieldguide/systems/">Open module →</a>
-      </div>
-      <div class="card">
-        <h3>Plant Biology</h3>
-        <p>Spectral bands, stress signaling, and the phototoxic cascade exploited in the novel.</p>
-        <a class="btn" href="/fieldguide/biology/">Open module →</a>
-      </div>
-      <div class="card">
-        <h3>Threat Vectors</h3>
-        <p>Supply chain compromises, certificate spoofing, and closed-loop failures.</p>
-        <a class="btn" href="/fieldguide/threats/">Open module →</a>
-      </div>
-      <div class="card">
-        <h3>Intelligence Context</h3>
-        <p>MSS/PLA structure, cover entities, and institutional dynamics behind the attack.</p>
-        <a class="btn" href="/fieldguide/intelligence/">Open module →</a>
-      </div>
-      <div class="card">
-        <h3>Glossary</h3>
-        <p>Concise definitions for key terms used across the series.</p>
-        <a class="btn" href="/fieldguide/glossary/">View glossary →</a>
-      </div>
+    <h1 style="position:absolute;left:-9999px">Field Guide Overview</h1>
+    
+    <div class="fieldguide-intro">
+      <img src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" class="center-logo">
+      <p class="tagline">
+        Interactive Field Guide for <strong>Dark Recipe</strong><br>
+        <span class="sub">Fictional systems • Real science • Narrative intelligence</span>
+      </p>
+      <p class="notice">Navigate sections using the sidebar. Full technical context may reveal plot elements.</p>
     </div>
   
     </main>

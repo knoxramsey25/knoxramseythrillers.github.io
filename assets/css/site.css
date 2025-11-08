@@ -1,5 +1,5 @@
 :root{--brand-logo-size:28px}
-.brand img.brand-logo{height:var(--brand-logo-size);vertical-align:middle;border-radius:4px;margin-right:8px;image-rendering:auto}
+.brand img.brand-logo{height:var(--brand-logo-size);width:auto;vertical-align:middle;border-radius:4px;margin-right:8px;image-rendering:auto}
 .brand img.brand-logo{transition:filter .25s ease, transform .25s ease}
 .brand img.brand-logo:hover{filter:brightness(1.15) drop-shadow(0 0 4px rgba(82,255,168,0.4));transform:translateY(-1px)}
 @media (prefers-reduced-motion: reduce){.brand img.brand-logo{transition:none}}

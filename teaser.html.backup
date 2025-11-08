@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6R38ZMH8Y8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6R38ZMH8Y8');
+</script>
+  <meta charset="utf-8" />
+  <title>Teaser — Prologue & Chapter One · DARK RECIPE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+
+  <meta name="description" content="Read the Prologue and Chapter One from DARK RECIPE, a Knox Ramsey techno-thriller by Robert Cummer." />
+  <link rel="canonical" href="https://knoxramsey25.github.io/teaser.html" />
+  <meta property="og:title" content="DARK RECIPE — Prologue &amp; Chapter One" />
+  <meta property="og:description" content="Read the opening of DARK RECIPE, a Knox Ramsey techno-thriller about a cyber-bioprocess attack hidden in America’s food supply." />
+  <meta property="og:image" content="https://knoxramsey25.github.io/assets/CoverArt.png" />
+
+  <style>
+    :root{--bg:#071014;--panel:#0d171c;--ink:#e8eef5;--muted:#9fb2c7;--line:#17313d;--accent:#52ffa8;--danger:#ff4b3e}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.75}
+    /* nav */
+    .nav{position:sticky;top:0;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);z-index:50;backdrop-filter:blur(10px)}
+    .wrap{max-width:900px;margin:0 auto;padding:16px 18px}
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+    .links a{color:var(--muted);text-decoration:none;font-weight:700;transition:color 0.2s}
+    .links a:hover{color:var(--accent)}
+    /* header */
+    h1{margin:.2em 0 .4em;font-size:2.2rem}
+    .kicker{color:#9bd8c4;margin:0 0 .8rem;font-weight:700}
+    .subtle{color:var(--muted);line-height:1.6}
+    /* toc */
+    .toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:14px 0}
+    .toc h2{margin:.1em 0 .4em;font-size:.95rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    .toc a{display:inline-block;margin-right:12px;color:var(--accent);text-decoration:none;font-weight:800}
+    .toc a:hover{text-decoration:underline}
+    /* cards / text blocks */
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:14px}
+    .title{margin:.2em 0 .8em;font-size:1.8rem}
+    .note{color:var(--muted);font-size:.95rem;margin:-.25rem 0 1rem}
+    .scene{color:#9bd8c4;font-style:italic;margin-bottom:1rem}
+    .scene-break{color:var(--accent);text-align:center;margin:2rem 0;font-weight:700}
+    .navrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn{display:inline-block;padding:.6rem .9rem;border-radius:10px;text-decoration:none;font-weight:900;border:1px solid var(--accent);color:var(--accent);transition:all 0.3s}
+    .btn:hover{background:rgba(82,255,168,0.1);transform:translateY(-2px)}
+    .btn.primary{background:var(--accent);color:#07140f;border-color:transparent}
+    .btn.primary:hover{background:#6fffb8}
+    footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:22px;margin-top:26px}
+    /* Text styling */
+    .epigraph{background:rgba(82,255,168,0.05);border-left:3px solid var(--accent);padding:1rem;margin:1.5rem 0;font-style:italic}
+    .timestamp{color:var(--accent);font-weight:700;margin:1.5rem 0 0.5rem}
+    .location{color:#9bd8c4;font-weight:700;margin:1rem 0}
+    em{color:var(--accent);font-style:italic}
+    strong{color:#fff;font-weight:700}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="links">
+        <a href="/">← Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About the Author</a>
+        <a href="/about.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap" id="top">
+    <article class="card">
+      <h1>Prologue — Excerpt</h1>
+      <p class="muted">From <em>DARK RECIPE</em> (final text subject to minor line edits)</p>
+
+      <h2 class="title" style="margin-top:1.5rem">Shanghai</h2>
+      <p class="scene">Eighteen months before the outbreaks</p>
+      <p>The guard at the inner door checked two credentials—an MSS lanyard and a PLA proximity tag—before the lock cycled. Inside, stenciled across the glass in two languages ran a designation nobody used outside the building: 网络情报研究设施17 / Cyber Intelligence Research Facility 17. The consoles wore dual seals, the badges on lanyards split between red and army green. Techs in slate jackets (MSS) and olive utilities (PLA) traded reports in opposite directions, everyone copied on everything, and no one was entirely sure which hierarchy outranked the other.</p>
+      <p>Liu Wei passed beneath a wall map of the United States. Red diodes pricked Chicago, Detroit, Portland, Austin, Sacramento—market pilots, on paper. On the racks, FAC-17 labels glowed in white against matte-black equipment, the air a constant, dry hum of filtered cold. The place felt engineered to never sleep. A brass plaque near the server cage carried a Party aphorism in two scripts—稳定即仁政 / Stability is benevolence—the kind of sentence that made budgets easy and hesitation expensive.</p>
+      <p>He set a porcelain cup of jasmine tea beside his keyboard and let the steam fog a corner of the screen. People whose names were no longer taught kept him company at this hour. Sorge, who listened long enough to move nations. The lesson of ’71—that visibility kills careers before it kills men. The Party remembers. So do the files that go missing. In Beijing, people still lost careers for being right too early; 1971 had taught the army to fear boldness almost as much as failure.</p>
+      <p>Two systems asked for the same password with two different prompts. Redundant oversight wasn’t security; it was memory of purges conducted after successes that embarrassed the Party. Liu signed into both.</p>
+      <p><strong>SUBJECT ANALYSIS: RAMSEY, KNOX</strong><br/>Classification: Agricultural Automation / North America<br/>Status: Persistent observation</p>
+      <p>A thumbnail image flickered—Ramsey on a factory catwalk, yellow hard hat, safety glasses, the set of a man who still believed systems could be made safe if you hammered at them long enough. Useful faith, Liu thought, and opened the folder tree beneath the name: conference talks, patents, field videos, a slide deck where FarmCore / FarmLytics formed a single lattice—sensors feeding models feeding decisions the way capillaries feed organs.</p>
+      <p>Dr. Wu knocked once on the metal doorframe and stepped inside without waiting. Slate jacket. MSS. A second badge at her hip, olive, made the point. “Beijing wants an updated readiness brief,” she said, setting a thin folder on his desk. “Procurement asks if we will require additional greenhouse controllers for the Canadian pilots.”</p>
+      <p>“We won’t,” Liu said. “Distribution beats footprint.”</p>
+      <p>Wu nodded once. “What harms them instructs us. We should never forget the lesson.”</p>
+      <p>The argument was simple enough to believe: harden the nation’s food security by proving how easily an adversary could be bent—mirrored risk as policy. He scrolled through Ramsey’s architecture: cloud-warmed edges, third-party plugins, convenience stacked like dry kindling. “They built a nervous system for plants and gave us write access.”</p>
+      <p>Wu followed the line of his cursor, then the map. “The long memory of the Party favors patience, not appetite,” she said, voice so even it sounded like a citation. “We are not the Americans.”</p>
+      <p>“We are engineers,” Liu said. “And the schedule keeps the politicians fed.”</p>
+      <p>A PLA political officer—Zhang, today—paused in the doorway just long enough to be seen reading the same feed on a wall display. He offered nothing, left nothing, and moved on. In his wake, the room’s quiet reasserted itself: the thin chirp of KVM switches, the low wind of cooling fans, the rubbery snap of a lanyard being twisted twice then released. At the back bench, a junior analyst typed applicability to domestic deployments, hesitated, then deleted the line and sent the brief. Every system can be bent. Some are only tested from the inside.</p>
+      <p>Liu opened a video: Ramsey in a greenhouse, sleeves rolled, explaining why human intuition fails at scale. “You don’t eyeball the canopy,” the American said. “You measure. Then you let the model learn what your eyes can’t.” Off-camera, someone laughed. Another window floated up unbidden—retail CCTV from a Midwestern aisle, a child tugging a parent toward a tasting table. Liu minimized it before faces could become people.</p>
+      <p>He dragged a window over the map and brought up the pilot telemetry—a scatter of harmless numbers that only mattered in aggregate. Permissions shimmered in the corner, two icons nested like coins: MSS-READ / PLA-WRITE. The overlapping jurisdictions made junior analysts nervous. They made Liu careful. “We’ll keep the attribution surface clean,” he said. “No signatures anyone can read twice.”</p>
+      <p>Wu nodded. “Personnel?” she asked, almost lazily. “Your request to remove Suqian references is approved. Administrative reassignment.”</p>
+      <p>“Good,” Liu said. “History should weigh on someone else.”</p>
+      <p>She tapped the FAC-17 stencil on the nearest chassis as if to knock wood. “What about the Americans’ family?” Wu asked. “Complications tend to multiply once we touch a man’s home.”</p>
+      <p>“We won’t need his pain,” Liu said, and meant it more than he expected. “Just his pride.”</p>
+      <p>On his screen, an annotation bled into existence beside Detroit’s diode: readiness ≥ 0.93. The geometry of the thing pleased him—clean edges, tight tolerances, the way an elegant bridge never calls attention to its joints. He thought again of Sorge, of years spent arranging insignificant facts until a single truth toppled on command.</p>
+      <p>“File the brief,” Liu said. “Use the facility designation. No unit numbers.”</p>
+      <p>Wu gathered the folder. “Cyber Intelligence Research Facility 17,” she repeated in English, then in Chinese, as if confirming an incantation. “We’ll keep it boring.”</p>
+      <p>“The best kind of dangerous,” Liu said.</p>
+      <p>Outside the glass, the guard checked two credentials and let someone else into the hum. On the map, the red dots did not blink so much as breathe. The system would decide when to wake; his job was to keep its sleep deep and dreamless until then. Boring was the safest way to be dangerous.</p>
+      <p>He closed the Ramsey clip, saved the state, and, with two hands on two networks, began. Boring was the safest way to be dangerous.</p>
+
+      <h2 class="title" style="margin-top:2.5rem">Detroit</h2>
+      <p class="scene">Three years earlier</p>
+      <p>Knox Ramsey stood before a conference room of investors, a presentation remote steady in his hand. Slides behind him showed vertical farms rising like green skyscrapers, hydroponics feeding families in urban food deserts, and data streams promising to revolutionize how humanity fed itself.</p>
+      <p>“By 2050,” Knox said, “we need seventy percent more food using less water, less energy, and fewer chemicals. Traditional agriculture can’t scale.”</p>
+      <p>He clicked to a cutaway of a controlled-environment facility. “Our platform can. FarmCore manages the control software—lights, HVAC, irrigation, and all the SCADA functions that execute growing strategies. FarmLytics captures the data from every crop and runs the machine-learning models that turn that data into optimized recipes. Growers can use FarmCore standalone with local recipes or subscribe to FarmLytics for cloud-based optimization and continuous improvement.”</p>
+      <p>A skeptical voice broke in: “Energy costs?”</p>
+      <p>Knox smiled. “LED arrays with spectrum optimization. Red for flowering, blue for vegetative growth, far-red for elongation. Plants don’t need the whole sun—just the wavelengths that matter. We cut energy costs by more than half.”</p>
+      <p>He tapped the clicker. A time-lapse filled the screen—lettuce from seed to harvest in eighteen days. “The system learns from every plant. Nutrient uptake, growth rate, leaf color—it all flows into FarmLytics, which analyzes patterns and pushes optimized recipes back to FarmCore. FarmLytics connects them all—what one facility learns, the entire network gains. A breakthrough in Detroit is shared instantly with Denver, Dallas, and Durham.”</p>
+      <p>Margaret Chen, a venture capitalist at the far end of the table, leaned forward. “Urban food deserts?”</p>
+      <p>Knox’s expression sharpened. “Vacant warehouses can become farms. Detroit, Flint, Grand Rapids—neighborhoods that haven’t seen fresh produce in decades. One facility feeds fifteen thousand families. Harvest to table in under twenty-four hours.”</p>
+      <p>At the back of the room, Tate—twenty-five and wearing his first real suit—watched his father command the floor with technical mastery and moral conviction. This wasn’t just engineering; it was a mission.</p>
+      <p>An older investor asked, “What keeps agribusiness from copying you?”</p>
+      <p>Knox clicked to a slide showing an exponential curve. “They can buy lights and pumps. What they can’t buy is time. Every day, FarmLytics gathers more data and refines the optimization engine. That network effect is the moat. A competitor starting now is already years behind. We’re not just automating farms—we’re building collective intelligence.”</p>
+      <p>As the meeting wrapped, Tate asked quietly, “You really think this will work?”</p>
+      <p>Knox looked out at Detroit’s skyline. “Son, this isn’t about money. It’s about changing how humanity feeds itself. FarmCore, FarmLytics—they’re tools. The goal is better food with less. Technology serving people at its finest.”</p>
+
+      <h2 class="title" style="margin-top:2.5rem">Operation Harvest Cloud</h2>
+      <p class="scene">Launch · Shanghai — Six Weeks Before Geneva</p>
+      <p>Liu Wei’s hand hovered over the keyboard. Fifteen years of preparation, and everything depended on timing. Not just launching the attack—but launching it at precisely the right moment so the escalation curve peaked exactly when American negotiators sat down in Geneva.</p>
+      <p>Behind him, Dr. Chen pulled up the biological progression models one final time. “Harvest cycle synchronization confirmed. Cannabis facilities and leafy greens operations are aligned—both on four-to-six-week cultivation cycles. First harvests will reach consumers with minimal toxicity. The second cycle shows moderate elevation. The third cycle enters the serious contamination range. Fourth cycle…”</p>
+      <p>“Fourth cycle produces lethal concentrations,” Liu Wei finished. “And fourth cycle harvests reach American consumers during Geneva summit opening sessions.”</p>
+      <p>The timing was surgical. Launch today, six weeks before Geneva. First-cycle contamination would be subtle—people feeling slightly ill, attributing it to normal food sensitivity, hangovers, or minor illness. No pattern, no panic.</p>
+      <p>By week three, second-cycle facilities would produce moderately contaminated product. Hospitalizations would begin. Pattern recognition would start.</p>
+      <p>By week five, third-cycle contamination would overwhelm emergency rooms. Full crisis mode.</p>
+      <p>By week six, Geneva—fourth-cycle facilities would be producing a product toxic enough to kill healthy adults. Peak casualties during peak negotiations.</p>
+      <p>“The iterative learning mechanism is the key,” Dr. Chen explained to Captain Zhang, who’d joined the operation late. “We’re not creating static contamination. We’re teaching the systems to optimize for toxicity with each growing cycle. First harvest: mildly elevated defensive compounds. Second harvest: significantly higher. Third harvest: dangerous. Fourth harvest: lethal.”</p>
+      <p>“The machine learns to poison more effectively each time?” Zhang asked.</p>
+      <p>“Exactly. The corrupted algorithms treat toxicity as a success metric. Each harvest that produces higher toxin concentrations gets reinforced as ‘optimal.’ The system teaches itself to be better at killing with every cycle.”</p>
+      <p>Liu Wei pulled up the facility targeting data. “This is why crop synchronization was critical. Cannabis and leafy greens needed to be on parallel cultivation schedules. If cannabis hit third-cycle contamination while greens were still on first cycle, the escalation pattern would be obvious. Americans would realize each new harvest was worse than the last.”</p>
+      <p>“But with synchronized cycles,” Dr. Wu added, “both crops escalate together. Looks like expanding contamination, not escalating contamination. They’ll think it’s geographic spread when it’s actually temporal progression.”</p>
+      <p>Captain Zhang studied the timeline with a new understanding. “So the early cases—the mild illnesses in weeks one and two—those are features, not bugs.”</p>
+      <p>“Precisely,” Liu Wei confirmed. “Early detection would allow Americans to quarantine facilities before the second and third cycles. We need the first-cycle contamination to be subtle enough that it enters the supply chain undetected. By the time they realize there’s a problem, second-cycle facilities are already growing more toxic products. By the time they coordinate a response, third-cycle facilities are producing seriously dangerous concentrations.”</p>
+      <p>He turned back to his console. “The Geneva summit is forty-two days away. Cannabis cultivation cycles are four to six weeks, depending on the strain. Leafy greens take four to five weeks. We launch today, the first-cycle product reaches consumers in week two with minimal toxicity. Second cycle in week four with moderate toxicity. Third cycle in week six—right when Geneva preparations are chaotic. Fourth cycle during Geneva itself.”</p>
+      <p>“And each facility that gets infected becomes progressively more dangerous with every harvest?” Dr. Wu asked.</p>
+      <p>“Yes. That’s the self-amplifying nature of the weapon. Even if Knox Ramsey stops new infections tomorrow, already-compromised facilities will continue escalating toward lethal concentrations over their next several harvest cycles. We’ve created a contamination bomb with time-delay fuses. Each growing cycle that passes makes the explosion bigger.”</p>
+      <p>Dr. Chen pulled up chromatography data. “The biological mechanism is elegant. We’re not adding foreign compounds. We’re manipulating environmental stressors—light spectrum, temperature cycles, nutrient timing—to push the plants’ natural defensive chemistry toward toxic concentrations. First cycle: plants produce mildly elevated defensive compounds. System records this as ‘successful optimization.’ Second cycle: system applies the same stressors more aggressively, compounds increase. Third cycle: the system has learned to maximize toxin production. Fourth cycle: the system is an expert at producing poison.”</p>
+      <p>“Machine learning applied to biological warfare,” Captain Zhang said with something like admiration.</p>
+      <p>“Applied to agricultural optimization that becomes biological warfare,” Liu Wei corrected. “Americans designed these systems to learn how to grow better crops. We taught them to learn how to grow poisonous crops. The learning mechanism is legitimate—we just corrupted the success metrics.”</p>
+      <p>He checked the countdown timer. Forty-two days until Geneva. Six weeks of carefully calculated escalation. The timing had to be perfect—launch too early, and casualties would peak before the summit, giving the Americans time to recover. Launch too late and third-cycle contamination wouldn’t manifest until after negotiations concluded.</p>
+      <p>Fifteen years of preparation had come down to this: identifying facilities with synchronized cultivation cycles, calculating backwards from the Geneva date, launching at precisely the right moment for maximum diplomatic leverage.</p>
+      <p>“Final authorization codes,” Liu Wei said.</p>
+      <p>Captain Zhang read the sequence aloud. Dr. Wu verified encryption. Dr. Chen confirmed biological progression models one last time—first cycle mild, second cycle moderate, third cycle serious, fourth cycle lethal, all timed to peak during Geneva.</p>
+      <p>Liu Wei typed the command.</p>
+      <p>Eight months of synthetic training data began propagating through FarmLytics’ network. The corrupted optimization algorithms spread silently through American agricultural facilities, teaching systems to produce toxins with increasing efficiency over each subsequent harvest cycle.</p>
+      <p>First-cycle contamination would be too subtle to detect. That was the design.</p>
+      <p>By the time Americans realized the problem, second and third cycles would already be growing. Each harvest is more toxic than the last. Each facility teaches itself to be better at poisoning with every growing season.</p>
+      <p>And in forty-two days, when American negotiators sat down in Geneva to discuss agricultural security, their own citizens would be consuming fourth-cycle product toxic enough to cause organ failure.</p>
+      <p>The timing was everything. Liu Wei had calculated it perfectly.</p>
+      <p>“Operation Harvest Cloud is active,” he said quietly. “Iterative escalation initiated. Geneva countdown: forty-two days.”</p>
+      <p>Dr. Chen stared at his biological models, watching the projected toxicity curves rise with each simulated harvest cycle. “They won’t realize each harvest is worse until it’s too late to stop the progression.”</p>
+      <p>“By then,” Liu Wei said, “Geneva will be concluded. And Americans will understand that their automated food systems can be weaponized with a click of a button. From seven thousand miles away. With casualties that escalate over time, even after the initial attack is discovered.”</p>
+      <p>The screens pulsed green. The learning began. The countdown started.</p>
+      <p>Forty-two days until the weapon reached full maturity at precisely the moment it would cause maximum diplomatic damage.</p>
+      <p>Timing was everything.</p>
+      <p>And Liu Wei’s timing was perfect.</p>
+
+      <p class="note" style="margin-top:2.5rem">Want to read more? The complete novel will be available in 2025. Sign up for updates at <a href="mailto:knoxramseythrillers@gmail.com" style="color:var(--accent)">knoxramseythrillers@gmail.com</a>.</p>
+    </article>
+  </main>
+
+  <footer>© <span id="y"></span> Robert Cummer · Knox Ramsey Thrillers</footer>
+  <script>
+    document.getElementById('y').textContent=new Date().getFullYear();
+    if(location.pathname.toLowerCase().includes('lander')){history.replaceState(null,'','/teaser.html');}
+  </script>
+</body>
+</html>

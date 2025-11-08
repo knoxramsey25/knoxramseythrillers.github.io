@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <title>Field Guide — Systems &amp; Control</title>
   <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/site.css">
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="FarmCore ↔ FarmLytics architecture, safety kernel, compromised feedback loop, and HMI dashboard."/>
   <style>
@@ -13,7 +12,7 @@
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
     a{color:var(--accent);text-decoration:none}
     .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
-    .wrap{max-width:1100px;margin:0 auto;padding:16px 18px}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
     .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
     .brand{font-weight:900;letter-spacing:.3px}
     .links{display:flex;gap:14px;flex-wrap:wrap}
@@ -27,6 +26,31 @@
     .muted{color:var(--muted)}
     .btn{display:inline-block;border:1px solid var(--accent);border-radius:8px;padding:10px 14px;margin-top:8px;font-weight:700}
     .btn:hover{background:rgba(82,255,168,0.1)}
+    
+    /* Binder Layout: Sidebar + Content */
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    
+    /* Sidebar - The "Trapper Keeper" tabs */
+    .sidebar{position:sticky;top:80px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
+    .sidebar h2{margin:0 0 16px 0;font-size:1.1rem;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px}
+    .sidebar nav{display:flex;flex-direction:column;gap:4px}
+    .sidebar nav a{display:block;padding:10px 12px;border-radius:6px;color:var(--muted);font-weight:600;border-left:3px solid transparent;transition:all 0.2s}
+    .sidebar nav a:hover{background:rgba(82,255,168,0.06);color:var(--accent);border-left-color:var(--accent)}
+    .sidebar nav a.active{background:linear-gradient(90deg,rgba(82,255,168,0.08),transparent);color:var(--accent);border-left-color:var(--accent);font-weight:800}
+    
+    /* Search in sidebar */
+    .sidebar .search{margin-bottom:20px}
+    .sidebar .search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,0.02);color:var(--ink);font-size:0.95rem}
+    .sidebar .search input:focus{outline:2px solid var(--accent);background:rgba(255,255,255,0.04)}
+    
+    /* Content area */
+    .content{min-width:0}
+    
+    /* Mobile: Stack sidebar on top */
+    @media (max-width:900px){
+      .binder{grid-template-columns:1fr;gap:16px}
+      .sidebar{position:relative;top:0}
+    }
   </style>
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
@@ -83,7 +107,25 @@
     </div>
   </nav>
 
-  <main class="wrap">
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search">
+        <input type="search" placeholder="Search..." aria-label="Search Field Guide">
+      </div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/" class="active">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+
     <h1>Systems &amp; Control</h1>
     <div class="panel">
       <p class="muted">Reference architecture for FarmCore (edge automation) and FarmLytics (cloud analytics). Educational context; simulated only.</p>
@@ -187,7 +229,9 @@ flowchart TB
       <p class="muted">Reconstructed interface view. Simulated data for educational context.</p>
       <p><a class="btn" href="/fieldguide/systems/dashboard.html">Launch the dashboard →</a></p>
     </section>
-  </main>
+  
+    </main>
+  </div>
   <script src="/assets/js/fieldguide.js"></script>
 </body>
 </html>

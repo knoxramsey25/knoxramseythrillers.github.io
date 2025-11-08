@@ -21,20 +21,29 @@
       --accent:#7fd488;--accent2:#4cc9f0;--warn:#ffb84d;--danger:#ff5c33;
       --line:#1a2421;--critical:#ff5c33;--glow:#7fd48833
     }
+
+    /* Global layout + nav (aligned with other Field Guide pages) */
+    *{box-sizing:border-box} html,body{margin:0;padding:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#121e24,#0c161b);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px;display:flex;align-items:center}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.content{min-width:0}
     
     /* Binder Layout */
-    .binder{
-      display:grid;
-      grid-template-columns:280px 1fr;
-      gap:0;
-      min-height:calc(100vh - 60px);
-      background:var(--bg);
-    }
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
     
     .sidebar{
       background:var(--panel);
       border-right:1px solid var(--line);
-      padding:2rem 1.5rem;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:20px 18px;
       position:sticky;
       top:80px;
       height:fit-content;
@@ -89,22 +98,20 @@
       font-weight:600;
     }
     
-    .content{
-      padding:2rem;
-      max-width:1400px;
-    }
+    .content{padding:4px 0 60px 0}
     
     @media (max-width:900px){
       .binder{
-        grid-template-columns:1fr;
+        grid-template-columns:1fr;gap:16px;padding:18px 14px
       }
       .sidebar{
         position:relative;
         top:0;
         max-height:none;
         border-right:none;
-        border-bottom:1px solid var(--line);
+        border:1px solid var(--line);
       }
+      .content{padding:0 2px 40px 2px}
     }
     
     /* Dashboard-specific styles */

@@ -1,8 +1,9 @@
 [
-  {"title":"Field Guide Overview","url":"/fieldguide/","excerpt":"Overview of the Field Guide and purpose for the series."},
-  {"title":"Plant Biology","url":"/fieldguide/biology/","excerpt":"Spectral bands, stress signaling, and phototoxic cascades referenced in Dark Recipe."},
-  {"title":"Glossary","url":"/fieldguide/glossary/","excerpt":"Definitions for technical terms used in the series."},
-  {"title":"Intelligence","url":"/fieldguide/intelligence/","excerpt":"Notes on intelligence tradecraft and analytic methods."},
-  {"title":"Systems","url":"/fieldguide/systems/","excerpt":"Control systems and FarmCore / FarmLytics systems described in the novels."},
-  {"title":"Threats","url":"/fieldguide/threats/","excerpt":"Threat modeling and adversary tactics referenced in the story."}
+  {"title": "Knox Ramsey Field Guide", "url": "/fieldguide/", "excerpt": "Technical and biological companion to Dark Recipe. Systems, biology, threat vectors, and intelligence context."},
+  {"title": "Field Guide — Plant Biology", "url": "/fieldguide/biology/", "excerpt": "Spectral bands, stress signaling, and the phototoxic cascade exploited in Dark Recipe."},
+  {"title": "Field Guide — Glossary", "url": "/fieldguide/glossary/", "excerpt": "Concise definitions used across the Knox Ramsey universe."},
+  {"title": "Field Guide — Intelligence Context", "url": "/fieldguide/intelligence/", "excerpt": "Organizational structure linking MSS, PLA, and the FAC-17 research facility."},
+  {"title": "Field Guide — Systems & Control", "url": "/fieldguide/systems/", "excerpt": "FarmCore ↔ FarmLytics architecture, safety kernel, compromised feedback loop, and HMI dashboard."},
+  {"title": "CEA Recipe Dashboard — Coming Soon", "url": "/fieldguide/systems/dashboard.html", "excerpt": "Placeholder for the interactive FarmCore HMI dashboard."},
+  {"title": "Field Guide — Threat Vectors", "url": "/fieldguide/threats/", "excerpt": "Supply chain compromises, certificate spoofing, and closed-loop failures that drive the conflict in Dark Recipe."}
 ]

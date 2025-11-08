@@ -98,6 +98,35 @@
       margin:2rem 0 0 0;
       opacity:0.8;
     }
+    
+    /* Book Cover Animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cover-wrapper {
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .interactive-cover {
+      max-width: 300px;
+      width: 80%;
+      height: auto;
+      border: 1px solid #ccc;
+      display: block;
+      animation: fadeInUp 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    .cover-wrapper:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+    }
   </style>
 </head>
 <body>
@@ -142,6 +171,24 @@
       </p>
       <p class="notice">Navigate sections using the sidebar. Full technical context may reveal plot elements.</p>
     </div>
+
+    <section id="book-cover" style="text-align:center; margin: 3rem 0 2rem 0;">
+      <h2 style="font-family:Georgia,serif; font-weight:400; letter-spacing:0.5px; color:var(--ink); margin-bottom:1.5rem;">
+        <em>Dark Recipe — A Knox Ramsey Thriller</em>
+      </h2>
+      <div class="cover-wrapper">
+        <img 
+          src="/CoverArt.png" 
+          alt="Dark Recipe book cover – working version"
+          class="fade-in interactive-cover"
+          width="300"
+          height="450"
+        >
+      </div>
+      <p style="font-size:0.9rem; color:var(--muted); margin-top:0.75rem;">
+        Working cover — final artwork pending.
+      </p>
+    </section>
   
     </main>
   </div>

@@ -1,9 +1,37 @@
 [
-  {"title": "Knox Ramsey Field Guide", "url": "/fieldguide/", "excerpt": "Technical and biological companion to Dark Recipe. Systems, biology, threat vectors, and intelligence context."},
-  {"title": "Field Guide — Plant Biology", "url": "/fieldguide/biology/", "excerpt": "Spectral bands, stress signaling, and the phototoxic cascade exploited in Dark Recipe."},
-  {"title": "Field Guide — Glossary", "url": "/fieldguide/glossary/", "excerpt": "Concise definitions used across the Knox Ramsey universe."},
-  {"title": "Field Guide — Intelligence Context", "url": "/fieldguide/intelligence/", "excerpt": "Organizational structure linking MSS, PLA, and the FAC-17 research facility."},
-  {"title": "Field Guide — Systems & Control", "url": "/fieldguide/systems/", "excerpt": "FarmCore ↔ FarmLytics architecture, safety kernel, compromised feedback loop, and HMI dashboard."},
-  {"title": "CEA Recipe Dashboard — Coming Soon", "url": "/fieldguide/systems/dashboard.html", "excerpt": "Placeholder for the interactive FarmCore HMI dashboard."},
-  {"title": "Field Guide — Threat Vectors", "url": "/fieldguide/threats/", "excerpt": "Supply chain compromises, certificate spoofing, and closed-loop failures that drive the conflict in Dark Recipe."}
+  {
+    "title": "Knox Ramsey Field Guide",
+    "url": "/fieldguide/",
+    "excerpt": "Technical and biological companion to Dark Recipe. Systems, biology, threat vectors, and intelligence context."
+  },
+  {
+    "title": "Field Guide — Plant Biology",
+    "url": "/fieldguide/biology/",
+    "excerpt": "Spectral bands, stress signaling, and the phototoxic cascade exploited in Dark Recipe."
+  },
+  {
+    "title": "Field Guide — Glossary",
+    "url": "/fieldguide/glossary/",
+    "excerpt": "Concise definitions used across the Knox Ramsey universe."
+  },
+  {
+    "title": "Field Guide — Intelligence Context",
+    "url": "/fieldguide/intelligence/",
+    "excerpt": "Organizational structure linking MSS, PLA, and the FAC-17 research facility."
+  },
+  {
+    "title": "Field Guide — Systems & Control",
+    "url": "/fieldguide/systems/",
+    "excerpt": "FarmCore ↔ FarmLytics architecture, safety kernel, compromised feedback loop, and HMI dashboard."
+  },
+  {
+    "title": "CEA Recipe Dashboard — Coming Soon",
+    "url": "/fieldguide/systems/dashboard.html",
+    "excerpt": "Placeholder for the interactive FarmCore HMI dashboard."
+  },
+  {
+    "title": "Field Guide — Threat Vectors",
+    "url": "/fieldguide/threats/",
+    "excerpt": "Supply chain compromises, certificate spoofing, and closed-loop failures that drive the conflict in Dark Recipe."
+  }
 ]

@@ -1,5 +1,42 @@
 // Inject shared fieldguide sidebar, enable simple search and scrollspy
 (function(){
+  // ========== ACCESS CONTROL ==========
+  var FIELD_GUIDE_GATED = true; // Set to false to disable gating
+  var ACCESS_TOKEN_KEY = 'knoxramsey_fieldguide_access';
+  var GATE_PAGE = '/fieldguide/access.html';
+  
+  function isGateEnabled() {
+    return FIELD_GUIDE_GATED;
+  }
+  
+  function hasAccess() {
+    if (!isGateEnabled()) return true;
+    var token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    return token === 'granted';
+  }
+  
+  function grantAccess() {
+    localStorage.setItem(ACCESS_TOKEN_KEY, 'granted');
+  }
+  
+  function checkAccess() {
+    // Skip check on gate page itself and homepage
+    if (location.pathname === GATE_PAGE || location.pathname === '/fieldguide/' || location.pathname === '/fieldguide/index.html') {
+      return;
+    }
+    
+    if (!hasAccess()) {
+      location.href = GATE_PAGE + '?return=' + encodeURIComponent(location.pathname);
+    }
+  }
+  
+  // Expose functions globally for gate page
+  window.FieldGuideAccess = {
+    hasAccess: hasAccess,
+    grantAccess: grantAccess,
+    checkAccess: checkAccess
+  };
+  
   function inFieldGuide(){ return location.pathname.startsWith('/fieldguide'); }
 
   function insertSidebar(html){
@@ -218,6 +255,9 @@
   }
 
   if(inFieldGuide()){
+    // Check access before loading any content
+    checkAccess();
+    
     // Inject global Mermaid palette overrides once for all diagrams (CSS approach)
     (function injectMermaidTheme(){
       if(document.getElementById('fg-mermaid-theme')) return;

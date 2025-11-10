@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Field Guide Access — Knox Ramsey Thrillers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <style>
+    :root{--bg:#0b0f11;--panel:#11181d;--ink:#e6f5ee;--muted:#9db7a8;--accent:#7fd488;--line:#1a2421;--danger:#ff5c33}
+    html,body{margin:0;height:100%}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7;display:flex;align-items:center;justify-content:center}
+    .gate-container{max-width:500px;padding:24px;text-align:center}
+    .gate-box{background:linear-gradient(135deg,rgba(127,212,136,0.06),transparent);border:1px solid var(--line);border-radius:12px;padding:32px 28px;position:relative;overflow:hidden}
+    .gate-box::after{content:"";position:absolute;inset:-40px;opacity:.06;background:url('/assets/knoxramsey_logo.jpeg') center/420px no-repeat;filter:grayscale(1);pointer-events:none}
+    h1{margin:0 0 .8rem 0;color:var(--accent);font-size:1.8rem;position:relative;z-index:1}
+    p{margin:.5rem 0;color:var(--ink);position:relative;z-index:1}
+    .form-group{margin:1.5rem 0;position:relative;z-index:1}
+    label{display:block;margin-bottom:.4rem;color:var(--muted);font-size:.9rem;text-align:left}
+    input[type="password"]{width:100%;padding:.8rem;border-radius:8px;border:1px solid var(--line);background:#0b1317;color:var(--ink);font-size:1rem;box-sizing:border-box}
+    input[type="password"]:focus{outline:2px solid var(--accent);background:#0e1519}
+    .btn{display:inline-block;margin-top:.6rem;padding:.8rem 1.4rem;border:1px solid var(--accent);border-radius:10px;background:linear-gradient(180deg,rgba(127,212,136,0.1),rgba(127,212,136,0.05));color:var(--accent);font-weight:800;cursor:pointer;font-size:1rem;transition:all 0.2s;border:none;width:100%}
+    .btn:hover{background:linear-gradient(180deg,rgba(127,212,136,0.15),rgba(127,212,136,0.08));transform:translateY(-1px);box-shadow:0 4px 12px rgba(127,212,136,0.2)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .error{color:var(--danger);font-size:.9rem;margin-top:.6rem;display:none}
+    .error.show{display:block}
+    .note{color:var(--muted);font-size:.85rem;margin-top:1.2rem;position:relative;z-index:1}
+  </style>
+</head>
+<body>
+  <div class="gate-container">
+    <div class="gate-box">
+      <h1>Field Guide Access</h1>
+      <p>Enter the access code from your copy of <em>Dark Recipe</em> to unlock the full Field Guide.</p>
+      
+      <form id="accessForm">
+        <div class="form-group">
+          <label for="accessCode">Access Code</label>
+          <input type="password" id="accessCode" name="accessCode" placeholder="Enter code from book" required autocomplete="off" />
+        </div>
+        <button type="submit" class="btn">Unlock Field Guide</button>
+        <div class="error" id="error">Incorrect access code. Please try again.</div>
+      </form>
+      
+      <p class="note">Don't have the code? Purchase <em>Dark Recipe</em> to receive your access code.</p>
+    </div>
+  </div>
+
+  <script>
+    // Access control
+    var CORRECT_CODE = 'GENEVA204';
+    var form = document.getElementById('accessForm');
+    var input = document.getElementById('accessCode');
+    var error = document.getElementById('error');
+    
+    // Check if already has access
+    if (window.FieldGuideAccess && window.FieldGuideAccess.hasAccess()) {
+      var returnPath = new URLSearchParams(window.location.search).get('return') || '/fieldguide/';
+      window.location.href = returnPath;
+    }
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      error.classList.remove('show');
+      
+      var code = input.value.trim().toUpperCase();
+      
+      if (code === CORRECT_CODE) {
+        // Grant access
+        localStorage.setItem('knoxramsey_fieldguide_access', 'granted');
+        
+        // Redirect to return path or homepage
+        var returnPath = new URLSearchParams(window.location.search).get('return') || '/fieldguide/';
+        window.location.href = returnPath;
+      } else {
+        // Show error
+        error.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    });
+    
+    // Auto-focus input
+    input.focus();
+  </script>
+</body>
+</html>

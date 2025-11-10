@@ -175,6 +175,15 @@
     <div id="fg-home-grid">
       <!-- Center Content: Author Welcome -->
       <section id="author-welcome" style="max-width:720px;margin:4rem auto;padding:0 1.5rem;color:#e0e0e0;font-family:'Georgia',serif;line-height:1.7;">
+        
+        <!-- Access Notice (shown only if not authenticated) -->
+        <div id="access-notice" style="background:linear-gradient(135deg,rgba(127,212,136,0.08),transparent);border:1px solid var(--line);border-radius:12px;padding:1.5rem;margin-bottom:2rem;text-align:center;display:none;">
+          <h2 style="color:var(--accent);margin:0 0 .6rem 0;font-size:1.3rem;">🔒 Full Field Guide Available</h2>
+          <p style="margin:.5rem 0;color:var(--ink);">Access exclusive content including technical briefs, organizational charts, and deeper analysis.</p>
+          <a href="/fieldguide/access.html" style="display:inline-block;margin-top:.8rem;padding:.7rem 1.2rem;border:1px solid var(--accent);border-radius:10px;background:linear-gradient(180deg,rgba(127,212,136,0.1),rgba(127,212,136,0.05));color:var(--accent);font-weight:800;text-decoration:none;transition:all 0.2s;">Enter Access Code</a>
+          <p style="font-size:.85rem;color:var(--muted);margin-top:.6rem;">Find your code in <em>Dark Recipe</em> or request access</p>
+        </div>
+        
         <h1 style="font-weight:400;text-align:center;color:#fff;margin-bottom:1.2rem;">
           Welcome to the Knox Ramsey Field Guide
         </h1>
@@ -207,5 +216,14 @@
     </main>
   </div>
   <script src="/assets/js/fieldguide.js"></script>
+  <script>
+    // Show access notice if gate is enabled and user doesn't have access
+    (function() {
+      if (window.FieldGuideAccess && !window.FieldGuideAccess.hasAccess()) {
+        var notice = document.getElementById('access-notice');
+        if (notice) notice.style.display = 'block';
+      }
+    })();
+  </script>
 </body>
 </html>

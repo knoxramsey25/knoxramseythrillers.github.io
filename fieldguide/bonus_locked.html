@@ -11,12 +11,19 @@
     html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
     .wrap{max-width:900px;margin:0 auto;padding:24px 18px}
-    .gate{background:linear-gradient(135deg,rgba(127,212,136,0.06),transparent);border:1px solid var(--line);border-radius:12px;padding:22px;position:relative;overflow:hidden;text-align:center}
+    .gate{background:linear-gradient(135deg,rgba(127,212,136,0.06),transparent);border:1px solid var(--line);border-radius:12px;padding:28px;position:relative;overflow:hidden;text-align:center}
     .gate::after{content:"";position:absolute;inset:-40px;opacity:.06;background:url('/assets/knoxramsey_logo.jpeg') center/420px no-repeat;filter:grayscale(1)}
-    h1{margin:0 0 .4rem 0;color:var(--accent)}
-    p{margin:.4rem 0;color:var(--ink)}
-    .btn{display:inline-block;margin-top:1rem;padding:.7rem 1rem;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#0e181d,#0a1318);color:var(--ink);font-weight:800;text-decoration:none}
-    .note{color:var(--muted);font-size:.9rem;margin-top:.6rem}
+    h1{margin:0 0 .6rem 0;color:var(--accent);font-size:2rem}
+    h2{margin:1.2rem 0 .6rem 0;color:var(--ink);font-size:1.2rem}
+    p{margin:.5rem 0;color:var(--ink)}
+    .preview{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;margin:1.5rem 0;text-align:left}
+    .preview h3{color:var(--accent);font-size:1rem;margin:0 0 .8rem 0}
+    .preview ul{margin:.4rem 0;padding-left:1.4rem;color:var(--muted)}
+    .preview li{margin:.3rem 0}
+    .btn{display:inline-block;margin-top:1.2rem;padding:.8rem 1.2rem;border:1px solid var(--accent);border-radius:10px;background:linear-gradient(180deg,rgba(127,212,136,0.1),rgba(127,212,136,0.05));color:var(--accent);font-weight:800;text-decoration:none;transition:all 0.2s}
+    .btn:hover{background:linear-gradient(180deg,rgba(127,212,136,0.15),rgba(127,212,136,0.08));transform:translateY(-1px);box-shadow:0 4px 12px rgba(127,212,136,0.2)}
+    .note{color:var(--muted);font-size:.9rem;margin-top:1rem}
+    .divider{border-top:1px solid var(--line);margin:1.5rem 0}
   </style>
 </head>
 <body>
@@ -35,10 +42,27 @@
   <main class="wrap">
     <section class="gate">
       <h1>Knox Ramsey Field Guide — Restricted Annex</h1>
-      <p>Authorized readers only. Content remains classified until access is granted.</p>
-      <p class="note">Have your access code from the book or confirmation email ready.</p>
-      <a class="btn" href="/fieldguide/bonus.html">Proceed to Access Gate</a>
-      <p class="note">After encryption, the linked page will prompt for your code (e.g., <strong>GENEVA204</strong>).</p>
+      <p>Authorized readers only. Supplemental intelligence files recovered from FAC-17 and FarmCore‑Lytics archives.</p>
+      
+      <div class="preview">
+        <h3>📁 Declassified Contents</h3>
+        <ul>
+          <li><strong>FarmCore‑Lytics System Brief</strong> — Technical architecture documentation</li>
+          <li><strong>MSS Organizational Structure</strong> — Intelligence hierarchy diagrams</li>
+          <li><strong>Plant Toxicity Reference</strong> — Biological warfare research notes</li>
+          <li><strong>Operation Harvest Cloud Timeline</strong> — Attack phase chronology</li>
+          <li><strong>Insider Briefing List</strong> — Early access to deleted scenes & next missions</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Access Required</h2>
+      <p class="note">Enter the code printed in your copy of <em>Dark Recipe</em> or from your confirmation email.</p>
+      <a class="btn" href="/fieldguide/bonus.html">Enter Access Code</a>
+      <p class="note" style="font-size:.85rem;margin-top:1.5rem;">
+        Don't have the code? Purchase <em>Dark Recipe</em> or <a href="mailto:access@knoxramseythrillers.com" style="color:var(--accent)">request access</a>.
+      </p>
     </section>
   </main>
 

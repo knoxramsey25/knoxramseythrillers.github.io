@@ -11,7 +11,15 @@
     :root{--bg:#0b0f11;--panel:#11181d;--ink:#e6f5ee;--muted:#9db7a8;--accent:#7fd488;--line:#1a2421;--warn:#ffb84d;--danger:#ff5c33}
     html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px 18px}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:#a5f2b0}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#121e24,#0c161b);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px;display:flex;align-items:center}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
     .hero{background:linear-gradient(135deg,rgba(127,212,136,0.06),transparent);border:1px solid var(--line);border-radius:12px;padding:18px;position:relative;overflow:hidden}
     .hero::after{content:"";position:absolute;inset:-40px;opacity:.06;background:url('/assets/knoxramsey_logo.jpeg') center/420px no-repeat;filter:grayscale(1)}
     h1,h2,h3{color:var(--accent);margin:0 0 .6rem 0}
@@ -25,8 +33,6 @@
     .panel header{font-weight:800;color:var(--accent);margin-bottom:.4rem}
     ul{padding-left:1.2rem;margin:.6rem 0}
     li{margin:.3rem 0}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{color:#a5f2b0}
     .muted{color:var(--muted)}
     .cta{display:inline-block;margin-top:.6rem;padding:.6rem .9rem;border:1px solid var(--line);border-radius:8px;background:rgba(12,21,26,0.6);font-weight:700}
     form{display:flex;gap:8px;flex-wrap:wrap;margin-top:.6rem}
@@ -34,6 +40,81 @@
     button{padding:.6rem .9rem;border-radius:8px;border:1px solid var(--line);background:linear-gradient(180deg,#0e181d,#0a1318);color:var(--ink);font-weight:800;cursor:pointer}
     .note{font-size:.85rem;color:var(--muted);margin-top:.4rem}
     .divider{border-top:1px solid var(--line);margin:1.2rem 0}
+    
+    /* Binder Layout */
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    
+    .sidebar{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:20px 18px;
+      position:sticky;
+      top:80px;
+      height:fit-content;
+      max-height:calc(100vh - 100px);
+      overflow-y:auto;
+    }
+    
+    .sidebar h2{
+      margin:0 0 1.5rem 0;
+      font-size:1.3rem;
+      color:var(--accent);
+    }
+    
+    .sidebar .search{
+      margin-bottom:1.5rem;
+    }
+    
+    .sidebar .search input{
+      width:100%;
+      padding:0.6rem;
+      background:var(--bg);
+      border:1px solid var(--line);
+      border-radius:6px;
+      color:var(--ink);
+      font-size:0.9rem;
+    }
+    
+    .sidebar nav{
+      display:flex;
+      flex-direction:column;
+      gap:0.3rem;
+    }
+    
+    .sidebar nav a{
+      padding:0.7rem 1rem;
+      color:var(--ink);
+      text-decoration:none;
+      border-left:3px solid transparent;
+      transition:all 0.2s;
+      border-radius:4px;
+    }
+    
+    .sidebar nav a:hover{
+      background:linear-gradient(90deg, rgba(82,255,168,0.08), transparent);
+      border-left-color:var(--accent);
+    }
+    
+    .sidebar nav a.active{
+      background:linear-gradient(90deg, rgba(82,255,168,0.12), transparent);
+      border-left-color:var(--accent);
+      color:var(--accent);
+      font-weight:600;
+    }
+    
+    .content{padding:0}
+    
+    @media (max-width:900px){
+      .binder{
+        grid-template-columns:1fr;gap:16px;padding:18px 14px
+      }
+      .sidebar{
+        position:relative;
+        top:0;
+        max-height:none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -49,8 +130,29 @@
     </div>
   </nav>
 
-  <main class="wrap">
-    <section class="hero">
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search">
+        <input type="search" placeholder="Search..." aria-label="Search Field Guide">
+      </div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/stuxnet/">Stuxnet Case File</a>
+        <a href="/fieldguide/dramatis-personae/">Dramatis Personae</a>
+        <a href="/fieldguide/locations/">Key Locations</a>
+        <a href="/fieldguide/us-structure/">US Inter-Agency</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="hero">
       <h1>Knox Ramsey Field Guide — Restricted Annex</h1>
       <p class="muted">Authorized readers only. Content classified until access granted.</p>
     </section>
@@ -95,8 +197,9 @@
       <p class="note">Replace the form action with your mailing platform endpoint. No data is stored on this site.</p>
     </section>
 
-    <p class="note" style="margin-top:12px">Hint: When gated, readers will be prompted for the access code from the book (e.g., <strong>GENEVA204</strong>).</p>
-  </main>
+      <p class="note">Hint: When gated, readers will be prompted for the access code from the book (e.g., <strong>GENEVA204</strong>).</p>
+    </main>
+  </div>
 
   <script src="/assets/js/fieldguide.js"></script>
 </body>

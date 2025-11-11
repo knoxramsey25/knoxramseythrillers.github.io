@@ -19,26 +19,31 @@
   <link rel="stylesheet" href="/assets/css/site.css">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    :root{--bg:#0e0e0e;--panel:#1a1a1a;--ink:#e0e0e0;--muted:#b0b0b0;--accent:#52ffa8;--line:#333}
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
     .serif{font-family:Georgia,serif}
     a{color:var(--accent);text-decoration:none}
-    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
-    .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
-    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .brand{font-weight:900;letter-spacing:.3px}
-    .links{display:flex;gap:14px;flex-wrap:wrap}
-    .links a{color:var(--muted);font-weight:700}
-    .links a:hover{color:var(--accent)}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line);padding:0}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 18px}
+    .nav-logo img{height:32px;width:auto;vertical-align:middle;border-radius:4px}
+    .nav-links{display:flex;gap:14px}
+    .nav-links a{color:var(--muted);font-weight:700;text-decoration:none}
+    .nav-links a:hover{color:var(--accent)}
+    .hamburger{display:none;flex-direction:column;cursor:pointer}
+    .hamburger span{width:25px;height:3px;background:var(--ink);margin:3px 0;border-radius:2px;transition:0.3s}
+    .hamburger.active span:nth-child(1){transform:rotate(-45deg) translate(-5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(45deg) translate(-5px,-5px)}
+    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}}
     .content{max-width:1200px;margin:0 auto;padding:28px 18px}
     .page-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
-    .hero{text-align:center;padding:48px 24px;border-bottom:1px solid var(--line);margin-bottom:48px}
-    .hero-logo{margin-bottom:24px;opacity:0;animation:fadeIn 1s ease forwards;animation-delay:0.5s}
-    .hero-logo img{height:80px;width:auto;border-radius:8px;transition:filter .25s ease, transform .25s ease}
-    .hero-logo img:hover{filter:brightness(1.15) drop-shadow(0 0 8px rgba(82,255,168,0.4));transform:scale(1.05)}
-    .hero h1{margin:0 0 16px;font-size:3rem;letter-spacing:.5px}
-    .hero p{margin:0;font-size:1.2rem;color:var(--muted);max-width:600px;margin:0 auto}
+    .hero{text-align:center;padding:80px 24px;margin-bottom:80px}
+    .hero-logo{margin-bottom:40px;opacity:0;animation:fadeIn 1.5s ease forwards;animation-delay:0.3s}
+    .hero-logo img{width:50vw;max-width:400px;min-width:200px;border-radius:8px;transition:filter .3s ease, transform .3s ease, box-shadow .3s ease}
+    .hero-logo img:hover{filter:brightness(1.1);transform:scale(1.02);box-shadow:0 0 20px rgba(82,255,168,0.3)}
+    .hero h1{margin:0 0 24px;font-size:3.5rem;letter-spacing:.5px}
+    .hero .tagline{margin:0;font-size:1.4rem;color:var(--muted);max-width:600px;margin:0 auto}
     .section{margin-bottom:64px;padding:32px 0;border-bottom:1px solid var(--line)}
     .section:last-child{border-bottom:none}
     .book-section{text-align:center}
@@ -68,17 +73,24 @@
     footer{border-top:1px solid var(--line);padding:32px 18px;color:var(--muted);text-align:center}
     @keyframes fadeIn{to{opacity:1}}
     @media (max-width:980px){.page-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.hero h1{font-size:2.5rem}.book-cover img{width:180px}}
+    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-cover img{width:180px}}
   </style>
 </head>
 <body>
   <nav class="nav" aria-label="Primary">
-    <div class="wrap bar">
-      <div class="links">
-        <a href="/">Home</a>
+    <div class="wrap">
+      <a href="/" class="nav-logo">
+        <img src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" loading="lazy" decoding="async">
+      </a>
+      <div class="nav-links">
         <a href="/fieldguide/">Field Guide</a>
         <a href="/darkrecipe/">Dark Recipe</a>
         <a href="/about.html">About</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
   </nav>
@@ -86,10 +98,10 @@
   <div class="content">
     <section class="hero">
       <div class="hero-logo">
-        <img src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="200" height="50" loading="eager">
+        <img src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" loading="eager">
       </div>
       <h1>Knox Ramsey Thrillers</h1>
-      <p class="serif">Where cyber espionage meets high-stakes fiction. Explore the dark underbelly of digital warfare through gripping narratives and technical deep dives.</p>
+      <p class="tagline serif">Where cyber espionage meets high-stakes fiction.</p>
     </section>
 
     <section class="section book-section">
@@ -116,10 +128,6 @@
       <a href="/fieldguide/" class="btn">Access Field Guide</a>
     </section>
 
-    <div class="author-signature serif">
-      — Knox Ramsey
-    </div>
-
     <section class="section newsletter-form">
       <h3>Stay Connected</h3>
       <p class="serif">Get updates on releases, exclusive content, and insights into the world of cyber fiction. Join our mailing list for the latest from Knox Ramsey Thrillers.</p>
@@ -141,5 +149,14 @@
     <p>© 2025 Knox Ramsey Thrillers • Educational context only</p>
     <p class="muted">Published by Independent • All rights reserved</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const hamburger = document.querySelector('.hamburger');
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>

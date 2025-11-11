@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <title>Knox Ramsey Thrillers — Official Site</title>
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Official site for the Knox Ramsey universe. Read the prologue of Dark Recipe and explore the technical Field Guide."/>
+  <meta name="keywords" content="thriller, fiction, cyber, intelligence, Knox Ramsey, Dark Recipe, Field Guide"/>
+  <meta name="author" content="Knox Ramsey Thrillers"/>
   <meta property="og:title" content="Knox Ramsey Thrillers">
   <meta property="og:description" content="Read the opening of Dark Recipe and explore the Field Guide.">
   <meta property="og:image" content="/assets/CoverArt.png">
+  <meta property="og:url" content="https://knoxramseythrillers.github.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Knox Ramsey Thrillers">
+  <meta name="twitter:description" content="Read the opening of Dark Recipe and explore the Field Guide.">
+  <meta name="twitter:image" content="/assets/CoverArt.png">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
     *{box-sizing:border-box} html,body{margin:0}
     body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    .serif{font-family:Georgia,serif}
     a{color:var(--accent);text-decoration:none}
     .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
     .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
@@ -24,25 +33,47 @@
     .links a:hover{color:var(--accent)}
     .content{max-width:1200px;margin:0 auto;padding:28px 18px}
     .page-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
-    .hero{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
-    .hero-image{width:220px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-    .hero-content{flex:1}
-    .hero h1{margin:0;font-size:2.6rem}
-    .hero em{color:var(--accent);font-style:normal}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-    aside.sidebar .card{margin-bottom:18px}
-    .btn{display:inline-block;margin-top:10px;border:1px solid var(--accent);border-radius:8px;padding:10px 14px;font-weight:700}
+    .hero{text-align:center;padding:48px 24px;border-bottom:1px solid var(--line);margin-bottom:48px}
+    .hero-logo{margin-bottom:24px;opacity:0;animation:fadeIn 1s ease forwards;animation-delay:0.5s}
+    .hero-logo img{height:80px;width:auto;border-radius:8px;transition:filter .25s ease, transform .25s ease}
+    .hero-logo img:hover{filter:brightness(1.15) drop-shadow(0 0 8px rgba(82,255,168,0.4));transform:scale(1.05)}
+    .hero h1{margin:0 0 16px;font-size:3rem;letter-spacing:.5px}
+    .hero p{margin:0;font-size:1.2rem;color:var(--muted);max-width:600px;margin:0 auto}
+    .section{margin-bottom:64px;padding:32px 0;border-bottom:1px solid var(--line)}
+    .section:last-child{border-bottom:none}
+    .book-section{text-align:center}
+    .book-cover{margin-bottom:24px}
+    .book-cover img{width:220px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+    .book-content{max-width:500px;margin:0 auto}
+    .book-content h2{margin:0 0 16px;font-size:2rem}
+    .book-content p{margin:0 0 24px}
+    .tagline{font-style:italic;color:var(--accent);margin-bottom:16px}
+    .release-date{color:var(--muted);font-size:0.9rem;margin-bottom:24px}
+    .universe-statement{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:32px}
+    .universe-statement p{font-size:1.1rem;line-height:1.8;margin:0}
+    .field-guide-callout{background:linear-gradient(135deg, rgba(82,255,168,0.1), rgba(82,255,168,0.05));padding:32px;border-radius:12px;margin-bottom:32px;border:1px solid rgba(82,255,168,0.2)}
+    .field-guide-callout h3{margin:0 0 16px;font-size:1.8rem}
+    .field-guide-callout p{margin:0 0 24px}
+    .author-signature{text-align:center;margin-bottom:32px;font-style:italic;color:var(--muted)}
+    .newsletter-form{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:32px}
+    .newsletter-form h3{margin:0 0 16px;font-size:1.8rem}
+    .newsletter-form p{margin:0 0 24px}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;margin-bottom:8px;font-weight:700}
+    .form-group input[type="email"]{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+    .form-group input[type="text"]{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+    .btn{display:inline-block;margin-top:10px;border:1px solid var(--accent);border-radius:8px;padding:12px 24px;font-weight:700;background:transparent;color:var(--accent);cursor:pointer}
     .btn:hover{background:rgba(82,255,168,0.1)}
     .muted{color:var(--muted)}
-    footer{border-top:1px solid var(--line);padding:20px 18px;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:32px 18px;color:var(--muted);text-align:center}
+    @keyframes fadeIn{to{opacity:1}}
     @media (max-width:980px){.page-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.hero{grid-template-columns:1fr;text-align:center}.hero-image{margin:0 auto}}
+    @media (max-width:768px){.hero h1{font-size:2.5rem}.book-cover img{width:180px}}
   </style>
 </head>
 <body>
   <nav class="nav" aria-label="Primary">
     <div class="wrap bar">
-  <div class="brand"><img class="brand-logo" src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="112" height="28" loading="lazy" decoding="async"/>Knox Ramsey Thrillers</div>
       <div class="links">
         <a href="/">Home</a>
         <a href="/fieldguide/">Field Guide</a>
@@ -53,55 +84,62 @@
   </nav>
 
   <div class="content">
-    <div class="page-grid">
-      <main>
-        <section class="hero">
-          <img src="/CoverArt.png" alt="Dark Recipe book cover" class="hero-image" width="220" height="330" loading="eager">
-          <div class="hero-content">
-            <h1><em>Dark Recipe</em></h1>
-            <p class="muted">A geopolitical techno-thriller grounded in real control systems and plant biology.</p>
-            <p><a class="btn" href="/teaser.html">Read the Opening — Prologue →</a>
-            <a class="btn" href="/darkrecipe/">About the Book →</a></p>
-          </div>
-        </section>
+    <section class="hero">
+      <div class="hero-logo">
+        <img src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="200" height="50" loading="eager">
+      </div>
+      <h1>Knox Ramsey Thrillers</h1>
+      <p class="serif">Where cyber espionage meets high-stakes fiction. Explore the dark underbelly of digital warfare through gripping narratives and technical deep dives.</p>
+    </section>
 
-        <section class="card" style="margin-top:18px">
-          <h2>Field Guide</h2>
-          <p class="muted">Color diagrams, the live CEA recipe dashboard, and technical notes that complement the novel.</p>
-          <p><a class="btn" href="/fieldguide/">Explore the Field Guide →</a></p>
-        </section>
-      </main>
+    <section class="section book-section">
+      <div class="book-cover">
+        <img src="/CoverArt.png" alt="Dark Recipe book cover" width="220" height="330" loading="eager">
+      </div>
+      <div class="book-content">
+        <div class="tagline">"A recipe for digital destruction"</div>
+        <h2>Dark Recipe</h2>
+        <p class="serif">In the shadows of global networks, a rogue operative uncovers a conspiracy that threatens to unravel the fabric of international security. Read the prologue and step into the world of Knox Ramsey.</p>
+        <div class="release-date">Coming December 2025</div>
+        <a href="/teaser.html" class="btn">Read Prologue</a>
+        <a href="/darkrecipe/" class="btn">Explore Dark Recipe</a>
+      </div>
+    </section>
 
-      <aside class="sidebar" aria-label="Side information">
-        <div class="card">
-          <h3>Release</h3>
-          <p><strong>Planned:</strong> December 20, 2025</p>
-          <p class="muted">Final date subject to minor adjustment as production and cover art are completed.</p>
-        </div>
-        <div class="card">
-          <h3>ISBNs</h3>
-          <p class="muted" style="margin-top:-6px">Final metadata</p>
-          <ul style="margin:0 0 0 18px">
-            <li>HC: 978-8-9934979-2-1</li>
-            <li>PB: 978-8-9934979-1-4</li>
-            <li>eBook: 978-8-9934979-0-7</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Universe</h3>
-          <p class="muted">Future entries are in development. This site will evolve as the universe grows.</p>
-        </div>
-        <div class="card">
-          <h3>Already reading?</h3>
-          <p class="muted">The recipe dashboard and system diagrams now live in the Field Guide.</p>
-          <p><a class="btn" href="/fieldguide/systems/">Open Systems Module →</a></p>
-        </div>
-      </aside>
+    <section class="section universe-statement">
+      <p class="serif">The Knox Ramsey universe explores the intersection of cutting-edge technology and human ambition, where cyber warriors navigate moral gray areas in defense of digital sovereignty. Each story peels back layers of the invisible infrastructure that powers our world, revealing the high-stakes drama of modern espionage.</p>
+    </section>
+
+    <section class="section field-guide-callout">
+      <h3>Field Guide</h3>
+      <p class="serif">Dive deeper into the technical realities behind the fiction. Our exclusive Field Guide offers detailed breakdowns of cyber operations, intelligence methodologies, and the tools that shape digital warfare.</p>
+      <a href="/fieldguide/" class="btn">Access Field Guide</a>
+    </section>
+
+    <div class="author-signature serif">
+      — Knox Ramsey
     </div>
+
+    <section class="section newsletter-form">
+      <h3>Stay Connected</h3>
+      <p class="serif">Get updates on releases, exclusive content, and insights into the world of cyber fiction. Join our mailing list for the latest from Knox Ramsey Thrillers.</p>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="access-code">Field Guide Access Code (Optional)</label>
+          <input type="text" id="access-code" name="access-code" placeholder="Enter code for bonus content">
+        </div>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </section>
   </div>
 
   <footer class="wrap">
-    © 2025 Knox Ramsey Thrillers • Educational context only
+    <p>© 2025 Knox Ramsey Thrillers • Educational context only</p>
+    <p class="muted">Published by Independent • All rights reserved</p>
   </footer>
 </body>
 </html>

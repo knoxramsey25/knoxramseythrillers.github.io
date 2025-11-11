@@ -1,0 +1,6 @@
+#!/bin/sh
+# Guardrail: prevent commits that drop canon characters from the Dramatis Personae page.
+
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+
+python3 "$PROJECT_ROOT/tools/check_dramatis_personae.py" || exit 1

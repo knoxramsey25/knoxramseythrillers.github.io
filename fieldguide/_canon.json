@@ -1,0 +1,42 @@
+{
+  "characters": [
+    {
+      "slug": "knox-ramsey",
+      "name": "Knox Ramsey",
+      "aliases": ["The Engineer", "Witness A"],
+      "role": "Systems Engineer"
+    },
+    {
+      "slug": "maya-chen",
+      "name": "Maya Chen",
+      "aliases": ["Asset Seven"],
+      "role": "Predictive Analytics"
+    },
+    {
+      "slug": "william-steele",
+      "name": "SAC William \u201cBill\u201d Steele",
+      "aliases": ["Bill Steele"],
+      "role": "Federal Agent"
+    },
+    {
+      "slug": "ausa-keating",
+      "name": "AUSA Keating",
+      "role": "Federal Prosecutor"
+    },
+    {
+      "slug": "evelyn-hammond",
+      "name": "Senator Evelyn Hammond",
+      "role": "Oversight Committee"
+    },
+    {
+      "slug": "janet-daniels",
+      "name": "Janet Daniels",
+      "role": "Secretary of the Treasury"
+    },
+    {
+      "slug": "liu-wei",
+      "name": "Liu Wei",
+      "role": "MSS Liaison"
+    }
+  ]
+}

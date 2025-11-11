@@ -39,6 +39,15 @@
   
   function inFieldGuide(){ return location.pathname.startsWith('/fieldguide'); }
 
+  function ensureFavicon(){
+    if(document.querySelector('link[rel="icon"]')) return;
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = '/assets/knoxramsey_logo.jpeg';
+    link.type = 'image/jpeg';
+    document.head.appendChild(link);
+  }
+
   function insertSidebar(html){
     // If page already has a .sidebar element (like biology), do nothing
     if(document.querySelector('.sidebar') || document.getElementById('fg-sidebar-root')) return;
@@ -255,6 +264,7 @@
   }
 
   if(inFieldGuide()){
+    ensureFavicon();
     // Check access before loading any content
     checkAccess();
     

@@ -22,70 +22,171 @@
     .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
     .muted{color:var(--muted)}
     
-    /* Timeline container */
-    .timeline-container{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:20px;
-      margin-bottom:18px;
-      overflow-x:auto;
-      overflow-y:hidden;
+    /* Layout structure that fieldguide.js creates */
+    .layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:24px;
+      align-items:start;
     }
-    
-    /* Mobile: Convert to vertical list */
+    .layout .sidebar{
+      position:sticky;
+      top:80px;
+      max-height:calc(100vh - 100px);
+      overflow-y:auto;
+    }
+    .layout section{
+      min-width:0;
+    }
     @media (max-width:900px){
-      .timeline-container{display:none}
-      .timeline-list{display:block}
-    }
-    @media (min-width:901px){
-      .timeline-list{display:none}
+      .layout{
+        grid-template-columns:1fr;
+      }
+      .layout .sidebar{
+        position:static;
+        max-height:none;
+      }
     }
     
-    /* Vertical timeline list for mobile */
+    /* Timeline container - show list on all screens */
+    .timeline-container{
+      display:none;
+    }
+    
     .timeline-list{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:20px;
+      display:block;
     }
+    
+    /* Vertical timeline list - enhanced visual design */
+    .timeline-list{
+      position:relative;
+      padding-left:40px;
+    }
+    
+    /* Vertical line connecting all events */
+    .timeline-list::before{
+      content:'';
+      position:absolute;
+      left:18px;
+      top:0;
+      bottom:0;
+      width:3px;
+      background:linear-gradient(180deg, transparent, var(--accent) 5%, var(--accent) 95%, transparent);
+      border-radius:2px;
+    }
+    
     .timeline-section{
-      margin-bottom:24px;
-      padding-bottom:20px;
-      border-bottom:1px solid var(--line);
+      position:relative;
+      margin-bottom:40px;
     }
-    .timeline-section:last-child{border-bottom:none}
+    .timeline-section:last-child{margin-bottom:0}
+    
     .timeline-section h3{
       color:var(--accent);
-      margin:0 0 12px 0;
-      font-size:1.1rem;
+      margin:0 0 20px 0;
+      font-size:1.3rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      position:relative;
+      padding-left:10px;
     }
+    
+    /* Section marker on timeline */
+    .timeline-section h3::before{
+      content:'';
+      position:absolute;
+      left:-32px;
+      top:50%;
+      transform:translateY(-50%);
+      width:16px;
+      height:16px;
+      background:var(--accent);
+      border:3px solid var(--bg);
+      border-radius:50%;
+      box-shadow:0 0 0 3px var(--accent);
+      z-index:2;
+    }
+    
     .timeline-event{
-      padding:8px 12px;
-      margin-bottom:8px;
-      background:rgba(82,255,168,0.03);
+      position:relative;
+      padding:14px 18px;
+      margin-bottom:12px;
+      margin-left:10px;
+      background:var(--panel);
+      border:1px solid var(--line);
       border-left:3px solid var(--line);
-      border-radius:4px;
+      border-radius:8px;
       display:flex;
       justify-content:space-between;
       align-items:center;
       flex-wrap:wrap;
-      gap:8px;
+      gap:12px;
+      transition:all 0.3s ease;
     }
+    
+    /* Event dot on timeline */
+    .timeline-event::before{
+      content:'';
+      position:absolute;
+      left:-32px;
+      top:50%;
+      transform:translateY(-50%);
+      width:10px;
+      height:10px;
+      background:var(--muted);
+      border:2px solid var(--bg);
+      border-radius:50%;
+      z-index:2;
+      transition:all 0.3s ease;
+    }
+    
     .timeline-event.clickable{
       cursor:pointer;
-      transition:all 0.2s;
     }
-    .timeline-event.clickable:hover{
-      background:rgba(82,255,168,0.08);
+    
+    .timeline-event.clickable::before{
+      background:var(--accent);
+      box-shadow:0 0 0 3px rgba(82,255,168,0.2);
+    }
+    
+    .timeline-event:hover{
+      background:rgba(82,255,168,0.05);
       border-left-color:var(--accent);
-      transform:translateX(4px);
+      transform:translateX(6px);
+      box-shadow:0 4px 12px rgba(82,255,168,0.15);
     }
-    .event-name{font-weight:600}
+    
+    .timeline-event.clickable:hover::before{
+      background:#6fffb8;
+      box-shadow:0 0 0 5px rgba(82,255,168,0.3);
+      transform:translateY(-50%) scale(1.3);
+    }
+    
+    .event-name{
+      font-weight:600;
+      font-size:1.05rem;
+    }
+    
     .event-time{
       color:var(--muted);
       font-size:0.9rem;
+      font-weight:700;
       white-space:nowrap;
+      font-family:monospace;
+      background:rgba(82,255,168,0.08);
+      padding:4px 10px;
+      border-radius:4px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width:600px){
+      .timeline-list{padding-left:30px}
+      .timeline-list::before{left:12px}
+      .timeline-section h3::before{left:-26px;width:12px;height:12px}
+      .timeline-event::before{left:-26px;width:8px;height:8px}
+      .event-name{font-size:0.95rem}
+      .event-time{font-size:0.85rem}
     }
     
     /* Legend */
@@ -196,58 +297,69 @@
       </div>
     </div>
 
-    <!-- Desktop: Mermaid Timeline -->
+    <!-- Desktop: Mermaid Gantt Chart (Timeline) -->
     <div class="timeline-container">
       <div class="mermaid">
-timeline
+gantt
     title Geneva Incident — Countdown to Crisis
+    dateFormat X
+    axisFormat %d
+    
     section Planning Phase
-        FAC-17 Target Selection : -180 days
-        Supply Chain Infiltration : -120 days
-        Certificate Authority Compromise : -90 days
-        Synthetic Training Data Generation : -60 days
+    FAC-17 Target Selection :-180, 60d
+    Supply Chain Infiltration :-120, 30d
+    Certificate Authority Compromise :-90, 30d
+    Synthetic Training Data Generation :-60, 18d
+    
     section Deployment
-        Operation Harvest Cloud Launch : -42 days
-        First Cycle Facilities Infected : -40 days
-        Model Poisoning Complete : -38 days
-        FarmLytics Cloud Contamination : -36 days
+    Operation Harvest Cloud Launch :milestone, -42, 0d
+    First Cycle Facilities Infected :-40, 2d
+    Model Poisoning Complete :-38, 2d
+    FarmLytics Cloud Contamination :-36, 8d
+    
     section First Symptoms
-        Leafy Green Stress Markers : -36 days
-        Cannabis Spectral Anomalies : -28 days
-        Trichome Morphology Changes : -24 days
-        First Consumer Complaints : -21 days
+    Leafy Green Stress Markers :-36, 8d
+    Cannabis Spectral Anomalies :-28, 4d
+    Trichome Morphology Changes :-24, 3d
+    First Consumer Complaints :-21, 3d
+    
     section Detection
-        ER Admissions Spike : -18 days
-        CDC Pattern Recognition : -16 days
-        Knox Ramsey Engaged : -14 days
-        Tate Discovers Biological Sentinels : -12 days
+    ER Admissions Spike :-18, 2d
+    CDC Pattern Recognition :-16, 2d
+    Knox Ramsey Engaged :milestone, -14, 0d
+    Tate Discovers Biological Sentinels :-12, 2d
+    
     section Investigation
-        FarmCore Architecture Review : -10 days
-        Certificate Spoofing Identified : -8 days
-        Safety Kernel Vulnerability Found : -6 days
-        Third Cycle Toxicity Peak : -5 days
+    FarmCore Architecture Review :-10, 2d
+    Certificate Spoofing Identified :-8, 2d
+    Safety Kernel Vulnerability Found :-6, 1d
+    Third Cycle Toxicity Peak :crit, -5, 1d
+    
     section Crisis Response
-        DOT Interstate Interdictions : -4 days
-        Facility Quarantine Orders : -3 days
-        FarmLytics Emergency Shutdown : -2 days
-        Fourth Cycle Lethal Concentrations : -1 day
+    DOT Interstate Interdictions :crit, -4, 1d
+    Facility Quarantine Orders :crit, -3, 1d
+    FarmLytics Emergency Shutdown :crit, -2, 1d
+    Fourth Cycle Lethal Concentrations :crit, -1, 1d
+    
     section Geneva Summit
-        Negotiations Begin : 0 days
-        Peak Casualties Occur : 0 days
-        Chinese Delegation Leverage : +1 day
-        US Position Weakened : +2 days
+    Negotiations Begin :milestone, 0, 0d
+    Peak Casualties Occur :crit, 0, 1d
+    Chinese Delegation Leverage :1, 1d
+    US Position Weakened :2, 1d
+    
     section Resolution
-        Summit Concluded : +3 days
-        FAC-17 Attribution Confirmed : +5 days
-        Federal Arrests Begin : +7 days
-        Safety Kernel v2 Deployed : +10 days
-        GENEVA214 Portal Launch : +10 days
-        Congressional Hearings : +14 days
-        Shanghai Facility Raid : +14 days
+    Summit Concluded :milestone, 3, 0d
+    FAC-17 Attribution Confirmed :5, 2d
+    Federal Arrests Begin :7, 3d
+    Safety Kernel v2 Deployed :10, 1d
+    GENEVA214 Portal Launch :milestone, 10, 0d
+    Congressional Hearings :14, 1d
+    Shanghai Facility Raid :14, 1d
+    
     section Long-Term
-        Industry Regulation Reform : +30 days
-        Knox Ramsey Testimony : +45 days
-        New Safety Standards : +60 days
+    Industry Regulation Reform :30, 15d
+    Knox Ramsey Testimony :45, 1d
+    New Safety Standards :60, 30d
       </div>
     </div>
 

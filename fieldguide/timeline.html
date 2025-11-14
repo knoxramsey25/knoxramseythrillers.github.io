@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Geneva Incident Timeline</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Complete timeline of Operation Harvest Cloud from planning through resolution."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+    main.wrap{padding:28px 18px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+    .muted{color:var(--muted)}
+    
+    /* Timeline container */
+    .timeline-container{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:20px;
+      margin-bottom:18px;
+      overflow-x:auto;
+      overflow-y:hidden;
+    }
+    
+    /* Mobile: Convert to vertical list */
+    @media (max-width:900px){
+      .timeline-container{display:none}
+      .timeline-list{display:block}
+    }
+    @media (min-width:901px){
+      .timeline-list{display:none}
+    }
+    
+    /* Vertical timeline list for mobile */
+    .timeline-list{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:20px;
+    }
+    .timeline-section{
+      margin-bottom:24px;
+      padding-bottom:20px;
+      border-bottom:1px solid var(--line);
+    }
+    .timeline-section:last-child{border-bottom:none}
+    .timeline-section h3{
+      color:var(--accent);
+      margin:0 0 12px 0;
+      font-size:1.1rem;
+    }
+    .timeline-event{
+      padding:8px 12px;
+      margin-bottom:8px;
+      background:rgba(82,255,168,0.03);
+      border-left:3px solid var(--line);
+      border-radius:4px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .timeline-event.clickable{
+      cursor:pointer;
+      transition:all 0.2s;
+    }
+    .timeline-event.clickable:hover{
+      background:rgba(82,255,168,0.08);
+      border-left-color:var(--accent);
+      transform:translateX(4px);
+    }
+    .event-name{font-weight:600}
+    .event-time{
+      color:var(--muted);
+      font-size:0.9rem;
+      white-space:nowrap;
+    }
+    
+    /* Legend */
+    .legend{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      padding:12px;
+      background:rgba(82,255,168,0.03);
+      border-radius:8px;
+      margin-bottom:18px;
+      font-size:0.9rem;
+    }
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .legend-dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+    }
+    .legend-clickable{background:var(--accent)}
+    .legend-static{background:var(--muted)}
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad:true,
+      theme:"base",
+      securityLevel:"loose",
+      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"linear"},
+      themeVariables:{
+        background:"#0d171c",
+        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+        fontSize:"14px",
+        lineColor:"#52ffa8",
+        textColor:"#e8eef5",
+        primaryColor:"#12313d",
+        primaryBorderColor:"#52ffa8",
+        primaryTextColor:"#e8eef5",
+        secondaryColor:"#12313d",
+        secondaryBorderColor:"#52ffa8",
+        secondaryTextColor:"#e8eef5",
+        tertiaryColor:"#12313d",
+        tertiaryBorderColor:"#52ffa8",
+        tertiaryTextColor:"#e8eef5",
+        cScale0:"#12313d",
+        cScale1:"#1a3d4d",
+        cScale2:"#224a5e",
+        cScale3:"#2b5770",
+        cScale4:"#336482",
+        cScale5:"#3b7194",
+        cScale6:"#447ea6",
+        cScale7:"#4c8bb8",
+        cScale8:"#5498ca",
+        cScale9:"#5da5dc",
+        cScale10:"#65b2ee",
+        cScale11:"#6dc0ff"
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    function enablePanZoom(scope=document){
+      scope.querySelectorAll('.mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg,{zoomEnabled:true,fit:true,center:true,minZoom:0.3,maxZoom:16});
+        svg.dataset.pz='1';
+        svg.style.cursor='grab';
+        svg.addEventListener('mousedown',()=>svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',()=>svg.style.cursor='grab');
+      });
+    }
+    const observer=new MutationObserver(()=>enablePanZoom());
+    observer.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',enablePanZoom);
+  </script>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand"><img class="brand-logo" src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="112" height="28" loading="lazy" decoding="async"/>Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Geneva Incident Timeline</h1>
+    <div class="panel">
+      <p class="muted">Complete operational timeline of Operation Harvest Cloud from initial planning through resolution. Click events to explore related Field Guide sections.</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-dot legend-clickable"></span>
+        <span>Click to explore related content</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot legend-static"></span>
+        <span>Timeline event</span>
+      </div>
+    </div>
+
+    <!-- Desktop: Mermaid Timeline -->
+    <div class="timeline-container">
+      <div class="mermaid">
+timeline
+    title Geneva Incident — Countdown to Crisis
+    section Planning Phase
+        FAC-17 Target Selection : -180 days
+        Supply Chain Infiltration : -120 days
+        Certificate Authority Compromise : -90 days
+        Synthetic Training Data Generation : -60 days
+    section Deployment
+        Operation Harvest Cloud Launch : -42 days
+        First Cycle Facilities Infected : -40 days
+        Model Poisoning Complete : -38 days
+        FarmLytics Cloud Contamination : -36 days
+    section First Symptoms
+        Leafy Green Stress Markers : -36 days
+        Cannabis Spectral Anomalies : -28 days
+        Trichome Morphology Changes : -24 days
+        First Consumer Complaints : -21 days
+    section Detection
+        ER Admissions Spike : -18 days
+        CDC Pattern Recognition : -16 days
+        Knox Ramsey Engaged : -14 days
+        Tate Discovers Biological Sentinels : -12 days
+    section Investigation
+        FarmCore Architecture Review : -10 days
+        Certificate Spoofing Identified : -8 days
+        Safety Kernel Vulnerability Found : -6 days
+        Third Cycle Toxicity Peak : -5 days
+    section Crisis Response
+        DOT Interstate Interdictions : -4 days
+        Facility Quarantine Orders : -3 days
+        FarmLytics Emergency Shutdown : -2 days
+        Fourth Cycle Lethal Concentrations : -1 day
+    section Geneva Summit
+        Negotiations Begin : 0 days
+        Peak Casualties Occur : 0 days
+        Chinese Delegation Leverage : +1 day
+        US Position Weakened : +2 days
+    section Resolution
+        Summit Concluded : +3 days
+        FAC-17 Attribution Confirmed : +5 days
+        Federal Arrests Begin : +7 days
+        Safety Kernel v2 Deployed : +10 days
+        GENEVA214 Portal Launch : +10 days
+        Congressional Hearings : +14 days
+        Shanghai Facility Raid : +14 days
+    section Long-Term
+        Industry Regulation Reform : +30 days
+        Knox Ramsey Testimony : +45 days
+        New Safety Standards : +60 days
+      </div>
+    </div>
+
+    <!-- Mobile: Vertical List -->
+    <div class="timeline-list">
+      <div class="timeline-section">
+        <h3>Planning Phase</h3>
+        <div class="timeline-event" onclick="location.href='/fieldguide/intelligence/'" data-tooltip="Learn about FAC-17">
+          <span class="event-name">FAC-17 Target Selection</span>
+          <span class="event-time">-180 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/threats/'" data-tooltip="Supply chain attacks">
+          <span class="event-name">Supply Chain Infiltration</span>
+          <span class="event-time">-120 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/threats/'" data-tooltip="Certificate spoofing">
+          <span class="event-name">Certificate Authority Compromise</span>
+          <span class="event-time">-90 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Synthetic Training Data Generation</span>
+          <span class="event-time">-60 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Deployment</h3>
+        <div class="timeline-event">
+          <span class="event-name">Operation Harvest Cloud Launch</span>
+          <span class="event-time">-42 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/systems/'" data-tooltip="FarmCore compromise">
+          <span class="event-name">First Cycle Facilities Infected</span>
+          <span class="event-time">-40 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Model Poisoning Complete</span>
+          <span class="event-time">-38 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/systems/'" data-tooltip="Cloud analytics attack">
+          <span class="event-name">FarmLytics Cloud Contamination</span>
+          <span class="event-time">-36 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>First Symptoms</h3>
+        <div class="timeline-event" onclick="location.href='/fieldguide/biology/#spectral-trigger'" data-tooltip="Light manipulation">
+          <span class="event-name">Leafy Green Stress Markers</span>
+          <span class="event-time">-36 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/biology/#spectral-trigger'" data-tooltip="Spectral anomalies">
+          <span class="event-name">Cannabis Spectral Anomalies</span>
+          <span class="event-time">-28 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/biology/#alkaloid-cascade'" data-tooltip="Trichome changes">
+          <span class="event-name">Trichome Morphology Changes</span>
+          <span class="event-time">-24 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">First Consumer Complaints</span>
+          <span class="event-time">-21 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Detection</h3>
+        <div class="timeline-event">
+          <span class="event-name">ER Admissions Spike</span>
+          <span class="event-time">-18 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">CDC Pattern Recognition</span>
+          <span class="event-time">-16 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Knox Ramsey Engaged</span>
+          <span class="event-time">-14 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/biology/#defense-architecture'" data-tooltip="Biological sentinels">
+          <span class="event-name">Tate Discovers Biological Sentinels</span>
+          <span class="event-time">-12 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Investigation</h3>
+        <div class="timeline-event" onclick="location.href='/fieldguide/systems/'" data-tooltip="Architecture review">
+          <span class="event-name">FarmCore Architecture Review</span>
+          <span class="event-time">-10 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/threats/'" data-tooltip="Certificate spoofing found">
+          <span class="event-name">Certificate Spoofing Identified</span>
+          <span class="event-time">-8 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/systems/'" data-tooltip="Safety kernel vulnerability">
+          <span class="event-name">Safety Kernel Vulnerability Found</span>
+          <span class="event-time">-6 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/biology/#timeline-integration'" data-tooltip="Toxicity escalation">
+          <span class="event-name">Third Cycle Toxicity Peak</span>
+          <span class="event-time">-5 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Crisis Response</h3>
+        <div class="timeline-event">
+          <span class="event-name">DOT Interstate Interdictions</span>
+          <span class="event-time">-4 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Facility Quarantine Orders</span>
+          <span class="event-time">-3 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/systems/'" data-tooltip="Emergency shutdown">
+          <span class="event-name">FarmLytics Emergency Shutdown</span>
+          <span class="event-time">-2 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/biology/#extraction-problem'" data-tooltip="Lethal concentrations">
+          <span class="event-name">Fourth Cycle Lethal Concentrations</span>
+          <span class="event-time">-1 day</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Geneva Summit</h3>
+        <div class="timeline-event">
+          <span class="event-name">Negotiations Begin</span>
+          <span class="event-time">0 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Peak Casualties Occur</span>
+          <span class="event-time">0 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/intelligence/'" data-tooltip="Chinese intelligence operations">
+          <span class="event-name">Chinese Delegation Leverage</span>
+          <span class="event-time">+1 day</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">US Position Weakened</span>
+          <span class="event-time">+2 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Resolution</h3>
+        <div class="timeline-event">
+          <span class="event-name">Summit Concluded</span>
+          <span class="event-time">+3 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/intelligence/'" data-tooltip="Attribution to FAC-17">
+          <span class="event-name">FAC-17 Attribution Confirmed</span>
+          <span class="event-time">+5 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Federal Arrests Begin</span>
+          <span class="event-time">+7 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/systems/'" data-tooltip="Upgraded safety kernel">
+          <span class="event-name">Safety Kernel v2 Deployed</span>
+          <span class="event-time">+10 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">GENEVA214 Portal Launch</span>
+          <span class="event-time">+10 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Congressional Hearings</span>
+          <span class="event-time">+14 days</span>
+        </div>
+        <div class="timeline-event" onclick="location.href='/fieldguide/intelligence/'" data-tooltip="Shanghai facility">
+          <span class="event-name">Shanghai Facility Raid</span>
+          <span class="event-time">+14 days</span>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <h3>Long-Term Impact</h3>
+        <div class="timeline-event">
+          <span class="event-name">Industry Regulation Reform</span>
+          <span class="event-time">+30 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">Knox Ramsey Testimony</span>
+          <span class="event-time">+45 days</span>
+        </div>
+        <div class="timeline-event">
+          <span class="event-name">New Safety Standards</span>
+          <span class="event-time">+60 days</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel muted">
+      <p><strong>Note:</strong> Timeline represents narrative sequence from <em>Dark Recipe</em>. Events are synchronized to peak during Geneva summit negotiations for maximum diplomatic leverage. For technical details, explore linked Field Guide sections.</p>
+    </div>
+  </main>
+  <script src="/assets/js/fieldguide.js"></script>
+  <script>
+    // Add clickable class to mobile events with onclick
+    document.querySelectorAll('.timeline-event[onclick]').forEach(el => {
+      el.classList.add('clickable');
+    });
+  </script>
+</body>
+</html>

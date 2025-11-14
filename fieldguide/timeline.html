@@ -18,9 +18,32 @@
     .links{display:flex;gap:14px;flex-wrap:wrap}
     .links a{color:var(--muted);font-weight:700}
     .links a:hover{color:var(--accent)}
-    main.wrap{padding:28px 18px}
+    
+    /* Binder Layout: Sidebar + Content */
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    
+    /* Sidebar */
+    .sidebar{position:sticky;top:80px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
+    .sidebar h2{margin:0 0 16px 0;font-size:1.1rem;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px}
+    .sidebar nav{display:flex;flex-direction:column;gap:4px}
+    .sidebar nav a{display:block;padding:10px 12px;border-radius:6px;color:var(--muted);font-weight:600;border-left:3px solid transparent;transition:all 0.2s}
+    .sidebar nav a:hover{background:rgba(82,255,168,0.06);color:var(--accent);border-left-color:var(--accent)}
+    .sidebar nav a.active{background:linear-gradient(90deg,rgba(82,255,168,0.08),transparent);color:var(--accent);border-left-color:var(--accent);font-weight:800}
+    .sidebar .search{margin-bottom:20px}
+    .sidebar .search input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,0.02);color:var(--ink);font-size:0.95rem}
+    .sidebar .search input:focus{outline:2px solid var(--accent);background:rgba(255,255,255,0.04)}
+    
+    /* Content area */
+    .content{min-width:0}
+    
     .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
     .muted{color:var(--muted)}
+    
+    /* Mobile: Stack sidebar on top */
+    @media (max-width:768px){
+      .binder{grid-template-columns:1fr;gap:16px}
+      .sidebar{position:relative;top:0}
+    }
     
     /* Layout structure that fieldguide.js creates */
     .layout{
@@ -280,7 +303,28 @@
     </div>
   </nav>
 
-  <main class="wrap">
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search">
+        <input type="search" placeholder="Search..." aria-label="Search Field Guide">
+      </div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/timeline.html" class="active">Geneva Timeline</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/stuxnet/">Stuxnet Case File</a>
+        <a href="/fieldguide/dramatis-personae/">Dramatis Personae</a>
+        <a href="/fieldguide/locations/">Key Locations</a>
+        <a href="/fieldguide/us-structure/">US Inter-Agency</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+    <main class="content">
     <h1>Geneva Incident Timeline</h1>
     <div class="panel">
       <p class="muted">Complete operational timeline of Operation Harvest Cloud from initial planning through resolution. Click events to explore related Field Guide sections.</p>
@@ -557,7 +601,8 @@ gantt
     <div class="panel muted">
       <p><strong>Note:</strong> Timeline represents narrative sequence from <em>Dark Recipe</em>. Events are synchronized to peak during Geneva summit negotiations for maximum diplomatic leverage. For technical details, explore linked Field Guide sections.</p>
     </div>
-  </main>
+    </main>
+  </div>
   <script src="/assets/js/fieldguide.js"></script>
   <script>
     // Add clickable class to mobile events with onclick

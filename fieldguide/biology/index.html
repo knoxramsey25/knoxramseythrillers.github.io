@@ -54,7 +54,7 @@
     code{background:var(--panel);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:0.9rem}
     
     /* Mobile: Stack sidebar on top */
-    @media (max-width:900px){
+    @media (max-width:768px){
       .binder{grid-template-columns:1fr;gap:16px}
       .sidebar{position:relative;top:0}
     }
@@ -99,14 +99,11 @@
   </nav>
 
   <div class="binder">
-    <!-- SIDEBAR: The Trapper Keeper tabs -->
     <aside class="sidebar">
       <h2>Field Guide</h2>
-      
       <div class="search">
         <input type="search" placeholder="Search..." aria-label="Search Field Guide">
       </div>
-      
       <nav aria-label="Field Guide sections">
         <a href="/fieldguide/">Overview</a>
         <a href="/fieldguide/timeline.html">Geneva Timeline</a>
@@ -122,8 +119,6 @@
         <a href="/fieldguide/glossary/">Glossary</a>
       </nav>
     </aside>
-
-    <!-- CONTENT: The journal pages -->
     <main class="content">
       <h1>Plant Biology: The Biochemical Mechanism of Indoor Farms</h1>
       

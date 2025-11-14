@@ -49,19 +49,39 @@
   }
 
   function insertSidebar(html){
-    // If page already has a .sidebar element (like biology), do nothing
-    if(document.querySelector('.sidebar') || document.getElementById('fg-sidebar-root')) return;
+    // Check for existing sidebar - if found and has content, skip injection
+    var existingSidebar = document.querySelector('.sidebar');
+    if(existingSidebar){
+      // If sidebar exists but is empty/minimal (just comments), populate it
+      var hasContent = existingSidebar.querySelector('h2, nav, .search');
+      if(hasContent) return; // Already has content, skip
+      // Empty sidebar - populate it
+      existingSidebar.innerHTML = html;
+      return;
+    }
+    
+    // No sidebar exists - create and inject one
+    // Check if page uses .binder layout (most Field Guide pages)
+    var binder = document.querySelector('.binder');
+    if(binder){
+      // Create sidebar and prepend it to .binder
+      var aside = document.createElement('aside');
+      aside.className = 'sidebar';
+      aside.setAttribute('aria-label','Field guide navigation');
+      aside.innerHTML = html;
+      binder.insertBefore(aside, binder.firstChild);
+      return;
+    }
+    
+    // Fallback for pages without .binder
     var container = document.querySelector('main.wrap') || document.body;
     var layout = document.createElement('div');
     layout.className = 'layout';
-    // create sidebar wrapper
     var aside = document.createElement('aside');
     aside.className = 'sidebar';
     aside.setAttribute('aria-label','Field guide navigation');
     aside.innerHTML = html;
-    // move existing main content into a section
     var content = document.createElement('section');
-    // move children of container into content
     while(container.firstChild){ content.appendChild(container.firstChild); }
     layout.appendChild(aside);
     layout.appendChild(content);
@@ -284,10 +304,8 @@
       styleTag.textContent = css;
       document.head.appendChild(styleTag);
     })();
-    fetchSidebar().then(function(html){
-      insertSidebar(html);
-      return fetchIndex();
-    }).then(function(index){
+    // Sidebar injection disabled - using hardcoded sidebars for reliability
+    fetchIndex().then(function(index){
       setupSearch(index);
       enableScrollSpy();
     }).catch(function(err){

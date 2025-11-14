@@ -20,11 +20,11 @@ This repo uses client-side encryption to gate the bonus page for engaged readers
 
 ## Encrypt the page
 
-Replace `GENEVA204` with your chosen access code.
+Replace `GENEVA214` with your chosen access code.
 
 ```zsh
 # From repo root
-staticrypt fieldguide/bonus.html "GENEVA204" \
+staticrypt fieldguide/bonus.html "GENEVA214" \
   --output fieldguide/bonus.html \
   --salt "$(LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom | head -c 32)" \
   --short \

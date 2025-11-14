@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Field Guide — Intelligence Org Chart (Full Screen)</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="icon" href="/assets/knoxramsey_logo.jpeg" type="image/jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Full-screen organizational chart for MSS, PLA, and FAC-17 context."/>
+  <style>
+    :root{--bg:#071014;--panel:#0c151a;--ink:#e8eef5;--muted:#9fb2c7;--accent:#52ffa8;--line:#17313d}
+    *{box-sizing:border-box} html,body{margin:0}
+    body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1820,#0a1318);border-bottom:1px solid var(--line)}
+    .wrap{max-width:1400px;margin:0 auto;padding:16px 18px}
+    .bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{font-weight:900;letter-spacing:.3px}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{color:var(--muted);font-weight:700}
+    .links a:hover{color:var(--accent)}
+
+    .binder{display:grid;grid-template-columns:280px 1fr;gap:24px;max-width:1400px;margin:0 auto;padding:24px 18px}
+    .sidebar{position:sticky;top:80px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
+    .sidebar h2{margin:0 0 16px 0;font-size:1.1rem;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px}
+    .sidebar nav a{display:block;padding:10px 12px;border-radius:6px;color:var(--muted);font-weight:600;border-left:3px solid transparent}
+    .sidebar nav a:hover{background:rgba(82,255,168,0.06);color:var(--accent);border-left-color:var(--accent)}
+
+    .content{min-width:0}
+    .figure{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+    .figure header{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
+    .mermaid{padding:12px}
+    .hint{color:var(--muted);font-size:0.85rem;text-align:center;padding:8px 0 12px}
+    @media (max-width:900px){.binder{grid-template-columns:1fr;gap:16px}.sidebar{position:relative;top:0}}
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad:true,
+      theme:"base",
+      securityLevel:"loose",
+      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"linear",nodeSpacing:50,rankSpacing:70,padding:8},
+      themeVariables:{
+        background:"#0d171c",
+        lineColor:"#52ffa8",
+        textColor:"#e8eef5",
+        fontSize:"16px",
+        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    function enablePanZoom(scope=document){
+      scope.querySelectorAll('.mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg,{zoomEnabled:true,fit:true,center:true,minZoom:0.3,maxZoom:16});
+        svg.dataset.pz='1';
+        svg.style.cursor='grab';
+        svg.addEventListener('mousedown',()=>svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',()=>svg.style.cursor='grab');
+      });
+    }
+    const obs=new MutationObserver(()=>enablePanZoom());
+    obs.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',enablePanZoom);
+  </script>
+</head>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap bar">
+      <div class="brand"><img class="brand-logo" src="/assets/knoxramsey_logo.jpeg" alt="Knox Ramsey Thrillers logo" width="112" height="28" loading="lazy" decoding="async"/>Knox Ramsey Thrillers</div>
+      <div class="links">
+        <a href="/">Home</a>
+        <a href="/fieldguide/">Field Guide</a>
+        <a href="/darkrecipe/">Dark Recipe</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="binder">
+    <aside class="sidebar">
+      <h2>Field Guide</h2>
+      <div class="search">
+        <input type="search" placeholder="Search..." aria-label="Search Field Guide">
+      </div>
+      <nav aria-label="Field Guide sections">
+        <a href="/fieldguide/">Overview</a>
+        <a href="/fieldguide/timeline.html">Geneva Timeline</a>
+        <a href="/fieldguide/biology/">Plant Biology</a>
+        <a href="/fieldguide/intelligence/" class="active">Intelligence</a>
+        <a href="/fieldguide/systems/">Systems</a>
+        <a href="/fieldguide/systems/dashboard.html">Dashboard</a>
+        <a href="/fieldguide/threats/">Threats</a>
+        <a href="/fieldguide/stuxnet/">Stuxnet Case File</a>
+        <a href="/fieldguide/dramatis-personae/">Dramatis Personae</a>
+        <a href="/fieldguide/locations/">Key Locations</a>
+        <a href="/fieldguide/us-structure/">US Inter-Agency</a>
+        <a href="/fieldguide/glossary/">Glossary</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Intelligence Org Chart — Full Screen</h1>
+      <div class="figure">
+        <header>MSS / PLA / FAC‑17 — Organizational Context</header>
+        <div class="mermaid">
+flowchart TB
+  %% Top
+  PRC[State Council + Party Guidance]
+
+  %% MSS
+  subgraph MSS[MSS - Ministry of State Security]
+    MSSH[Headquarters]
+    CI[Counterintelligence]
+    CTF[Cyber and Technical Fronts]
+  end
+
+  %% PLA
+  subgraph PLA[PLA - Peoples Liberation Army]
+    JSD[Joint Staff Department]
+    SSF[Strategic Support Force]
+    U61398[Unit 61398 - SIGINT and Cyber]
+  end
+
+  %% Facility
+  subgraph FAC[FAC-17 - Cyber Intelligence Research Facility 17]
+    OP[Operations Cell]
+    LAB[Model Exploitation Lab]
+    COV[Cover Entities]
+  end
+
+  %% Links
+  PRC --> MSSH
+  PRC --> JSD
+  MSSH --> CTF --> FAC
+  JSD --> SSF --> U61398 -.-> FAC
+  CI -->|tasking| FAC
+  U61398 -.->|technical support| FAC
+
+  %% Styles
+  classDef gov fill:#1a2430,stroke:#52ffa8,color:#e8eef5;
+  classDef pla fill:#2b2016,stroke:#ffb35a,color:#e8eef5;
+  classDef fac fill:#12313d,stroke:#52ffa8,color:#e8eef5;
+
+  class PRC,MSSH,CI,CTF gov;
+  class JSD,SSF,U61398 pla;
+  class OP,LAB,COV fac;
+        </div>
+        <div class="hint">Tip: Scroll to zoom · Drag to pan</div>
+      </div>
+    </main>
+  </div>
+  <script src="/assets/js/fieldguide.js"></script>
+</body>
+</html>

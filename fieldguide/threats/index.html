@@ -89,7 +89,50 @@
       .attack-stepper li{grid-template-columns:32px 1fr;padding:14px 12px}
       .attack-stepper .dot{width:20px;height:20px}
     }
+
+    /* Desktop large diagram container */
+    .flowchart-desktop{display:none;margin:24px 0}
+    .flowchart-desktop .figure{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden}
+    .flowchart-desktop .figure header{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700}
+    .flowchart-desktop .mermaid{padding:12px}
+    .flowchart-desktop .hint{color:var(--muted);font-size:0.85rem;text-align:center;padding:8px 0 12px}
+    .btn{display:inline-block;border:1px solid var(--accent);border-radius:8px;padding:10px 14px;margin-top:10px;font-weight:700;text-decoration:none}
+    .btn:hover{background:rgba(82,255,168,0.1)}
+    @media (min-width:1024px){.flowchart-desktop{display:block}}
   </style>
+  <!-- Desktop-only diagram libs (safe to load always) -->
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad:true,
+      theme:"base",
+      securityLevel:"loose",
+      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"basis",nodeSpacing:50,rankSpacing:70,padding:8},
+      themeVariables:{
+        background:"#0d171c",
+        lineColor:"#52ffa8",
+        textColor:"#e8eef5",
+        fontSize:"14px",
+        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+  <script>
+    function enablePanZoom(scope=document){
+      scope.querySelectorAll('.flowchart-desktop .mermaid svg').forEach(svg=>{
+        if(svg.dataset.pz) return;
+        const pz = svgPanZoom(svg,{zoomEnabled:true,fit:true,center:true,minZoom:0.3,maxZoom:16});
+        svg.dataset.pz='1';
+        svg.style.cursor='grab';
+        svg.addEventListener('mousedown',()=>svg.style.cursor='grabbing');
+        svg.addEventListener('mouseup',()=>svg.style.cursor='grab');
+      });
+    }
+    const obs=new MutationObserver(()=>enablePanZoom());
+    obs.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',enablePanZoom);
+  </script>
 </head>
 <body>
   <nav class="nav" aria-label="Primary">
@@ -225,6 +268,48 @@
           </div>
         </li>
       </ol>
+    </section>
+
+    <!-- Desktop-only large flow diagram -->
+    <section class="flowchart-desktop" aria-label="Large attack flow diagram">
+      <h2 style="margin-top:0">Attack Flow (Large Diagram)</h2>
+      <div class="figure">
+        <header>Supply Chain → Infiltration → Execution → Impact → Crisis</header>
+        <div class="mermaid">
+flowchart LR
+  subgraph P1[Recon]
+    A["Initial Recon<br/>Compromise 1 Vendor"] --> B["Credential Harvest<br/>API / Cert Leakage"]
+  end
+  subgraph P2[Infiltration]
+    C["FarmLytics Infiltration<br/>Model Weight Tampering"] --> D["Recipe Manipulation<br/>Light Spikes · N Stress · Temp Oscillation"]
+  end
+  subgraph P3[Execution]
+    E["FarmCore Executes<br/>Telemetry Trusted"] --> F["Plant Stress<br/>Phenolic Aldehydes ↑"]
+  end
+  subgraph P4[Impact]
+    G["Distribution Chain<br/>Contaminated Flow"]
+  end
+  subgraph P5[Crisis]
+    H["Public Exposure<br/>Poisonings · ER Overload"]
+  end
+  B --> C
+  D --> E
+  F --> G
+  G --> H
+  classDef recon fill:#ffd4a3,stroke:#ff9d4d,stroke-width:2px,color:#1a1a1a
+  classDef infiltrate fill:#ffb3b3,stroke:#ff6666,stroke-width:2px,color:#1a1a1a
+  classDef execute fill:#d4b3ff,stroke:#9966ff,stroke-width:2px,color:#1a1a1a
+  classDef impact fill:#ff9999,stroke:#ff4444,stroke-width:2px,color:#1a1a1a
+  classDef crisis fill:#ff6666,stroke:#cc0000,stroke-width:3px,color:#fff
+  class A,B,P1 recon
+  class C,D,P2 infiltrate
+  class E,F,P3 execute
+  class G,P4 impact
+  class H,P5 crisis
+        </div>
+        <div class="hint">Tip: Scroll to zoom · Drag to pan</div>
+      </div>
+      <a class="btn" href="/fieldguide/threats/attack-flow.html">Open full-screen chart →</a>
     </section>
 
     <div class="grid">

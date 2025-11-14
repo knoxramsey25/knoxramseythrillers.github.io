@@ -47,6 +47,25 @@
     /* Content area */
     .content{min-width:0}
     
+    /* Attack Summary Stepper (mobile-first) */
+    .attack-stepper{position:relative;margin:18px 0 28px 0}
+    .attack-stepper ol{list-style:none;margin:0;padding:0}
+    .attack-stepper li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,0.02);margin-bottom:10px}
+    .attack-stepper .rail{grid-row:1 / span 2;align-self:stretch;position:relative}
+    .attack-stepper .rail::before{content:"";position:absolute;left:13px;top:0;bottom:0;width:2px;background:linear-gradient(var(--line), transparent)}
+    .attack-stepper .dot{position:relative;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:var(--panel);margin-top:2px;box-shadow:0 0 0 3px rgba(0,0,0,0.15)}
+    .attack-stepper .hdr{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .attack-stepper .step{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;border:1px solid var(--line);font-weight:800;font-size:0.85rem;background:rgba(255,255,255,0.03)}
+    .attack-stepper .title{font-weight:800;color:#fff}
+    .attack-stepper .desc{color:var(--muted);margin-top:6px}
+    .attack-stepper .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,255,255,0.15)}
+    .as-boundary .dot{background:#ffd4a3;border-color:#ff9d4d}
+    .as-inject   .dot{background:#ffb3b3;border-color:#ff6666}
+    .as-recipe   .dot{background:#d4b3ff;border-color:#9966ff}
+    .as-telemetry.dot{background:#ff9999;border-color:#ff4444}
+    .as-mitigate .dot{background:#6fffb8;border-color:#32d296}
+    @media (min-width:900px){.attack-stepper li{grid-template-columns:32px 1fr;padding:14px 12px}.attack-stepper .dot{width:20px;height:20px}}
+    
     /* Mobile: Stack sidebar on top */
     @media (max-width:900px){
       .binder{grid-template-columns:1fr;gap:16px}
@@ -142,6 +161,69 @@
       <p>
         These diagrams are reconstructions, not warnings. They show the hinge where design met assumption.
       </p>
+    </section>
+
+    <section class="panel" style="margin-top:0">
+      <h2 style="margin-top:0">Attack Summary (System View)</h2>
+      <section class="attack-stepper" aria-label="Compact attack summary">
+        <ol>
+          <li class="as-boundary">
+            <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+            <div>
+              <div class="hdr">
+                <span class="step">1</span>
+                <span class="title">Trust Boundary — Cloud → Site → Edge</span>
+                <span class="badge">Boundary</span>
+              </div>
+              <div class="desc">Certificates and policies anchor trust across FarmLytics, Gateway, and FarmCore.</div>
+            </div>
+          </li>
+          <li class="as-inject">
+            <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+            <div>
+              <div class="hdr">
+                <span class="step">2</span>
+                <a class="title" href="/fieldguide/threats/">Policy / Model Injection</a>
+                <span class="badge">Injection</span>
+              </div>
+              <div class="desc">Poisoned weights and spoofed certs traverse the update and trust channels.</div>
+            </div>
+          </li>
+          <li class="as-recipe">
+            <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+            <div>
+              <div class="hdr">
+                <span class="step">3</span>
+                <span class="title">Recipe Override at Gateway</span>
+                <span class="badge">Control</span>
+              </div>
+              <div class="desc">Gateway relays “optimized” recipes; FarmCore shadow test passes under spoofing.</div>
+            </div>
+          </li>
+          <li class="as-telemetry">
+            <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+            <div>
+              <div class="hdr">
+                <span class="step">4</span>
+                <a class="title" href="/fieldguide/systems/dashboard.html">Telemetry Spoofing</a>
+                <span class="badge">HMI</span>
+              </div>
+              <div class="desc">Operators see healthy signals while actuators drive plant stress.</div>
+            </div>
+          </li>
+          <li class="as-mitigate">
+            <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+            <div>
+              <div class="hdr">
+                <span class="step">5</span>
+                <a class="title" href="/fieldguide/systems/">Safety Kernel v2</a>
+                <span class="badge">Mitigation</span>
+              </div>
+              <div class="desc">Dual‑channel physics checks and local policy verification harden the edge.</div>
+            </div>
+          </li>
+        </ol>
+      </section>
     </section>
 
     <figure class="figure">

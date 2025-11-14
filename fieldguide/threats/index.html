@@ -56,26 +56,40 @@
     .figure{margin:24px 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
     .figure .mermaid{background:transparent;padding:20px;text-align:center}
     figcaption{text-align:center;color:var(--muted);font-size:0.9rem;margin-top:12px;font-style:italic}
+    
+    /* Vertical Stepper (mobile-first) */
+    .attack-stepper{position:relative;margin:18px 0 28px 0}
+    .attack-stepper ol{list-style:none;margin:0;padding:0 0 0 0}
+    .attack-stepper li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,0.02);margin-bottom:10px}
+    .attack-stepper .rail{grid-row:1 / span 2;align-self:stretch;position:relative}
+    .attack-stepper .rail::before{content:"";position:absolute;left:13px;top:0;bottom:0;width:2px;background:linear-gradient(var(--line), transparent)}
+    .attack-stepper .dot{position:relative;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);background:var(--panel);margin-top:2px;box-shadow:0 0 0 3px rgba(0,0,0,0.15)}
+    .attack-stepper .hdr{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .attack-stepper .step{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;border:1px solid var(--line);font-weight:800;font-size:0.85rem;background:rgba(255,255,255,0.03)}
+    .attack-stepper .title{font-weight:800;color:#fff}
+    .attack-stepper .desc{color:var(--muted);margin-top:6px}
+    .attack-stepper a.title{text-decoration:none}
+    .attack-stepper a.title:hover{color:var(--accent)}
+    .attack-stepper .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:0.75rem;font-weight:700;border:1px solid rgba(255,255,255,0.15)}
+    
+    /* Category colors */
+    .recon  .dot{background:#ffd4a3;border-color:#ff9d4d}
+    .infil  .dot{background:#ffb3b3;border-color:#ff6666}
+    .exec   .dot{background:#d4b3ff;border-color:#9966ff}
+    .impact .dot{background:#ff9999;border-color:#ff4444}
+    .crisis .dot{background:#ff6666;border-color:#cc0000}
+    
+    .recon  .badge{color:#1a1a1a;background:#ffd4a3;border-color:#ff9d4d}
+    .infil  .badge{color:#1a1a1a;background:#ffb3b3;border-color:#ff6666}
+    .exec   .badge{color:#1a1a1a;background:#d4b3ff;border-color:#9966ff}
+    .impact .badge{color:#1a1a1a;background:#ff9999;border-color:#ff4444}
+    .crisis .badge{color:#fff;background:#ff6666;border-color:#cc0000}
+    
+    @media (min-width:900px){
+      .attack-stepper li{grid-template-columns:32px 1fr;padding:14px 12px}
+      .attack-stepper .dot{width:20px;height:20px}
+    }
   </style>
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({
-      startOnLoad:true,
-      theme:"base",
-      securityLevel:"loose",
-      flowchart:{useMaxWidth:true,htmlLabels:true,curve:"basis"},
-      themeVariables:{
-        background:"#0d171c",
-        primaryColor:"#ffb3b3",
-        primaryBorderColor:"#333",
-        primaryTextColor:"#0d171c",
-        lineColor:"#52ffa8",
-        textColor:"#e8eef5",
-        fontSize:"14px",
-        fontFamily:"system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
-      }
-    });
-  </script>
 </head>
 <body>
   <nav class="nav" aria-label="Primary">
@@ -120,29 +134,98 @@
     </div>
 
     <h2>Attack Chain: Supply Chain to Public Exposure</h2>
-    <figure class="figure">
-      <div class="mermaid">
-flowchart TD
-    A["Initial Recon<br/>Compromise 1 Vendor"] --> B["Credential Harvest<br/>API / Cert Leakage"]
-    B --> C["FarmLytics Infiltration<br/>Model Weight Tampering"]
-    C --> D["Recipe Manipulation<br/>Blue Light Spikes, N Stress,<br/>Temp Oscillation"]
-    D --> E["FarmCore Executes<br/>Believes Telemetry is Clean"]
-    E --> F["Plant Biochemical Stress<br/>Elevated Phenolic Aldehydes"]
-    F --> G["Distribution Chain<br/>Contaminated Flow Leaves"]
-    G --> H["Public Exposure<br/>Poisonings, ER Overload"]
-    classDef recon fill:#ffd4a3,stroke:#ff9d4d,stroke-width:2px,color:#1a1a1a
-    classDef infiltrate fill:#ffb3b3,stroke:#ff6666,stroke-width:2px,color:#1a1a1a
-    classDef execute fill:#d4b3ff,stroke:#9966ff,stroke-width:2px,color:#1a1a1a
-    classDef impact fill:#ff9999,stroke:#ff4444,stroke-width:2px,color:#1a1a1a
-    classDef crisis fill:#ff6666,stroke:#cc0000,stroke-width:3px,color:#fff
-    class A,B recon
-    class C,D infiltrate
-    class E,F execute
-    class G impact
-    class H crisis
-      </div>
-      <figcaption>Complete attack flow from initial vendor compromise through public health crisis</figcaption>
-    </figure>
+    <section class="attack-stepper" aria-label="Attack Chain steps">
+      <ol>
+        <li class="recon">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">1</span>
+              <a class="title" href="/fieldguide/intelligence/">Initial Recon — Compromise 1 Vendor</a>
+              <span class="badge">Recon</span>
+            </div>
+            <div class="desc">Target profiling, supplier mapping, and foothold via a single vendor relationship.</div>
+          </div>
+        </li>
+        <li class="recon">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">2</span>
+              <a class="title" href="/fieldguide/intelligence/">Credential Harvest — API / Cert Leakage</a>
+              <span class="badge">Recon</span>
+            </div>
+            <div class="desc">Keys and certificates exposed through supplier systems and CI artifacts.</div>
+          </div>
+        </li>
+        <li class="infil">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">3</span>
+              <a class="title" href="/fieldguide/systems/">FarmLytics Infiltration — Weight Tampering</a>
+              <span class="badge">Infiltration</span>
+            </div>
+            <div class="desc">Poisoned model weights and policy packages enter the update channel.</div>
+          </div>
+        </li>
+        <li class="infil">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">4</span>
+              <a class="title" href="/fieldguide/systems/">Recipe Manipulation — Light/Nitrogen/Temp</a>
+              <span class="badge">Infiltration</span>
+            </div>
+            <div class="desc">Blue light spikes, nitrogen stress, and thermal oscillation encoded as "optimization".</div>
+          </div>
+        </li>
+        <li class="exec">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">5</span>
+              <a class="title" href="/fieldguide/systems/dashboard.html">FarmCore Executes — Telemetry Trusted</a>
+              <span class="badge">Execution</span>
+            </div>
+            <div class="desc">Edge controller accepts spoofed signals; Safety Kernel v1 fails to block.</div>
+          </div>
+        </li>
+        <li class="exec">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">6</span>
+              <a class="title" href="/fieldguide/biology/">Plant Stress — Phenolic Aldehydes</a>
+              <span class="badge">Execution</span>
+            </div>
+            <div class="desc">Biochemical defense cascades elevate toxins; crop quality silently degrades.</div>
+          </div>
+        </li>
+        <li class="impact">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">7</span>
+              <a class="title" href="/fieldguide/locations/">Distribution Chain — Contaminated Flow</a>
+              <span class="badge">Impact</span>
+            </div>
+            <div class="desc">Outbound logistics propagate contaminated batches beyond the facility boundary.</div>
+          </div>
+        </li>
+        <li class="crisis">
+          <div class="rail"><span class="dot" aria-hidden="true"></span></div>
+          <div>
+            <div class="hdr">
+              <span class="step">8</span>
+              <span class="title">Public Exposure — Poisonings, ER Overload</span>
+              <span class="badge">Crisis</span>
+            </div>
+            <div class="desc">Health systems register spikes; investigations correlate distributed supply lots.</div>
+          </div>
+        </li>
+      </ol>
+    </section>
 
     <div class="grid">
       <div class="card">

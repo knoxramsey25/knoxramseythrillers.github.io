@@ -74,10 +74,24 @@
     .btn{display:inline-block;margin-top:10px;border:1px solid var(--accent);border-radius:8px;padding:12px 24px;font-weight:700;background:transparent;color:var(--accent);cursor:pointer}
     .btn:hover{background:rgba(82,255,168,0.1)}
     .muted{color:var(--muted)}
+    .intel-ticker{width:100%;overflow:hidden;background:#0a0a0a;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;padding:12px 0}
+    .ticker-label{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:700;font-size:0.75rem;letter-spacing:1px;z-index:10;background:#0a0a0a;padding-right:12px}
+    .ticker-track{display:flex;animation:ticker-scroll 90s linear infinite;white-space:nowrap}
+    .ticker-track span{flex-shrink:0;padding:0 3rem;color:var(--ink);font-size:0.9rem;font-family:"Courier New",monospace;opacity:0.85}
+    @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .intel-ticker:hover .ticker-track{animation-play-state:paused}
+    .threat-cards{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:32px}
+    .threat-cards h3{margin:0 0 24px;font-size:1.8rem;text-align:center}
+    .cards-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .threat-card{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px;transition:all 0.3s ease;cursor:default}
+    .threat-card:hover{border-color:var(--accent);box-shadow:0 0 15px rgba(82,255,168,0.15);transform:translateY(-2px)}
+    .threat-card-label{color:var(--accent);font-size:0.75rem;font-weight:700;letter-spacing:1px;margin-bottom:12px;text-transform:uppercase}
+    .threat-card-title{color:var(--ink);font-size:1.1rem;font-weight:700;margin-bottom:12px;line-height:1.4}
+    .threat-card-desc{color:var(--muted);font-size:0.9rem;line-height:1.6;margin:0}
     footer{border-top:1px solid var(--line);padding:32px 18px;color:var(--muted);text-align:center}
     @keyframes fadeIn{to{opacity:1}}
     @media (max-width:980px){.page-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-cover img{width:180px}}
+    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-cover img{width:180px}.ticker-label{font-size:0.65rem;left:12px}.ticker-track span{padding:0 1.5rem;font-size:0.8rem}.cards-container{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -108,6 +122,28 @@
       <p class="tagline serif">Where cyber espionage meets high-stakes fiction.</p>
     </section>
 
+    <div class="intel-ticker">
+      <div class="ticker-label">INTEL:</div>
+      <div class="ticker-track">
+        <span>Over 70% of U.S. produce moves through fewer than ten distribution hubs.</span>
+        <span>Cold-chain failures of just six hours can ruin entire shipments.</span>
+        <span>Most agricultural processors still run vulnerable, unsegmented SCADA networks.</span>
+        <span>Indoor farms rely heavily on HVAC, nutrient dosing, and spectral lighting control.</span>
+        <span>Automation logs can be falsified when optimization engines are compromised.</span>
+        <span>Leafy greens, herbs, and microgreens dominate indoor farming due to fast cycles.</span>
+        <span>Ransomware attacks in food manufacturing have tripled in the last five years.</span>
+        <span>Plant defense compounds can become toxic under the wrong environmental triggers.</span>
+        <span>Over 70% of U.S. produce moves through fewer than ten distribution hubs.</span>
+        <span>Cold-chain failures of just six hours can ruin entire shipments.</span>
+        <span>Most agricultural processors still run vulnerable, unsegmented SCADA networks.</span>
+        <span>Indoor farms rely heavily on HVAC, nutrient dosing, and spectral lighting control.</span>
+        <span>Automation logs can be falsified when optimization engines are compromised.</span>
+        <span>Leafy greens, herbs, and microgreens dominate indoor farming due to fast cycles.</span>
+        <span>Ransomware attacks in food manufacturing have tripled in the last five years.</span>
+        <span>Plant defense compounds can become toxic under the wrong environmental triggers.</span>
+      </div>
+    </div>
+
     <section class="section book-section">
       <div class="book-cover">
         <img src="/CoverArt.png" alt="Dark Recipe book cover" width="220" height="330" loading="eager">
@@ -131,6 +167,42 @@
 
     <section class="section universe-statement">
       <p class="serif">The Knox Ramsey universe explores the intersection of cutting-edge technology and human ambition, where cyber warriors navigate moral gray areas in defense of digital sovereignty. Each story peels back layers of the invisible infrastructure that powers our world, revealing the high-stakes drama of modern espionage.</p>
+    </section>
+
+    <section class="section threat-cards">
+      <h3>Threat Landscape</h3>
+      <div class="cards-container">
+        <div class="threat-card">
+          <div class="threat-card-label">Supply Chain</div>
+          <div class="threat-card-title">Critical Distribution Hubs</div>
+          <p class="threat-card-desc">The U.S. food supply relies on a concentrated network of distribution centers. A coordinated attack on just a handful of facilities could disrupt supply chains nationwide.</p>
+        </div>
+        <div class="threat-card">
+          <div class="threat-card-label">Infrastructure</div>
+          <div class="threat-card-title">SCADA Vulnerabilities</div>
+          <p class="threat-card-desc">Legacy industrial control systems in agricultural facilities often lack modern security measures, leaving critical processes exposed to remote exploitation.</p>
+        </div>
+        <div class="threat-card">
+          <div class="threat-card-label">Automation</div>
+          <div class="threat-card-title">Indoor Farm Systems</div>
+          <p class="threat-card-desc">Controlled environment agriculture depends on precisely calibrated environmental controls. Compromising these systems could turn growing facilities into chemical hazards.</p>
+        </div>
+        <div class="threat-card">
+          <div class="threat-card-label">Data Integrity</div>
+          <div class="threat-card-title">Log Manipulation</div>
+          <p class="threat-card-desc">When optimization algorithms are compromised, falsified logs can mask dangerous conditions while systems appear to operate normally—until it's too late.</p>
+        </div>
+        <div class="threat-card">
+          <div class="threat-card-label">Cold Chain</div>
+          <div class="threat-card-title">Temperature Control</div>
+          <p class="threat-card-desc">Small disruptions in refrigeration can cascade through entire supply chains. Six hours without proper cooling can render tons of perishable goods unsafe.</p>
+        </div>
+        <div class="threat-card">
+          <div class="threat-card-label">Biological</div>
+          <div class="threat-card-title">Environmental Triggers</div>
+          <p class="threat-card-desc">Plants produce natural defense compounds that are harmless under normal conditions. Manipulated growing parameters can trigger toxic accumulations in edible crops.</p>
+        </div>
+      </div>
     </section>
 
     <section class="section field-guide-callout">

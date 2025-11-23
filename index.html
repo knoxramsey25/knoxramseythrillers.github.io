@@ -46,16 +46,19 @@
     .hero .tagline{margin:0;font-size:1.4rem;color:var(--muted);max-width:600px;margin:0 auto}
     .section{margin-bottom:64px;padding:32px 0;border-bottom:1px solid var(--line)}
     .section:last-child{border-bottom:none}
-    .book-section{text-align:center}
+    .feature-section{margin-bottom:64px}
+    .feature-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:start}
+    .feature-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:32px}
+    .book-section{text-align:left}
     .book-cover{margin-bottom:24px}
     .book-cover img{width:220px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-    .book-content{max-width:500px;margin:0 auto}
+    .book-content{max-width:500px;margin:0}
     .book-content h2{margin:0 0 16px;font-size:2rem}
     .book-content p{margin:0 0 24px}
     .tagline{font-style:italic;color:var(--accent);margin-bottom:16px}
     .release-date{color:var(--muted);font-size:0.9rem;margin-bottom:24px}
-    .trailer-section{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:64px}
-    .trailer-section h3{margin:0 0 16px;font-size:1.8rem;text-align:center}
+    .trailer-section{margin:0}
+    .trailer-section h3{margin:0 0 16px;font-size:1.8rem}
     .trailer-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
     .trailer-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
     .character-section{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:32px}
@@ -94,8 +97,8 @@
     .threat-card-desc{color:var(--muted);font-size:0.9rem;line-height:1.6;margin:0}
     footer{border-top:1px solid var(--line);padding:32px 18px;color:var(--muted);text-align:center}
     @keyframes fadeIn{to{opacity:1}}
-    @media (max-width:980px){.page-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-cover img{width:180px}.ticker-label{font-size:0.65rem;left:12px}.ticker-track span{padding:0 1.5rem;font-size:0.8rem}.cards-container{grid-template-columns:1fr}.trailer-section{padding:24px;margin-bottom:48px}}
+    @media (max-width:980px){.page-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}}
+    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-section{text-align:center}.book-content{margin:0 auto}.feature-card{padding:24px}.feature-grid{gap:24px}.book-cover img{width:180px}.ticker-label{font-size:0.65rem;left:12px}.ticker-track span{padding:0 1.5rem;font-size:0.8rem}.cards-container{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -150,25 +153,28 @@
       <p class="tagline serif">Where cyber espionage meets high-stakes fiction.</p>
     </section>
 
-    <section class="section book-section">
-      <div class="book-cover">
-        <img src="/CoverArt.png" alt="Dark Recipe book cover" width="220" height="330" loading="eager">
-      </div>
-      <div class="book-content">
-        <div class="tagline">"A recipe for digital destruction"</div>
-        <h2>Dark Recipe</h2>
-        <p class="serif">In the shadows of global networks, a rogue operative uncovers a conspiracy that threatens to unravel the fabric of international security. Read the prologue and step into the world of Knox Ramsey.</p>
-        <div class="release-date">Coming Dec 20, 2025 • Pre-order Now Available</div>
-        <a href="https://a.co/d/j0qUUu1" class="btn" target="_blank" rel="noopener noreferrer">Pre-Order on Amazon</a>
-        <a href="/teaser.html" class="btn">Read Prologue</a>
-        <a href="/darkrecipe/" class="btn">Explore Dark Recipe</a>
-      </div>
-    </section>
-
-    <section class="section trailer-section" aria-labelledby="trailer-heading">
-      <h3 id="trailer-heading">Official Trailer</h3>
-      <div class="trailer-frame">
-        <iframe src="https://www.youtube.com/embed/mg6ycH7Hwxc?si=HkbBrYAuEuwLgR3C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <section class="section feature-section">
+      <div class="feature-grid">
+        <div class="feature-card book-section">
+          <div class="book-cover">
+            <img src="/CoverArt.png" alt="Dark Recipe book cover" width="220" height="330" loading="eager">
+          </div>
+          <div class="book-content">
+            <div class="tagline">"A recipe for digital destruction"</div>
+            <h2>Dark Recipe</h2>
+            <p class="serif">In the shadows of global networks, a rogue operative uncovers a conspiracy that threatens to unravel the fabric of international security. Read the prologue and step into the world of Knox Ramsey.</p>
+            <div class="release-date">Coming Dec 20, 2025 • Pre-order Now Available</div>
+            <a href="https://a.co/d/j0qUUu1" class="btn" target="_blank" rel="noopener noreferrer">Pre-Order on Amazon</a>
+            <a href="/teaser.html" class="btn">Read Prologue</a>
+            <a href="/darkrecipe/" class="btn">Explore Dark Recipe</a>
+          </div>
+        </div>
+        <div class="feature-card trailer-section" aria-labelledby="trailer-heading">
+          <h3 id="trailer-heading">Official Trailer</h3>
+          <div class="trailer-frame">
+            <iframe src="https://www.youtube.com/embed/mg6ycH7Hwxc?si=HkbBrYAuEuwLgR3C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
     </section>
 

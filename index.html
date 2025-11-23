@@ -54,6 +54,10 @@
     .book-content p{margin:0 0 24px}
     .tagline{font-style:italic;color:var(--accent);margin-bottom:16px}
     .release-date{color:var(--muted);font-size:0.9rem;margin-bottom:24px}
+    .trailer-section{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:64px}
+    .trailer-section h3{margin:0 0 16px;font-size:1.8rem;text-align:center}
+    .trailer-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
+    .trailer-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
     .character-section{background:var(--panel);padding:32px;border-radius:12px;margin-bottom:32px}
     .character-section h3{margin:0 0 24px;font-size:1.8rem}
     .character-section p{font-size:1.1rem;line-height:1.8;margin:0 0 16px}
@@ -91,7 +95,7 @@
     footer{border-top:1px solid var(--line);padding:32px 18px;color:var(--muted);text-align:center}
     @keyframes fadeIn{to{opacity:1}}
     @media (max-width:980px){.page-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-cover img{width:180px}.ticker-label{font-size:0.65rem;left:12px}.ticker-track span{padding:0 1.5rem;font-size:0.8rem}.cards-container{grid-template-columns:1fr}}
+    @media (max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a1318;border-top:1px solid var(--line)}.nav-links.active{display:flex}.hamburger{display:flex}.hero h1{font-size:2.5rem}.hero .tagline{font-size:1.2rem}.hero-logo img{width:70vw}.book-cover img{width:180px}.ticker-label{font-size:0.65rem;left:12px}.ticker-track span{padding:0 1.5rem;font-size:0.8rem}.cards-container{grid-template-columns:1fr}.trailer-section{padding:24px;margin-bottom:48px}}
   </style>
 </head>
 <body>
@@ -154,10 +158,17 @@
         <div class="tagline">"A recipe for digital destruction"</div>
         <h2>Dark Recipe</h2>
         <p class="serif">In the shadows of global networks, a rogue operative uncovers a conspiracy that threatens to unravel the fabric of international security. Read the prologue and step into the world of Knox Ramsey.</p>
-        <div class="release-date">Coming December 2025 • Pre-order Now Available</div>
+        <div class="release-date">Coming Dec 20, 2025 • Pre-order Now Available</div>
         <a href="https://a.co/d/j0qUUu1" class="btn" target="_blank" rel="noopener noreferrer">Pre-Order on Amazon</a>
         <a href="/teaser.html" class="btn">Read Prologue</a>
         <a href="/darkrecipe/" class="btn">Explore Dark Recipe</a>
+      </div>
+    </section>
+
+    <section class="section trailer-section" aria-labelledby="trailer-heading">
+      <h3 id="trailer-heading">Official Trailer</h3>
+      <div class="trailer-frame">
+        <iframe src="https://www.youtube.com/embed/mg6ycH7Hwxc" title="Dark Recipe Official Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </section>
 
